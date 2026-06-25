@@ -108,8 +108,7 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| KA01 | `SYSTEQ_VCF_STACK_ANATOMY.md` | KB (tento repo) | analýza | V1 architektonická disekce VCF stacku — 11 issues, refaktoring plán, upsell analýza | 10/10 |
-| KA02 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | KB (tento repo) | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka | 10/10 |
+| KA01 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | KB (tento repo) | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka (V1 archivována) | 10/10 |
 
 ---
 
@@ -138,6 +137,7 @@
 | T07 | `preview_gpt.txt` | B2B/Technicke_zadani_moodpasta/ | preview | GPT preview — sémantická normalizace | 5/10 |
 | T08 | `preview_grok.txt` | B2B/Technicke_zadani_moodpasta/ | preview | Grok preview — cenový odhad | 5/10 |
 | T09 | `oponentura_moodpasta_2026-06-25.docx` | B2B/Technicke_zadani_moodpasta/ | oponentura | Oponentský posudek — komplexní revize (pouze lokálně) | 7/10 |
+| T10 | `executive_summary_moodpasta.md` | KB (tento repo) | executive summary | 1-stránkový přehled pro Františka — stav, nabídka, timeline, exkluzivita, next steps | 9/10 |
 
 ### 02_business — B2B hodnota, cenotvorba, NDA
 
@@ -235,6 +235,7 @@
 | X03 | `AMORALNI_ANALYZA_MOODPASTA.md` | B2B/ | Single-use, limited future value |
 | X04 | `chronicles_json_dev_sprint_2025_2026_v1.1.json` | B2B/ | Dev sprint chronicle — historický záznam |
 | X05 | `KRONIKA PROFESNÍHO VÝVOJE AUTORA.txt` | B2B/ | Osobní kronika, nízká provozní hodnota |
+| X06 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | 02_ANALÝZY/03_kodove_analyzy/ | Superseded V2 — V2 obsahuje všech 11 V1 issue + 7 nových nálezů |
 
 ---
 
@@ -261,9 +262,9 @@
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~69 |
-| Z toho migrováno do KB | ~53 |
-| V archivu | 5 |
+| Celkem zmapovaných artefaktů | ~70 |
+| Z toho migrováno do KB | ~54 |
+| V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
 | RAG-ready (textové) | ~55 |
 
