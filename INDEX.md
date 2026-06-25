@@ -121,12 +121,13 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | T01 | `Technicke_zadani_Parser_Ondra_Sousek.docx.pdf` | B2B/Technicke_zadani_moodpasta/ | zadání | Technické zadání parseru (pouze lokálně) | 7/10 |
-| T02 | `GROUND_TRUTH_SYSTEQ_MOODPASTA_2026-06-23.md` | B2B/Technicke_zadani_moodpasta/ | ground truth | Ground truth pro Moodpasta projekt | 8/10 |
-| T03 | `README.md` | B2B/Technicke_zadani_moodpasta/ | readme | README technického zadání | 6/10 |
-| T04 | `.ai_state.json` | B2B/Technicke_zadani_moodpasta/ | stav | AI stav projektu | 5/10 |
-| T05 | `preview_ds4.json` | B2B/Technicke_zadani_moodpasta/ | preview | DeepSeek V4 preview | 5/10 |
-| T06 | `preview_gpt.txt` | B2B/Technicke_zadani_moodpasta/ | preview | GPT preview | 5/10 |
-| T07 | `preview_grok.txt` | B2B/Technicke_zadani_moodpasta/ | preview | Grok preview | 5/10 |
+| T02 | `technicke_zadani_Moodpasta.md` | KB (tento repo) | GT zadání | RAG-ready přepis PDF + sémantická normalizace z 3 preview (GPT, Grok, DS4) + cenové varianty | 10/10 |
+| T03 | `GROUND_TRUTH_SYSTEQ_MOODPASTA_2026-06-23.md` | B2B/Technicke_zadani_moodpasta/ | ground truth | Ground truth pro Moodpasta projekt | 8/10 |
+| T04 | `README.md` | B2B/Technicke_zadani_moodpasta/ | readme | README technického zadání | 6/10 |
+| T05 | `.ai_state.json` | B2B/Technicke_zadani_moodpasta/ | stav | AI stav projektu | 5/10 |
+| T06 | `preview_ds4.json` | B2B/Technicke_zadani_moodpasta/ | preview | DeepSeek V4 preview | 5/10 |
+| T07 | `preview_gpt.txt` | B2B/Technicke_zadani_moodpasta/ | preview | GPT preview — sémantická normalizace | 5/10 |
+| T08 | `preview_grok.txt` | B2B/Technicke_zadani_moodpasta/ | preview | Grok preview — cenový odhad | 5/10 |
 
 ### 02_business — B2B hodnota, cenotvorba, NDA
 
