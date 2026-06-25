@@ -104,6 +104,13 @@
 
 *Připraveno pro budoucí artefakty*
 
+### 03_kodove_analyzy — Architektonické analýzy a audity kódu
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| KA01 | `SYSTEQ_VCF_STACK_ANATOMY.md` | KB (tento repo) | analýza | V1 architektonická disekce VCF stacku — 11 issues, refaktoring plán, upsell analýza | 10/10 |
+| KA02 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | KB (tento repo) | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka | 10/10 |
+
 ---
 
 ## 03_PROVOZ — Provozní dokumenty, emaily, kontrakty
@@ -116,6 +123,7 @@
 | M02 | `call_transkript_sousek_sehnal_moodpasta.txt` | B2B/Technicke_zadani_moodpasta/ | transkript | Call s klientem | 7/10 |
 | M03 | `call_transkript_sousek_sehnal_moodpasta.json` | B2B/Technicke_zadani_moodpasta/ | transkript | Strukturovaný přepis hovoru | 7/10 |
 | M04 | `summary.txt` | B2B/Technicke_zadani_moodpasta/ | summary | Shrnutí jednání | 6/10 |
+| M05 | `appendix_moodpasta.md` | KB (tento repo) | analýza | Analýza emailové komunikace, delta oproti technickému zadání, aktualizované verdikty, akční checklist | 9/10 |
 
 ### 01_projekty — Technická zadání, PoC dokumentace
 
@@ -129,6 +137,7 @@
 | T06 | `preview_ds4.json` | B2B/Technicke_zadani_moodpasta/ | preview | DeepSeek V4 preview | 5/10 |
 | T07 | `preview_gpt.txt` | B2B/Technicke_zadani_moodpasta/ | preview | GPT preview — sémantická normalizace | 5/10 |
 | T08 | `preview_grok.txt` | B2B/Technicke_zadani_moodpasta/ | preview | Grok preview — cenový odhad | 5/10 |
+| T09 | `oponentura_moodpasta_2026-06-25.docx` | B2B/Technicke_zadani_moodpasta/ | oponentura | Oponentský posudek — komplexní revize (pouze lokálně) | 7/10 |
 
 ### 02_business — B2B hodnota, cenotvorba, NDA
 
@@ -244,6 +253,7 @@
 | `moodpasta`, `klient` | `03_PROVOZ/00_komunikace/` + `03_PROVOZ/01_projekty/` |
 | `b2b`, `hodnota`, `cenotvorba` | `03_PROVOZ/02_business/` |
 | `audit`, `github`, `portfolio` | `02_ANALÝZY/01_portfolio_audit/` |
+| `analyza`, `kod`, `architektura`, `vcf` | `02_ANALÝZY/03_kodove_analyzy/` |
 
 ---
 
@@ -251,10 +261,10 @@
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~65 |
-| Z toho migrováno do KB | ~50 |
+| Celkem zmapovaných artefaktů | ~69 |
+| Z toho migrováno do KB | ~53 |
 | V archivu | 5 |
-| Pouze lokálně (binary) | 5 |
+| Pouze lokálně (binary) | 6 |
 | RAG-ready (textové) | ~55 |
 
 ---
