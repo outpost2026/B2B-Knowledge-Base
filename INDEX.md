@@ -17,6 +17,7 @@
 | S05 | `Operational Corpus_Systemic Competency Report.json` | B2B/ | report | Kompetenční profil autora | 6/10 |
 | S06 | `Manifest_Od_black_box_k_transparentni_intelektualni_vyrobe.txt` | B2B/ | manifest | Vize transparentní znalostní výroby | 7/10 |
 | S07 | `Epistemicky_kotvici_ramec_a_operacni_modus.md` | B2B/ | framework | Meta-handoff pro prevenci entropie | 9/10 |
+| S08 | `GROUND_TRUTH_aktualni_stav_2026-06-25.md` | KB (tento repo) | ground truth | Deterministický snapshot: profil, skills, Moodpasta kontext, portfolio, zadání | 10/10 |
 
 ### 01_positioning — EROI plány, korekce vektorů
 
