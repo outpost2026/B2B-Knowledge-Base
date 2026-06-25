@@ -137,6 +137,7 @@
 | B02 | `VCF_Parser_SYSTEQ_handoff.json` | B2B/ | handoff | Handoff pro VCF parser | 7/10 |
 | B03 | `VCF_Parser_SYSTEQ_narrative.md` | B2B/ | narrative | Příběh VCF parseru pro klienty | 8/10 |
 | B04 | `CEO_CTO_HOWTO_v1.3.pdf` | B2B/ | guide | Jak komunikovat s CEO/CTO (pouze lokálně) | 6/10 |
+| B05 | `cenova_metodika_moodpasta.md` | KB (tento repo) | metodika | Cenová metodika + inference náročnosti + strategie pro první B2B zakázku | 10/10 |
 
 ---
 
