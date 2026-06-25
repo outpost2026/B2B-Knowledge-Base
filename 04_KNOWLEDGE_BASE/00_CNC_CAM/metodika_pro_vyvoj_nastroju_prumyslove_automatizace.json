@@ -1,0 +1,263 @@
+{
+  "handoff": {
+    "type": "dev",
+    "version": "2.0",
+    "date": "2026-06-13",
+    "author": "SYSTEQ / outpost2026",
+    "inspiration": "Tomáš Mikolov — komprese, jednoduchost, interpretovatelnost, základní principy, novelty search, emergence",
+    "purpose": "Metodika pro iterativní vývoj nástrojů průmyslové automatizace (nejen VCF/DXF parserů) s důrazem na epistemologii extrakce a komprese reality."
+  },
+  "basic_research_in_industrial_automation": {
+    "description": "Principy přenositelné na jakýkoli systém, kde existuje informační asymetrie mezi implicitní znalostí (operátor, technolog, stroj) a explicitním modelem.",
+    "core_principles": [
+      {
+        "name": "Komprese jako extrakce struktury",
+        "definition": "Vstupní vysokodimenzionální data (např. binární formát, surové senzorické signály, chaotické workflow) se převedou do kompaktní reprezentace, která zachycuje invarianty a vztahy.",
+        "implementation_pattern": "Pro každý vstup definujte deskriptorový vektor (5–20 číselných rysů) místo ukládání surových dat. Tento vektor musí být dostatečný pro rekonstrukci rozhodovacího procesu.",
+        "example": "VCF parser → deskriptory vrstvy (mean_radius, fraction_circles, total_perimeter).",
+        "roi": "Vysoký – redukce složitosti o 2–3 řády, umožňuje ML na malých vzorcích."
+      },
+      {
+        "name": "Jednoduché & interpretovatelné modely",
+        "definition": "Používejte decision trees, linear classifiers, rule-based systémy před deep learningem. Každé rozhodnutí musí být lidsky čitelné.",
+        "implementation_pattern": "Max_depth ≤ 4, min_samples_leaf ≥ 5. Export pravidel do JSON/YAML. Žádný black box.",
+        "example": "fastText versus hluboké sítě – stejná přesnost, 100× rychlejší.",
+        "roi": "Střední až vysoký – nižší náklady na ladění, vyšší důvěra uživatelů, snadná certifikace."
+      },
+      {
+        "name": "Základní principy před statistikou",
+        "definition": "Než nasadíte ML, vyčerpejte všechna fyzikální, geometrická a logická omezení systému. ML pouze doplňuje to, co nelze odvodit.",
+        "implementation_pattern": "Pravidla typu IF-THEN v samostatné bázi (rules.json). ML voláno až když žádné pravidlo není aktivní nebo má nejistotu.",
+        "example": "min_radius < 2.5 mm → vibrate cutter (fyzika). Jinak ML.",
+        "roi": "Velmi vysoký – eliminuje 80 % chyb ML, zvyšuje robustnost."
+      },
+      {
+        "name": "Novelty search – kontinuální učení",
+        "definition": "Systém musí aktivně sbírat případy, kde selhal (odchylka operátora), a po dosažení prahu spustit přeučení. Nejde jen o feedback loop, ale o hledání nových stavů.",
+        "implementation_pattern": "Novelty buffer (např. 10 odchylek) → automatické retraining nebo flag pro manuální revizi.",
+        "example": "Operátor opraví predikci rychlosti z 200 na 120 mm/s → uložit vzorek, po 10 takových spustit nový decision tree.",
+        "roi": "Střední – dlouhodobě zvyšuje adaptabilitu, snižuje potřebu manuální údržby."
+      },
+      {
+        "name": "Emergence z jednoduchých pravidel",
+        "definition": "Nekomplikujte architekturu – komplexní chování často vzniká jako emergentní vlastnost kombinace jednoduchých mechanismů.",
+        "implementation_pattern": "Navrhněte minimální sadu atomických pravidel a testujte, zda jejich interakce dává požadované chování. Nepředepisujte vše explicitně.",
+        "example": "Kombinace physics baseline + decision tree + case-based reasoning → emergentní predikce parametrů.",
+        "roi": "Střední – snižuje počet pravidel o 50–70 %, ale vyžaduje systematické testování."
+      }
+    ],
+    "transferable_artifacts": [
+      {
+        "artifact": "Deskriptorový generátor (feature extractor)",
+        "reusability": "Pro libovolný binární/geometrický formát – stačí přepsat parsování vstupu, jádro statistických deskriptorů zůstává.",
+        "estimated_effort_for_new_format": "2–5 dnů"
+      },
+      {
+        "artifact": "Decision tree trainer s bootstrap P-hodnotou",
+        "reusability": "Univerzální pro libovolnou klasifikační úlohu s malými daty (30–500 vzorků).",
+        "estimated_effort": "1 den"
+      },
+      {
+        "artifact": "Case-based reasoning engine (cosine similarity)",
+        "reusability": "Pro jakýkoli problém, kde máte archiv historických případů.",
+        "estimated_effort": "0.5 dne"
+      },
+      {
+        "artifact": "Novelty buffer + auto-retraining pipeline",
+        "reusability": "Univerzální pro systémy s uživatelskou zpětnou vazbou.",
+        "estimated_effort": "1 den"
+      }
+    ]
+  },
+  "updated_roadmap_for_vcf_dxf_parser": {
+    "description": "Aktualizovaná metodologie a implementační priority pro dokončení prediktivního DXF pre-processoru, inspirovaná Mikolovovými principy.",
+    "current_status": {
+      "completed": [
+        "Deskriptor vrstvy (layer_descriptor.py)",
+        "Physics baseline (rules.json) – 10+ pravidel",
+        "Decision tree pro cutter_type_id (acc 0.92 na hold-out)",
+        "Case-based reasoning fallback",
+        "Confidence flagging (HIGH/MEDIUM/LOW)"
+      ],
+      "in_progress": [
+        "Rozšíření feature setu o pattern name, pitch, orientation",
+        "Integrace textové analýzy názvů souborů/vrstev",
+        "Trénink decision tree pro speed, passes, bevel_type"
+      ],
+      "gaps": [
+        "Novelty feedback loop (formalizace zpětnovazební smyčky)",
+        "Emergence test suite",
+        "Plná pipeline pro DXF segmentation (heuristické rozdělení do vrstev)"
+      ]
+    },
+    "prioritized_tasks": [
+      {
+        "priority": 1,
+        "task": "Dokončit rozšíření feature setu (pattern name extraction, pitch estimation, orientation detection)",
+        "rationale": "Mikolovova komprese – čím kvalitnější deskriptory, tím lépe ML funguje. Bez nich nelze správně predikovat Manchester 20 (speed low).",
+        "estimated_time": "0.5 dne",
+        "roi": "Vysoký – zlepší přesnost predikce rychlosti o ~15 %."
+      },
+      {
+        "priority": 2,
+        "task": "Natrénovat decision trees pro speed (low/medium/high) a passes (1,2,3) na rozšířeném datasetu",
+        "rationale": "Jednoduché modly – decision tree stačí, žádné deep learning.",
+        "estimated_time": "0.5 dne",
+        "roi": "Střední – umožní predikci nejen nástroje, ale i rychlosti a počtu průjezdů."
+      },
+      {
+        "priority": 3,
+        "task": "Implementovat novelty feedback loop (Novelty Search) – buffer odchylek + automatický retraining",
+        "rationale": "Mikolovův princip novelty search – systém se musí učit z vlastních chyb kontinuálně.",
+        "estimated_time": "1 den",
+        "roi": "Dlouhodobě vysoký – sníží potřebu manuálních korekcí o 50 % po 3 měsících."
+      },
+      {
+        "priority": 4,
+        "task": "Vytvořit emergence test suite (sada těžkých případů, kde žádné jednotlivé pravidlo nestačí)",
+        "rationale": "Emergence – ověří, že kombinace pravidel dává správný výsledek i v netriviálních případech.",
+        "estimated_time": "0.5 dne",
+        "roi": "Střední – zvýší robustnost, odhalí skryté chyby."
+      },
+      {
+        "priority": 5,
+        "task": "Integrace DXF segmentation heuristics (rozdělení surového DXF do logických vrstev podle typu prvků)",
+        "rationale": "DXF pre-processor nemůže fungovat, pokud neví, co patří do které vrstvy (dekor, obrys, text, engraving).",
+        "estimated_time": "1 den",
+        "roi": "Kritický – bez toho nelze dokončit DXF větev."
+      },
+      {
+        "priority": 6,
+        "task": "Hold-out evaluace na 20 % VCF (neviděných) s měřením F1-skóre pro cutter_type, speed, passes",
+        "rationale": "Validace – musíme vědět, zda systém opravdu predikuje správně.",
+        "estimated_time": "0.5 dne",
+        "roi": "Vysoký – poskytne data pro B2B prezentaci."
+      },
+      {
+        "priority": 7,
+        "task": "Dokumentace interpretovatelných pravidel (export decision tree do JSON + přirozený jazyk)",
+        "rationale": "Mikolovova interpretovatelnost – B2B partneři musí rozumět, proč systém navrhl daný parametr.",
+        "estimated_time": "0.5 dne",
+        "roi": "Střední – zvyšuje důvěru a usnadňuje onboarding."
+      },
+      {
+        "priority": 8,
+        "task": "Implementace fallback strategie pro DXF (když ML confidence < 0.8 – použít case-based + physics)",
+        "rationale": "Graceful degradation – systém nikdy nenechá operátora bez návrhu.",
+        "estimated_time": "0.5 dne",
+        "roi": "Vysoký – zajišťuje použitelnost i při nedostatku dat."
+      }
+    ],
+    "fallback_and_pivot_strategy": {
+      "description": "Protože vývoj je emergentní, může se stát, že některé předpoklady selžou. Zde jsou plánované záchranné body a pivoty.",
+      "fallback_triggers": [
+        {
+          "condition": "Přesnost decision tree pro cutter_type klesne pod 0.85 na hold-out setu",
+          "action": "Vrátit se k čistě physics baseline (rules.json) a case-based reasoning, ML pouze jako doporučení (confidence LOW).",
+          "pivot": "Zvýšit min_samples_leaf na 10, snížit max_depth na 2 (ještě jednodušší model)."
+        },
+        {
+          "condition": "Feedback loop za 2 týdny nashromáždí > 30 novelit (odchylek) a retraining nepomáhá",
+          "action": "Manuální review novelit – může jít o chybu v deskriptorech (chybí důležitý feature).",
+          "pivot": "Rozšířit feature set o nový geometrický rys (např. moment setrvačnosti, fraktální dimenzi)."
+        },
+        {
+          "condition": "DXF segmentation heuristics selhávají na > 20 % reálných DXF (např. designér nedodržuje vrstvy)",
+          "action": "Implementovat interaktivní režim – operátor ručně přiřadí prvky do vrstev, systém si to pamatuje pro příště.",
+          "pivot": "Použít jednoduchý clustering (k-means na pozicích) místo heuristik."
+        },
+        {
+          "condition": "Emergence test suite odhalí systematické chyby v kombinaci pravidel",
+          "action": "Přidat explicitní meta-pravidlo (override) do rules.json, které řeší konkrétní emergentní případ.",
+          "pivot": "Pokud je takových případů > 5, zvýšit prioritu pro retraining decision tree na nových datech."
+        }
+      ],
+      "pivot_opportunities": [
+        {
+          "opportunity": "Po dokončení VCF/DXF parseru může autor využít stejnou metodiku pro jiné CAM formáty (LightBurn .lbrn2, G-code, HPGL).",
+          "required_change": "Pouze přepsat parser vstupního formátu – deskriptory a ML zůstávají.",
+          "estimated_effort": "2–5 dnů na formát"
+        },
+        {
+          "opportunity": "Nasazení novelty search principu na jiné domény – například predikce údržby stroje (vibrace → porucha).",
+          "required_change": "Jiné vstupní data (časové řady), ale stejná architektura (deskriptory + decision tree + case-based + feedback).",
+          "estimated_effort": "3–10 dnů"
+        }
+      ]
+    }
+  },
+  "roi_summary": {
+    "description": "Orientační návratnost investic (času) pro jednotlivé metody a nástroje v kontextu vývoje prediktivního parseru.",
+    "metrics": {
+      "high": "> 50 % úspora času při přípravě zakázky nebo > 30 % zvýšení přesnosti",
+      "medium": "20–50 % úspora nebo 10–30 % zvýšení přesnosti",
+      "low": "< 20 % úspora nebo < 10 % zvýšení přesnosti"
+    },
+    "items": [
+      {
+        "method": "Deskriptorová komprese (feature extraction)",
+        "roi": "high",
+        "comment": "Redukuje vstup z tisíců bodů na 10–20 čísel, umožňuje ML na malých datech."
+      },
+      {
+        "method": "Decision tree (max_depth=3)",
+        "roi": "high",
+        "comment": "Trénink v řádu sekund, inference mikrosekundy, interpretovatelná pravidla."
+      },
+      {
+        "method": "Physics baseline (rules.json)",
+        "roi": "high",
+        "comment": "Eliminuje 80 % chyb ML, stojí 0.5 dne implementace."
+      },
+      {
+        "method": "Case-based reasoning (cosine similarity)",
+        "roi": "medium",
+        "comment": "Užitečné pro fallback, ale vyžaduje archiv minimálně 10 VCF."
+      },
+      {
+        "method": "Novelty feedback loop",
+        "roi": "medium",
+        "comment": "Dlouhodobá úspora – snižuje manuální korekce, ale implementace stojí 1 den."
+      },
+      {
+        "method": "Emergence test suite",
+        "roi": "medium",
+        "comment": "Zvyšuje robustnost, odhaluje skryté chyby – návratnost hlavně při nasazení v ostrém provozu."
+      },
+      {
+        "method": "DXF segmentation heuristics",
+        "roi": "high",
+        "comment": "Bez toho nelze DXF větev vůbec spustit – kritická závislost."
+      },
+      {
+        "method": "Interpretovatelný export pravidel",
+        "roi": "medium",
+        "comment": "Nepřináší přímou úsporu času, ale zvyšuje šanci na B2B prodej (důvěra)."
+      }
+    ]
+  },
+  "ethical_and_epistemic_notes": {
+    "description": "Doplňující principy z Mikolovova myšlení, které přesahují čistě technickou rovinu.",
+    "notes": [
+      "Věda (i aplikovaný výzkum) není optimalizace metrik – je to hledání nových principů. Pokud se systém přestane učit nové věci, je mrtvý.",
+      "Nebojte se zahodit 2 týdny práce, když objevíte jednodušší řešení. Složitost je nepřítel.",
+      "Informační asymetrie je příležitost, ne chyba. Každá ‚černá skříňka‘ (VCF, operátorovo know-how) je potenciálním zdrojem nového modelu.",
+      "Nejlepší nástroj je ten, který můžete za rok předat jinému vývojáři a on ho pochopí do týdne. Interpretovatelnost není luxus – je to udržitelnost."
+    ]
+  },
+  "references": {
+    "mikolov_sources": [
+      "Rozhovor Delft University of Technology (leden 2023)",
+      "WIRED rozhovor (2025) – kritika současného stavu AI",
+      "Heroine rozhovor (2022) – emergence a komplexní systémy",
+      "GoodAI – Novelty Search projekt"
+    ],
+    "systeq_documents": [
+      "SYSTEQ_DXF_PREDICTIVE_PARSER_B2B_VISION.md",
+      "DXF_PREDICTIVE_PARSER_METHODOLOGY.md",
+      "Průmyslový a Technologický Znalostní Korpus v1.0.1.docx",
+      "1ks_v20.json",
+      "fishbone_2790x1200_v20.json"
+    ]
+  }
+}

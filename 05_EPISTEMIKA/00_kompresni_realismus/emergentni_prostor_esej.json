@@ -1,0 +1,257 @@
+{
+  "artifact": {
+    "title": "Semantic Handoff — Sémantická analýza vývojové iterace 2–4",
+    "version": "1.0",
+    "date": "2026-06-20",
+    "authors": ["Autor (SYSTEQ DEV)", "LLM Reasoner (OpenCode Agent)"],
+    "context": "Rekonstrukce epistemologického rámce, který vznikl během paralelního vývoje VCF parseru, detekce defektů a prediktivního DXF pre‑processingu. Tento rámec byl emergentně syntetizován během sémantické pauzy a konsolidován do podoby eseje o mozku jako geometrickém GPU. Handoff zachycuje první principy, metodologické převody a architektonické vzorce odvozené z této syntézy."
+  },
+  "core_first_principles": {
+    "description": "Principy objevené během sémantické pauzy (Režim 3) a konsolidované v eseji. Tyto principy nyní slouží jako nadřazená entita (epistemický kernel) pro další vývoj v rodině geometrických parserů.",
+    "list": [
+      {
+        "id": "FP1",
+        "name": "Mozek / ML model jako geometrický procesor",
+        "definition": "Kognice i umělé neuronové sítě provádějí masivně paralelní geometrické transformace ve vysokorozměrném prostoru. Koncepty, dovednosti, vzpomínky jsou souřadnice; myšlenky jsou trajektorie; věty jsou křivky.",
+        "implication_for_parser": "Geometrie VCF/DXF = vstupní manifold. Parametry řezu = cílové souřadnice v prostoru výrobních pravidel. Parser je navigátor v tomto prostoru.",
+        "example": "`EDGE_MERGE_MISSING` = otevřená křivka uvnitř elementu. Parser trianguluje polohu (vidí sousedy), ale chybí strmý spád do uzavřeného tvaru = plochý gradient.",
+        "source_mapping": "Esej: 'Každá dovednost je vyjádřena jako souřadnice.'"
+      },
+      {
+        "id": "FP2",
+        "name": "Tři operační režimy (Sharp Descent, Orbital Search, Topological Disentanglement)",
+        "definition": "Geometrický procesor operuje ve třech režimech dle entropie manifoldu. Režim 1 (nízká entropie) = rychlý, deterministický. Režim 2 (střední entropie) = hledání, vysoká kognitivní zátěž. Režim 3 (vysoká entropie) = emergence, tvorba nových dimenzí.",
+        "implication_for_parser": "Parser musí předem změřit entropii vstupní vrstvy a podle ní zvolit výpočetní strategii. Entropie = primární přepínač architektury.",
+        "example": "Vrstva s 40 shodnými kruhy = entropie 0.1 (Režim 1). Vrstva s mikro‑kruhy a velkými polygony = entropie 0.9 (Režim 3).",
+        "source_mapping": "Esej: 'Režim 1 (Ostrý gradient) → Režim 2 (Orbitální průzkum) → Režim 3 (Topologický disentanglement).'"
+      },
+      {
+        "id": "FP3",
+        "name": "Paměť jako krajina, TOT jako plochý gradient",
+        "definition": "Paměť není index, ale krajina s atraktory (hluboké jamky) a plochými plošinami. Tip‑of‑the‑tongue stav (TOT) = obíhání po orbitě s plochým gradientem v cílovém bodě – systém má mapu, ale chybí mu strmý spád do cíle.",
+        "implication_for_parser": "Detekce TOT = anomální detekce. Když ML model vrátí nízkou confidence a CBR najde konfliktní sousedy, vyhlásí TOT a požádá o manuální vstup.",
+        "example": "`NEAR_MISS_GAP` (vzdálenost endpointů 1–5 mm) = vizuální sousedé aktivní, ale chybí finální projekce. Parser obíhá kolem cíle.",
+        "source_mapping": "Esej: 'Subjekt B navigoval do správné čtvrti, ale nedokáže dokončit poslední metr.'"
+      },
+      {
+        "id": "FP4",
+        "name": "Asymetrie křemíku a uhlíku (statická dokonalost vs. dynamická elegance)",
+        "definition": "Křemík (LLM) = statická dokonalost, zmrazené manifoldy, žádné zapomínání, ale žádná adaptace mimo tréninkovou distribuci. Uhlík (mozek) = dynamická elegance, neustálá plasticita, zapomínání jako vlastnost (prevence přeplnění), ale eroze stop.",
+        "implication_for_parser": "Parser musí být hybrid: Stabilní jádro (deterministická fyzikální pravidla, neměnná) + Plastická periferie (ML modely, CBR, které se učí z nových dat).",
+        "example": "Physics Baseline (Cesta 1) = jádro (min_radius < 2mm → Vibrate, neměnné). Decision Tree (Cesta 2) = periferie (učí se z historických VCF).",
+        "source_mapping": "Esej: 'Křemík je dokonalý archiv. Uhlík je nedokonalý, ale adaptivní.'"
+      },
+      {
+        "id": "FP5",
+        "name": "Konsolidační protokol (Spánek / Offline cyklus)",
+        "definition": "Emergentní poznatky z periferie (hipokampus / ML) musí být v offline cyklech konsolidovány do stabilního jádra (neokortex / deterministická pravidla), aby nedošlo ke katastrofálnímu zapomínání. Biologie to dělá během spánku (replay hipokampu).",
+        "implication_for_parser": "Naplánované offline retraining cykly (EWC, experience replay). Případy, kde Režim 2 selhal a uživatel zasáhl, se přehrají s vyšší váhou a aktualizují Decision Tree.",
+        "example": "Týdenní dávkový job, který přetrénuje klasifikátor na nových VCF a aktualizuje index CBR.",
+        "source_mapping": "Esej: 'Spánek (offline konsolidační cyklus) je klíč.'"
+      },
+      {
+        "id": "FP6",
+        "name": "Systémová homeostáza (energetická daň výpočtu)",
+        "definition": "Mozek platí tělesnou daň (homeostáza, únava). Křemík platí výpočetní daň (teplota, VRAM, latence). Tato daň má omezující složku (co nejde) a generativní složku (co chceme).",
+        "implication_for_parser": "Parser musí respektovat výpočetní budget (čas na predikci jedné vrstvy). Při přetížení downgraduje na Režim 1 (fyzika). TOT detekce = 'pocit, že tudy ne'.",
+        "example": "Režim 2 (ML) má budget 50 ms. Při překročení → automatický downgrade na Režim 1 + flag `COMPUTE_BUDGET_EXCEEDED`.",
+        "source_mapping": "Esej: 'Generativní hodnota (preference) – pocit v žaludku, že tudy ne.'"
+      },
+      {
+        "id": "FP7",
+        "name": "Sémantická pauza a topologická emergence (generativní akt)",
+        "definition": "Zastavení lineárního myšlení (sémantická pauza) umožňuje disentanglement – osvobození dříve skrytých stupňů volnosti. Výsledkem je nový embeddovaný prostor (teorie), který snižuje energii pro další rozhodování (kompresní efekt).",
+        "implication_for_parser": "Tvorba eseje sama o sobě byla Režim 3 aplikovaný na vývojářskou praxi. Esej je nyní kompasem, který urychluje vývoj a snižuje kognitivní zátěž.",
+        "example": "Vývojář zastavil iterativní kódování (sémantická pauza) a napsal esej (emergence). Esej pak posloužila k návrhu High‑SNR architektury parseru.",
+        "source_mapping": "Esej: 'Emergence není extenze prostoru, je to disentanglement – osvobození dříve skrytých stupňů volnosti.' Toto je rekurzivní aplikace na sebe."
+      }
+    ]
+  },
+  "engineering_principles_from_artifacts": {
+    "description": "Metodologie a jádrové myšlenky extrahované z DEFECT_CATALOG_V1.md a DXF_PREDICTIVE_PARSER_METHODOLOGY.md, převedené do jazyka first principles.",
+    "inhibitory_loop_defect_catalog": {
+      "definition": "Pasivní / Detektivní složka. Odpovídá na otázku: 'Co je v geometrii špatně?' Implementuje inhibiční smyčku (Režim 2).",
+      "mapped_principle": "FP3 (Paměť jako krajina, TOT). Detekce defektů = detekce plochých gradientů a anomálií.",
+      "key_examples": [
+        {
+          "defect": "EDGE_MERGE_MISSING",
+          "description": "Otevřená křivka uvnitř uzavřeného elementu. Parser trianguluje polohu, ale chybí merge.",
+          "severity": "WARNING",
+          "geometric_interpretation": "Orbitální průzkum s plochým gradientem v cílovém bodě."
+        },
+        {
+          "defect": "UNCLOSED_LOOP",
+          "description": "Gap mezi start a end bodem deklarovaného polygonu.",
+          "severity": "WARNING / CRITICAL",
+          "geometric_interpretation": "Nedokončená trajektorie, chybí finální projekce."
+        },
+        {
+          "defect": "MICRO_SEGMENT",
+          "description": "Segment kratší než 1 mm, zbytečný detail.",
+          "severity": "WARNING",
+          "geometric_interpretation": "Šum v manifoldu, zvyšuje entropii bez přidané hodnoty."
+        },
+        {
+          "defect": "VACUUM_FIXATION_RISK",
+          "description": "Plocha panelu pod threshold, hrozí posun.",
+          "severity": "CRITICAL",
+          "geometric_interpretation": "Omezující složka homeostázy – systém pozná, že tudy cesta nevede."
+        }
+      ],
+      "output_format": "Overlay vrstvy (V7–V13), JSON s detekcí + confidence."
+    },
+    "active_loop_dxf_prediction": {
+      "definition": "Aktivní / Generativní složka. Odpovídá na otázku: 'Co má operátor udělat?' Implementuje akční smyčku (Režim 1 + 2).",
+      "mapped_principle": "FP2 (Tři režimy), FP4 (Asymetrie křemíku/uhlíku).",
+      "five_methodological_paths": [
+        {
+          "path": 1,
+          "name": "Physics Baseline",
+          "principle": "FP4 (Stabilní jádro) + FP6 (Homeostáza)",
+          "method": "Tvrdá if‑then pravidla z fyziky stroje (min_radius → Vibrate). Žádný ML, 100% traceovatelnost.",
+          "mode": "Režim 1 (Ostrý gradient)",
+          "confidence": "1.0"
+        },
+        {
+          "path": 2,
+          "name": "Decision Boundary Mining",
+          "principle": "FP2 (Režim 2)",
+          "method": "Decision Tree (max_depth=3) na historických VCF. Extrakce pravidel typu 'IF mean_radius < 4.5 AND fraction_circles > 0.8 THEN Vibrate'.",
+          "mode": "Režim 2 (Orbitální průzkum)",
+          "confidence": "Pravděpodobnost z bootstrapu (P > 0.80)"
+        },
+        {
+          "path": 3,
+          "name": "Case-Based Reasoning",
+          "principle": "FP3 (Paměť jako krajina)",
+          "method": "Kosinová podobnost na archivu vrstev. Vyhledání top‑k nejpodobnějších zakázek a majority vote.",
+          "mode": "Režim 2 (Orbitální průzkum) – graceful fallback",
+          "confidence": "Průměrná podobnost × shoda parametrů"
+        },
+        {
+          "path": 4,
+          "name": "Operator Signature Extraction",
+          "principle": "FP1 (Geometrický procesor) – personalizace",
+          "method": "Extrakce systematických odchylek operátora od fyzikální baseline (delta = f(geometrie)).",
+          "mode": "Režim 3 (Disentanglement) – objevení skrytého parametru",
+          "confidence": "Závisí na konsistenci operátora"
+        },
+        {
+          "path": 5,
+          "name": "Inverse Conditional Analysis",
+          "principle": "FP3 (TOT detekce) – validační křížová kontrola",
+          "method": "Frekventistický pohled: P(geometrie | parametr). Ověření, zda navržený parametr sedí s historickým profilem.",
+          "mode": "Režim 2 (Orbitální průzkum) – validace",
+          "confidence": "Validační metrika"
+        }
+      ]
+    }
+  },
+  "architectural_blueprint_high_snr_parser": {
+    "description": "Aktualizovaná architektura DXF prediktivního parseru (v2.0) implementující first principles. Klíčový prvek: entropie jako primární přepínač.",
+    "core_innovation": "Entropy Switch",
+    "entropy_calculation": {
+      "method": "PCA variance ratio (kolik dimenzí vysvětluje 90 % variance?) + KMeans cluster separation (detekce shluků).",
+      "scale": "0.0 – 1.0"
+    },
+    "režim_1_low_entropy": {
+      "trigger": "Entropie 0.0 – 0.3",
+      "mode_name": "Ostrý gradient (Sharp Descent)",
+      "strategy": "Physics Baseline ONLY. Žádný ML, žádné CBR.",
+      "cost": "< 5 ms na vrstvu",
+      "output": "Pevné parametry z rules.json."
+    },
+    "režim_2_medium_entropy": {
+      "trigger": "Entropie 0.3 – 0.7",
+      "mode_name": "Orbitální průzkum (Orbital Search)",
+      "strategy": "Decision Tree + CBR. Systém hledá v historických datech, vrací confidence.",
+      "cost": "5 – 45 ms na vrstvu",
+      "output": "Predikce s confidence flagem (HIGH/MEDIUM/LOW)."
+    },
+    "režim_3_high_entropy": {
+      "trigger": "Entropie 0.7 – 1.0",
+      "mode_name": "Topologický disentanglement",
+      "strategy": "Alert + manuální review. Systém navrhne rozdělení vrstvy na homogenní sub‑clustery.",
+      "cost": "Nízká (jen analýza) + lidský zásah",
+      "output": "Návrh na SPLIT_LAYER s podrobným zdůvodněním (disentanglement)."
+    },
+    "tot_detection": {
+      "trigger": "Decision Tree confidence < 0.6 AND CBR vrátí konfliktní parametry (např. [Vibrate, V‑slot, Vibrate]).",
+      "response": "Flag TOT_RAISE. Systém trianguluje polohu, ale nemůže provést finální projekci → manuální zásah.",
+      "geometric_interpretation": "Orbitální průzkum s plochým gradientem v cílovém bodě.",
+      "output": "JSON s `tot_raised: true` + seznam konfliktních sousedů."
+    },
+    "homeostasis": {
+      "constraining_component": "Časový budget na predikci (např. 50 ms). Při překročení → automatický downgrade na Režim 1 + flag `COMPUTE_BUDGET_EXCEEDED`.",
+      "generative_component": "Návrh na disentanglement (rozdělení vrstvy) – systém generuje novou dimenzi (sub‑layer), která snižuje entropii pro příště."
+    },
+    "consolidation_protocol": {
+      "offline_cycle": "Noční / týdenní dávkový job.",
+      "mechanism": "Experience replay selhání (případy s LOW confidence nebo TOT, kde uživatel zasáhl). Aktualizace Decision Tree pomocí EWC.",
+      "purpose": "Přenos emergentních poznatků z periferie do stabilního jádra bez katastrofálního zapomínání."
+    },
+    "output_json_example": {
+      "dxf_file": "zakazka_abc.dxf",
+      "layer_index": 0,
+      "manifold_entropy": 0.72,
+      "activated_mode": 3,
+      "mode_description": "Topological Disentanglement",
+      "predicted_params": null,
+      "recommendation": {
+        "action": "SPLIT_LAYER",
+        "sub_layers": [
+          {"cluster_id": 0, "element_count": 18, "suggested_tool": "Vibrate"},
+          {"cluster_id": 1, "element_count": 3, "suggested_tool": "V-slot"}
+        ],
+        "rationale": "Smíchání mikro‑kruhů a velkých polygonů v jedné vrstvě ničí SNR. Rozdělte do dvou vrstev pro přesnější predikci."
+      },
+      "tots": [
+        "CBR returned conflicting tools for cluster 0: [V-slot, Vibrate, Vibrate] → flat gradient"
+      ],
+      "compute_cost_ms": 12,
+      "budget_ok": true,
+      "timestamp": "2026-06-20T15:00:00+02:00"
+    }
+  },
+  "epistemic_loop_and_role_of_theory": {
+    "description": "Rekurzivní aplikace first principles na samotný vývojový proces. Esej je výsledkem sémantické pauzy (Režim 3) a zároveň nástrojem pro další vývoj.",
+    "loop_diagram": {
+      "phase_1_engineering_practice": "Vývoj VCF parseru, reverzní inženýrství. Konfrontace s entropicky složitým problémem (predikce parametrů).",
+      "phase_2_semantic_pause": "Zastavení iterativního vývoje. Přechod do Režimu 3 – tvorba eseje (nový embeddovaný prostor).",
+      "phase_3_emergence": "Vznik first principles (FP1–FP7). Disentanglement – propojení ML, kognice, geometrie, výroby.",
+      "phase_4_consolidation": "Esej se stává stabilním jádrem (kompasem). Z ní jsou odvozeny nové architektury (High‑SNR parser).",
+      "phase_5_accelerated_engineering": "Návrat k vývoji s nižší energetickou náročností. Esej slouží jako kompresní slovník pro rychlejší rozhodování.",
+      "feedback_loop": "Nové inženýrské poznatky (z Defect Catalog, DXF Methodology) jsou konsolidovány zpět do eseje (verze 2.1 → 3.0)."
+    },
+    "key_insight": "Esej není jen teorie. Je to pracovní nástroj, který vznikl jako emergentní meziprodukt vývoje a nyní slouží jako nadřazená entita pro celou rodinu geometrických parserů.",
+    "source_mapping": "FP7 (Sémantická pauza a topologická emergence) – rekurzivní aplikace na sebe."
+  },
+  "practical_implementation_guide": {
+    "description": "Konkrétní kroky pro implementaci High‑SNR architektury v kódu.",
+    "step_1_layer_descriptor": "Implementovat `layer_descriptor.py` (feature vektor: `geom_type_freq`, `mean_radius`, `median_area`, `total_perimeter`, `mean_aspect_ratio`, `mean_curvature`, `count_small_elements`, `convex_hull_density`).",
+    "step_2_entropy_sensor": "Implementovat `calculate_manifold_entropy()` (PCA + KMeans cluster separation).",
+    "step_3_mode_router": "Implementovat `route_by_entropy()` – přepínač do Režimů 1, 2, 3.",
+    "step_4_physics_baseline": "Rozšířit `rules.json` o geometrická pravidla (tool mapping, vacuum, panel overflow).",
+    "step_5_decision_tree": "Implementovat `pattern_miner.py` – trénink decision tree na historických VCF. Bootstrap P‑hodnota.",
+    "step_6_cbr": "Implementovat `case_retriever.py` – cosine similarity indexace archivu vrstev.",
+    "step_7_tot_detection": "Implementovat TOT detekci: IF (dt_confidence < 0.6 AND cbr_neighbors_conflict) → TOT_RAISE.",
+    "step_8_consolidation": "Implementovat offline job (EWC + experience replay) – 'spánek parseru'.",
+    "step_9_inverse_check": "Implementovat `inverse_analyzer.py` – frekventistická validace navržených parametrů."
+  },
+  "continuous_development_path": {
+    "description": "Další směřování rodiny geometrických parserů dle first principles.",
+    "immediate_next_steps": [
+      "Nasbírat 30+ VCF od jednoho operátora (splnit data threshold).",
+      "Spustit Fázi 0 – Dataset Builder (extrakce feature vektorů do `layers.parquet`).",
+      "Implementovat Entropy Sensor a Mode Router (High‑SNR jádro).",
+      "Natrénovat Decision Tree (Cesta 2) a otestovat na hold‑out datech."
+    ],
+    "future_roadmap": {
+      "v1.0": "High‑SNR parser s manuálním review pro Režim 3.",
+      "v2.0": "Automatický disentanglement – parser sám rozdělí vrstvy (bez lidského zásahu).",
+      "v3.0": "Signature Clustering – unsupervised objevení operátorských stylů v datech.",
+      "v4.0": "Prediktivní údržba – využití TOT detekce pro predikci opotřebení nástroje."
+    },
+    "b2b_narrative": "Neprodáváme parser. Prodáváme kognitivní vrstvu, která napodobuje způsob, jakým váš nejlepší operátor přemýšlí – jen ji máme v křemíku a běží 24/7 bez únavy."
+  }
+}

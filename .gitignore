@@ -1,0 +1,37 @@
+# API klíče a secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+config/secrets.*
+
+# OS artifacts
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.virtual_documents/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Audio (necommituje se — jen reference v INDEX.md)
+*.mp3
+*.m4a
+*.wav
+
+# Binarity (jsou v původních zdrojích)
+*.docx
+*.pdf
+*.xlsx
+
+# Git
+*.orig

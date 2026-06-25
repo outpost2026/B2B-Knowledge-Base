@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "handoff_date": "2026-06-20",
+    "subject": "outpost2026 / Ondřej Soušek",
+    "profile_age": "od 2026-03-24 (~4 měsíce intenzivní aktivity)",
+    "sources": ["master_v3_full.json (scrape 2026-06-16)", "CONTEXT_REPOS.md", "celé vlákno analýz"],
+    "version": "1.0",
+    "status": "FINAL – ucelená syntéza"
+  },
+
+  "ground_truth": {
+    "profile": {
+      "name": "Ondřej Soušek",
+      "location": "Prague",
+      "bio": "Self-taught developer · off-grid systems, IoT · machine learning · automation",
+      "public_repos": 9,
+      "followers": 0,
+      "stars_total": 0
+    },
+    "core_repos": {
+      "Vcutworks-vcf-parser": {
+        "focus": "Binární RE proprietárního Ruida .VCF formátu",
+        "key_features": ["golden_master tests", "knowledge_base rules engine", "time predictor", "Streamlit app", "Docker/GCP"],
+        "size_signal": "největší repo, mnoho branchů, docs-heavy",
+        "tests": ["test_golden_master.py", "test_determinism.py"]
+      },
+      "CNC_2_LLM": {
+        "focus": "DXF geometry indexer + semantic embedding pro ERP/naceňování",
+        "key_features": ["PNG trimming", "layer cards", "ML vectors", "semantic dashboard"]
+      },
+      "cad2llm": {
+        "focus": "COLLADA (SketchUp) → deterministický JSON preprocessing",
+        "key_features": ["0% halucinací claim", "lxml + numpy matice"]
+      },
+      "others": ["RAG-indexer", "Kazuistiky-LLM-sprint", "Outpost Security Perimeter (IoT)"]
+    },
+    "meta_workflow": {
+      "document": "CONTEXT_REPOS.md",
+      "guardrails": ["absolutní FS hranice", "git checkpointy", "read-after-write", "CO/PROČ/JAK/EFEKT/RIZIKO princip"],
+      "structure": "9 trackovaných repozitářů + lokální KB + duplicity management",
+      "CI_CD": "Fáze 0–1 (plánováno pro vcf_parser_b2b)"
+    }
+  },
+
+  "dual_motivation_vector": {
+    "vetev_1_intrinsic": {
+      "description": "Imerzní mastery & organické disekce problémů (CNC RE, preprocessing, determinism)",
+      "goal": "Profesní autonomie a hluboké pochopení principů",
+      "independent_of": ["status, HR metriky, peníze, image building"]
+    },
+    "vetev_2_extrinsic": {
+      "description": "Konverze nahromaděného know-how na pozici kandidáta s vysokou procesní/reflexivní vyspělostí",
+      "status": "Výrazně zesílena v posledních iteracích (B2B NDA, vcf_parser_b2b jako CI target)"
+    },
+    "synergy": "Organický růst mastery + vědomá monetizace portfolia"
+  },
+
+  "evolution_of_thesis": {
+    "initial": "Silný kandidát na mid/senior automation díky domain expertise + LLM augmentaci (krátká historie riziko)",
+    "after_mirror": "Potvrzena hloubka (RE, preprocessing, tests), ale rizika v code quality a viditelnosti",
+    "after_CONTEXT_REPOS": "Posun nahoru – vysoká procesní zralost, guardrails, agent-friendly workflow",
+    "after_dual_motivation": "Autentický duální vektor → vyšší důvěryhodnost signálu",
+    "final_thesis": "S ověřením codebase je to standout kandidát, který překonává většinu standardních uchazečů s delší, ale mělčí historií v relevantních doménách"
+  },
+
+  "meta_analysis_crossvalidation": {
+    "strengths": [
+      "Neimitovatelná hloubka domain grounding (14 let CNC/off-grid → software)",
+      "Vysoká reflexivní/meta-kognitivní úroveň (epistemické guardrails, post-mortemy)",
+      "Pragmatický produkční mindset (Docker, GCP, golden master, B2B NDA)",
+      "Rychlost iterace (3–4 měsíce od nuly k více produkčním nástrojům)"
+    ],
+    "weaknesses_oponentura": [
+      "Krátká historie → absence týmové zkušenosti, legacy, enterprise patterns",
+      "Pravděpodobně monolitické skripty (~100kB soubory) → riziko maintainability",
+      "0 externí validace (stars, forks, contributors)",
+      "Over-documentation může částečně maskovat code quality"
+    ],
+    "crossvalidation": "Všechny iterace konzistentní v silných stránkách. Rizika se opakují a jsou jasně falsifikovatelná technickým pohovorem."
+  },
+
+  "role_fit_and_probabilities": {
+    "manufacturing_automation_integration": { "fit": "9.0/10", "P_offer": "75-85% (SME)" },
+    "ai_tooling_preprocessing_engineer": { "fit": "8.5/10", "P_offer": "70-80%" },
+    "iot_offgrid_automation": { "fit": "8.0/10", "P_offer": "65-75%" },
+    "technical_consultant_b2b": { "fit": "8.5/10", "P_offer": "70-80%" },
+    "enterprise_senior": { "fit": "5.5/10", "P_offer": "30-40%" }
+  },
+
+  "verification_recommendations": {
+    "required": [
+      "Deep code review Vcutworks-vcf-parser (vcf_parser_v20.py + geometry)",
+      "Live praktický task (messy DXF/VCF → RAG-ready pipeline + predictor)",
+      "Diskuse guardrails, trade-offů a škálování do týmu",
+      "Pair programming session"
+    ],
+    "asymmetry": "Nízké náklady na pohovor (1–2 hodiny) vs. vysoký potenciální upside"
+  },
+
+  "growth_potential": {
+    "to_lead_architekt": "50–70% v příznivém SME prostředí během 12–24 měsíců",
+    "accelerators": ["domain insight + reflexe + rychlá učební křivka"],
+    "risks": ["absence people management zkušeností, úzkost specializace"]
+  },
+
+  "final_assessment": {
+    "summary": "Autentický, hluboký, reflexivní domain-driven toolsmith s duální motivací. Po ověření codebase standout kandidát pro relevantní role v automation, integračních řešeních a manufacturing AI tooling.",
+    "verdict": "Stojí za seriózní investici do technického pohovoru.",
+    "confidence": "75% (hlavní neznámá = skutečná code quality)"
+  }
+}

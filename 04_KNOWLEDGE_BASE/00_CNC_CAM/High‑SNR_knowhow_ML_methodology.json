@@ -1,0 +1,248 @@
+{
+  "handoff": {
+    "type": "dev",
+    "version": "1.0",
+    "date": "2026-06-13",
+    "author": "SYSTEQ / outpost2026",
+    "purpose": "Iterativní vývoj VCF parseru a příprava DXF prediktivního pre-processoru. JSON odděluje deterministická (geometrická) pravidla od pravděpodobnostních (ML, heuristiky, textová analýza)."
+  },
+  "deterministic_rules": {
+    "description": "Pravidla, která jsou čistě funkcí geometrie a fyzikálních omezení stroje/materiálu. Výpočet je plně traceovatelný, bez statistiky. Lze použít pro QC, in-site kontrolu i pro vývoj nových CAM parserů.",
+    "categories": [
+      {
+        "category": "tool_mandatory_constraints",
+        "rules": [
+          {
+            "id": "DET_TOOL_001",
+            "name": "Minimální poloměr kružnice pro V‑slot nůž",
+            "input": "min_circle_radius_mm (z elementů vrstvy)",
+            "condition": "min_circle_radius_mm < 2.0",
+            "output": "cutter_type_id = 1 (Vibrate cutter) – V‑slot nůž fyzicky neprojede",
+            "confidence": 1.0,
+            "source": "fyzika stroje (průměr otáčení V‑slot nože)"
+          },
+          {
+            "id": "DET_TOOL_002",
+            "name": "Maximální rozměr elementu vs. panel",
+            "input": "element_bbox_max_dim_mm, panel_width_mm, panel_height_mm",
+            "condition": "element_bbox_max_dim_mm > max(panel_width_mm, panel_height_mm)",
+            "output": "fatal_error: 'Element větší než panel – nelze vyřezat'",
+            "confidence": 1.0,
+            "source": "geometrický rozpor"
+          }
+        ]
+      },
+      {
+        "category": "vacuum_fixation_physics",
+        "rules": [
+          {
+            "id": "DET_VAC_001",
+            "name": "Kritická plocha pro podtlak – malý obrobek",
+            "input": "element_area_mm2 (nebo total_panel_area_m2)",
+            "condition": "element_area_mm2 < 5000 OR total_panel_area_m2 < 0.2",
+            "output": "warning: 'MECHANICAL_TAPE_REQUIRED' + 'min_tape_perimeter_ratio = 0.8'",
+            "confidence": 1.0,
+            "source": "průmyslový korpus (kap. 5A) – explicitní hodnota"
+          },
+          {
+            "id": "DET_VAC_002",
+            "name": "Engraving mode – žádný zářez do materiálu",
+            "input": "element_geom_type = 'Circle' AND layer_name contains 'lepení' OR 'glue' OR 'engrave'",
+            "condition": "true",
+            "output": "end_height_h2_mm = +0.2 (nad materiálem) + cut_priority = FIRST",
+            "confidence": 1.0,
+            "source": "technologické pravidlo – nůž se nesmí zanořit"
+          }
+        ]
+      },
+      {
+        "category": "v_groove_geometry",
+        "rules": [
+          {
+            "id": "DET_VGROOVE_001",
+            "name": "Standardní hloubka V‑drážky pro 12mm desku",
+            "input": "material_thickness_mm = 12 AND operation_type = 'V-cut'",
+            "condition": "true",
+            "output": "end_height_h2_mm = 6.0, v_groove_angle_deg = 45",
+            "confidence": 1.0,
+            "source": "firemní standard (kap. 3A)"
+          },
+          {
+            "id": "DET_VGROOVE_002",
+            "name": "Sendvičový panel – hluboká drážka",
+            "input": "material_thickness_mm IN [21,22,23,24] AND operation_type = 'V-cut'",
+            "condition": "true",
+            "output": "end_height_h2_mm = 14.0 (default) – lze přepsat na 9.5, 12, 14.5 podle zakázky",
+            "confidence": 1.0,
+            "source": "kap. 3B"
+          }
+        ]
+      },
+      {
+        "category": "text_mirroring",
+        "rules": [
+          {
+            "id": "DET_TEXT_001",
+            "name": "Textové entity se řežou zrcadleně a sníženou rychlostí",
+            "input": "has_text_entities = true",
+            "condition": "true",
+            "output": "mirror_output = true, speed_mms = 45",
+            "confidence": 1.0,
+            "source": "kap. 8 – rubová strana, čistý líc"
+          }
+        ]
+      },
+      {
+        "category": "material_thickness_to_throughcut",
+        "rules": [
+          {
+            "id": "DET_THRU_001",
+            "name": "Through‑cut hloubka pro 12mm PET plsť",
+            "input": "material_thickness_mm = 12 AND operation_type = 'through-cut'",
+            "condition": "true",
+            "output": "end_height_h2_mm = -0.3 (proříznutí + mírný přesah do podložky)",
+            "confidence": 1.0,
+            "source": "standardní nastavení vibrate cutteru"
+          }
+        ]
+      }
+    ]
+  },
+  "probabilistic_ml_rules": {
+    "description": "Pravidla, která vyžadují statistické učení z historických VCF. Výstupem je predikce s confidence (0–1) a případně P‑hodnotou. Používají se pouze při dostatečném vzorku (≥30 VCF).",
+    "methodology": {
+      "approach": "Decision tree (max_depth=3) + Bootstrap P‑hodnota + Case‑based reasoning fallback",
+      "min_samples": 30,
+      "features": [
+        "mean_radius_mm", "fraction_circles", "fraction_polygons", "median_area_mm2",
+        "total_perimeter_mm", "mean_aspect_ratio", "mean_curvature", "count_small_elements",
+        "convex_hull_density", "estimated_pitch_mm", "has_text", "pattern_name_encoded",
+        "orientation_horizontal_vertical"
+      ],
+      "targets": [
+        {"name": "cutter_type_id", "type": "nominal", "values": [1,4]},
+        {"name": "speed_binned", "type": "ordinal", "values": ["low","medium","high"]},
+        {"name": "v_groove_depth_mm", "type": "continuous_regression", "values": "2–14.5"},
+        {"name": "bevel_type", "type": "nominal", "values": ["none","all","vertical_only","horizontal_only","joint_only","single_vertical"]},
+        {"name": "passes", "type": "ordinal", "values": [1,2,3]}
+      ]
+    },
+    "rules_examples": [
+      {
+        "id": "ML_TOOL_001",
+        "rule": "IF mean_radius_mm < 4.5 AND fraction_circles > 0.8 THEN cutter_type = Vibrate",
+        "p_value": 0.94,
+        "support_n": 18,
+        "confidence_threshold": 0.9,
+        "source": "data mining z historických VCF (příklad z metodiky)"
+      },
+      {
+        "id": "ML_SPEED_001",
+        "rule": "IF pattern_name = 'Manchester' AND estimated_pitch_mm <= 20 THEN speed_binned = 'low' (≈100 mm/s)",
+        "p_value": 0.87,
+        "support_n": 12,
+        "source": "kap. 6 – vysoká hustota drážek → snížení rychlosti"
+      },
+      {
+        "id": "ML_BEVEL_001",
+        "rule": "IF layer_name contains 'jen svislé' OR 'vertical only' THEN bevel_type = 'vertical_only'",
+        "p_value": 0.95,
+        "source": "textová analýza názvů vrstev (tacitní znalost operátora)"
+      }
+    ],
+    "case_based_reasoning": {
+      "fallback_condition": "confidence < 0.80 from decision tree",
+      "similarity_metric": "cosine similarity on feature vectors",
+      "top_k": 3,
+      "voting": "majority vote on target parameter",
+      "archive_requirement": "≥10 VCF"
+    },
+    "text_analysis": {
+      "description": "Extrakce pattern names, variant, bevel typů z názvů souborů, metadat a názvů vrstev DXF.",
+      "sources": [
+        "filename (např. fishbone_2790x1200.dxf)",
+        "extracted_metadata (z VCF)",
+        "DXF layer names"
+      ],
+      "pattern_dictionary": [
+        "Manchester", "Fishbone", "Musica", "Botanik", "Big Cube", "Small Cube",
+        "Fluenz", "Stem Bloom", "Envelope", "Diamond Row", "Cross", "Grand Arc"
+      ],
+      "bevel_keywords": {
+        "celistvá fazeta": "all",
+        "jen svislé": "vertical_only",
+        "jen horizontální": "horizontal_only",
+        "jen ve spoji": "joint_only",
+        "bez fazet": "none",
+        "jen jedna svislá": "single_vertical"
+      }
+    }
+  },
+  "dxf_preprocessor_branch": {
+    "description": "Cíl: predikovat řezné parametry ze surového DXF (bez operátora). Využívá stejné deterministické + ML vrstvy, ale vstupem je pouze geometrie a metadata DXF.",
+    "additional_requirements": [
+      {
+        "id": "DXF_SEGMENTATION",
+        "description": "Rozdělení DXF entit do logických vrstev podle typu operace (dekorativní V‑drážky, obvodové řezy, text, engravovací kruhy).",
+        "heuristics": [
+          "Všechny kružnice s průměrem < 10 mm a označením 'glue' → samostatná vrstva s engraving mode.",
+          "Paralelní čáry s roztečí < 50 mm → pravděpodobná V‑drážkovací vrstva.",
+          "Textové entity → samostatná vrstva s mirroring a speed 45 mm/s."
+        ]
+      },
+      {
+        "id": "DEFAULT_PARAMETERS",
+        "description": "Když ML confidence < threshold, použít fyzikální baseline + fallback na nejpodobnější zakázku (case-based).",
+        "defaults": {
+          "cutter_type_id": 1,
+          "speed_mms": 200,
+          "passes": 1,
+          "end_height_h2_mm": -0.3,
+          "direction_id": 0
+        }
+      }
+    ],
+    "output_format": "Stejná struktura jako stávající VCF JSON, ale v části 'layers' budou pole 'predicted_params' a 'confidence' a 'source' (physics / decision_tree / case_fallback)."
+  },
+  "quality_control_and_audit": {
+    "description": "Pravidla pro in‑site kontrolu a audit připravené zakázky (bez ohledu na to, zda byla vytvořena manuálně nebo prediktivně).",
+    "deterministic_checks": [
+      "Kontrola, že žádný element není větší než panel (DET_TOOL_002).",
+      "Kontrola sekvence řezu – vnitřní prvky před vnějšími (již implementováno jako RULE_SEQ_OUTER_LAST_NESTING_OFFSET).",
+      "Kontrola vakuového rizika pro malé plochy (DET_VAC_001).",
+      "Kontrola, že V‑drážka u 12mm desky má hloubku 6 mm (DET_VGROOVE_001) – pokud ne, flag pro manuální review."
+    ],
+    "ml_confidence_flags": {
+      "HIGH": "confidence > 0.90 → automatická akceptace",
+      "MEDIUM": "confidence 0.80–0.90 → navrženo, operátor schvaluje",
+      "LOW": "confidence < 0.80 → flag pro manuální vstup, použije se case‑based fallback"
+    }
+  },
+  "rationale_for_separation": {
+    "text": "Oddělení deterministických a pravděpodobnostních vrstev umožňuje:\n1. Znovupoužití deterministických pravidel pro jakýkoli CAM parser (např. pro LightBurn, G‑kód, HPGL) bez nutnosti ML.\n2. Nasazení QC nástrojů přímo v dílně – kontrola sekvencí, vakuových rizik, geometrických limitů – bez závislosti na historických datech.\n3. Bezpečný vývoj prediktivní větve DXF: ML se trénuje na VCF datech, ale aplikuje se na DXF; deterministická pravidla tvoří výchozí baseline.\n4. Možnost iterativního zlepšování ML (přidávání featureů, přeškolování) bez ovlivnění jádra geometrických transformací.\n5. Jasná traceability pro B2B partnery – každé rozhodnutí je buď fyzikální jistota, nebo statistika s explicitní P‑hodnotou a podporou."
+  },
+  "next_implementation_steps": {
+    "immediate": [
+      "Implementovat layer_descriptor.py s výpočtem všech featureů (včetně estimated_pitch).",
+      "Rozšířit rules.json o deterministická pravidla z této specifikace.",
+      "Vytvořit build_dataset.py, který projde existující VCF JSON (≥30) a uloží layers.parquet."
+    ],
+    "ml_training": [
+      "Natrénovat decision tree pro cutter_type, speed_binned, v_groove_depth, bevel_type.",
+      "Implementovat bootstrap pro P‑hodnoty (1000 iterací).",
+      "Otestovat na hold‑out VCF (např. fishbone_2790x1200) – porovnat predikci s realitou."
+    ],
+    "dxf_pilot": [
+      "Připojit knihovnu ezdxf pro čtení DXF geometrie.",
+      "Implementovat heuristickou segmentaci DXF entit do vrstev.",
+      "Napojit predikční pipeline (deterministic + ML + case fallback).",
+      "Vygenerovat ukázkový výstup ve formátu JSON s predikcemi pro ukázkový DXF (např. Manchester 20)."
+    ]
+  },
+  "references": {
+    "methodology_doc": "DXF_PREDICTIVE_PARSER_METHODOLOGY.md",
+    "vision_doc": "SYSTEQ_DXF_PREDICTIVE_PARSER_B2B_VISION.md",
+    "knowledge_corpus": "Průmyslový a Technologický Znalostní Korpus_ Zpracování PET Feltů v1.0.1.docx",
+    "sample_vcf_outputs": ["1ks_v20.json", "fishbone_2790x1200_v20.json"]
+  }
+}

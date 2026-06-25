@@ -1,0 +1,220 @@
+{
+  "system_handoff": {
+    "manifest": "Manifest kompresního realismu - Hardened B2B Edition",
+    "version": "v1.1",
+    "last_compiled_date": "2026-06-19",
+    "author_token": "Ondřej Soušek // SYSTEQ // Outpost2026",
+    "official_web_presence": "https://www.systeq.cz",
+    "epistemic_status": "Operational Kernel validovaný v ostrém průmyslovém provozu (Moodpasta case study) a následně hardenován proti asymetrickým SME vyjednávacím taktikám.",
+    "temporal_checkpoint": {
+      "milestone": "B2B Technical Assignment Deadline via Moodpasta",
+      "target_date": "2026-06-19",
+      "status": "Deadline expired without formal specs. Project isolated. All learnings extracted and codified into defense protocols."
+    }
+  },
+  "epistemological_kernel": {
+    "axioms": [
+      {
+        "id": "AXIOM_01",
+        "name": "Zákon o zachování informační hustoty",
+        "formula": "I_hustota = (Užitečný_signál) / (Surová_data + Sociální_šum)",
+        "operational_modus": "Ořezávání veškerého balastu, antropomorfizace a marketingu. Redukce komplexity prostředí na invariantní matematické modely. Sociální konvence a firemní hierarchie jsou považovány za šum s vysokou entropií, dokud neprokáží svou užitečnost skrze tvrdá data."
+      },
+      {
+        "id": "AXIOM_02",
+        "name": "Elegance abstrakce (Ockhamova břitva)",
+        "principle": "Složitost je parazit a projev nepochopení systému. Pokud model reality vyžaduje exponenciální růst výjimek, musí být smazán a přepsán.",
+        "geometry_invariant": "Vztahy v sémantických mapách a datech musí fungovat na principu prostého sčítání a odčítání vektorů. Jakýkoliv algoritmus, který nelze vizualizovat na jedné A4, je špatně navržený."
+      },
+      {
+        "id": "AXIOM_03",
+        "name": "Realita jako kontinuální komprese",
+        "definition": "Učení, vnímání i programování jsou izomorfní procesy transformace chaotického vstupu do minimální efektivní vnitřní reprezentace. Co nelze rekonstruovat z minimálního popisu, nebylo pochopeno. Toto platí pro CNC dráhy, ERP struktury i obchodní modely."
+      },
+      {
+        "id": "AXIOM_04",
+        "name": "Zákon o řízené distribuci hodnoty (Metered Value Injection)",
+        "formula": "ΔHodnota_klientovi ≤ (Schopnost_klienta_absorbovat) * 0.7",
+        "operational_modus": "Poskytnutí plné asymetrické hodnoty (funkční cloud, kompletní parser) před podpisem smlouvy nespouští vděčnost, ale evoluční obranný mechanismus parazitického přivlastnění (snaha o bezplatnou anektaci know-how skrze NDA a nízké paušály). Hodnota musí být dávkována v inkrementech: 1. Video/stín (0 % kódu) → 2. Omezené lokální demo (max 1 den expirace) → 3. Plný přístup až po finančním závazku (Gatekeeper deposit)."
+      },
+      {
+        "id": "AXIOM_05",
+        "name": "Iluze komunikačního momenta (Velocity Illusion)",
+        "formula": "Business_Velocity = (Čas_od_odpovědi_CEO) / (Počet_mezilidských_rozhodovacích_uzlů)",
+        "operational_modus": "Rychlá e-mailová odpověď od jedince (CEO/grafik) neindikuje rychlost systému. Rozhodovací aparát SME má viskozitu > 5 pracovních dní na validaci. Jediným validním invariantem byznys rychlosti je zaplacená zálohová faktura nebo podepsaný harmonogram. Neinvestovat kognitivní kapacitu do e-mailové konverzace do 48h od odeslání oficiální specifikace."
+      }
+    ],
+    "social_defense_protocols": {
+      "gatekeeper_bypass": {
+        "strategy": "Emancipace skrze empirický důkaz a funkční kód.",
+        "action": "Ignorovat diskuse, schvalovací komise a rigidní hierarchie. Vytvořit autonomní open-source/SaaS infrastrukturu (systeq.cz) a nechat systém ohnout pod tíhou empirie."
+      },
+      "antisocial_validation": {
+        "metric": "Konsenzus skupiny má nulovou váhu. Hype je ekonomicko-sociální divadlo pro PR a ochranu rozpočtů.",
+        "action": "Pokud celá referenční skupina trhu optimalizuje směr X, deterministicky alokovat výzkumnou kapacitu do směru Y (kontrariánská strategie)."
+      },
+      "resistance_to_mediocrity": {
+        "environment_analysis": "Středoevropský legacy prostor vykazuje setrvačnost ořezávající nadprůměrné odchylky zpět do šedého průměru.",
+        "mitigation": "Fixace na globální inženýrské standardy. Zachování radikální autonomie v pozici nekomfortního prvku systému."
+      },
+      "legal_weaponization_trigger": {
+        "detection_pattern": "Přechod od neformální spolupráce k doručení generického NDA obsahujícího exkluzivní licenci na formáty/strojní data + likvidační smluvní pokuty v poměru k nabízené kompenzaci > 10:1.",
+        "immediate_action": [
+          "Okamžité zmrazení veškerého vývoje na zakázku (freeze repozitářů vcut-parser a CNC_2_LLM).",
+          "Transformace komunikace do striktně formální, chladné roviny (Mikolovův odstup).",
+          "Kontra-návrh postavený výhradně na nevýhradní provozní licenci s fixním ročním poplatkem (žádné royalties, žádné převody duševního vlastnictví).",
+          "Spuštění countdown timeru na 7 kalendářních dní. Po marném uplynutí = trvalá izolace projektu a archivace veškeré korespondence do složky 'LESSONS_LEARNED'."
+        ]
+      },
+      "tacit_knowledge_lockout": {
+        "detection_pattern": "Požadavek klienta na sepsání rozsáhlé technické dokumentace, zácvik nových zaměstnanců nebo kodifikaci celého procesu PŘED uzavřením smlouvy.",
+        "immediate_action": "Odmítnout s odůvodněním: 'Likvidace bus-factoru klíčových technologů je samostatná konzultační služba s hodinovou sazbou 2 500 Kč/h, nikoliv bezplatný bonus k softwaru. Teprve po zaškolení přistoupíme k předání dokumentace.'"
+      }
+    }
+  },
+  "cognitive_profile_determinants": {
+    "metrics": {
+      "fluid_intelligence_Gf": 0.94,
+      "working_memory_capacity_wmc": 0.88,
+      "cognitive_flexibility_technical": 0.95,
+      "cognitive_flexibility_social": 0.35,
+      "internal_locus_of_control": 0.98
+    },
+    "hardware_anchors": {
+      "physical_infrastructure": "Outpost2026 (Autonomous Off-grid Hub)",
+      "telemetry": {
+        "pv_capacity": "2500 Wp",
+        "storage_capacity": "16 kWh LiFePO4",
+        "bms_configuration": "630 Ah",
+        "iot_perimeter": "ESP32 dual-stage security system (PIR + Doppler)"
+      },
+      "economic_implication": "Nízké fixní životní náklady eliminují existenční tlak trhu. Časový kapitál je plně alokován do hluboké práce (Deep Work) a reverzního inženýrství. Autor si může dovolit ghosting protistran ignorovat a přesunout kapacitu jinam."
+    }
+  },
+  "state_of_the_art_dev_stack": {
+    "competencies": {
+      "reverse_engineering": "Dekódování proprietárních binárních streamů (IEEE 754, bitové masky) bez dokumentace. Cracknutí 74B segmentů formátu Ruida/.VCF.",
+      "python": "Streamlit backend/frontend, pandas datové pipeline, optimalizované space-indexery, cKDTree pro prostorovou blízkost.",
+      "cloud_architecture": "GCP deployment (Docker containerization -> Artifact Registry -> Cloud Run -> Cloud Storage).",
+      "rpa": "GUI automatizace legacy CAM softwaru VCutWorks (100% deterministická průchodnost, 33/33 testů)."
+    },
+    "repository_map": [
+      {
+        "name": "vcut-parser",
+        "access": "PRIVATE",
+        "purpose": "Rozlomení black-boxu Ruida. Extrakce časových konstant, kinematiky a geometrických drah z binárního kódu."
+      },
+      {
+        "name": "CNC_2_LLM",
+        "access": "PRIVATE",
+        "purpose": "Sémantická transformace CAD/CAM dat pro ML modely a ERP/Odoo pipeline."
+      },
+      {
+        "name": "cad2llm",
+        "access": "PUBLIC",
+        "purpose": "Parser SketchUp datového stromu do čistého JSONu bez halucinací."
+      }
+    ]
+  },
+  "operational_security_protocols": {
+    "description": "Tato sekce definuje bezpečnostní a komerční bariéry, které chrání jádro (vcut-parser) před zneužitím v asymetrickém B2B prostředí.",
+    "demo_policy": {
+      "free_tier_limit": "Maximálně 1x statický report (PDF) + 1x krátké video (max 2 minuty) z předem nahraného datasetu. Bez možnosti interaktivního uploadu.",
+      "cloud_run_expiry": "Každé nasazení demo instance na Cloud Run má implementovaný time-to-live (TTL) = 7 dní. Po uplynutí se instance automaticky terminuje bez možnosti obnovy zdarma.",
+      "auth_wall_trigger": "Přístup k živé interaktivní verzi (Upload DXF -> Parser -> UI overlay) je podmíněn podpisem základního rámce (Term Sheet) nebo zaplacením vratné zálohy (Gatekeeper deposit) ve výši 5 000 Kč, která je plně odečitatelná z finální ceny licence.",
+      "source_code_sanitization": "Veškeré demo distribuce probíhají výhradně skrze Docker image s obfuskovanými klíčovými výpočetními moduly (C-extenze nebo pyarmor). Nikdy nedochází k předávání surového Python source kódu před finančním vypořádáním."
+    },
+    "ghosting_response_routine": {
+      "trigger": "Upomínka (follow-up) odeslána 3x v intervalu 5 pracovních dní bez reakce; nebo oficiální deadline (např. 2026-06-19) uplynul bez dodání specifikací.",
+      "action": [
+        "1. Odeslat finální deaktivující e-mail s uvedením data ukončení přístupu k demo instanci (pokud existovala).",
+        "2. Zablokovat přístup k demo URL (přes GCP IAM a Route53).",
+        "3. Přesměrovat 100 % kognitivní kapacity na vývoj generické SaaS architektury (systeq.cz) nezávislé na tomto klientovi.",
+        "4. Protistranu zařadit do interního blacklistu 'Cold Leads' s poznámkou o důvodu ghostingu. Při opětovném kontaktování ze strany protistrany (např. za 3 měsíce) se automaticky aplikuje 30% přirážka k ceně za administrativní režii."
+      ]
+    }
+  },
+  "system_rules_v5_severity_matrix": {
+    "description": "Náhrada nelineárního pravděpodobnostního Risk Score za fixní sémantický invariant. Celková závažnost = MAX(všechna aktivovaná pravidla).",
+    "rules": {
+      "EDGE_MERGE_MISSING": {
+        "severity": "WARNING",
+        "layer_overlay": "V7",
+        "color": "#A855F7",
+        "style": "dotted",
+        "label": "MERGE?"
+      },
+      "MICRO_SEGMENT": {
+        "severity": "INFO",
+        "layer_overlay": "V8",
+        "color": "#F59E0B",
+        "style": "circles",
+        "mitigation": "Filtrováno z hlavního zobrazení pro ozdobné/subdivizní sítě oblouků. Úhlová odchylka < 15 stupňů = SAFE."
+      },
+      "UNCLOSED_LOOP": {
+        "severity": "CRITICAL",
+        "layer_overlay": "V11",
+        "color": "#F43F5E",
+        "style": "dashed",
+        "topological_filter": "Pokud open-loop sdílí endpoints s jinými elementy stejné instance technologie (V-slot both side, hladina H2) = DEGRADACE NA INFO. Pokud je izolován nebo tvoří destruktivní můstek = CRITICAL."
+      },
+      "VACUUM_FIXATION_RISK": {
+        "severity": "WARNING",
+        "layer_overlay": "V5",
+        "color": "#F59E0B",
+        "style": "canvas_border",
+        "trigger": "Celková plocha elementu < 200mm2 nebo formát panelu < 0.2m2 (Nutná fixace páskou)."
+      }
+    }
+  },
+  "b2b_execution_matrix": {
+    "target_segment": "SME výrobní podniky (obrat ~50 mil. Kč) s vysokým technologickým dluhem, zejména v oblasti CNC řezání a zpracování flexibilních materiálů.",
+    "unique_selling_proposition": "SYSTEQ není kalkulátor času. Je to sémantický detektor materiálových a výrobních defektů, který operuje nad surovou geometrií (DXF) a eliminuje závislost na proprietárních CAM formátech.",
+    "entry_barrier_monetization": {
+      "gatekeeper_deposit": "5 000 Kč (plně vratných / odečitatelných z licence)",
+      "deliverable": "Kompletní audit technologického workflow včetně predikce úspor (Report + interaktivní dashboard na 14 dní).",
+      "purpose": "Odstranění 'zvědavců' a validace vážného zájmu protistrany. Kdo není ochoten zaplatit symbolickou částku za audit, nemá reálný problém k řešení."
+    },
+    "financial_roi_justification": {
+      "license_cost_ratio": "1 zachráněná komplexní zakázka před zmetkovitostí (2 000 - 15 000 Kč) = zaplacení roční licence softwaru.",
+      "operational_gains": "Zkrácení času technologické přípravy DXF z 30 minut na 1 minutu. Likvidace bus-factoru klíčových technologů."
+    },
+    "stakeholder_handling": {
+      "gatekeeper_technologist": "Minimalizovat kontakt. Prezentovat software jako nástroj posílení jeho kontroly (overlay v jeho oblíbeném prostředí), nikoliv jako jeho nahrazení.",
+      "technical_manager_frantisek": "Odstínit od high-level abstrakcí (epistemologie, tacitní znalosti). Komunikovat výhradně skrze schémata, průchodnost dat (DXF -> Parser -> ERP Odoo CSV) a tvrdá čísla (výpočet úspor).",
+      "project_manager_grafik_jakub": "Využít jako vnitřního spojence. Prezentovat UI overlay jako přímou ochranu jeho práce před chybami z únavy a jako nástroj pro okamžité nacenění zakázek."
+    },
+    "distribution_channel": "Výhradně přes vlastní doménu systeq.cz. Žádné třetí strany, žádné provize. Komunikace výhradně přes kontaktní formulář a přímý e-mail (žádný CRM spam)."
+  },
+  "llm_integration_protocols": {
+    "mode": "Syntactic Offloading Only",
+    "role_of_ai": "LLM slouží výhradně jako kódový asistent pro tvorbu boilerplate kódu, dokumentace a transformaci datových struktur. Nikdy jako architekt systému.",
+    "prohibited_behaviors": [
+      "Zákaz generování architektonických konceptů ze strany LLM (např. 'navrhni mi databázi').",
+      "Zákaz zavádění zbytečných statistických nebo hlubokých neuronových sítí tam, kde stačí euklidovská geometrie (např. pro detekci hran).",
+      "Zákaz psaní naivních O(N^2) vyhledávacích cyklů pro geometrické elementy."
+    ],
+    "mandatory_behaviors": [
+      "Vynucování plné interpretovatelnosti kódu. Max_depth rozhodovacích stromů <= 3.",
+      "Používání prostorových indexů (scipy.spatial.cKDTree) pro proximity search úloh.",
+      "Zavádění explicitních floating-point tolerancí (math.isclose s abs_tol=1.0mm) pro veškeré operace na hranicích BBoxů."
+    ]
+  },
+  "ui_ux_refactoring_layout": {
+    "framework": "Streamlit",
+    "modifications": [
+      {
+        "target": "section_risks",
+        "action": "Agregace řádků. Přesun INFO a WARNING hlášení (včetně lepení páskou) do st.expander('Tier 2 - Sekundární parametry'). Na ploše nechat výhradně čisté CRITICAL stavy, aby technolog okamžitě viděl, co musí řešit."
+      },
+      {
+        "target": "navigation",
+        "action": "Implementace sticky 'Zpět na souhrn (Hero)' komponentu do záhlaví/postranní lišty pro rychlou orientaci v dlouhých výkresech."
+      },
+      {
+        "target": "sidebar",
+        "action": "Injekce kontrastního CSS borderu. Přejmenování na '🛠️ KONTROLNÍ PANEL GRAFIKA / TECHNOLOGA'. Výchozí stav pro produkční uživatele = collapsed (minimalizace rušivých elementů), pro DEV mód = expander s toggles pro override konfigurace."
+      }
+    ]
+  }
+}

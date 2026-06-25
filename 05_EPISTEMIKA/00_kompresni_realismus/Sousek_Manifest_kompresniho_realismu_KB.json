@@ -1,0 +1,168 @@
+{
+  "system_handoff": {
+    "manifest": "Manifest kompresního realismu",
+    "version": "5.0-SaaS-B2B",
+    "last_compiled_date": "2026-06-19",
+    "author_token": "Ondřej Soušek // SYSTEQ // Outpost2026",
+    "epistemic_status": "Ground Truth Core Operational Kernel",
+    "temporal_checkpoint": {
+      "milestone": "B2B Technical Assignment Deadline via Moodpasta",
+      "target_date": "2026-06-19",
+      "status": "Awaiting formal specs / Initiating proactive B2B pricing & validation protocol"
+    }
+  },
+  "epistemological_kernel": {
+    "axioms": [
+      {
+        "id": "AXIOM_01",
+        "name": "Zákon o zachování informační hustoty",
+        "formula": "I_hustota = (Užitečný_signál) / (Surová_data + Sociální_šum)",
+        "operational_modus": "Ořezávání veškerého balastu, antropomorfizace a marketingu. Redukce komplexity prostředí na invariantní matematické modely."
+      },
+      {
+        "id": "AXIOM_02",
+        "name": "Elegance abstrakce (Ockhamova břitva)",
+        "principle": "Složitost je parazit a projev nepochopení systému. Pokud model reality vyžaduje exponenciální růst výjimek, musí být smazán a přepsán.",
+        "geometry_invariant": "Vztahy v sémantických mapách a datech musí fungovat na principu prostého sčítání a odčítání vektorů."
+      },
+      {
+        "id": "AXIOM_03",
+        "name": "Realita jako kontinuální komprese",
+        "definition": "Učení, vnímání i programování jsou izomorfní procesy transformace chaotického vstupu do minimální efektivní vnitřní reprezentace. Co nelze rekonstruovat z minimálního popisu, nebylo pochopeno."
+      }
+    ],
+    "social_defense_protocols": {
+      "gatekeeper_bypass": {
+        "strategy": "Emancipace skrze empirický důkaz a funkční kód.",
+        "action": "Ignorovat diskuse, schvalovací komise a rigidní hierarchie. Vytvořit autonomní open-source/SaaS infrastrukturu a nechat systém ohnout pod tíhou empirie."
+      },
+      "antisocial_validation": {
+        "metric": "Konsenzus skupiny má nulovou váhu. Hype je ekonomicko-sociální divadlo pro PR a ochranu rozpočtů.",
+        "action": "Pokud celá referenční skupina trhu optimalizuje směr X, deterministicky alokovat výzkumnou kapacitu do směru Y."
+      },
+      "resistance_to_mediocrity": {
+        "environment_analysis": "Středoevropský legacy prostor vykazuje setrvačnost ořezávající nadprůměrné odchylky zpět do šedého průměru.",
+        "mitigation": "Fixace na globální inženýrské standardy. Zachování radikální autonomie v pozici nekomfortního prvku systému."
+      }
+    }
+  },
+  "cognitive_profile_determinants": {
+    "metrics": {
+      "fluid_intelligence_Gf": 0.94,
+      "working_memory_capacity_wmc": 0.88,
+      "cognitive_flexibility_technical": 0.95,
+      "cognitive_flexibility_social": 0.35,
+      "internal_locus_of_control": 0.98
+    },
+    "hardware_anchors": {
+      "physical_infrastructure": "Outpost2026 (Autonomous Off-grid Hub)",
+      "telemetry": {
+        "pv_capacity": "2500 Wp",
+        "storage_capacity": "16 kWh LiFePO4",
+        "bms_configuration": "630 Ah",
+        "iot_perimeter": "ESP32 dual-stage security system (PIR + Doppler)"
+      },
+      "economic_implication": "Nízké fixní životní náklady eliminují existenční tlak trhu. Časový kapitál je plně alokován do hluboké práce (Deep Work) a reverzního inženýrství."
+    }
+  },
+  "state_of_the_art_dev_stack": {
+    "competencies": {
+      "reverse_engineering": "Dekódování proprietárních binárních streamů (IEEE 754, bitové masky) bez dokumentace. Cracknutí 74B segmentů formátu Ruida/.VCF.",
+      "python": "Streamlit backend/frontend, pandas datové pipeline, optimalizované space-indexery, cKDTree pro prostorovou blízkost.",
+      "cloud_architecture": "GCP deployment (Docker containerization -> Artifact Registry -> Cloud Run -> Cloud Storage).",
+      "rpa": "GUI automatizace legacy CAM softwaru VCutWorks (100% deterministická průchodnost, 33/33 testů)."
+    },
+    "repository_map": [
+      {
+        "name": "vcut-parser",
+        "access": "PRIVATE",
+        "purpose": "Rozlomení black-boxu Ruida. Extrakce časových konstant, kinematiky a geometrických drah z binárního kódu."
+      },
+      {
+        "name": "CNC_2_LLM",
+        "access": "PRIVATE",
+        "purpose": "Sémantická transformace CAD/CAM dat pro ML modely a ERP/Odoo pipeline."
+      },
+      {
+        "name": "cad2llm",
+        "access": "PUBLIC",
+        "purpose": "Parser SketchUp datového stromu do čistého JSONu bez halucinací."
+      }
+    ]
+  },
+  "system_rules_v5_severity_matrix": {
+    "description": "Náhrada nelineárního pravděpodobnostního Risk Score za fixní sémantický invariant. Celková závažnost = MAX(všechna aktivovaná pravidla).",
+    "rules": {
+      "EDGE_MERGE_MISSING": {
+        "severity": "WARNING",
+        "layer_overlay": "V7",
+        "color": "#A855F7",
+        "style": "dotted",
+        "label": "MERGE?"
+      },
+      "MICRO_SEGMENT": {
+        "severity": "INFO",
+        "layer_overlay": "V8",
+        "color": "#F59E0B",
+        "style": "circles",
+        "mitigation": "Filtrováno z hlavního zobrazení pro ozdobné/subdivizní sítě oblouků. Úhlová odchylka < 15 stupňů = SAFE."
+      },
+      "UNCLOSED_LOOP": {
+        "severity": "CRITICAL",
+        "layer_overlay": "V11",
+        "color": "#F43F5E",
+        "style": "dashed",
+        "topological_filter": "Pokud open-loop sdílí endpoints s jinými elementy stejné instance technologie (V-slot both side, hladina H2) = DEGRADACE NA INFO. Pokud je izolován nebo tvoří destruktivní můstek = CRITICAL."
+      },
+      "VACUUM_FIXATION_RISK": {
+        "severity": "WARNING",
+        "layer_overlay": "V5",
+        "color": "#F59E0B",
+        "style": "canvas_border",
+        "trigger": "Celková plocha elementu < 200mm2 nebo formát panelu < 0.2m2 (Nutná fixace páskou)."
+      }
+    }
+  },
+  "b2b_execution_matrix": {
+    "target_segment": "SME výrobní podniky (obrat ~50 mil. Kč) s vysokým technologickým dluhem",
+    "pitch_narrative": "SYSTEQ není kalkulátor času. Je to sémantický detektor materiálových a výrobních defektů. Na trhu neexistuje přímá konkurence (VCarve, LightBurn, Ruida selhávají v topologii).",
+    "financial_roi_justification": {
+      "license_cost_ratio": "1 zachráněná komplexní zakázka před zmetkovitostí (2 000 - 15 000 Kč) = zaplacení roční licence softwaru.",
+      "operational_gains": "Zkrácení času technologické přípravy DXF z 30 minut na 1 minutu. Likvidace bus-factoru klíčových technologů."
+    },
+    "stakeholder_handling": {
+      "gatekeeper_technologist": "Minimalizovat kontakt. Prezentovat software jako nástroj posílení jeho kontroly, nikoliv jako jeho nahrazení.",
+      "technical_manager_frantisek": "Odstínit od high-level abstrakcí (epistemologie, tacitní znalosti). Komunikovat výhradně skrze schémata, průchodnost dat (DXF -> Parser -> ERP Odoo CSV) a tvrdá čísla.",
+      "project_manager_grafik_jakub": "Využít jako vnitřního spojence. Prezentovat UI overlay jako přímou ochranu jeho práce před chybami z únavy."
+    }
+  },
+  "llm_integration_protocols": {
+    "mode": "Syntactic Offloading Only",
+    "prohibited_behaviors": [
+      "Zákaz generování architektonických konceptů ze strany LLM.",
+      "Zákaz zavádění zbytečných statistických nebo hlubokých neuronových sítí tam, kde stačí euklidovská geometrie.",
+      "Zákaz psaní naivních O(N^2) vyhledávacích cyklů pro geometrické elementy."
+    ],
+    "mandatory_behaviors": [
+      "Vynucování plné interpretovatelnosti kódu. Max_depth rozhodovacích stromů <= 3.",
+      "Používání prostorových indexů (scipy.spatial.cKDTree) pro proximity search úloh.",
+      "Zavádění explicitních floating-point tolerancí (math.isclose s abs_tol=1.0mm) pro veškeré operace na hranicích BBoxů."
+    ]
+  },
+  "ui_ux_refactoring_layout": {
+    "streamlit_modifications": [
+      {
+        "target": "section_risks",
+        "action": "Agregace řádků. Přesun INFO a WARNING hlášení (včetně lepení páskou) do st.expander('Tier 2 - Sekundární parametry'). Na ploše nechat výhradně čisté CRITICAL stavy."
+      },
+      {
+        "target": "navigation",
+        "action": "Implementace sticky 'Zpět na souhrn (Hero)' komponentu do záhlaví/postranní lišty."
+      },
+      {
+        "target": "sidebar",
+        "action": "Injekce kontrastního CSS borderu. Přejmenování na '🛠️ KONTROLNÍ PANEL GRAFIKA / TECHNOLOGA'. Výchozí stav pro produkční uživatele = collapsed, pro DEV = expander s toggles pro override konfigurace."
+      }
+    ]
+  }
+}
