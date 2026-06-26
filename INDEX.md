@@ -240,6 +240,26 @@
 
 ---
 
+## Nově vytvořené artefakty (iterační syntézou po init migraci)
+
+Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny iterační syntetickou prací nad již existujícím repozitářem.
+
+| # | Soubor | Lokace | Typ | Vznik | EROI |
+|---|--------|--------|-----|-------|------|
+| N01 | `GROUND_TRUTH_aktualni_stav_2026-06-25.md` | `00_STRATEGIE/00_manifesty/` | ground truth | 25. 6. 2026 | 10/10 |
+| N02 | `VCF_Reverse_Engineering_Inference_Workflow_2026.md` | `01_METODIKY/01_reverse_engineering/` | návrh | 26. 6. 2026 | 10/10 |
+| N03 | `CV_Ondrej_Sousek_B2B_onepager.md` | `01_METODIKY/02_CV_a_profil/` | CV | 25. 6. 2026 | 9/10 |
+| N04 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | `02_ANALÝZY/03_kodove_analyzy/` | analýza | 25. 6. 2026 | 10/10 |
+| N05 | `appendix_moodpasta.md` | `03_PROVOZ/00_komunikace/` | analýza | 25. 6. 2026 | 9/10 |
+| N06 | `executive_summary_moodpasta.md` | `03_PROVOZ/01_projekty/` | executive summary | 25. 6. 2026 | 9/10 |
+| N07 | `technicke_zadani_Moodpasta.md` | `03_PROVOZ/01_projekty/` | GT zadání | 24. 6. 2026 | 10/10 |
+| N08 | `cenova_metodika_moodpasta.md` | `03_PROVOZ/02_business/` | metodika | 25. 6. 2026 | 10/10 |
+| N09 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | `_ARCHIVE/` | archive | 25. 6. 2026 | — |
+
+**Celkem:** 9 nových artefaktů | ~4 159 řádků | vytvořeno za 3 dny (24.–26. 6. 2026)
+
+---
+
 ## Rychlé vyhledávání podle tagů
 
 | Tag | Kde hledat |
@@ -263,12 +283,14 @@
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~70 |
-| Z toho migrováno do KB | ~54 |
+| Celkem zmapovaných artefaktů | ~79 |
+| Z toho migrováno z B2B/KB | ~70 |
+| Z toho nově vytvořeno (iterační syntézou) | 9 |
 | V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
-| RAG-ready (textové) | ~55 |
+| RAG-ready (textové) | ~64 |
+| Nové artefakty řádků | ~4 159 |
 
 ---
 
-*Poslední aktualizace: 2026-06-25*
+*Poslední aktualizace: 2026-06-26*

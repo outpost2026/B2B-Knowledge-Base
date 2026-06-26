@@ -39,3 +39,5 @@ __pycache__/
 # Lock files (LibreOffice / editor artifacts)
 .#*
 ~$*
+.~lock*
+*.lock.*
