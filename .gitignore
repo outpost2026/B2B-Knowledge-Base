@@ -35,3 +35,7 @@ __pycache__/
 
 # Git
 *.orig
+
+# Lock files (LibreOffice / editor artifacts)
+.#*
+~$*

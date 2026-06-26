@@ -56,6 +56,7 @@
 | R01 | `RE_Methodology.md` | KB/technologie_plotr_moodpasta/ | metodika | Obecná RE metodika | 8/10 |
 | R02 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | KB/technologie_plotr_moodpasta/ | case study | 29denní RE case study | 10/10 |
 | R03 | `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` | B2B/ | ground truth | Původ VCF parseru | 9/10 |
+| R04 | `VCF_Reverse_Engineering_Inference_Workflow_2026.md` | B2B-KB (tento repo) | návrh | Kompletní návrh VcfWriter, .rd→.vcf mapping, LLM inference workflow, 1276 ř. | 10/10 |
 
 ### 02_CV_a_profil — CV templaty, LinkedIn optimalizace
 
@@ -248,7 +249,7 @@
 | `manifest`, `komprese`, `realismus` | `05_EPISTEMIKA/00_kompresni_realismus/` + `00_STRATEGIE/00_manifesty/` |
 | `cv`, `profil` | `01_METODIKY/02_CV_a_profil/` |
 | `cnc`, `cam`, `plotr`, `pet_felt` | `04_KNOWLEDGE_BASE/00_CNC_CAM/` |
-| `reverse_engineering`, `re`, `vcf` | `04_KNOWLEDGE_BASE/01_reverse_engineering/` |
+| `reverse_engineering`, `re`, `vcf` | `04_KNOWLEDGE_BASE/01_reverse_engineering/` + `01_METODIKY/01_reverse_engineering/` |
 | `llm`, `model`, `routing`, `openrouter` | `05_EPISTEMIKA/01_kalibracni_matice/` |
 | `agent`, `bezpecnost`, `guardrail` | `05_EPISTEMIKA/02_agentni_pravidla/` + `01_METODIKY/00_agentni_prace/` |
 | `moodpasta`, `klient` | `03_PROVOZ/00_komunikace/` + `03_PROVOZ/01_projekty/` |
