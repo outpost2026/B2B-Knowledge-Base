@@ -417,7 +417,256 @@ V GitHub UI → Actions → klikni na repo → vpravo vidíš "Management". Tohl
 
 ---
 
-## 14. Slovníček
+## 15. Dependabot PR — praktický výklad s příklady
+
+### 15.1 Co se děje?
+
+Dependabot je GitHub robot. Automaticky sleduje tvůj `requirements.txt` nebo `setup.cfg` a porovnává verze balíčků které používáš s aktuálními na PyPI.
+
+Když najde starší verzi, automaticky:
+1. Vytvoří branch ve tvém repu (např. `dependabot/pip/ezdxf-gte-1.4.4`)
+2. Změní číslo verze v `requirements.txt`
+3. Vytvoří Pull Request
+4. Spustí se CodeQL a CI na té branchi
+
+
+### 15.2 Co je "diff"?
+
+Diff = rozdíl mezi starým a novým `requirements.txt`:
+
+```diff
+# Staré
+-ezdxf>=1.3.0
++ezdxf>=1.4.4
+```
+
+To je celý diff. Žádný kód se nemění. Jen se říká "od teď beru minimálně 1.4.4, ne 1.3.0".
+
+### 15.3 Jak funguje `>=` ?
+
+| Zápis | Význam |
+|-------|--------|
+| `ezdxf>=1.3.0` | "beru cokoliv od 1.3.0 výš" — 1.3.1, 1.4.0, 1.4.4 |
+| `numpy>=2.0.0` | "od 2.0.0 výš" — 2.0.0, 2.0.1, 2.5.0 |
+
+Když Dependabot změní `>=1.3.0` na `>=1.4.4`, znamená to:
+> "Už nepodporuji 1.3.0. Pokud má někdo 1.3.0, nainstaluje se 1.4.4."
+
+### 15.4 Co je "major" a "minor" verze?
+
+```
+        ezdxf  1.3.0
+              │ │ │
+              │ │ └ patch = oprava chyby (safe)
+              │ └── minor = nová featura (obvykle safe)
+              └──── major = breaking changes (⚠️ POZOR)
+```
+
+| Příklad | Bump | Riziko |
+|---------|------|--------|
+| 1.3.0 → 1.3.1 | patch | ✅ safe |
+| 1.3.0 → 1.4.0 | minor | ⚠️ ověřit |
+| 1.3.0 → 2.0.0 | major | 🔴 může rozbít |
+
+### 15.5 Tvoje PR — komentovaně
+
+#### #1 — `actions/checkout@v4 → v7`
+**Typ:** GitHub Action (ne Python balíček)
+**Co dělá:** Stáhne tvůj kód na Linux server když běží CI.
+**Diff v YAML:**
+```diff
+- uses: actions/checkout@v4
++ uses: actions/checkout@v7
+```
+**Riziko:** ✅ Žádné. Mezi v4 a v7 jsou jen interní vylepšení (rychlost, bezpečnost).
+**Verdikt:** Mergni hned — nemůže to nic rozbít.
+
+#### #2 — `actions/setup-python@v5 → v6`
+**Typ:** GitHub Action
+**Co dělá:** Nainstaluje Python na Linux serveru.
+**Diff:**
+```diff
+- uses: actions/setup-python@v5
++ uses: actions/setup-python@v6
+```
+**Riziko:** ✅ Žádné. Rychlejší caching, podpora novějšího Pythonu.
+**Verdikt:** Mergni hned.
+
+#### #3 — `ezdxf 1.3.0 → 1.4.4`
+**Typ:** Python balíček — tvůj hlavní nástroj pro DXF parsing.
+**Diff:**
+```diff
+- ezdxf>=1.3.0
++ ezdxf>=1.4.4
+```
+**Verze:** 1.3.0 → 1.4.4 = minor bump (1.3→1.4)
+**Co se změnilo:** Nové featury, opravy bugů, možná změna interního API.
+**Riziko:** ⚠️ Střední. ezdxf je tvůj core nástroj — pokud používáš interní funkce (ne veřejné API), můžou se změnit.
+**Jak ověřit:** `git log --oneline v1.3.0..v1.4.4` v ezdxf repu, nebo zkusit `pytest` na dependabot branchi.
+**Verdikt:** Proveď test před mergem.
+
+#### #4 — `numpy 1.24.0 → 2.5.0`
+**Typ:** Python balíček — základní matematika.
+**Diff:**
+```diff
+- numpy>=1.24.0
++ numpy>=2.5.0
+```
+**Verze:** 1.24 → 2.5 = **MAJOR** bump (1→2)
+**Co se změnilo:** numpy 2.0 je největší změna za 10 let. Zrušilo se ~30 funkcí, změnilo se chování aritmetiky.
+**Dopad na tvůj stack:**
+- `ezdxf` — může fungovat (verze 1.4+ podporuje numpy 2)
+- `scipy` — může fungovat (verze 1.14+)
+- `shapely` — může fungovat (verze 2.1+)
+- tvůj kód — pokud používáš numpy přímo, může padat na přejmenovaných funkcích
+**Riziko:** 🔴 Vysoké. Major = může rozbít cokoliv.
+**Jak ověřit:**
+1. Vytvoř nové prostředí
+2. `pip install numpy>=2.5.0 ezdxf>=1.4.4 scipy>=1.18.0 shapely>=2.1.2 streamlit>=1.58.0`
+3. Spusť `pytest`
+4. Pokud red → vrať se na numpy 1.x a počkej 1-2 měsíce
+**Verdikt:** 🔴 **NEmergň dokud nemáš ověřeno, že všechno funguje.**
+
+#### #5 — `shapely 2.0.0 → 2.1.2`
+**Typ:** Python balíček — geometrické výpočty.
+**Diff:**
+```diff
+- shapely>=2.0.0
++ shapely>=2.1.2
+```
+**Verze:** 2.0 → 2.1 = minor
+**Riziko:** ⚠️ Nízké. Bugfixy + nové featury. API by mělo být kompatibilní.
+**Verdikt:** Pravděpodobně safe. Ověř testem.
+
+#### #6 — `scipy 1.10.0 → 1.18.0`
+**Typ:** Python balíček — vědecké výpočty. Používáš pro B-spline křivky.
+**Diff:**
+```diff
+- scipy>=1.10.0
++ scipy>=1.18.0
+```
+**Verze:** 1.10 → 1.18 = velký skok, ale stále minor (1.x→1.x)
+**Riziko:** ⚠️ Střední. Mezi 1.10 a 1.18 se mohlo změnit API `scipy.interpolate` a `scipy.optimize`.
+**Verdikt:** Ověř testem. Tvoje B-spline křivky můžou být citlivé na změny v interpolaci.
+
+#### #7 — `streamlit 1.30.0 → 1.58.0`
+**Typ:** Python balíček — webové GUI.
+**Diff:**
+```diff
+- streamlit>=1.30.0
++ streamlit>=1.58.0
+```
+**Verze:** 1.30 → 1.58 = velký skok, minor
+**Riziko:** ⚠️ Střední. Streamlit často mění layout, komponenty, caching API.
+**Verdikt:** Ověř testem. Dashboard může vypadat jinak.
+
+### 15.6 Shrnutí — co s každým PR
+
+| # | Balíček | Změna | Riziko | Akce |
+|---|---------|-------|--------|------|
+| 1 | checkout | v4→v7 | ✅ | mergni hned |
+| 2 | setup-python | v5→v6 | ✅ | mergni hned |
+| 5 | shapely | 2.0→2.1 | ⚠️ low | mergni (ověř testem) |
+| 3 | ezdxf | 1.3→1.4 | ⚠️ mid | ověř testem |
+| 6 | scipy | 1.10→1.18 | ⚠️ mid | ověř testem |
+| 7 | streamlit | 1.30→1.58 | ⚠️ mid | ověř testem |
+| 4 | numpy | 1.24→2.5 | 🔴 **high** | **NEmergň bez testu** |
+
+### 15.7 Společný test — všechny najednou
+
+Protože numpy 2.x je major, nejjednodušší je **otestovat všechny PR najednou**:
+
+```bash
+# 1. Vytvoř nové prostředí (čisté)
+python -m venv .venv_test_deps
+.venv_test_deps\Scripts\activate
+
+# 2. Nainstaluj nové verze
+pip install numpy>=2.5.0 ezdxf>=1.4.4 scipy>=1.18.0 shapely>=2.1.2 streamlit>=1.58.0
+
+# 3. Spusť testy
+pytest
+
+# 4. Pokud green → mergni všechny PR
+#    Pokud red → vrať se a řeš po jedné
+```
+
+---
+
+## 16. Jak Dependabot funguje uvnitř
+
+### 16.1 Diagram
+
+```ascii
+PyPI (Python Package Index)
+  │
+  │ každý den kontrola
+  ▼
+Dependabot (GitHub robot)
+  │
+  ├── najde novou verzi ──→ vytvoří branch + PR
+  │
+  └── CI a CodeQL se spustí na té branchi
+      │
+      ├── ✅ green → můžeš mergnout
+      └── ❌ red  → něco je nekompatibilní
+```
+
+### 16.2 Co Dependabot dělá pro GitHub Actions?
+
+Nejen Python balíčky, ale i samotné GitHub Actions:
+
+```yaml
+# .github/workflows/ci.yml
+- uses: actions/checkout@v4      # ← Dependabot hlídá i tohle
+- uses: actions/setup-python@v5  # ← a tohle
+```
+
+Vidíš to u PR #1 a #2 — `actions/checkout` a `actions/setup-python`.
+
+### 16.3 Kdy Dependabot NENÍ potřeba?
+
+- **Balíčky co se nemění:** např. `pytest`, `mypy` — ty se updatují jednou za rok
+- **Interní balíčky:** tvoje vlastní (`dxf_integrace`, `vcf-compiler`) — ty Dependabot nesleduje
+- **PyPI balíčky co nepoužíváš:** Dependabot nekontroluje všechno, jen to co máš v `requirements.txt`
+
+---
+
+## 17. Assessment: úroveň pochopení
+
+### Tvůj dotaz: "Co znamená ezdxf 1.3.0 → 1.4.4?"
+
+```diff
+- ezdxf>=1.3.0
++ ezdxf>=1.4.4
+```
+
+| Kritérium | Tvoje úroveň | Co jsi pochopil |
+|-----------|-------------|-----------------|
+| Co je to verze | ✅ Junior | "starší vs novější" |
+| Co je >= | ✅ Junior | "používám tuto verzi" |
+| Co je diff | ✅ Junior | "rozdíl v requirements.txt" |
+| major vs minor | ⚠️ Nová znalost | Teď už víš (1→2 = major) |
+| Proč to dělá robot | ✅ Junior | "automaticky hlídá" |
+| Riziko major bumpu | ⚠️ Nová znalost | numpy 1→2 = breaking |
+| Co dělat při PR | ⚠️ Nová znalost | testovat před mergem |
+| Dependabot = součást CI | ⚠️ Nová znalost | ne jen testy, ale i údržba deps |
+
+**Verdikt:** Tvoje úroveň je **pokročilý junior** pro tuto konkrétní kompetenci. Rozumíš *že* se něco děje a *proč*. Teď přidáváš *jak to řešit*.
+
+### Co je zásadní pro B2B pivot?
+
+| Kompetence | K čemu je v B2B |
+|------------|-----------------|
+| **Rozumíš že CI automaticky testuje** | Zákazník: "máte testy?" Ty: "ano, CI pipeline, 22/22 green" |
+| **Rozlišuješ major/minor** | Víš že numpy major = risk, neuděláš chybu a nerozbiješ zákazníkovi kód |
+| **Víš jak testovat PR** | Bezpečné mergování = profi přístup |
+| **Rozumíš Dependabot workflow** | Automatická údržba = méně chyb, víc času na RE |
+
+---
+
+*Vytvořeno: 2026-07-02, Session 11c | Aktualizováno: 2026-07-03, Session 12+*
+*Kontext: imerzní učení, solo B2B dev, 4 měsíce R&D bez CI*
 
 | Pojem | Význam |
 |-------|--------|
