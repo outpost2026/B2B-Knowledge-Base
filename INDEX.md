@@ -34,6 +34,8 @@
 |---|--------|-------|-----|------|------|
 | K01 | `agregovany_report.md` | B2B/linkedin_analyzy/ | report | Detailní analýza 14+ LinkedIn nabídek | 9/10 |
 | K02 | `synteticky_report_analyza.md` | B2B/linkedin_analyzy/ | report | Syntéza tržních signálů | 9/10 |
+| **K03** | **`vcf_optimizer_analytic_engine.md`** | **02_karierni_targety/** | **strategie** | **Vector 1 — pre-production analytický engine (material yield, time/cost, defect prediction) (441 ř.)** | **10/10** |
+| **K04** | **`vcf_compiler_architektura_deepdive.md`** | **02_karierni_targety/** | **analýza** | **Vector 2 — byte-level writer architektura, dependencies, ACI kalibrace, EROI (473 ř.)** | **10/10** |
 
 ---
 
@@ -100,6 +102,7 @@
 | PA01 | `portfolio_audit_a_match.md` | B2B/linkedin_analyzy/ | audit | GitHub audit + skill match matice | 9/10 |
 | PA02 | `outpost2026_github_analyza.docx` | B2B/ | analýza | GitHub profil analýza (pouze lokálně) | 5/10 |
 | PA03 | `reame.md_git_analyza.txt` | B2B/ | raw data | Surová data z GitHub scrapu | 4/10 |
+| PA04 | `R&D_evoluce_portfolia_03_2026-07_2026.md` | 02_ANALÝZY/01_portfolio_audit/ | report | Komplexní R&D evoluce — 5 fází, 12 rep, ~494 commitů (427 ř.) | 10/10 |
 
 ### 02_konkurence_a_trh
 
@@ -255,8 +258,11 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | N07 | `technicke_zadani_Moodpasta.md` | `03_PROVOZ/01_projekty/` | GT zadání | 24. 6. 2026 | 10/10 |
 | N08 | `cenova_metodika_moodpasta.md` | `03_PROVOZ/02_business/` | metodika | 25. 6. 2026 | 10/10 |
 | N09 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | `_ARCHIVE/` | archive | 25. 6. 2026 | — |
+| **N10** | **`R&D_evoluce_portfolia_03_2026-07_2026.md`** | **`02_ANALÝZY/01_portfolio_audit/`** | **report** | **3. 7. 2026** | **10/10** |
+| **N11** | **`vcf_optimizer_analytic_engine.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **strategie** | **3. 7. 2026** | **10/10** |
+| **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **analýza** | **3. 7. 2026** | **10/10** |
 
-**Celkem:** 9 nových artefaktů | ~4 159 řádků | vytvořeno za 3 dny (24.–26. 6. 2026)
+**Celkem:** 12 nových artefaktů | ~5 500 řádků | vytvořeno 24. 6.–3. 7. 2026
 
 ---
 
@@ -293,4 +299,4 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 ---
 
-*Poslední aktualizace: 2026-06-26*
+*Poslední aktualizace: 2026-07-03*
