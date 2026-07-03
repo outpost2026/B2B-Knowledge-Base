@@ -109,6 +109,8 @@ Klasická chyba: `f-string` syntaxe, `match-case`, `walrus operator` — každá
 
 **`fail-fast: false`** = pokud 3.10 spadne, 3.11 a 3.12 běží dál. Bez toho by ti CI zabil všechny testy při první chybě a nevěděl bys, jestli ostatní verze procházejí.
 
+⚠️ **Lekce z produkce:** Pokud `setup.cfg`/`pyproject.toml` deklaruje `python_requires = >=3.11`, přidání 3.10 do matrixu je kontraproduktivní — CI failne hned u `pip install` (ne u testů). Matrix verze musí být **podmnožina** deklarovaného rozsahu, ne nadmnožina.
+
 ### EROI
 
 Čas investice: +2 řádky do YAML (2 minuty)
@@ -158,6 +160,7 @@ GitHub automaticky prohledá tvůj kód na bezpečnostní chyby:
 permissions:
   contents: read
   security-events: write
+  actions: read    # ← POVINNÉ od CodeQL v4! Bez toho selže analyze krok.
 ```
 
 ### PROČ
@@ -165,6 +168,8 @@ permissions:
 **B2B důvěryhodnost.** Když řekneš zákazníkovi "mám CI pipeline", první otázka bude "a co security scanning?". CodeQL je průmyslový standard (používá ho Microsoft, Google, celý GitHub).
 
 Taky: v RE kódu se snadno stane, že necháš v komentáři cestu k serveru, API klíč, nebo jiný credential. CodeQL to chytí dřív, než to pushneš do public repa.
+
+**Lekce z produkce:** CodeQL v4 vyžaduje `actions: read` permission v top-level bloku. Bez něj selže analyze krok s `Resource not accessible by integration`. Defaultní GITHUB_TOKEN má jen `contents: read`. Debug pattern: `##[error]Resource not accessible by integration` v logu analyze = chybí `actions: read`.
 
 ### EROI
 
@@ -222,7 +227,32 @@ Vcf-compiler volá `dxf_integrace.index_dxf()` za běhu. To znamená:
 
 Cross-repo trigger zajišťuje: změna v dxf_integrace → automatický test Vcf-compiler → okamžitá zpětná vazba.
 
-⚠️ **Aktuální stav:** vyžaduje `PAT_CROSS_REPO` secret v dxf_integrace (GitHub Personal Access Token). Bez něj se step přeskočí. Viz nastavení níže.
+⚠️ **Lekce z produkce:** `secrets.X` nelze použít v `if:` podmínce — GitHub Actions parser spadne s `Unrecognized named-value: 'secrets'`. Místo toho použij `env:` + shell `if`.
+```yaml
+# ŠPATNĚ — parser crash:
+# if: secrets.PAT_CROSS_REPO != ''
+
+# SPRÁVNĚ:
+env:
+  PAT: ${{ secrets.PAT_CROSS_REPO }}
+run: |
+  if [ -n "$PAT" ]; then
+    curl -X POST ... -H "Authorization: Bearer $PAT" ...
+  fi
+```
+
+⚠️ **Další lekce:** `repository_dispatch` trigger se spouští z **default branch** (obvykle `main`), ne z feature branch. I když máš CI workflow na `refactor/oop` s `repository_dispatch` typem, GitHub ho najde jen na `main`. Při nastavování cross-repo triggeru nezapomeň updatovat default branch.
+
+### Kontrolní checklist cross-repo dispatch
+
+Při nastavování cross-repo triggeru ověř **obě strany**:
+
+| Strana | Co zkontrolovat |
+|--------|----------------|
+| **Sender** (např. CNC_2_LLM) | workflow má `repository_dispatch` krok s `repo: outpost2026/Vcf-compiler`, PAT secret existuje v repo secrets |
+| **Receiver** (např. Vcf-compiler) | CI workflow je **na default branch (main)** a má `on: repository_dispatch` trigger |
+
+📌 Nejčastější chyba: uděláš změny na feature branch, pushneš, dispatch neproběhne — protože receiver hledá workflow jen na `main`. Po dokončení feature merge vždy ověř, že main branch má aktuální CI.
 
 ### EROI
 
@@ -322,5 +352,5 @@ Cross-repo trigger je jediná věc, která vyžaduje ruční zásah:
 
 ---
 
-*Vytvořeno: 2026-07-02, Session 11c*
+*Vytvořeno: 2026-07-02, Session 11c | Aktualizováno: 2026-07-03, Session 12*
 *Kontext: imerzní učení, solo B2B dev, 4 měsíce R&D bez CI*
