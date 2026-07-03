@@ -332,7 +332,92 @@ Cross-repo trigger je jediná věc, která vyžaduje ruční zásah:
 
 ---
 
-## 13. Slovníček
+## 13. GitHub Actions — Management sekce (GUI)
+
+V GitHub UI → Actions → klikni na repo → vpravo vidíš "Management". Tohle je ovládací panel pro vše okolo běhu workflow.
+
+### 13.1 Caches
+
+**Co:** GitHub ukládá mezipaměť (např. výsledky `pip install`) mezi jednotlivými běhy workflow.
+
+**Proč:** První `pip install` trvá 2–5 min. S cache: 30–60 vteřin.
+
+**Jak to vzniká:** Automaticky při použití `actions/setup-python` (má built-in caching). Nebo explicitně přes `actions/cache@v4`.
+
+**Tvůj případ:** `setup-python` automaticky cacheuje pip balíčky. Pokud vidíš "Cache saved" v logu = funguje to.
+
+**Akce:** Většinou necháš být. Pokud chceš ušetřit prostor: "Delete all caches" → cache se znovu vytvoří při příštím běhu.
+
+### 13.2 Attestations
+
+**Co:** Generuje kryptografický důkaz (SLSA provenance), že daný artifact byl opravdu vytvořen tvým workflow, ne někým jiným.
+
+**Proč:** Ochrana proti supply-chain útokům. Když někdo stáhne tvůj Python balíček, může ověřit, že pochází z tvého repa a nebyl modifikován.
+
+**Tvůj případ:** Zatím nepotřebuješ. Smysl to dává, až budeš distribuovat Python balíček přes PyPI (který SLSA podporuje).
+
+**Akce:** ignorovat (pro solo B2B dev to nemá EROI)
+
+### 13.3 Runners
+
+**Co:** Seznam strojů, na kterých běží tvé CI joby.
+
+| Typ | Co vidíš |
+|-----|----------|
+| **GitHub-hosted** | `ubuntu-latest`, `windows-latest`, `macos-latest` — stroje patřící GitHubu |
+| **Self-hosted** | Tvé vlastní stroje (zatím nemáš) |
+| **Active** | Kolik runnerů právě běží |
+| **Idle** | Kolik jich je volných |
+
+**Tvůj případ:** Vidíš jen GitHub-hosted (`ubuntu-latest`). 0 self-hosted.
+
+**Limity (Free plan):**
+- Public repo: neomezené minuty, 20 concurrency
+- Private repo: 2000 min/měsíc, pak $0.008/min
+
+**Kdy self-hosted?** Až budeš chtít spouštět CI přímo na CNC PC (např. pro testování s reálným hardware). To je ale až P1+ feature.
+
+### 13.4 Usage Metrics
+
+**Co:** Grafy kolik minut tvé workflow spotřebovaly za posledních 7/14/30 dní.
+
+**Metriky:**
+- **Billable minutes** = kolik minut reálně běžely (po zaokrouhlení)
+- **Per-workflow** = kolik spotřeboval CI vs CodeQL vs Dependabot
+- **Per-day** = trend (pracuješ více/méně)
+
+**Tvůj případ:** Na public repo jsou minutes **neomezené** (free). Na private: 2000 min/měsíc.
+
+**Kdy kontrolovat?** Jednou za 2 týdny. Pokud vidíš spike → něco se dlouho spouští → optimalizovat.
+
+### 13.5 Performance Metrics
+
+**Co:** Detailní metriky výkonu workflow.
+
+| Metrika | Význam | OK hodnota |
+|---------|--------|------------|
+| **Queue time** | Čekání na stroj | 5–15s (free), >2min = problém |
+| **Execution time** | Reálný běh pipeline | záleží na projektu |
+| **Success rate** | % úspěšných běhů | 90%+ = OK, <80% = něco je špatně |
+| **Concurrency** | Kolik paralelních běhů | 20 (free limit) |
+
+**Tvůj případ:** Queue time na free plan je obvykle 5–15 vteřin.
+
+**Kdy řešit?** Při problémech. Pokud queue time > 2 min → GitHub má problém nebo je fronta (spouštíš hodně workflow naráz).
+
+### Souhrn Management sekce
+
+| Sekce | Potřebuješ? | EROI |
+|-------|-------------|------|
+| Caches | automaticky | ✅ zdarma |
+| Attestations | ne | ❌ |
+| Runners | jen sledovat | ✅ |
+| Usage Metrics | občas | ✅ |
+| Performance Metrics | při problémech | ✅ |
+
+---
+
+## 14. Slovníček
 
 | Pojem | Význam |
 |-------|--------|
@@ -348,9 +433,14 @@ Cross-repo trigger je jediná věc, která vyžaduje ruční zásah:
 | **Workflow dispatch** | Ruční spuštění workflow z UI |
 | **Repository dispatch** | Spuštění workflow z jiného repa |
 | **Runner** | Server, který CI spouští (ubuntu-latest) |
+| **Cache** | Mezipaměť pro urychlení (pip install, node_modules) |
+| **Billable minutes** | Minuty skutečného běhu workflow |
+| **Queue time** | Čekání jobu na volný runner |
+| **Self-hosted runner** | Vlastní server pro CI (ne od GitHubu) |
+| **SLSA / Attestations** | Kryptografický důkaz původu artifactu |
 | **Green/Red** | Testy prošly / testy selhaly |
 
 ---
 
-*Vytvořeno: 2026-07-02, Session 11c | Aktualizováno: 2026-07-03, Session 12*
+*Vytvořeno: 2026-07-02, Session 11c | Aktualizováno: 2026-07-03, Session 12+*
 *Kontext: imerzní učení, solo B2B dev, 4 měsíce R&D bez CI*
