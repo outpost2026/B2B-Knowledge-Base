@@ -94,6 +94,7 @@
 | L02 | `agregovany_report.md` | B2B/linkedin_analyzy/ | report | Detail jednotlivých nabídek s EROI hodnocením | 10/10 |
 | L03 | `metadata_stacku.json` | B2B/linkedin_analyzy/ | data | Strojově čitelná agregace tech stacku | 9/10 |
 | L04 | `eroi_chronologicky_plan_s_metodikou.md` | B2B/linkedin_analyzy/ | plán | EROI ranking + 8 metodických koster | 9/10 |
+| **L05** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **02_ANALÝZY/00_linkedin/** | **architektura** | **MCP pipeline pro automatizaci analýzy LinkedIn nabídek — 2 varianty, EROI engine, napojení na existující artefakty** | **9/10** |
 
 ### 01_portfolio_audit — GitHub audit
 
@@ -261,8 +262,9 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N10** | **`R&D_evoluce_portfolia_03_2026-07_2026.md`** | **`02_ANALÝZY/01_portfolio_audit/`** | **report** | **3. 7. 2026** | **10/10** |
 | **N11** | **`vcf_optimizer_analytic_engine.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **strategie** | **3. 7. 2026** | **10/10** |
 | **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **analýza** | **3. 7. 2026** | **10/10** |
+| **N13** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **`02_ANALÝZY/00_linkedin/`** | **architektura** | **5. 7. 2026** | **9/10** |
 
-**Celkem:** 12 nových artefaktů | ~5 500 řádků | vytvořeno 24. 6.–3. 7. 2026
+**Celkem:** 13 nových artefaktů | ~6 400 řádků | vytvořeno 24. 6.–5. 7. 2026
 
 ---
 
@@ -271,7 +273,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | Tag | Kde hledat |
 |-----|------------|
 | `eroi`, `priorita`, `plan` | `00_STRATEGIE/01_positioning/` |
-| `linkedin`, `trh`, `analyza` | `02_ANALÝZY/00_linkedin/` |
+| `linkedin`, `trh`, `analyza`, `mcp_pipeline` | `02_ANALÝZY/00_linkedin/` |
 | `manifest`, `komprese`, `realismus` | `05_EPISTEMIKA/00_kompresni_realismus/` + `00_STRATEGIE/00_manifesty/` |
 | `cv`, `profil` | `01_METODIKY/02_CV_a_profil/` |
 | `cnc`, `cam`, `plotr`, `pet_felt` | `04_KNOWLEDGE_BASE/00_CNC_CAM/` |
@@ -289,14 +291,13 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~79 |
+| Celkem zmapovaných artefaktů | ~80 |
 | Z toho migrováno z B2B/KB | ~70 |
-| Z toho nově vytvořeno (iterační syntézou) | 9 |
+| Z toho nově vytvořeno (iterační syntézou) | 13 |
 | V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
-| RAG-ready (textové) | ~64 |
-| Nové artefakty řádků | ~4 159 |
+| RAG-ready (textové) | ~65 |
+| Nové artefakty řádků | ~6 400 |
 
 ---
-
-*Poslední aktualizace: 2026-07-03*
+*Poslední aktualizace: 2026-07-05*
