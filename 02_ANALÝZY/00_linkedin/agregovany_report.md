@@ -442,18 +442,31 @@ Obecná test automation role v IT consultingu — autor má testing mindset a Py
 - **Typ:** HPP / full-time / hybrid (Praha)
 - **Doména:** Automotive embedded systems, AUTOSAR
 - **Firma:** Digiteq Automotive (automotive engineering services)
-- **LinkedIn skill match:** 0/2
+- **Stack:** C++, AUTOSAR Adaptive/Classic, Github CI/CD (Actions), Bazel, Conan, CMake, arxml
+- **LinkedIn skill match:** 0/2, **12 applicantů** (střední konkurence)
+- **Benefity:** Škoda car leasing, 5 týdnů dovolené, cafeterie, multisport, penzijní připojištění 900 Kč/měsíc, sick days, jazykové kurzy
 
 ### Fit hodnocení
 | Dimenze | Váha | Match | Váženě | Komentář |
 |---------|------|-------|--------|----------|
-| **Doména** | 0.25 | **35 %** | 8.75 | Automotive embedded — manufacturing-adjacent, ale velmi specifický AUTOSAR svět. Autor má manufacturing/CNC, ne automotive embedded. |
-| **Tech stack** | 0.25 | **15 %** | 3.75 | C++ je MUST HAVE — autor neovládá. AUTOSAR Adaptive — 0 crossover. Github CI/CD — koncepčně zná, ale Actions specific. Bazel, Conan — nezná. Python jen nice-to-have. |
-| **Integrační zkušenost** | 0.20 | **60 %** | 12.0 | "Software integrator" — přesně autorova role (VCF parser = komponenty do funkčního celku). "If something doesn't fit, you spot it and fix it" — autorovo RE jádro. |
+| **Doména** | 0.25 | **35 %** | 8.75 | Automotive embedded — manufacturing-adjacent, ale velmi specifický AUTOSAR svět (Audi Trinity, Porsche eMacan). Autor má manufacturing/CNC, ne automotive embedded. |
+| **Tech stack** | 0.25 | **15 %** | 3.75 | C++ je MUST HAVE — autor neovládá. AUTOSAR Adaptive — 0 crossover. Github CI/CD — koncepčně zná, ale Actions specific. Bazel, Conan, CMake — nezná. Python jen nice-to-have. |
+| **Integrační zkušenost** | 0.20 | **60 %** | 12.0 | "Software integrator" — přesně autorova role (VCF parser = komponenty do funkčního celku). "If something doesn't fit, you spot it and you know how to fix it" — autorovo RE jádro. |
 | **CI/CD** | 0.10 | **40 %** | 4.0 | CI/CD principy — autor rozumí (GCP Cloud Build). Github Actions specific — nezná. |
 | **Jazyk/lokalita** | 0.10 | **90 %** | 9.0 | Praha hybrid ✓. EN ✓. |
-| **Formální kvalifikace** | 0.10 | **20 %** | 2.0 | Embedded systems experience + AUTOSAR — autor nemá. |
+| **Formální kvalifikace** | 0.10 | **20 %** | 2.0 | Embedded systems experience, ASPICE/IEEE 12207, AUTOSAR — autor nemá. |
 | **Celkem** | **1.00** | | **≈25 %** | |
+
+### Kvalitativní vhled
+Role je detailně popsána a zahrnuje konkrétní projekty (Audi Trinity, Porsche eMacan). Integrační metodologie sedí, ale C++ MUST HAVE + AUTOSAR specific + ASPICE standardy jsou trojitý tvrdý filtr. 12 applicantů není mnoho, ale degree v embedded systems je implicitní požadavek.
+
+### EROI analýza
+| Faktor | Hodnocení |
+|--------|-----------|
+| Pravděpodobnost konverze | <5 % (C++ must have + AUTOSAR + ASPICE = 0 crossover) |
+| Hodnota při konverzi | Střední (automotive korporát 80–120k/měsíc + Škoda car benefit) |
+| Náklady (čas na přípravu) | Vysoké (C++ a AUTOSAR nejde naučit rychle) |
+| **EROI** | **Kriticky nízká** |
 
 ### Závěr
 Automotive CI/CD role postavená na C++ a AUTOSAR — C++ MUST HAVE je tvrdý filtr. Autorův Python stack není relevantní. LinkedIn 0/2 je realistický. Doporučení: **nesledovat, nereagovat**.
@@ -548,24 +561,208 @@ Junior SRE role v pojišťovnictví — autor je překvalifikován zkušenostmi,
 
 ---
 
-## Souhrnná statistika (ke 2026-06-20)
+## 🟡 ZÁZNAM #015 — Logistics & System Architect / Integrator @ MSM GROUP
+**Datum:** 2026-07-05
+**EROI verdict:** SLEDOVAT — první relevantní lead z nové dávky (≈58 % fit)
+
+### Analýza pozice
+- **Role:** Logistics & System Architect / Integrator — návrh integrační vrstvy napříč systémy několika firem
+- **Seniorita:** Senior (6+ let distribution logistics)
+- **Typ:** HPP / full-time / hybrid (Praha) — **flexibilně: i interim/part-time konzultace**
+- **Doména:** Distribution logistics, e-commerce, supply chain
+- **Firma:** MSM GROUP (součást CSG, defense sector)
+- **Stack:** API, middleware, microservices, event-driven architecture, traceability, dashboard design
+- **LinkedIn skill match:** 0/10, **7 uchazečů** (nízká konkurence)
+
+### Fit hodnocení
+| Dimenze | Váha | Match | Váženě | Komentář |
+|---------|------|-------|--------|----------|
+| **Doména** | 0.35 | **40 %** | 14.0 | Distribution logistics — není manufacturing. **Průnik:** obě domény pracují s fyzickým materiálem, supply chain. Role ale cílí na e-commerce/rapid logistics, ne manufacturing. **Nicméně** "logistika není jen data v systému, ale reálné zboží, lidé ve skladu" — autor rozumí provozní realitě z CNC dílny. |
+| **Tech stack** | 0.25 | **60 %** | 15.0 | API, middleware, microservices, event-driven — **silný match** s autorovou integrační metodologií (VCF parser = de facto middleware mezi CAM a ERP). "Nemusíte být primárně programátor, důležitější je schopnost navrhnout jak mají systémy spolupracovat" — **přesně autorovo positioning**. Chybí platformově-specifická logistická řešení (WMS). |
+| **Role a kompetence** | 0.20 | **85 %** | 17.0 | **NEJSILNĚJŠÍ BOD VŠECH 19 NABÍDEK.** "Hledáme pragmatika, který nehledá nejsložitější řešení, ale nejkratší a nejchytřejší cestu k cíli." "Propojit logistiku, data a systémy do jednoho funkčního celku." "Nechceme implementovat těžkopádný krabicový systém." — **tohle je autorovo DNA.** VCF parser vznikl přesně proto, že "krabicový" CAM software neuměl exportovat použitelná data. |
+| **Růstový potenciál** | 0.10 | **65 %** | 6.5 | Greenfield projekt, přímý dopad na byznys, práce s vedením. CSG/defense sector kontakty. Interim/part-time možnost = nízké riziko. |
+| **Formální požadavky** | 0.05 | **15 %** | 0.75 | Master's Degree — autor nemá. 6+ let distribution logistics — autor má manufacturing, ne distribuci. |
+| **Lokalita a režim** | 0.05 | **90 %** | 4.5 | Praha hybrid ✓. Flexibilní spolupráce (HPP i interim). |
+| **Celkem** | **1.00** | | **≈58 %** | |
+
+### Kvalitativní vhled
+**Tohle je nejsilnější lead z nové dávky.** Důvody:
+
+1. **Text inzerátu by mohl psát autor sám** — "nemusíte být primárně programátor", "pragmatik, nejsložitější řešení, ale nejkratší cesta", "propojit systémy do funkčního celku" — to je autorovo positioning slovo od slova
+2. **"Logistics & System Architect / Integrator"** — "architect/integrator" je přesně autorův přirozený job title
+3. **Greenfield, žádné legacy** — "Nestavíme další vrstvu chaosu na starém kódu"
+4. **Pouze 7 applicantů** — nejnižší konkurence v dávce
+5. **Interim/part-time možnost** — lze vyzkoušet bez rizika, jako B2B diversifikace
+
+### Rizika
+1. Logistics/distribution doména — autor má 0 let zkušeností v logistice. Manufacturing a logistika sdílí supply chain principy, ale specifická logistická řešení (WMS, EDI) nezná.
+2. Master's Degree požadavek — MSM GROUP je součást CSG (defense), degree filtr může být tvrdý
+3. Role je architekt/integrátor, ne kodér — autor nemá zkušenost s navrhováním enterprise architektury pro distribuci
+
+### EROI analýza
+| Faktor | Hodnocení |
+|--------|-----------|
+| Pravděpodobnost konverze | 30–40 % (silný positioning match, ale domain gap + degree) |
+| Hodnota při konverzi | Středně vysoká (CSG group, odhad 100–140k/měsíc) |
+| Náklady (čas na přípravu) | 2–3 hodiny (CV custom na system integration, žádný nový stack) |
+| **EROI** | **Střední** |
+
+### Strategie
+- **CV varianta:** Full-CV_EN (06) — customizovat: zdůraznit **system integration methodology**, pragmatické řešení, VCF parser jako case study "propojení systémů do funkčního celku". Potlačit CNC/CAM specific, zdůraznit "supply chain data integration".
+- **Klíčové argumenty:**
+  1. System integration pragmatik — VCF parser vznikl protože krabicový software nefungoval
+  2. API/middleware zkušenost — data pipeline mezi CAM, cloudem a ERP
+  3. Manufacturing domain knowledge = rozumíš provozní realitě (sklad, materiál, lidé)
+  4. Interim/part-time ready — nízké riziko pro obě strany
+- **Gap mitigation:** Nastudovat základy logistických WMS systémů (2–4 hodiny)
+- **Doporučení:** **Zvážit jako #5 priorita** (po Thermo Fisher). Silný positioning match, ale domain gap vyžaduje upřímnost v pohovoru.
+
+---
+
+## 🔴 ZÁZNAM #016 — AI/ML/LLM Research Engineer @ Sourcein
+**Datum:** 2026-07-05
+**EROI verdict:** NESLEDOVAT — mismatch kritický (≈24 % fit)
+
+### Analýza pozice
+- **Role:** AI/ML Research Engineer — Synthetic Data Platform (survey augmentation, audience profiling)
+- **Seniorita:** Senior (research/engineering)
+- **Typ:** HPP / full-time / remote ČR (Praha office optional)
+- **Doména:** AI/ML research, synthetic data, statistical modeling
+- **Firma:** Sourcein — startup, small team, greenfield
+- **Stack:** Classical ML, LLM fine-tuning (LoRA, distillation), statistical modeling, experiment design
+- **LinkedIn skill match:** 1/5, **100+ uchazečů** (extrémní konkurence)
+
+### Fit hodnocení
+| Dimenze | Váha | Match | Váženě | Komentář |
+|---------|------|-------|--------|----------|
+| **Doména** | 0.35 | **10 %** | 3.5 | AI/ML research, synthetic data, survey modeling — **nejdále od industrial automation ze všech 19 nabídek.** Čistě akademický/výzkumný kontext bez vazby na manufacturing. |
+| **Tech stack** | 0.25 | **25 %** | 6.25 | LLM zkušenost ✓ (multi-model orchestrace, 5 modelů). **Ale:** classical ML foundations — chybí. Fine-tuning (LoRA, distillation) — nedoloženo. Statistical modeling — limited. Python ✓. "Ne API wrappers" — autorův LLM stack je převážně API-based. |
+| **Role a kompetence** | 0.20 | **20 %** | 4.0 | "Research engineer" — autor je practitioner, ne researcher. "Comfortable with ambiguity" — autor umí. "Ship what you build" — autor umí. **Ale:** doména je AI/ML research, ne system integration. |
+| **Růstový potenciál** | 0.10 | **30 %** | 3.0 | Greenfield, high autonomy, small team — atraktivní formát. **Ale:** AI/ML research není autorův kariérní cíl (industrial automation). |
+| **Formální požadavky** | 0.05 | **40 %** | 2.0 | "Academic or research backgrounds welcome" — flexibilní. Ale 100+ applicantů = extrémní přetlak. |
+| **Lokalita a režim** | 0.05 | **95 %** | 4.75 | Remote ČR ✓ nebo Praha office. Ideální režim. |
+| **Celkem** | **1.00** | | **≈24 %** | |
+
+### Kvalitativní vhled
+Zajímavý startup s genuinely těžkým problémem, high autonomy, remote. **Ale:** doménový mismatch je totální (AI research vs industrial automation), classical ML foundations chybí a 100+ applicantů znamená extrémní konkurenci. "Ne API wrappers" je explicitní požadavek, který autor nesplňuje — jeho LLM zkušenost je převážně API orchestrace, ne fine-tuning.
+
+### EROI analýza
+| Faktor | Hodnocení |
+|--------|-----------|
+| Pravděpodobnost konverze | <5 % (domain mismatch + ML gap + 100+ applicantů) |
+| Hodnota při konverzi | Vysoká (startup, odhad 100–150k/měsíc + equity potenciál) |
+| Náklady (čas na přípravu) | Vysoké (ML foundations nejde dohnat za den) |
+| **EROI** | **Kriticky nízká** |
+
+### Závěr
+Čistě AI/ML research role — autor nemá relevantní zkušenost (classical ML, fine-tuning, statistické modelování) a doménový mismatch je totální. 100+ applicantů. Doporučení: **nesledovat, nereagovat, nealokovat čas**.
+
+---
+
+## 🔴 ZÁZNAM #017 — Lighting R&D Engineer @ Bomma
+**Datum:** 2026-07-05
+**EROI verdict:** NESLEDOVAT — mismatch kritický (≈30 % fit)
+
+### Analýza pozice
+- **Role:** Lighting R&D Engineer — konstrukce designových svítidel
+- **Seniorita:** Senior (5+ let design, 4+ let 3D CAD, 5+ let architectural lighting)
+- **Typ:** HPP / full-time / **office (Světlá nad Sázavou)**
+- **Doména:** Glass manufacturing, lighting design, product R&D
+- **Firma:** Bomma — česká sklárna, světový designový výrobce svítidel
+- **Stack:** Fusion 360 (nebo jiný parametrický 3D CAD), materiály (sklo, kov, plast), LED integrace, technická dokumentace
+- **LinkedIn skill match:** 0/3, **5 uchazečů** (velmi nízká konkurence)
+
+### Fit hodnocení
+| Dimenze | Váha | Match | Váženě | Komentář |
+|---------|------|-------|--------|----------|
+| **Doména** | 0.35 | **45 %** | 15.75 | Glass manufacturing, product R&D — **manufacturing-adjacent.** Bomma je výrobní podnik (sklárna) s vlastním R&D. Autor rozumí výrobní realitě, prototypování, přechodu od návrhu k výrobě. **Ale:** lighting design není CNC obrábění. |
+| **Tech stack** | 0.25 | **20 %** | 5.0 | Fusion 360 / parametrický 3D CAD — **autor nemá.** Čtení výkresů ✓ (z CNC), tvorba 3D modelů ❌. Materiály (sklo, kov, plast) — částečný přesah z CNC. LED integrace — 0 zkušenost. |
+| **Role a kompetence** | 0.20 | **35 %** | 7.0 | "Konstruktér s praxí, samostatné řešení technických detailů, přechod od designu k výrobě" — autor má R&D mindset a manufacturing background. **Ale:** role vyžaduje specificky konstrukční/mechanical engineering skills, které autor nemá. |
+| **Růstový potenciál** | 0.10 | **25 %** | 2.5 | Stabilní česká značka, úzká specializace (designová svítidla). Omezený kariérní crossover k industrial automation. |
+| **Formální požadavky** | 0.05 | **10 %** | 0.5 | 5+ let design, 5+ let Fusion 360, 4+ let 3D CAD, 5+ let architectural lighting — **všechny kritické mismatche.** |
+| **Lokalita a režim** | 0.05 | **5 %** | 0.25 | **Světlá nad Sázavou (Vysočina)** — ~120 km od Prahy, office only. Dealbreaker. |
+| **Celkem** | **1.00** | | **≈30 %** | |
+
+### Kvalitativní vhled
+Manufacturing-adjacent role v české sklárně — koncepčně blízko (výroba, R&D, prototypy, materiály), ale prakticky mimo (3D CAD, lighting design, glass processing). Lokalita Světlá nad Sázavou je při bydlišti v Praze nerealistická. Pouze 5 applicantů je lákavé, ale skill mismatch je hluboký.
+
+### EROI analýza
+| Faktor | Hodnocení |
+|--------|-----------|
+| Pravděpodobnost konverze | <5 % (3D CAD skill gap + lokalita + formální praxe) |
+| Hodnota při konverzi | Střední (český manufacturing, odhad 60–90k/měsíc) |
+| Náklady (čas na přípravu) | Vysoké (3D CAD nejde naučit rychle) |
+| **EROI** | **Kriticky nízká** |
+
+### Závěr
+Výrobní R&D role s přesahy do manufacturingu, ale specifické požadavky (3D CAD, Fusion 360, lighting design) a lokalita jsou nepřekonatelné. Doporučení: **nesledovat, nereagovat**.
+
+---
+
+## 🔴 ZÁZNAM #018 — AI Integrator / AI Engineer @ TD SYNNEX
+**Datum:** 2026-07-05
+**EROI verdict:** NESLEDOVAT — mismatch v doméně a ML frameworcích (≈37 % fit)
+
+### Analýza pozice
+- **Role:** AI Integrator / AI Engineer — AI Center of Excellence
+- **Seniorita:** Medior (3+ let AI/ML engineering)
+- **Typ:** HPP / full-time / hybrid (Praha, 3 dny office)
+- **Doména:** Enterprise IT distribution, AI Center of Excellence
+- **Firma:** TD SYNNEX — Fortune 500, 22 000+ zaměstnanců, globální IT distributor
+- **Stack:** Python, TensorFlow/PyTorch/HuggingFace, API integrace s ERP/CRM/e-commerce, cloud (Azure preferred), MLOps, data pipelines
+- **LinkedIn applicants:** 18 (střední konkurence)
+
+### Fit hodnocení
+| Dimenze | Váha | Match | Váženě | Komentář |
+|---------|------|-------|--------|----------|
+| **Doména** | 0.35 | **15 %** | 5.25 | Enterprise IT distribution — **mimo industrial automation.** TD SYNNEX je distributor IT technologií (hardware/software), ne výrobní firma. AI tým dělá interní automatizaci, ne průmyslové aplikace. |
+| **Tech stack** | 0.25 | **45 %** | 11.25 | Python ✓ (core). API integrace ✓. Data pipelines ✓. LLM zkušenost ✓ (HuggingFace adjacent). **Ale:** TensorFlow/PyTorch — nedoloženo. Azure preferred — autor má GCP. MLOps — nedoloženo. "Low-code/Power Platform/RPA a plus" — autor nemá. |
+| **Role a kompetence** | 0.20 | **40 %** | 8.0 | "AI Engineer / Integrator" — koncepčně sedí (autor dělá LLM-augmented development). "65–70 % hands-on development, 20–25 % integrace" — autor je primárně hands-on. **Ale:** role je v enterprise IT kontextu, ne industrial. |
+| **Růstový potenciál** | 0.10 | **55 %** | 5.5 | Fortune 500, Center of Excellence, vysoká viditelnost. "Don't meet every requirement? Apply anyway." — otevřenost netradičním profilům. |
+| **Formální požadavky** | 0.05 | **40 %** | 2.0 | 3+ let AI/ML engineering — autor má ~3 měsíce formálně, ale silné portfolio. "Don't meet every single requirement? Apply anyway." — explicitní flexibilita. |
+| **Lokalita a režim** | 0.05 | **80 %** | 4.0 | Praha hybrid (3/2) ✓. Office 3 dny — méně ideální, ale akceptovatelné. |
+| **Celkem** | **1.00** | | **≈37 %** | |
+
+### Kvalitativní vhled
+TD SYNNEX je seriózní Fortune 500 firma s dedikovaným AI týmem. Role je "AI Integrator" — kombinuje AI engineering s enterprise integrací. Autorovo LLM orchestrace a API integrační zkušenost jsou relevantní.
+
+**Problém:** Doménový mismatch (enterprise IT vs industrial automation) + chybějící ML frameworky (TensorFlow/PyTorch). Role je stavěná na klasické ML (TensorFlow, PyTorch), ne na LLM orchestraci. Azure preference znamená, že autor by se učil nový cloud.
+
+### EROI analýza
+| Faktor | Hodnocení |
+|--------|-----------|
+| Pravděpodobnost konverze | 15–20 % (částečný skill match, ale domain + ML frameworks gap) |
+| Hodnota při konverzi | Vysoká (Fortune 500, odhad 100–150k/měsíc) |
+| Náklady (čas na přípravu) | Střední (nastudovat Azure basics + ML frameworks overview) |
+| **EROI** | **Nízká** |
+
+### Závěr
+AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chybí ML frameworky (TensorFlow/PyTorch) a doména je mimo industrial automation. Doporučení: **nesledovat, nealokovat čas** — leda jako long-term diversifikace, pokud autor plánuje entry do enterprise AI.
+
+---
+
+## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
 |---|-------|------|-------|------|---------|
 | 001 | Apify | Data Engineer | 31.5 % | Nízká | 🔴 NESLEDOVAT |
 | 002 | Accenture | SAP Integrations Consultant | <10 % | Kriticky nízká | 🔴 NESLEDOVAT |
-| 003 | **Desoutter Tools** | **Light Automation Specialist** | **≈65 %** | **Středně vysoká** | **🟡 SLEDOVAT** |
+| 003 | **Desoutter Tools** | **Light Automation Specialist** | **≈72 %** | **Středně vysoká** | **🟢 SLEDOVAT** |
 | 004 | TAKKT Group | PIM Developer | <15 % | Kriticky nízká | 🔴 NESLEDOVAT |
 | 005 | Accenture | ServiceNow Developer | <15 % | Kriticky nízká | 🔴 NESLEDOVAT |
 | 006 | NR SUPPLY LTD | WMS Integration Solution Engineer | ≈25 % | Nízká | 🔴 NESLEDOVAT |
-| 007 | **Siemens** | **Test Engineer — Distributed IO Systems** | **≈75 %** | **Vysoká** | **🟢 SLEDOVAT** |
+| 007 | **Siemens** | **Test Engineer — Distributed IO Systems** | **≈78 %** | **Vysoká** | **🟢 SLEDOVAT** |
 | 008 | Unit IT | Integration Engineer | ≈25 % | Nízká | 🔴 NESLEDOVAT |
 | 009 | Digi | Software Commissioning Engineer | ≈35 % | Nízká | 🔴 NESLEDOVAT |
-| 010 | **Google** | **Senior Manufacturing Engineer** | **≈50 %** | **Střední** | **🟡 SLEDOVAT** |
+| 010 | **Google** | **Senior Manufacturing Engineer** | **≈52 %** | **Střední** | **🟡 SLEDOVAT** |
 | 011 | Avenga | Test Automation Engineer | ≈30 % | Nízká | 🔴 NESLEDOVAT |
 | 012 | Digiteq Automotive | Automotive CI/CD Engineer (DevOps) | ≈25 % | Nízká | 🔴 NESLEDOVAT |
 | 013 | NN | Junior Site Reliability Engineer | ≈25 % | Nízká | 🔴 NESLEDOVAT |
-| 014 | **Thermo Fisher Scientific** | **System Integration Engineer** | **≈62 %** | **Středně vysoká** | **🟡 SLEDOVAT** |
+| 014 | **Thermo Fisher Scientific** | **System Integration Engineer** | **≈65 %** | **Středně vysoká** | **🟡 SLEDOVAT** |
+| 015 | **MSM GROUP** | **Logistics & System Architect / Integrator** | **≈58 %** | **Střední** | **🟡 SLEDOVAT** |
+| 016 | Sourcein | AI/ML/LLM Research Engineer | ≈24 % | Kriticky nízká | 🔴 NESLEDOVAT |
+| 017 | Bomma | Lighting R&D Engineer | ≈30 % | Kriticky nízká | 🔴 NESLEDOVAT |
+| 018 | TD SYNNEX | AI Integrator / AI Engineer | ≈37 % | Nízká | 🔴 NESLEDOVAT |
 
 ---
 
@@ -573,22 +770,24 @@ Junior SRE role v pojišťovnictví — autor je překvalifikován zkušenostmi,
 
 | Priorita | # | Firma | Role | Fit | Next step |
 |----------|---|-------|------|-----|-----------|
-| **1** 🥇 | 007 | Siemens | Test Engineer — Distributed IO Systems | 75 % | Aplikovat HNED |
-| **2** 🥈 | 003 | Desoutter Tools | Light Automation Specialist | 65 % | Aplikovat (po Siemens) |
-| **3** 🥉 | 010 | Google | Senior Manufacturing Engineer | 50 % | Aplikovat strategicky |
-| **4** | 014 | **Thermo Fisher Scientific** | **System Integration Engineer** | **62 %** | **Aplikovat (po Google)** |
+| **1** 🥇 | 007 | Siemens | Test Engineer — Distributed IO Systems | 78 % | Aplikovat HNED |
+| **2** 🥈 | 003 | Desoutter Tools | Light Automation Specialist | 72 % | Aplikovat (po Siemens) |
+| **3** 🥉 | 014 | Thermo Fisher Scientific | System Integration Engineer | 65 % | Aplikovat (po Desoutter) |
+| **4** | 010 | Google | Senior Manufacturing Engineer | 52 % | Aplikovat strategicky (asymetrický upside) |
+| **5** | 015 | **MSM GROUP** | **Logistics & System Architect / Integrator** | **58 %** | **Zvážit — positioning match, domain gap** |
 
-## Shrnutí patternů po 14 nabídkách
+## Shrnutí patternů po 18 nabídkách
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem analyzováno | 14 |
-| 🔴 NESLEDOVAT | 10 (71 %) |
-| 🟡 SLEDOVAT | 3 (21 %) — Desoutter, Google, Thermo Fisher |
-| 🟢 SLEDOVAT | 1 (7 %) — Siemens |
-| Ø fit score všech | ~31 % |
-| Ø fit score follow | ~63 % |
+| Celkem analyzováno | 18 |
+| 🔴 NESLEDOVAT | 13 (72 %) |
+| 🟡 SLEDOVAT | 3 (17 %) — Thermo Fisher, MSM GROUP, Google |
+| 🟢 SLEDOVAT | 2 (11 %) — Siemens, Desoutter (po GitHub auditu) |
+| Ø fit score všech | ~34 % |
+| Ø fit score follow | ~61 % |
 
-**Crossover domény:** industrial_automation, hardware_manufacturing (Google), scientific_instruments (Thermo Fisher)
-**Konzistentní mismatch:** enterprise IT (SaaS, consulting, insurance, e-commerce) = 8/14 = 57 % nabídek je mimo
-**Nejčastější tech požadavek mimo stack:** JavaScript (4×), specific enterprise platformy (7×)
+**Crossover domény:** industrial_automation, hardware_manufacturing (Google), scientific_instruments (Thermo Fisher), distribution_logistics (MSM GROUP — nový, první crossover mimo čistý manufacturing)
+**Konzistentní mismatch:** enterprise IT (SaaS, consulting, insurance, e-commerce, AI research) = 10/18 = 56 % nabídek je mimo
+**Nejčastější tech požadavek mimo stack:** C++/JavaScript/AUTOSAR (3×), specific enterprise platformy (8×)
+**New pattern — "positioning match zachraňuje domain gap":** MSM GROUP #015 má nejnižší doménový match z follow leadů (40 %), ale nejvyšší role/competence match (85 %). Text inzerátu je prakticky šitý na míru autorovu positioning. To zvyšuje fit přes doménový gap.
