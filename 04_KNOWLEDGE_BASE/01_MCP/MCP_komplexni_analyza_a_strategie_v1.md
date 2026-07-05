@@ -985,7 +985,7 @@ Dokument v1.2 deklaroval hotové P0/P1 vylepšení (security hardening, audit, c
 | Nález | Závažnost | Řešení |
 |-------|-----------|--------|
 | `.env` v `_github\` s GITHUB_TOKEN (54 B) | VYSOKÁ — token v plaintextu na disku | Token rotován, `.env` smazán (záloha `.env.BACKUP-DELETE-AFTER-ROTATION`) |
-| Token `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` exponován v LLM kontextu | VYSOKÁ — perzistentní riziko úniku | Nový token (fine-grained, Contents RW, PR RW, All repos) |
+| Token `[REVOKED — zneplatněn 2026-07-05]` exponován v LLM kontextu | VYSOKÁ — perzistentní riziko úniku | Nový token (fine-grained, Contents RW, PR RW, All repos) |
 | `.env` není v `.gitignore` (5 repozitářů) | STŘEDNÍ — riziko náhodného commitu | Přidáno do všech chybějících .gitignore |
 | `gh` CLI není nainstalováno | STŘEDNÍ — credential layering nefunkční | Nainstalováno v2.96.0 portable do `~/.local/bin/` |
 
