@@ -1062,7 +1062,8 @@
         "seniority": "medior",
         "employment_type": "HPP",
         "location": "Praha",
-        "remote_policy": "hybrid"
+        "remote_policy": "hybrid",
+        "applicants": 12
       },
       "tech_stack": {
         "programming": [
@@ -1071,7 +1072,9 @@
         "automotive_standards": [
           "AUTOSAR_Adaptive",
           "AUTOSAR_Classic",
-          "arxml"
+          "arxml",
+          "ASPICE",
+          "IEEE_12207"
         ],
         "ci_cd": [
           "Github_CI_CD",
@@ -1105,7 +1108,8 @@
             "Bazel",
             "Conan",
             "Github_Actions",
-            "arxml"
+            "arxml",
+            "ASPICE"
           ]
         }
       },
@@ -1115,6 +1119,7 @@
         "specific": "AUTOSAR_Adaptive_CI_CD"
       },
       "formal_requirements": {
+        "education": "degree_embedded_or_equivalent",
         "languages": [
           "English"
         ],
@@ -1123,21 +1128,32 @@
           "Github_CI_CD",
           "embedded_systems",
           "AUTOSAR",
+          "ASPICE",
           "software_integration",
           "Czech_based"
         ]
       },
+      "benefits": [
+        "Skoda_car_leasing",
+        "5_weeks_holiday",
+        "cafeteria",
+        "multisport_card",
+        "pension_insurance_900_CZK_month",
+        "sick_days",
+        "language_courses"
+      ],
       "eroi": {
         "fit_score_pct": 25,
-        "conversion_probability": "<0.10",
-        "estimated_value_monthly_czk": 95000,
-        "estimated_prep_cost_hours": 5,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 100000,
+        "estimated_prep_cost_hours": 8,
         "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech_stack",
           "C++_must_have",
-          "AUTOSAR"
+          "AUTOSAR",
+          "ASPICE"
         ]
       }
     },
@@ -1320,12 +1336,374 @@
         "mismatch_dimensions": [],
         "note": "Strong positioning match — 'System Integration Engineer' je přesně autorův job title. Nízká konkurence (11 applicants). 'Equivalent practical experience' clause je prostor."
       }
+    },
+    {
+      "id": "015",
+      "date": "2026-07-05",
+      "company": {
+        "type": "defense_sector_subsidiary",
+        "size_range": "medium_large",
+        "industry": "defense_logistics"
+      },
+      "title": "Logistics & System Architect / Integrator",
+      "role": {
+        "category": "logistics_system_architecture",
+        "subcategory": "logistics_system_architect_integrator",
+        "seniority": "senior",
+        "employment_type": "HPP_interim_flexible",
+        "location": "Praha",
+        "remote_policy": "hybrid",
+        "applicants": 7
+      },
+      "tech_stack": {
+        "integration": [
+          "API",
+          "middleware",
+          "microservices",
+          "event_driven_architecture"
+        ],
+        "logistics_specific": [
+          "traceability_systems",
+          "dashboard_design",
+          "planning_tools"
+        ],
+        "methodology": [
+          "system_architecture",
+          "technical_specification",
+          "vendor_selection"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "system_integration_methodology",
+            "API_integration",
+            "middleware_concept",
+            "pragmatic_engineering_approach"
+          ],
+          "partial_match": [
+            "manufacturing_supply_chain_knowledge",
+            "event_driven_architecture_concept"
+          ],
+          "no_match": [
+            "logistics_WMS_specific",
+            "distribution_6_years",
+            "e_commerce_logistics"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "distribution_logistics",
+        "secondary": "e_commerce_supply_chain",
+        "specific": "logistics_system_integration_across_companies"
+      },
+      "formal_requirements": {
+        "years_experience_min": 6,
+        "years_experience_domain": "distribution_logistics",
+        "education": "Master_Degree",
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "system_architecture_experience",
+          "integration_methodology"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 58,
+        "conversion_probability": "0.30_0.40",
+        "estimated_value_monthly_czk": 120000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": [],
+        "note": "Strongest new batch lead. Positioning match 85 % — text inzerátu je šitý na míru autorovi. Domain gap (logistics vs manufacturing) drží fit dole. Interim/part-time možnost + 7 applicants = nízké riziko."
+      }
+    },
+    {
+      "id": "016",
+      "date": "2026-07-05",
+      "company": {
+        "type": "startup",
+        "size_range": "small",
+        "industry": "AI_ML_research"
+      },
+      "title": "AI/ML/LLM Research Engineer",
+      "role": {
+        "category": "AI_ML_research",
+        "subcategory": "research_engineer_synthetic_data",
+        "seniority": "senior",
+        "employment_type": "HPP",
+        "location": "Praha_CZ_remote",
+        "remote_policy": "remote",
+        "applicants": 100
+      },
+      "tech_stack": {
+        "ml_frameworks": [
+          "classical_ML",
+          "statistical_modeling",
+          "LoRA",
+          "distillation"
+        ],
+        "llm": [
+          "LLM_fine_tuning",
+          "open_weights_models"
+        ],
+        "programming": [
+          "Python"
+        ],
+        "experiment_design": [
+          "experiment_design",
+          "evaluation_pipelines"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "LLM_orchestration_concept"
+          ],
+          "partial_match": [],
+          "no_match": [
+            "classical_ML",
+            "statistical_modeling",
+            "LoRA_fine_tuning",
+            "distillation",
+            "evaluation_pipelines",
+            "model_architecture"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "AI_ML_research",
+        "secondary": "synthetic_data_survey",
+        "specific": "survey_augmentation_audience_profiling"
+      },
+      "formal_requirements": {
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "classical_ML",
+          "statistical_foundations",
+          "LLM_fine_tuning",
+          "production_instincts",
+          "academic_or_research_background"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 24,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 130000,
+        "estimated_prep_cost_hours": 10,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "classical_ML_foundations",
+          "fine_tuning_skills"
+        ]
+      }
+    },
+    {
+      "id": "017",
+      "date": "2026-07-05",
+      "company": {
+        "type": "manufacturing_design",
+        "size_range": "medium",
+        "industry": "glass_manufacturing_lighting_design"
+      },
+      "title": "Lighting R&D Engineer",
+      "role": {
+        "category": "product_R&D_manufacturing",
+        "subcategory": "lighting_rd_engineer",
+        "seniority": "senior",
+        "employment_type": "HPP",
+        "location": "Svetla_nad_Sazavou",
+        "remote_policy": "office",
+        "applicants": 5
+      },
+      "tech_stack": {
+        "cad": [
+          "Fusion_360",
+          "parametric_3D_CAD"
+        ],
+        "materials": [
+          "glass",
+          "metal",
+          "plastic"
+        ],
+        "electrical": [
+          "LED_integration",
+          "electrical_components"
+        ],
+        "documentation": [
+          "technical_documentation",
+          "3D_models",
+          "assembly_drawings",
+          "production_drawings"
+        ],
+        "certification": [
+          "technical_norms",
+          "product_certification"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "manufacturing_process_knowledge",
+            "prototyping_mindset",
+            "technical_documentation"
+          ],
+          "partial_match": [
+            "materials_knowledge_CNC_adjacent",
+            "R&D_methodology"
+          ],
+          "no_match": [
+            "Fusion_360",
+            "parametric_3D_CAD",
+            "glass_processing",
+            "LED_integration",
+            "lighting_design"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "glass_manufacturing_lighting",
+        "secondary": "product_design_R&D",
+        "specific": "design_lighting_R&D_glass_metal"
+      },
+      "formal_requirements": {
+        "years_experience_min": 5,
+        "education": null,
+        "languages": [
+          "English_communicative"
+        ],
+        "other": [
+          "5_years_design",
+          "5_years_Fusion_360",
+          "4_years_3D_CAD",
+          "5_years_architectural_lighting"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 30,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 75000,
+        "estimated_prep_cost_hours": 8,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack_3D_CAD",
+          "location",
+          "specific_domain_experience"
+        ]
+      }
+    },
+    {
+      "id": "018",
+      "date": "2026-07-05",
+      "company": {
+        "type": "global_IT_distributor_Fortune_500",
+        "size_range": "22000_plus",
+        "industry": "IT_distribution"
+      },
+      "title": "AI Integrator / AI Engineer",
+      "role": {
+        "category": "enterprise_AI_engineering",
+        "subcategory": "AI_integrator_center_of_excellence",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid_3_2",
+        "applicants": 18
+      },
+      "tech_stack": {
+        "ml_frameworks": [
+          "TensorFlow",
+          "PyTorch",
+          "HuggingFace"
+        ],
+        "programming": [
+          "Python"
+        ],
+        "enterprise_integration": [
+          "ERP",
+          "CRM",
+          "e_commerce",
+          "API"
+        ],
+        "cloud": [
+          "Azure_preferred",
+          "AWS",
+          "GCP"
+        ],
+        "data_pipelines": [
+          "data_pipelines",
+          "orchestration"
+        ],
+        "mlops": [
+          "MLOps",
+          "AI_lifecycle_management",
+          "AI_governance"
+        ],
+        "low_code": [
+          "Power_Platform",
+          "RPA"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "API_integration",
+            "data_pipelines_concept",
+            "LLM_experience"
+          ],
+          "partial_match": [
+            "GCP_experience",
+            "CI_CD_concept"
+          ],
+          "no_match": [
+            "TensorFlow",
+            "PyTorch",
+            "Azure",
+            "MLOps",
+            "Power_Platform",
+            "RPA"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "enterprise_IT_distribution",
+        "secondary": "AI_center_of_excellence",
+        "specific": "enterprise_AI_integration_IT_distributor"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "education": null,
+        "education_flexible": true,
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "AI_ML_engineering",
+          "Python",
+          "enterprise_integration",
+          "cloud_platform"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 37,
+        "conversion_probability": "0.15_0.20",
+        "estimated_value_monthly_czk": 130000,
+        "estimated_prep_cost_hours": 5,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "ML_frameworks",
+          "Azure_preferred"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
-    "total_offers_analyzed": 14,
-    "total_critical_mismatch": 10,
-    "total_follow": 4,
+    "total_offers_analyzed": 18,
+    "total_critical_mismatch": 13,
+    "total_follow": 5,
     "common_mismatch_dimensions": [
       "tech_stack",
       "domain"
@@ -1336,16 +1714,38 @@
       "university_degree_IT_or_engineering"
     ],
     "tech_stack_frequency": {
-      "Python": 4,
+      "Python": 5,
       "PLC": 3,
-      "JavaScript": 2,
+      "C++": 2,
+      "AUTOSAR": 2,
+      "API": 2,
       "CI_CD": 2,
       "REST_API": 2,
       "SQL": 2,
+      "JavaScript": 2,
+      "TensorFlow_PyTorch": 1,
+      "HuggingFace": 1,
+      "Azure": 1,
+      "Kubernetes": 1,
+      "TIA_Portal": 1,
+      "Github_Actions": 1,
+      "Bazel": 1,
+      "Conan": 1,
+      "CMake": 1,
+      "ASPICE": 1,
+      "Fusion_360": 1,
+      "3D_CAD": 1,
+      "middleware": 1,
+      "microservices": 1,
+      "event_driven_architecture": 1,
+      "LLM_fine_tuning": 1,
+      "classical_ML": 1,
+      "statistical_modeling": 1,
+      "MLOps": 1,
+      "Power_Platform_RPA": 1,
       "Snowflake": 1,
       "Segment": 1,
       "SAP_CPI": 1,
-      "TIA_Portal": 1,
       "Azure_Service_Bus": 1,
       "Kafka": 1,
       "Databricks": 1,
@@ -1357,11 +1757,7 @@
       "STEP_PIM": 1,
       "AI_engineering_workflows": 1,
       "SMT_SPC_CPK": 1,
-      "C++": 1,
-      "AUTOSAR": 1,
-      "Kubernetes": 1,
-      "Grafana_Prometheus": 1,
-      "Github_Actions": 1
+      "Grafana_Prometheus": 1
     },
     "domain_frequency": {
       "industrial_automation_manufacturing": 2,
@@ -1376,24 +1772,31 @@
       "IT_consulting_testing": 1,
       "automotive_embedded": 1,
       "insurance_financial_services": 1,
-      "scientific_instruments": 1
+      "scientific_instruments": 1,
+      "distribution_logistics": 1,
+      "AI_ML_research": 1,
+      "glass_manufacturing_lighting": 1,
+      "enterprise_IT_distribution": 1
     },
-    "author_stack_crossover_rate": 0.29,
+    "author_stack_crossover_rate": 0.28,
     "matched_technologies": [
       "Python",
       "CI_CD",
-      "test_automation",
-      "AI_LLM_workflows",
+      "API_integration",
+      "system_integration_methodology",
+      "LLM_orchestration",
       "manufacturing_process_knowledge"
     ],
     "crossover_domains": [
       "industrial_automation_manufacturing",
       "hardware_manufacturing_cloud_partial",
-      "scientific_instruments"
+      "scientific_instruments",
+      "distribution_logistics_partial"
     ],
     "calibration_signals": {
-      "linkedin_algorithm_bias": "LinkedIn posílá ~71 % nabídek mimo autorovu doménu. Z 14 nabídek pouze 4 mají přímý nebo adjacent crossover.",
-      "false_negative_skill_match": "LinkedIn skill match skóre je nespolehlivé. 0/7 u #003 (Desoutter) = false negative; 0/10 u #009 (Digi) = realistic.",
+      "linkedin_algorithm_bias": "LinkedIn posílá ~72 % nabídek mimo autorovu doménu. Z 18 nabídek pouze 5 mají přímý nebo adjacent crossover.",
+      "false_negative_skill_match": "LinkedIn skill match skóre je nespolehlivé. 0/10 u #015 (MSM GROUP) = false negative (positioning match 85 %). 0/7 u #003 (Desoutter) = false negative. 0/10 u #009 (Digi) = realistic.",
+      "new_pattern_positioning_match": "MSM GROUP #015 — nejnižší doménový match z follow leadů (40 %) ale nejvyšší role/competence match (85 %). Text inzerátu je prakticky šitý na míru autorovu positioning (pragmatik, system integrator, ne programmer). To zvyšuje fit přes doménový gap.",
       "recommended_keywords_for_profile": [
         "industrial_automation",
         "PLC_testing",
@@ -1413,9 +1816,11 @@
         "PCBA_testing",
         "system_integration_engineer",
         "scientific_instrumentation",
-        "Kubernetes_integration"
+        "Kubernetes_integration",
+        "logistics_system_integration",
+        "supply_chain_integration"
       ],
-      "note": "Po 14 nabídkách: LinkedIn posílá 71 % irelevantních matchů. 4 follow z 14 = 29 %. Pattern: jediné domény s crossoverem jsou industrial_automation, hardware_manufacturing a scientific_instruments. Enterprise IT (SaaS, consulting, insurance, e-commerce) tvoří 57 % všech nabídek a je konzistentní mismatch."
+      "note": "Po 18 nabídkách: LinkedIn posílá ~72 % irelevantních matchů. 5 follow z 18 = 28 %. Nový pattern: 'positioning match zachraňuje domain gap' — #015 MSM GROUP. Nové domény: distribution_logistics (první crossover mimo čistý manufacturing), AI_ML_research (potvrzený noise), glass_manufacturing (adjacent but skill gap). Enterprise IT + AI research tvoří 56 % všech nabídek a je konzistentní mismatch."
     }
   }
 }
