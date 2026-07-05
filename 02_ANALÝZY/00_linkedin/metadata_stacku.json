@@ -1698,6 +1698,971 @@
           "Azure_preferred"
         ]
       }
+    },
+    {
+      "id": "19",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git",
+            "middleware"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "20",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI / ML / LLM Research Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 53.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "21",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automotive CI/CD Engineer (DevOps)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "22",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Lighting R&D Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "23",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Integrator / AI Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 67.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "24",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 53.5,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "25",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "PLC Software Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 56.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "26",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automation Systems Engineer IoT",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CAM",
+            "IoT",
+            "ESP32"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "AWS",
+            "C#"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "27",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Prototypový technik",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC",
+            "CAM"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "28",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "System Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "IoT",
+            "deployment automation",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI",
+            "virtualization"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "KVM"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 81.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "29",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "CEE Pricing Data Domain Lead",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 54.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "30",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Procurement Expert for Digitalization and Process Automation (m/f)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 48.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "31",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "Docker",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 58.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "32",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Artificial Intelligence Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Docker",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "Azure",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "33",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Senior Quant Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 57.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "34",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Senior Data Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "ETL",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 65.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "35",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Integrations Engineer (Open Source ·  Web Search)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "TypeScript"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.2,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
