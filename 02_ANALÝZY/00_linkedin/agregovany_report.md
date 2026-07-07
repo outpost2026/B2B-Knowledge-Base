@@ -374,6 +374,38 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #025 — Senior Quant Developer @ Radley James
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (51.4% fit)
+
+### Analýza pozice
+- **Role:** Senior Quant Developer
+- **Firma:** Radley James
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 25.4% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **51.4%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **C++**: no_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -431,3 +463,4 @@
 | 022 | Yunex Traffic | Procurement Expert for Digitalization and Process Automation (m/f) | 46.5% | Nízká | 🟡 HRANICNI |
 | 023 | Trask | AI Developer | 59.1% | Střední | 🟡 MEDIUM |
 | 024 | Carpiness s.r.o. | Artificial Intelligence Engineer | 63.0% | Střední | 🟡 MEDIUM |
+| 025 | Radley James | Senior Quant Developer | 51.4% | Střední | 🟡 MEDIUM |
