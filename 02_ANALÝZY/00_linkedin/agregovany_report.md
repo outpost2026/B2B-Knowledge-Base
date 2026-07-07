@@ -1826,6 +1826,41 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #51 — VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE @ ČEZ
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (57.0% fit)
+
+### Analýza pozice
+- **Role:** VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE
+- **Firma:** ČEZ
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (1 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 57.9% | 0.1% | 2 direct, 2 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **57.0%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1909,3 +1944,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 48 | Digiteq Automotive | Automotive CI/CD Engineer (DevOps) | 60.0% | Střední | 🟡 MEDIUM |
 | 49 | Bomma | Lighting R&D Engineer | 45.6% | Nízká | 🟡 HRANICNI |
 | 50 | TD SYNNEX Czech Republic | AI Integrator / AI Engineer | 69.2% | Vysoká | 🟢 SLEDOVAT |
+| 51 | ČEZ | VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE | 57.0% | Střední | 🟡 MEDIUM |
