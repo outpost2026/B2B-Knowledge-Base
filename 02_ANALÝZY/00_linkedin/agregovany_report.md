@@ -794,6 +794,36 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #037 — Lean Manufacturing Engineer @ ManpowerGroup Czech Republic
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (51.6% fit)
+
+### Analýza pozice
+- **Role:** Lean Manufacturing Engineer
+- **Firma:** ManpowerGroup Czech Republic
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **51.6%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 1 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -863,3 +893,4 @@
 | 034 | RETIA, a.s. | SW Architect | 43.9% | Nízká | 🟡 HRANICNI |
 | 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |
 | 036 | KBC Global Services | System Architect | 40.2% | Nízká | 🟡 HRANICNI |
+| 037 | ManpowerGroup Czech Republic | Lean Manufacturing Engineer | 51.6% | Střední | 🟡 MEDIUM |
