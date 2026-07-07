@@ -478,6 +478,40 @@
 
 ---
 
+
+## 🔴 ZÁZNAM #028 — SW Development Team Lead @ Balikobot.cz
+**Datum:** 2026-07-07
+**EROI verdict:** NESLEDOVAT (39.8% fit)
+
+### Analýza pozice
+- **Role:** SW Development Team Lead
+- **Firma:** Balikobot.cz
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
+| tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **39.8%** | **NESLEDOVAT** |
+
+### Skill match
+- **REST API**: direct_match
+- **AI**: partial_match
+- **TypeScript**: no_match
+- **C++**: no_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** domain, tech, growth, formal
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 5 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -538,3 +572,4 @@
 | 025 | Radley James | Senior Quant Developer | 51.4% | Střední | 🟡 MEDIUM |
 | 026 | EPAM Systems | Senior Data Integration Engineer | 62.9% | Střední | 🟡 MEDIUM |
 | 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
+| 028 | Balikobot.cz | SW Development Team Lead | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |

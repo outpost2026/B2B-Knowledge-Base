@@ -1572,6 +1572,66 @@
           "formal"
         ]
       }
+    },
+    {
+      "id": "028",
+      "date": "2026-07-07",
+      "linkedin_job_id": "4434489340",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Balikobot.cz"
+      },
+      "title": "SW Development Team Lead",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "REST API",
+            "agentic"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "TypeScript",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 39.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
