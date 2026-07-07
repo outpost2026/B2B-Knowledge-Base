@@ -1927,6 +1927,37 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #54 — Prototypový technik @ Valeo
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (59.0% fit)
+
+### Analýza pozice
+- **Role:** Prototypový technik
+- **Firma:** Valeo
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 30.1% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **59.0%** | **MEDIUM** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -2013,3 +2044,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 51 | ČEZ | VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE | 57.0% | Střední | 🟡 MEDIUM |
 | 52 | Sécheron SA | PLC Software Engineer | 56.4% | Střední | 🟡 MEDIUM |
 | 53 | Resideo | Automation Systems Engineer IoT | 51.8% | Střední | 🟡 MEDIUM |
+| 54 | Valeo | Prototypový technik | 59.0% | Střední | 🟡 MEDIUM |
