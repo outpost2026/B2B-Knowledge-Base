@@ -861,6 +861,43 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #039 — Senior Automation Engineer @ TechNET IT Recruitment Ltd
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (55.3% fit)
+
+### Analýza pozice
+- **Role:** Senior Automation Engineer
+- **Firma:** TechNET IT Recruitment Ltd
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 49.2% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (8 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **55.3%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **test automation**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **TypeScript**: no_match
+- **JavaScript**: no_match
+- **Playwright**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -932,3 +969,4 @@
 | 036 | KBC Global Services | System Architect | 40.2% | Nízká | 🟡 HRANICNI |
 | 037 | ManpowerGroup Czech Republic | Lean Manufacturing Engineer | 51.6% | Střední | 🟡 MEDIUM |
 | 038 | Colours of Data | Data Science & AI Architect Lead | 53.7% | Střední | 🟡 MEDIUM |
+| 039 | TechNET IT Recruitment Ltd | Senior Automation Engineer | 55.3% | Střední | 🟡 MEDIUM |
