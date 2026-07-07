@@ -1064,6 +1064,36 @@
 
 ---
 
+
+## 🔴 ZÁZNAM #045 — Senior vývojový konstruktér @ Ultra Marine Europe
+**Datum:** 2026-07-07
+**EROI verdict:** NESLEDOVAT (36.4% fit)
+
+### Analýza pozice
+- **Role:** Senior vývojový konstruktér
+- **Firma:** Ultra Marine Europe
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **36.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1141,3 +1171,4 @@
 | 042 | Quest Global | Enterprise Software Integration role in Czechia (mid & senior level) | 52.5% | Střední | 🟡 MEDIUM |
 | 043 | Adamantem HR, s.r.o. | Embedded SW Engineer | 56.2% | Střední | 🟡 MEDIUM |
 | 044 | La Fosse | Robotics Engineer | 57.4% | Střední | 🟡 MEDIUM |
+| 045 | Ultra Marine Europe | Senior vývojový konstruktér | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
