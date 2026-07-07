@@ -898,6 +898,36 @@
 
 ---
 
+
+## 🔴 ZÁZNAM #040 — Sap Solutions Architect @ HR:DONE.
+**Datum:** 2026-07-07
+**EROI verdict:** NESLEDOVAT (35.6% fit)
+
+### Analýza pozice
+- **Role:** Sap Solutions Architect
+- **Firma:** HR:DONE.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (2 noise keywords) (pure noise) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **35.6%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -970,3 +1000,4 @@
 | 037 | ManpowerGroup Czech Republic | Lean Manufacturing Engineer | 51.6% | Střední | 🟡 MEDIUM |
 | 038 | Colours of Data | Data Science & AI Architect Lead | 53.7% | Střední | 🟡 MEDIUM |
 | 039 | TechNET IT Recruitment Ltd | Senior Automation Engineer | 55.3% | Střední | 🟡 MEDIUM |
+| 040 | HR:DONE. | Sap Solutions Architect | 35.6% | Kriticky nízká | 🔴 NESLEDOVAT |
