@@ -1391,6 +1391,37 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #38 — Operátor/ka CNC soustruhů @ Katring, spol. s r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (41.8% fit)
+
+### Analýza pozice
+- **Role:** Operátor/ka CNC soustruhů
+- **Firma:** Katring, spol. s r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 30.1% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **41.8%** | **HRANICNI** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 2 skill mismatches
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1461,3 +1492,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 35 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 63.2% | Střední | 🟡 MEDIUM |
 | 36 | Zakládání staveb, a. s. | TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY | 56.5% | Střední | 🟡 MEDIUM |
 | 37 | Siemens | Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) | 60.1% | Střední | 🟡 MEDIUM |
+| 38 | Katring, spol. s r.o. | Operátor/ka CNC soustruhů | 41.8% | Nízká | 🟡 HRANICNI |
