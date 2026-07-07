@@ -1490,6 +1490,38 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #41 — Trainee/Project Support @ ABB
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (57.3% fit)
+
+### Analýza pozice
+- **Role:** Trainee/Project Support
+- **Firma:** ABB
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 23.1% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (2) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **57.3%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1563,3 +1595,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 38 | Katring, spol. s r.o. | Operátor/ka CNC soustruhů | 41.8% | Nízká | 🟡 HRANICNI |
 | 39 | Siemens | Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) | 63.7% | Střední | 🟡 MEDIUM |
 | 40 | Desoutter Tools | Light Automation Specialist | 67.3% | Vysoká | 🟢 SLEDOVAT |
+| 41 | ABB | Trainee/Project Support | 57.3% | Střední | 🟡 MEDIUM |
