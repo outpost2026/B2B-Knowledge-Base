@@ -959,6 +959,41 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #042 — Enterprise Software Integration role in Czechia (mid & senior level) @ Quest Global
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (52.5% fit)
+
+### Analýza pozice
+- **Role:** Enterprise Software Integration role in Czechia (mid & senior level)
+- **Firma:** Quest Global
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (8 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 49.2% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (7 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 35.0% | 0.0% | Degree required (3x) but flexibility found (1x) |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **52.5%** | **MEDIUM** |
+
+### Skill match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** growth, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1033,3 +1068,4 @@
 | 039 | TechNET IT Recruitment Ltd | Senior Automation Engineer | 55.3% | Střední | 🟡 MEDIUM |
 | 040 | HR:DONE. | Sap Solutions Architect | 35.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 041 | KOSTAL Engineering CR | Zkušební technik - automotive | 47.7% | Nízká | 🟡 HRANICNI |
+| 042 | Quest Global | Enterprise Software Integration role in Czechia (mid & senior level) | 52.5% | Střední | 🟡 MEDIUM |
