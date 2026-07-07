@@ -547,6 +547,43 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #030 — Automation Engineer @ ConSol Partners
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (55.5% fit)
+
+### Analýza pozice
+- **Role:** Automation Engineer
+- **Firma:** ConSol Partners
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 54.2% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **55.5%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **IoT**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Terraform**: no_match
+- **PLC**: no_match
+- **C++**: no_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -609,3 +646,4 @@
 | 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
 | 028 | Balikobot.cz | SW Development Team Lead | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 029 | OAKS Consulting s.r.o. | Data Engineer | 49.3% | Nízká | 🟡 HRANICNI |
+| 030 | ConSol Partners | Automation Engineer | 55.5% | Střední | 🟡 MEDIUM |
