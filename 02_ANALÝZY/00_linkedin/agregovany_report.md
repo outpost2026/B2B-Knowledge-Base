@@ -824,6 +824,43 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #038 — Data Science & AI Architect Lead @ Colours of Data
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (53.7% fit)
+
+### Analýza pozice
+- **Role:** Data Science & AI Architect Lead
+- **Firma:** Colours of Data
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 62.7% | 0.2% | 3 direct, 3 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **53.7%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **AWS**: no_match
+
+**Kritické mismatch:** domain, growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Domain mismatch kritický
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -894,3 +931,4 @@
 | 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |
 | 036 | KBC Global Services | System Architect | 40.2% | Nízká | 🟡 HRANICNI |
 | 037 | ManpowerGroup Czech Republic | Lean Manufacturing Engineer | 51.6% | Střední | 🟡 MEDIUM |
+| 038 | Colours of Data | Data Science & AI Architect Lead | 53.7% | Střední | 🟡 MEDIUM |
