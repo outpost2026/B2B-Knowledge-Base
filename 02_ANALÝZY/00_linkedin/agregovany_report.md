@@ -1422,6 +1422,42 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #39 — Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) @ Siemens
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (63.7% fit)
+
+### Analýza pozice
+- **Role:** Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)
+- **Firma:** Siemens
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (9 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 80.8% | 0.2% | 5 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (7) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **63.7%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1493,3 +1529,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 36 | Zakládání staveb, a. s. | TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY | 56.5% | Střední | 🟡 MEDIUM |
 | 37 | Siemens | Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) | 60.1% | Střední | 🟡 MEDIUM |
 | 38 | Katring, spol. s r.o. | Operátor/ka CNC soustruhů | 41.8% | Nízká | 🟡 HRANICNI |
+| 39 | Siemens | Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) | 63.7% | Střední | 🟡 MEDIUM |
