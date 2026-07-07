@@ -994,6 +994,41 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #043 — Embedded SW Engineer @ Adamantem HR, s.r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (56.2% fit)
+
+### Analýza pozice
+- **Role:** Embedded SW Engineer
+- **Firma:** Adamantem HR, s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Core industrial domain (4 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 50.8% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **56.2%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **C++**: no_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1069,3 +1104,4 @@
 | 040 | HR:DONE. | Sap Solutions Architect | 35.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 041 | KOSTAL Engineering CR | Zkušební technik - automotive | 47.7% | Nízká | 🟡 HRANICNI |
 | 042 | Quest Global | Enterprise Software Integration role in Czechia (mid & senior level) | 52.5% | Střední | 🟡 MEDIUM |
+| 043 | Adamantem HR, s.r.o. | Embedded SW Engineer | 56.2% | Střední | 🟡 MEDIUM |
