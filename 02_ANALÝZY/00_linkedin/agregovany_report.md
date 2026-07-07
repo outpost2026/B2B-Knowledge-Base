@@ -623,6 +623,39 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #032 — Lead Software Engineer (Semiconductor Verification & Tooling) @ Tropic Square
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (54.1% fit)
+
+### Analýza pozice
+- **Role:** Lead Software Engineer (Semiconductor Verification & Tooling)
+- **Firma:** Tropic Square
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (2 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 42.4% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **54.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -687,3 +720,4 @@
 | 029 | OAKS Consulting s.r.o. | Data Engineer | 49.3% | Nízká | 🟡 HRANICNI |
 | 030 | ConSol Partners | Automation Engineer | 55.5% | Střední | 🟡 MEDIUM |
 | 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
+| 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 54.1% | Střední | 🟡 MEDIUM |
