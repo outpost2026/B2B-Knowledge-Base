@@ -2743,6 +2743,64 @@
           "growth"
         ]
       }
+    },
+    {
+      "id": "048",
+      "date": "2026-07-07",
+      "linkedin_job_id": "4434501730",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "JABLOTRON"
+      },
+      "title": "Vývojář/ka FW",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 44.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth"
+        ]
+      }
     }
   ],
   "aggregate_insights": {

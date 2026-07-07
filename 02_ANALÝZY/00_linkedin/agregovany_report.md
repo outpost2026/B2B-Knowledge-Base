@@ -1164,6 +1164,39 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #048 — Vývojář/ka FW @ JABLOTRON
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (44.7% fit)
+
+### Analýza pozice
+- **Role:** Vývojář/ka FW
+- **Firma:** JABLOTRON
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal (electronics manufacturing, not core industrial) |
+| tech | 25% | 33.9% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **44.7%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **C++**: no_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 4 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1244,3 +1277,4 @@
 | 045 | Ultra Marine Europe | Senior vývojový konstruktér | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 046 | Adamantem HR, s.r.o. | DevOps Engineer for Embedded Systems | 59.7% | Střední | 🟡 MEDIUM |
 | 047 | CDC Data s.r.o. | AI Ambasador & Specialista inovací | 50.8% | Střední | 🟡 MEDIUM |
+| 048 | JABLOTRON | Vývojář/ka FW | 44.7% | Nízká | 🟡 HRANICNI |
