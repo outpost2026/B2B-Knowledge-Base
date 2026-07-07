@@ -1593,6 +1593,39 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟢 ZÁZNAM #44 — Systémový inženýr RAM/LCC - lokomotivy (m/ž/n) @ Siemens
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (72.5% fit)
+
+### Analýza pozice
+- **Role:** Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)
+- **Firma:** Siemens
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 60.2% | 0.2% | 3 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **72.5%** | **SLEDOVAT** |
+
+### Skill match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** formal
+
+**Doporučení:** Aplikovat — silný lead
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1669,3 +1702,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 41 | ABB | Trainee/Project Support | 57.3% | Střední | 🟡 MEDIUM |
 | 42 | Aon | Machine Learning & AI Developer | 66.4% | Vysoká | 🟢 SLEDOVAT |
 | 43 | N-iX | IAM Integration Engineer | 62.1% | Střední | 🟡 MEDIUM |
+| 44 | Siemens | Systémový inženýr RAM/LCC - lokomotivy (m/ž/n) | 72.5% | Vysoká | 🟢 SLEDOVAT |
