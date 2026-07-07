@@ -656,6 +656,46 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #033 — Solution Architect (43156) @ CoolPeople
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (44.1% fit)
+
+### Analýza pozice
+- **Role:** Solution Architect (43156)
+- **Firma:** CoolPeople
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
+| tech | 25% | 79.4% | 0.2% | 7 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **44.1%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **Docker**: direct_match
+- **REST API**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **Kubernetes**: no_match
+- **Azure**: no_match
+- **AWS**: no_match
+
+**Kritické mismatch:** domain, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -721,3 +761,4 @@
 | 030 | ConSol Partners | Automation Engineer | 55.5% | Střední | 🟡 MEDIUM |
 | 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
 | 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 54.1% | Střední | 🟡 MEDIUM |
+| 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
