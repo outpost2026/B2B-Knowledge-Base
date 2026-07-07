@@ -584,6 +584,45 @@
 
 ---
 
+
+## 🟢 ZÁZNAM #031 — Senior Staff Digital Design Engineer @ Renesas Electronics
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (65.5% fit)
+
+### Analýza pozice
+- **Role:** Senior Staff Digital Design Engineer
+- **Firma:** Renesas Electronics
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (5 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 88.1% | 0.2% | 8 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **65.5%** | **SLEDOVAT** |
+
+### Skill match
+- **Python**: direct_match
+- **IoT**: direct_match
+- **ETL**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **C++**: no_match
+- **middleware**: direct_match
+- **scripting**: direct_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -647,3 +686,4 @@
 | 028 | Balikobot.cz | SW Development Team Lead | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 029 | OAKS Consulting s.r.o. | Data Engineer | 49.3% | Nízká | 🟡 HRANICNI |
 | 030 | ConSol Partners | Automation Engineer | 55.5% | Střední | 🟡 MEDIUM |
+| 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
