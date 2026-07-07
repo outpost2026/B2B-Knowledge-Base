@@ -1724,6 +1724,41 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #48 — Automotive CI/CD Engineer (DevOps) @ Digiteq Automotive
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (60.0% fit)
+
+### Analýza pozice
+- **Role:** Automotive CI/CD Engineer (DevOps)
+- **Firma:** Digiteq Automotive
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Adjacent industrial domain (3 keywords) |
+| tech | 25% | 60.2% | 0.2% | 3 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **60.0%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1804,3 +1839,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 45 | Deutsche Börse Group | Solutions Architect - AI & Data Integration (f/m/d) | 60.0% | Střední | 🟡 MEDIUM |
 | 46 | MSM GROUP | LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR | 49.9% | Nízká | 🟡 HRANICNI |
 | 47 | Sourcein | AI / ML / LLM Research Engineer | 53.9% | Střední | 🟡 MEDIUM |
+| 48 | Digiteq Automotive | Automotive CI/CD Engineer (DevOps) | 60.0% | Střední | 🟡 MEDIUM |
