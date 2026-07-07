@@ -2,6 +2,8 @@
 
 Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a linkedin-mcp-custom.
 
+**Datum:** 2026-07-07 | **Verze:** 2
+
 ## Přehled záznamů
 
 | # | Název | Server | Status |
@@ -18,13 +20,112 @@ Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a
 | 010 | Fragilita CSS selektorů (DOM mutace) | linkedin-mcp | ✅ Fixed |
 | 011 | Paginační slepota (Missing second page) | linkedin-mcp | ✅ Fixed |
 | 012 | Špatný git repo root v parents indexu | linkedin-mcp | ✅ Fixed |
+| 013 | Fragilní extrakce job ID (jen `<a href>`) | linkedin-mcp | ✅ Fixed |
+| 014 | KBWriter dedup fallback: `industry` = vždy None | linkedin-mcp | ✅ Fixed |
+| 015 | Summary table non-idempotent (duplicity při update) | linkedin-mcp | ✅ Fixed |
+| 016 | MCP transport timeout pro batch operace | linkedin-mcp | ⚠️ Workaround |
+| 017 | Python version mismatch (.venv vs system) | linkedin-mcp | ✅ Fixed |
+| 018 | Console script not in PATH | linkedin-mcp | ✅ Fixed |
+| 019 | Shell escaping fragility (Win/Bash/PS) | cross-repo | ⚠️ Mitigováno |
+| 020 | Cookie lifecycle — silent expiry | linkedin-mcp | ⚠️ Otevřeno |
 
 ---
 
 ### Detailní záznamy
 
 **cnc-tools (001–006):** → `mcp-local-server/pitevni_kniha_mcp_v1.md`
-**linkedin-mcp (007–012):** → `linkedin-mcp-custom/pitevni_kniha_v1.md`
+**linkedin-mcp (007–020):** → `linkedin-mcp-custom/pitevni_kniha_v1.md`
+
+---
+
+## Detail linkedin-mcp (013–020)
+
+### 013 — Fragilní extrakce job ID
+**Root cause:** `_extract_job_ids()` hledal pouze v `<a href="/jobs/view/ID">` atributech. Job ID uložená v data atributech, `<script>` JSON blobech nebo mimo `<a>` elementy byla ignorována → ztráta ~37 % job ID (17/27 v Session 3).
+
+**Fix:** 4-vrstvá extrakce — (1) `<a href>`, (2) všechny element attributes (data-*, aria-*, urn:li), (3) script JSON bloby s context filtering, (4) full outerHTML regex scan.
+
+**Verifikace:** Session 4 test — 49/49 ID nalezeno, 0 duplicit, 0 missed.
+
+---
+
+### 014 — KBWriter dedup fallback broken
+**Root cause:** `_find_entry_index()` porovnával `entry.title|eroi.company` (správně) proti `entry.title|company.industry` (vždy None → neshoda). Funkce `_format_entry_json()` nastavovala `industry: None` — company name se nikam neukládala.
+
+**Fix:** Ukládat `eroi.company` do `company.industry`. Fallback dedup nyní korektně porovnává `title|company_name` proti `stored_title|stored_company`.
+
+**Lesson:** Nikdy nenechávat pole JSON schématu na `None`, pokud existuje hodnota k uložení. Schema drift se detekuje až za běhu.
+
+---
+
+### 015 — Summary table non-idempotent
+**Root cause:** `_update_summary_table()` vždy *appendoval* nový řádek tabulky, nikdy nekontroloval existenci řádku se stejným ID. Re-analýza (update) vytvořila duplicitní řádky v `## Souhrnná statistika`.
+
+**Fix:** Před appendem zkontrolovat, zda řádek s `fid` již existuje. Pokud ano → nahradit (in-place update). Pokud ne → append.
+
+**Lesson:** Každá write operace, která může běžet vícekrát na stejných datech, musí být idempotentní. "Golden rule of DevOps."
+
+---
+
+### 016 — MCP transport timeout pro batch operace
+**Root cause:** `analyze_saved_jobs` volá `scrape_saved_jobs()` + N× `scrape_job()` + EROI scoring + KB write sequenciálně. Při N=27 a ~3s/job je celkový čas ~85s. MCP hostitel timeoutuje na 60–120s (závisí na klientovi).
+
+**Workaround:** CLI test script `scripts/test_scrape.py` obchází MCP transport a volá scraper přímo. Umožňuje debugging bez timeout interference.
+
+**Limitation:** MCP protokol není navržen pro long-running batch operace (minuty). Každý MCP tool by měl buď (a) streamovat progress, nebo (b) být nahrazen CLI entry pointem.
+
+---
+
+### 017 — Python version mismatch (.venv vs system)
+**Root cause:** `.python-version` = 3.12, `pyproject.toml` requires >=3.12, ale `.venv` vytvořen s Python 3.11 (system Python). Console script `linkedin-mcp` se nainstaloval do system Python 3.11 Scripts adresáře → package neimportovatelný.
+
+**Fix:** Recreate `.venv` with Python 3.12: `uv venv --python 3.12`. Verifikace: `.venv/Scripts/python --version` musí vrátit 3.12.x.
+
+**Detection:** `ruff check` hlásí `F821 undefined name` nebo cryptic import errors. System Python `python --version` ≠ `.python-version`.
+
+---
+
+### 018 — Console script not in PATH
+**Root cause:** `uv sync` nainstaluje package do `.venv/` a vytvoří `linkedin-mcp.exe` v `.venv/Scripts/`. Tento adresář ale není v system PATH → `linkedin-mcp` command not found.
+
+**Fix (dvojitý):**
+1. `.bat` wrapper v repo root: `linkedin-mcp.bat → .venv/Scripts/linkedin-mcp.exe %*`
+2. `.venv/Scripts/` trvale přidán do User PATH (via `setx`)
+
+**Lesson:** `uv sync` ≠ `pip install`. Console script je v .venv, ne v globální PATH. Autodidakt očekává `linkedin-mcp` jako globální command. Vždy po `uv sync` ověř: `where linkedin-mcp`.
+
+---
+
+### 019 — Shell escaping fragility (Windows/Bash/PowerShell)
+**Root cause:** Vývoj probíhá v Git Bash (bash on Windows), ale deployment a testování na cmd.exe a PowerShell. Každý shell má jiná escaping pravidla:
+- **Git Bash:** backtick `` ` `` pro command substitution, `$var`, `\n` pro newline
+- **PowerShell:** `$env:VAR`, `...` subexpression, backtick jako escape char
+- **cmd.exe:** `%VAR%`, `^` jako escape, `&&` chain
+
+Každý pokus o vnoření PowerShell do bash stringu selhal (3/3 v Session 4).
+
+**Příklady selhání:**
+```bash
+# Bash → PowerShell (FAIL: $env:PATH expandne bashovsky)
+powershell -Command "[Environment]::SetEnvironmentVariable('Path', \"$env:PATH;...\", 'User')"
+
+# Bash → cmd (FAIL: && ampersand expandne bashovsky)
+cmd.exe //c "where linkedin-mcp.exe 2>&1"
+```
+
+**Mitigace:**
+1. Každou PowerShell operaci psát jako `.ps1` script a spouštět ho
+2. Pro jednoduché Windows operace použít `cmd.exe //c` (escaping je konzistentnější)
+3. `.bat` wrapper místo přímého volání `.exe`
+
+---
+
+### 020 — Cookie lifecycle — silent expiry
+**Root cause:** LinkedIn session cookies mají neurčitou dobu expirace (dny až týdny). `is_logged_in()` navštíví `/feed/` a zkontroluje URL na `/feed/` vs `/login`. Pokud LinkedIn redirectne na checkpoint/challenge stránku, nebo pokud se změní URL pattern, vrací `False`.
+
+**Dopad:** MCP server vracející `auth_required` error uprostřed pipeline. Uživatel musí ručně zavolat `--login`.
+
+**Otevřeno:** Chybí (a) automatická detekce expirace před scrapingem, (b) obnovení session bez zásahu uživatele, (c) notifikace o expiraci v logu s časovým razítkem.
 
 ---
 
@@ -60,6 +161,58 @@ Používej sémantické HTML atributy (`href`, `aria-label`, `role`). CSS tříd
 ### P10 — Verifikace cest
 `Path.parents` je 0-indexovaný od nejbližšího rodiče. Ověř `relative_to()` před prvním produkčním použitím.
 
+### P11 — Console script distribution
+Po `uv sync` vždy explicitně ověř, že konzolový script je dostupný:
+```bash
+.venv/Scripts/linkedin-mcp.exe --help   # musí fungovat
+where linkedin-mcp                       # musí najít exe v .venv/Scripts
+```
+Pokud `where` selže → přidej `.venv/Scripts` do PATH nebo vytvoř `.bat` wrapper. `uv sync` sám o sobě negarantuje globální dostupnost scriptu.
+
+### P12 — Cross-shell launcher
+Každý CLI nástroj na Windows musí mít `.bat` wrapper v repo root:
+```batch
+@echo off
+"%~dp0.venv\Scripts\linkedin-mcp.exe" %*
+```
+Toto funguje identicky z cmd, PowerShell i přes explicitní path z Git Bash. `.bat` je jediný formát, který Windows spustí ze všech shellů bez modifikace.
+
+### P13 — Long-running batch operations
+MCP tool, který iteruje N>10 I/O operací, musí být buď:
+1. Asynchronní s progress streamingem (MCP `ctx.info()`), nebo
+2. Nahrazen CLI entry pointem, který obchází MCP transport timeout
+
+Timeout = sekvenční_doba × N. Při N=50 a 3s/job je 150s → každý MCP host timeoutuje.
+
+### P14 — Windows path quoting
+- Vždy používej `pathlib.Path` pro konstrukci cest (nikdy string concatenation)
+- Při předání cesty subprocessu: `str(resolved_path)` + explicitní quoting v shell příkazu
+- Testuj cesty v cmd.exe, PowerShell i Git Bash — každý zpracovává spaces/backslashes jinak
+- `C:\Users\PC\Documents\Repozitar_Dev\_github\` = ~70 chars path prefix → riziko MAX_PATH (260 chars)
+
+### P15 — Session monitoring
+Před každým pipeline runem:
+1. Zavolej `is_logged_in()` a loguj výsledek včetně `page.url`
+2. Pokud auth selže, zaloguj nejen "not authenticated", ale i response body (může být checkpoint/challenge page)
+3. `--login` flow musí fungovat bez restartu MCP serveru
+
+### P16 — PowerShell v bash = piš .ps1 soubor
+Nikdy nevkládej PowerShell one-linery do bash stringů. Vždy:
+1. Napiš `.ps1` script
+2. Spusť ho: `powershell -File scripts/operace.ps1`
+
+Toto eliminuje dvojité escaping (bash → PowerShell → Windows API) a dělá operaci reviewovatelnou/opakovatelnou.
+
 ---
 
-*sdilena_pitevni_kniha_mcp.md — 2026-07-07 — v1*
+## Dědičnost napříč projekty
+
+Pravidla P1–P16 se přenášejí do každého nového MCP projektu. Při zakládání nového repozitáře:
+
+1. Kopírovat `P11` (console script) + `P12` (`.bat` launcher) — první věc po `uv sync`
+2. Kopírovat `P14` (path quoting) — při každém file I/O
+3. Kopírovat `P16` (PS1 scripts) — při každé Windows administraci
+
+---
+
+*sdilena_pitevni_kniha_mcp.md — 2026-07-07 — v2*
