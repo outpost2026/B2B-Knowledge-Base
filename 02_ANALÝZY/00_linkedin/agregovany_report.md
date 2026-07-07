@@ -406,6 +406,43 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #026 — Senior Data Integration Engineer @ EPAM Systems
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (62.9% fit)
+
+### Analýza pozice
+- **Role:** Senior Data Integration Engineer
+- **Firma:** EPAM Systems
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 64.4% | 0.2% | 5 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **62.9%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **ETL**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **AWS**: no_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -464,3 +501,4 @@
 | 023 | Trask | AI Developer | 59.1% | Střední | 🟡 MEDIUM |
 | 024 | Carpiness s.r.o. | Artificial Intelligence Engineer | 63.0% | Střední | 🟡 MEDIUM |
 | 025 | Radley James | Senior Quant Developer | 51.4% | Střední | 🟡 MEDIUM |
+| 026 | EPAM Systems | Senior Data Integration Engineer | 62.9% | Střední | 🟡 MEDIUM |
