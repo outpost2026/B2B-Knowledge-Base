@@ -1319,6 +1319,37 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #36 — TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY @ Zakládání staveb, a. s.
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (56.5% fit)
+
+### Analýza pozice
+- **Role:** TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY
+- **Firma:** Zakládání staveb, a. s.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 30.1% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| location | 5% | 70.0% | 0.0% | CZ-based role (3 location keywords) |
+| **Celkem** | **100%** | | **56.5%** | **MEDIUM** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1387,3 +1418,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 33 | Radley James | Senior Quant Developer | 57.6% | Střední | 🟡 MEDIUM |
 | 34 | EPAM Systems | Senior Data Integration Engineer | 65.8% | Vysoká | 🟢 SLEDOVAT |
 | 35 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 63.2% | Střední | 🟡 MEDIUM |
+| 36 | Zakládání staveb, a. s. | TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY | 56.5% | Střední | 🟡 MEDIUM |
