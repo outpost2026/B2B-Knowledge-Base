@@ -1458,6 +1458,38 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟢 ZÁZNAM #40 — Light Automation Specialist @ Desoutter Tools
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (67.3% fit)
+
+### Analýza pozice
+- **Role:** Light Automation Specialist
+- **Firma:** Desoutter Tools
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (14 keywords) |
+| tech | 25% | 23.1% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 60.0% | 0.1% | Growth employer: Desoutter |
+| formal | 5% | 35.0% | 0.0% | Degree required (2x) but flexibility found (1x) |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **67.3%** | **SLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech
+
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1530,3 +1562,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 37 | Siemens | Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) | 60.1% | Střední | 🟡 MEDIUM |
 | 38 | Katring, spol. s r.o. | Operátor/ka CNC soustruhů | 41.8% | Nízká | 🟡 HRANICNI |
 | 39 | Siemens | Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) | 63.7% | Střední | 🟡 MEDIUM |
+| 40 | Desoutter Tools | Light Automation Specialist | 67.3% | Vysoká | 🟢 SLEDOVAT |
