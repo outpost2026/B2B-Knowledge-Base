@@ -1559,6 +1559,40 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #43 — IAM Integration Engineer @ N-iX
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (62.1% fit)
+
+### Analýza pozice
+- **Role:** IAM Integration Engineer
+- **Firma:** N-iX
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 48.6% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
+| **Celkem** | **100%** | | **62.1%** | **MEDIUM** |
+
+### Skill match
+- **REST API**: direct_match
+- **AI**: partial_match
+- **Linux**: direct_match
+- **AWS**: no_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1634,3 +1668,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 40 | Desoutter Tools | Light Automation Specialist | 67.3% | Vysoká | 🟢 SLEDOVAT |
 | 41 | ABB | Trainee/Project Support | 57.3% | Střední | 🟡 MEDIUM |
 | 42 | Aon | Machine Learning & AI Developer | 66.4% | Vysoká | 🟢 SLEDOVAT |
+| 43 | N-iX | IAM Integration Engineer | 62.1% | Střední | 🟡 MEDIUM |
