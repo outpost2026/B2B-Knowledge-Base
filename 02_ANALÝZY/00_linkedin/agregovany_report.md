@@ -1522,6 +1522,43 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟢 ZÁZNAM #42 — Machine Learning & AI Developer @ Aon
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (66.4% fit)
+
+### Analýza pozice
+- **Role:** Machine Learning & AI Developer
+- **Firma:** Aon
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Core industrial domain (4 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 91.7% | 0.2% | 4 direct, 3 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (7 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **66.4%** | **SLEDOVAT** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **data pipeline**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1596,3 +1633,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 39 | Siemens | Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) | 63.7% | Střední | 🟡 MEDIUM |
 | 40 | Desoutter Tools | Light Automation Specialist | 67.3% | Vysoká | 🟢 SLEDOVAT |
 | 41 | ABB | Trainee/Project Support | 57.3% | Střední | 🟡 MEDIUM |
+| 42 | Aon | Machine Learning & AI Developer | 66.4% | Vysoká | 🟢 SLEDOVAT |
