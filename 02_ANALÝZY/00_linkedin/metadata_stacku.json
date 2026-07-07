@@ -3623,6 +3623,66 @@
           "location"
         ]
       }
+    },
+    {
+      "id": "53",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automation Systems Engineer IoT",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CAM",
+            "IoT",
+            "ESP32"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "AWS",
+            "C#"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
     }
   ],
   "aggregate_insights": {

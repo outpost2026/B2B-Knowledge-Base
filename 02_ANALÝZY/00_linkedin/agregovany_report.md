@@ -1892,6 +1892,41 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #53 — Automation Systems Engineer IoT @ Resideo
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (51.8% fit)
+
+### Analýza pozice
+- **Role:** Automation Systems Engineer IoT
+- **Firma:** Resideo
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (9 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 81.0% | 0.2% | 4 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (7) with fake-engineer signals (1) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **51.8%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **ESP32**: direct_match
+- **AI**: partial_match
+- **AWS**: no_match
+- **C#**: no_match
+
+**Kritické mismatch:** growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1977,3 +2012,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 50 | TD SYNNEX Czech Republic | AI Integrator / AI Engineer | 69.2% | Vysoká | 🟢 SLEDOVAT |
 | 51 | ČEZ | VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE | 57.0% | Střední | 🟡 MEDIUM |
 | 52 | Sécheron SA | PLC Software Engineer | 56.4% | Střední | 🟡 MEDIUM |
+| 53 | Resideo | Automation Systems Engineer IoT | 51.8% | Střední | 🟡 MEDIUM |
