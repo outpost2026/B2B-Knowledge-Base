@@ -762,6 +762,38 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #036 — System Architect @ KBC Global Services
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (40.2% fit)
+
+### Analýza pozice
+- **Role:** System Architect
+- **Firma:** KBC Global Services
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **40.2%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **C++**: no_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 3 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -830,3 +862,4 @@
 | 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
 | 034 | RETIA, a.s. | SW Architect | 43.9% | Nízká | 🟡 HRANICNI |
 | 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |
+| 036 | KBC Global Services | System Architect | 40.2% | Nízká | 🟡 HRANICNI |
