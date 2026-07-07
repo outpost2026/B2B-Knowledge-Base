@@ -1131,6 +1131,39 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #047 — AI Ambasador & Specialista inovací @ CDC Data s.r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (50.8% fit)
+
+### Analýza pozice
+- **Role:** AI Ambasador & Specialista inovací
+- **Firma:** CDC Data s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 44.1% | 0.1% | 2 direct, 3 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **50.8%** | **MEDIUM** |
+
+### Skill match
+- **IoT**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1210,3 +1243,4 @@
 | 044 | La Fosse | Robotics Engineer | 57.4% | Střední | 🟡 MEDIUM |
 | 045 | Ultra Marine Europe | Senior vývojový konstruktér | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 046 | Adamantem HR, s.r.o. | DevOps Engineer for Embedded Systems | 59.7% | Střední | 🟡 MEDIUM |
+| 047 | CDC Data s.r.o. | AI Ambasador & Specialista inovací | 50.8% | Střední | 🟡 MEDIUM |
