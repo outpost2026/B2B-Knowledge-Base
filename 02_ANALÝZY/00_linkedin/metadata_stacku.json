@@ -1334,6 +1334,69 @@
           "growth"
         ]
       }
+    },
+    {
+      "id": "024",
+      "date": "2026-07-07",
+      "linkedin_job_id": "4430293821",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Artificial Intelligence Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Docker",
+            "CI/CD",
+            "Git",
+            "agentic"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "Azure",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {

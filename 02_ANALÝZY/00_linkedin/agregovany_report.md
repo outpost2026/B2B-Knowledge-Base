@@ -335,6 +335,45 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #024 — Artificial Intelligence Engineer @ Carpiness s.r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (63.0% fit)
+
+### Analýza pozice
+- **Role:** Artificial Intelligence Engineer
+- **Firma:** Carpiness s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 71.2% | 0.2% | 5 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **63.0%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **Docker**: direct_match
+- **CI/CD**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Kubernetes**: no_match
+- **Azure**: no_match
+- **Terraform**: no_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -391,3 +430,4 @@
 | 021 | Schneider Electric | CEE Pricing Data Domain Lead | 52.1% | Střední | 🟡 MEDIUM |
 | 022 | Yunex Traffic | Procurement Expert for Digitalization and Process Automation (m/f) | 46.5% | Nízká | 🟡 HRANICNI |
 | 023 | Trask | AI Developer | 59.1% | Střední | 🟡 MEDIUM |
+| 024 | Carpiness s.r.o. | Artificial Intelligence Engineer | 63.0% | Střední | 🟡 MEDIUM |
