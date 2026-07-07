@@ -443,6 +443,41 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #027 — AI Integrations Engineer (Open Source ·  Web Search) @ SearchApi
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (58.8% fit)
+
+### Analýza pozice
+- **Role:** AI Integrations Engineer (Open Source ·  Web Search)
+- **Firma:** SearchApi
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 54.2% | 0.1% | 3 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **58.8%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **TypeScript**: no_match
+- **MCP**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -502,3 +537,4 @@
 | 024 | Carpiness s.r.o. | Artificial Intelligence Engineer | 63.0% | Střední | 🟡 MEDIUM |
 | 025 | Radley James | Senior Quant Developer | 51.4% | Střední | 🟡 MEDIUM |
 | 026 | EPAM Systems | Senior Data Integration Engineer | 62.9% | Střední | 🟡 MEDIUM |
+| 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
