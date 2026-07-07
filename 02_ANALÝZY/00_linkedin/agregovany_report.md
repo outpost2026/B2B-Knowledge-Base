@@ -1094,6 +1094,43 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #046 — DevOps Engineer for Embedded Systems @ Adamantem HR, s.r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (59.7% fit)
+
+### Analýza pozice
+- **Role:** DevOps Engineer for Embedded Systems
+- **Firma:** Adamantem HR, s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (2 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 62.7% | 0.2% | 5 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **59.7%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **Docker**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Terraform**: no_match
+- **C++**: no_match
+- **DevSecOps**: direct_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1172,3 +1209,4 @@
 | 043 | Adamantem HR, s.r.o. | Embedded SW Engineer | 56.2% | Střední | 🟡 MEDIUM |
 | 044 | La Fosse | Robotics Engineer | 57.4% | Střední | 🟡 MEDIUM |
 | 045 | Ultra Marine Europe | Senior vývojový konstruktér | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 046 | Adamantem HR, s.r.o. | DevOps Engineer for Embedded Systems | 59.7% | Střední | 🟡 MEDIUM |
