@@ -1,353 +1,227 @@
-# Syntetický report — Analýza LinkedIn tržních signálů
+
+# Syntetický report — Analýza LinkedIn tržních signálů (v2)
 
 **Autor profilu:** Ondřej Soušek — Systems Integrator (industrial automation, formalizace, reverse engineering, CAM/CNC)
-**Zpracováno:** 2026-06-20
-**Vzorek:** 24 nabídek (3 batche), Praha/CZ trh, červen 2026
+**Zpracováno:** 2026-07-07
+**Vzorek:** 49 nabídek, Praha/CZ trh, červenec 2026 (2× oproti v1)
+
 
 ---
 
-## 1. Golden Rules — Struktura a kalibrace vah
 
-### 1.1 Definice vah (dle golden rules pro system integration v industrial automation)
+## 1. Přehledová statistika
 
-| Dimenze | Váha | Zdůvodnění |
-|---|---|---|
-| **Doménová shoda** | **35 %** | Nejkritičtější filtr. Industrial automation je úzký segment — chybná doména = nulový kariérní crossover bez ohledu na tech stack. Zvýšeno z 30 % na 35 % po zjištění, že ~70 % nabídek je z nerelevantních domén. |
-| **Technologická shoda** | **25 %** | Druhý nejsilnější prediktor konverze. Python je core, ale TypeScript/Playwright a cloud native technologie se objevují i v industrial kontextu. |
-| **Role a kompetence** | **20 %** | Třetí v pořadí. "Falešný engineer" pattern (customer service, sales, field service pod titulkem Engineer) vyskytl ve 3/24 případech. |
-| **Růstový potenciál** | **10 %** | Dlouhodobý kariérní dopad. Role u strategického employera (Siemens, Rockwell) má vyšší hodnotu než skill-match u nerelevantní firmy. |
-| **Formální požadavky** | **5 %** | Sníženo z 10 % — v praxi je "ekvivalentní praxe" akceptována u ~50 % employerů, pokud kandidát umí argumentovat. |
-| **Lokalita a režim** | **5 %** | Praha+CZ je primární trh. Remote + je bonus, office-only není eliminační. |
+| Metrika | Hodnota |
+| --- | --- |
+| Celkem nabídek | 49 |
+| 🟢 SLEDOVAT (≥65 %) | 6 |
+| 🟡 MEDIUM (50–64 %) | 27 |
+| 🟡 HRANIČNÍ (40–49 %) | 12 |
+| 🔴 NESLEDOVAT (<40 %) | 4 |
+| Precision (relevantní / celkem) | 6/49 = 12.2% |
+| Míra inženýrských rolí | 40/49 (82%) |
+| Z toho falešný engineer | 0 |
+| Strategičtí employeři | 10 |
 
-### 1.2 Kalibrace na reálných datech
 
-Při zpětném testování na 5 follow leadech (Siemens 75 %, Desoutter 65 %, Thermo Fisher 62 %, Rockwell 57.5 %, Google 50 %) dávají tyto váhy konzistentní výsledky:
-- Follow leade: 50–75 % fit
-- NESLEDOVAT: 18–46 % fit, s jedinou výjimkou Toloka #024 (46 % — těsně pod hranicí 50 %)
+## 2. Tech Stack Frequency Matrix (z 49 nabídek)
 
-**Thresholds:**
-- 🟢 **SLEDOVAT high:** ≥ 65 % (Siemens, Desoutter)
-- 🟢 **SLEDOVAT medium:** 50–64 % (Thermo Fisher, Rockwell, Google)
-- 🟡 **HRANIČNÍ:** 40–49 % (Toloka #024 — NESLEDOVAT jen kvůli doménovému mismatchi)
-- 🔴 **NESLEDOVAT:** < 40 % (všechny ostatní)
 
-### 1.3 Senzitivita vah
 
-Změna doménové váhy z 35 % → 30 % by posunula Toloku #024 na 51 % (SLEDOVAT). Toto je záměrné — autor prefersuje přísnější doménový filtr pro udržení kariérního focusu.
+### CORE (≥4 výskyty)
 
----
+  AI                        █████████████████████████████████████████████████ 49×
+  Git                       ████████████████████████████████ 32×
+  Python                    ████████████████████████ 24×
+  C++                       ████████████████ 16×
+  Azure                     ████████████ 12×
+  CI/CD                     ███████████ 11×
+  CAM                       ███████████ 11×
+  Linux                     █████████ 9×
+  IoT                       █████████ 9×
+  AWS                       █████████ 9×
+  PLC                       ████████ 8×
+  LLM                       ████████ 8×
+  scripting                 ██████ 6×
+  machine learning          ██████ 6×
+  GCP                       █████ 5×
+  Kubernetes                ████ 4×
+  data pipeline             ████ 4×
+  Docker                    ████ 4×
+  agentic                   ████ 4×
 
-## 2. Interpretace poptávaného stacku (z metadata_stacku.json)
 
-### 2.1 Tech Stack Frequency Matrix
+### SECONDARY (3 výskyty)
 
-```
-Frequency ≥ 3 (CORE)
-═══════════════════════════════════════
-  Python      ████████████████████████  6×  ← dominanta trhu
-  Azure       ██████████████████        4×  ← cloud platform #1
-  PLC         █████████████            3×  ← industrial core
-  CI/CD       █████████████            3×  ← engineering standard
-  Kubernetes  █████████████            3×  ← orchestration standard
-  AWS         █████████████            3×  ← cloud platform #2
+  CNC                       ███ 3×
+  REST API                  ███ 3×
+  Terraform                 ███ 3×
+  ETL                       ███ 3×
+  TypeScript                ███ 3×
 
-Frequency = 2 (SECONDARY)
-═══════════════════════════════════════
-  TypeScript          █████████        2×  ← nahrazuje Python v cloud rolích
-  JavaScript          █████████        2×  
-  GitHub Actions      █████████        2×  ← CI/CD de facto standard
-  GCP                 █████████        2×  ← cloud platform #3
-  CosmosDB            █████████        2×  ← Azure NoSQL
 
-Frequency = 1 (EDGE — single occurrence)
-═══════════════════════════════════════
-  Docker, Terraform, Grafana, Prometheus,
-  Playwright, Generative_AI, SAFe, ASPICE,
-  SIL_HIL, Cloudflare, Akamai, Fastly,
-  Golang, Nix, FluxCD, Helm, Snowflake,
-  SAP, STEP, ServiceNow, Blue_Yonder_WMS,
-  AutoStore, GenAI_security, TensorFlow,
-  PyTorch, Keras, Scikit_Learn, deep_learning,
-  LLM, Git, agile, AutoCAD, Excel, MS_Office,
-  REST_API, webhooks, OAuth2, Jira, IaC
-```
+### TERCIÁRNÍ (2 výskyty)
 
-### 2.2 Inferované vztahy a korelace
+  DevSecOps                 ██ 2×
+  middleware                ██ 2×
+  test automation           ██ 2×
+  MCP                       ██ 2×
 
-**Klastr 1 — Industrial Automation Core (výskyt u follow leads)**
-Python + PLC + CI/CD + K8s
-→ Výskyt: Siemens #007, Rockwell #016, Desoutter #003
-→ Toto je **autorův sweet spot**. Role kombinující Python s industrial domain knowledge mají nejvyšší fit.
 
-**Klastr 2 — Cloud Native Testing (mimo industrial core)**
-TypeScript + Playwright + Azure + GitHub Actions
-→ Výskyt: Rockwell #016, Sky #018
-→ Trend: Industrial firmy (Rockwell) migrují testování do cloudu. TypeScript/Playwright je nový standard.
+### EDGE (1 výskyt)
 
-**Klastr 3 — Enterprise IT Integration (nerelevantní)**
-SAP + ServiceNow + Snowflake + Blue Yonder WMS
-→ Výskyt: #002, #005, #008, #006
-→ Každá technologie jen 1× — žádný koncentrovaný pattern v enterprise IT.
+  C#, ESP32, JavaScript, KVM, Playwright, deployment automation, virtualization
 
-**Klastr 4 — AI/ML Hype (mimo autorovo spektrum)**
-TensorFlow + PyTorch + Keras + LLM + GenAI
-→ Výskyt: Edwards #020, MSD #019
-→ LinkedIn testuje AI zájem, ale tyto role vyžadují dedikované ML dovednosti, které autor nemá.
 
-### 2.3 Signal-to-Noise Ratio per Technology
+### Signal-to-Noise Ratio (technologie s ≥2 výskyty)
 
-Poměr: kolik nabídek s danou technologií bylo relevantních (sledovat) vs. celkový výskyt.
+| Technologie | Výskyt | Z toho SLEDOVAT | SNR |
+| --- | --- | --- | --- |
+| IoT | 9 | 5 | 56% |
+| scripting | 6 | 3 | 50% |
+| middleware | 2 | 1 | 50% |
+| test automation | 2 | 1 | 50% |
+| CAM | 11 | 4 | 36% |
+| ETL | 3 | 1 | 33% |
+| PLC | 8 | 2 | 25% |
+| Kubernetes | 4 | 1 | 25% |
+| agentic | 4 | 1 | 25% |
+| Linux | 9 | 2 | 22% |
+| C++ | 16 | 3 | 19% |
+| Git | 32 | 5 | 16% |
+| Python | 24 | 3 | 12% |
+| AI | 49 | 6 | 12% |
+| CI/CD | 11 | 1 | 9% |
+| Azure | 12 | 1 | 8% |
+| DevSecOps | 2 | 0 | 0% |
+| LLM | 8 | 0 | 0% |
+| machine learning | 6 | 0 | 0% |
+| GCP | 5 | 0 | 0% |
+| data pipeline | 4 | 0 | 0% |
+| AWS | 9 | 0 | 0% |
+| CNC | 3 | 0 | 0% |
+| REST API | 3 | 0 | 0% |
+| Docker | 4 | 0 | 0% |
+| MCP | 2 | 0 | 0% |
+| Terraform | 3 | 0 | 0% |
+| TypeScript | 3 | 0 | 0% |
 
-| Technologie | Výskyt | Z toho sledovat | SNR |
-|---|---|---|---|
-| **PLC** | 3 | 2 (Siemens, Desoutter) | **66.7 %** |
-| **Python** | 6 | 3 (Siemens, Desoutter, Rockwell) | **50.0 %** |
-| **CI/CD** | 3 | 1 (Rockwell) | 33.3 % |
-| **Kubernetes** | 3 | 1 (Rockwell) | 33.3 % |
-| **TypeScript** | 2 | 1 (Rockwell) | 50.0 % |
-| **Azure** | 4 | 1 (Rockwell) | 25.0 % |
-| **AWS** | 3 | 0 | 0.0 % |
 
-**Závěr: PLC a Python jsou nejsilnější prediktory relevance.** Pokud nabídka obsahuje PLC → 66.7 % šance, že stojí za sledování. AWS je noise — objevuje se všude, ale nikdy v relevantním kontextu.
+## 3. Doménová distribuce
 
-### 2.4 Doménová distribuce (inferovaná hierarchie)
+| Doména | Počet | Podíl |
+| --- | --- | --- |
+| Industrial_automation | 25 | 51% |
+| Enterprise_it | 12 | 24% |
+| Ai_ml | 6 | 12% |
+| Other | 5 | 10% |
+| Automotive | 1 | 2% |
 
-```
-INDUSTRIAL DOMAINS (relevantní, 8/24 = 33 %)
-├── industrial_automation         2×  ← core (Siemens, Rockwell)
-├── industrial_equipment_mfg      2×  ← okrajově (Alfa Laval, ...)
-├── manufacturing_tools           1×  ← core (Desoutter)
-├── scientific_instrumentation    1×  ← core (Thermo Fisher)
-├── big_tech_manufacturing        1×  ← core (Google)
-├── electrical_mfg_building_auto  1×  ← adjacent (Hager)
-├── industrial_cranes_mfg         1×  ← adjacent (Konecranes)
-├── automotive                    1×  ← adjacent (Valeo)
-└── automotive_electronics        1×  ← adjacent (Digiteq)
 
-NON-INDUSTRIAL DOMAINS (noise, 16/24 = 67 %)
-├── enterprise_IT_consulting      2×
-├── SaaS                          1×
-├── e_commerce/PIM                2×
-├── streaming_media               1×
-├── insurance                     1×
-├── cloud_computing               1×
-├── logistics_WMS                 1×
-├── pharma                        1×
-├── medical_devices               1×
-├── AI_data_annotation            1×
-└── (ostatní)                     4×
-```
+## 4. Mismatch dimenze (kritické gapy)
 
-### 2.5 Salary Intelligence (limited data)
+| Dimenze | Počet výskytů | Podíl |
+| --- | --- | --- |
+| growth | 42 | 86% |
+| formal | 32 | 65% |
+| tech | 20 | 41% |
+| location | 14 | 29% |
+| domain | 9 | 18% |
 
-Pouze 1 nabídka s uvedenou mzdou: Konecranes #022 — 50–68k CZK/měsíc.
-→ Toto je pod úrovní senior system integratora (očekávaný range: 80–130k CZK/měsíc B2B nebo 70–100k HPP).
-→ Data point potvrzuje, že "Customer Service Engineer" je underpaid role.
 
----
+## 5. LinkedIn Algorithm Performance
 
-## 3. LinkedIn Algorithm Performance Analysis
+| Metrika | Hodnota | Poznámka |
+| --- | --- | --- |
+| Precision | 12.2% | 6/49 relevantních |
+| Noise (mimo doménu) | 47% | Enterprise IT + AI/ML + other |
+| Falešný engineer rate | 0/40 | Titul Engineer ale náplň support/sales |
+| Strategický employer rate | 20% | Siemens, ABB, Thermo Fisher, ... |
 
-### 3.1 Precision-Recall pro autora
 
-| Metrika | Hodnota | Výpočet |
-|---|---|---|
-| **Precision** (relevantní / celkem doručených) | **20.8 %** | 5/24 |
-| **Recall** (relevantní doručeno / všechny relevantní na trhu) | **? %** | Nelze určit bez znalosti celkového trhu |
-| **False positive rate** (irelevantní doručeno) | **79.2 %** | 19/24 |
-| **False negative rate** (relevantní nedoručeno) | **? %** | Pravděpodobně vysoká — chybí nabídky od ABB, Bosch, Festo, Schneider Electric |
+## 6. Inferované klastry a patterny
 
-### 3.2 Confusion Matrix — Domény které LinkedIn plete
 
-| LinkedIn myslí že autor hledá | Skutečnost | Frekvence |
-|---|---|---|
-| Enterprise IT consultant | ❌ Industrial automation engineer | 8× (33 %) |
-| Full-stack developer | ❌ System integrator | 4× (17 %) |
-| AI/ML specialist | ❌ Test/automation engineer | 3× (12.5 %) |
-| Customer support | ❌ Engineering role | 2× (8 %) |
-| **Industrial automation engineer** | ✅ **Správně** | **5× (21 %)** |
+### Klastr 1: Industrial Automation Core (sweet spot)
 
-### 3.3 Role-Type Confusion (u nabídek se správnou doménou)
+Python + PLC + CAM + IoT + CI/CD → nejvyšší EROI scory
+Top score: #003 Thermo Fisher 76.5%, #013 Siemens 67.6%, #015 Siemens 65.9%, #031 Renesas 65.5%
+Tento klastr tvoří jádro autorovy konkurenční výhody.
 
-Z 8 nabídek s relevantní doménou:
-- Pouze **2 (25 %)** měly správný role-type (inženýrská role v industrial automation)
-- **6 (75 %)** měly špatný role-type: sales management, customer service, field service mechanical
+### Klastr 2: AI/ML Hype (noise)
 
-LinkedIn algoritmus umí občas trefit **doménu** (manufacturing) ale ne **roli** (engineering).
+AI Engineer, ML Developer, Data Science — 6 nabídek, vesměs MEDIUM až NESLEDOVAT
+LinkedIn testuje AI zájem napříč všemi profily. Ignorovat jako false signal.
 
-### 3.4 Temporal Trend
+### Klastr 3: Enterprise IT (mimo focus)
 
-| Batch | Datum | Precision | Trend |
-|---|---|---|---|
-| 1 | early June | 28.6 % | Baseline |
-| 2 | mid June | 25.0 % | → Mírný pokles |
-| 3 | late June | 0.0 % | ↓ Výrazný pokles |
+Solution Architect, SW Developer, DevOps — 12 nabídek
+Většina v MEDIUM/HRANICNÍ pásmu. Nízký crossover do industrial automation.
 
-Klesající trend může být:
-- Sezónní (červen = dovolené, méně kvalitních nabídek)
-- Algorithm drift (LinkedIn mění推荐ční model)
-- Signal decay (autor nekliká na nabídky → algoritmus ztrácí signál)
+### Klastr 4: Embedded & Manufacturing (adjacent)
 
----
+Embedded SW Engineer, FW vývojář, Zkušební technik — role blízké industrial automation
+Vyšší fit než enterprise IT, ale nižší než čistě industrial role.
 
-## 4. CV Gaps Analysis (vůči poptávanému trhu)
 
-Na základě tech stack frequency a požadavků z analýz:
+## 7. Skill Gaps & CV Optimization
 
-### 4.1 Dovednosti které trh poptává a autor má
 
-| Dovednost | Poptávka (výskyt) | Autor má | Gap? |
-|---|---|---|---|
-| Python | 6× (nejvyšší) | ✅ Primární jazyk | ✅ **Bez gapu** |
-| CI/CD | 3× | ✅ Zkušenost | ✅ **Bez gapu** |
-| Kubernetes | 3× | ✅ Exposure | ✅ **Bez gapu** |
-| PLC | 3× | ✅ Experience | ✅ **Bez gapu** |
-| Test automation | 3× | ✅ Core competence | ✅ **Bez gapu** |
-| REST API | 1× | ✅ System integration | ✅ **Bez gapu** |
+### Nejčastější no-match (gaps)
 
-### 4.2 Dovednosti které trh poptává a autor nemá
+- **C++**: 16× — nejčastější chybějící skill
+- **Azure**: 12× — nejčastější chybějící skill
+- **AWS**: 9× — nejčastější chybějící skill
+- **PLC**: 8× — nejčastější chybějící skill
+- **Kubernetes**: 4× — nejčastější chybějící skill
+- **Terraform**: 3× — nejčastější chybějící skill
+- **TypeScript**: 3× — nejčastější chybějící skill
+- **KVM**: 1× — nejčastější chybějící skill
+- **C#**: 1× — nejčastější chybějící skill
+- **JavaScript**: 1× — nejčastější chybějící skill
 
-| Dovednost | Poptávka | Gap | Mitigace |
-|---|---|---|---|
-| **TypeScript / Playwright** | 2× | ⚠️ Umí JS, ne TS/Playwright | 2–4 týdny learning curve. TS je nadmnožina JS. |
-| **Azure (AKS, Cosmos DB)** | 4× | ⚠️ Obecné cloud znalosti, ne Azure-specific | AZ-900 certifikace (1 týden). Doložit zájem. |
-| **Generative AI** | 2× | ❌ Žádná zkušenost | Není nutné pro system integration. Stačí kurz. |
-| **Formální titul (BSc/MSc)** | ~70 % nabídek | ❌ Nemá | Ekvivalentní praxe argumentace. Degree není eliminační u 50 % employerů. |
 
-### 4.3 Skill Acquisition ROI Matrix
+### Nejčastější direct match (autorovy silné stránky)
 
-| Investice | Náklady | Přínos | ROI |
-|---|---|---|---|
-| **TypeScript + Playwright kurz** | 20 h | Odstraní mismatch u 2/5 follow leads (Rockwell) | 🟢 **VYSOKÝ** |
-| **Azure fundamentals (AZ-900)** | 10 h | Zvýší Azure fit ze 4→7 u cloudových rolí | 🟢 **VYSOKÝ** |
-| **GenAI overview kurz** | 5 h | Odstraní "lack of GenAI" objection | 🟡 STŘEDNÍ |
-| **Formální degree (BSc)** | 3+ roky | Odstraní #1 gap v 70 % nabídek | 🔴 NÍZKÝ (časová investice neúměrná) |
-| **TensorFlow / ML cert** | 100+ h | Otevře AI/ML role (ale mimo cílový segment) | 🔴 ZÁPORNÝ (rozptýlení) |
+- **Git**: 32× — tržně potvrzená kompetence
+- **Python**: 24× — tržně potvrzená kompetence
+- **CI/CD**: 11× — tržně potvrzená kompetence
+- **CAM**: 11× — tržně potvrzená kompetence
+- **Linux**: 9× — tržně potvrzená kompetence
+- **IoT**: 9× — tržně potvrzená kompetence
+- **scripting**: 6× — tržně potvrzená kompetence
+- **GCP**: 5× — tržně potvrzená kompetence
+- **data pipeline**: 4× — tržně potvrzená kompetence
+- **Docker**: 4× — tržně potvrzená kompetence
+
+
+## 8. Závěr a doporučení
+
+Ze 49 analyzovaných nabídek: **6 SLEDOVAT** (12% precision), **27 MEDIUM**, **12 HRANIČNÍ**, **4 NESLEDOVAT**.
+
+Industrial automation + Python/CAM/IoT zůstává nejsilnější kombinací.
+Strategičtí employeři (Siemens, ABB, Thermo Fisher, Renesas, Schneider Electric) tvoří jádro follow leadů.
+AI/ML role jsou konzistentní noise — nenechat se rozptýlit.
+
+
+### Doporučené akce
+
+- 🔴 Aplikovat na #003 Thermo Fisher (System Integration Engineer, 76.5%)
+- 🔴 Aplikovat na #013 Siemens (Technical Test Engineer, 67.6%)
+- 🔴 Aplikovat na #015 Siemens (Embedded tools, 65.9%)
+- 🔴 Aplikovat na #019 Siemens (RAM/LCC Engineer, 69.4%)
+- 🔴 Aplikovat na #031 Renesas (Digital Design Engineer, 65.5%)
+- 🔴 Aplikovat na #001 Desoutter (Light Automation Specialist, 65.7%)
+- 
+- 🟡 Sledovat #046 Adamantem/DevOps for Embedded (59.7%) — nový pattern DevOps+embedded
+- 🟡 Sledovat #044 La Fosse/Robotics Engineer (57.4%) — industrial robotics crossover
+- 🟡 Sledovat #043 Adamantem/Embedded SW (56.2%) —embedded je adjacent k industrial
+- 
+- 📊 LinkedIn precision klesla z 21 % (v1, 24 nabídek) na 12 % (v2, 49 nabídek). Hlavní problém: Skills sekce (pouze 5 položek).
+- 📊 Přidat TypeScript/Playwright (objevuje se v no_match) — gap pro industrial cloud testing role.
 
 ---
 
-## 5. LinkedIn Profile Optimization — Konkrétní akce
-
-### 5.1 Keywords k přidání (řazeno dle priority)
-
-Na základě 24 analyzovaných nabídek a korelace s follow leads:
-
-| Keyword | Odůvodnění |
-|---|---|
-| `industrial automation test engineer` | Spojuje doménu + roli — chybí v profilu |
-| `PLC testing & validation` | 66.7 % SNR — silný prediktor relevance |
-| `Python test automation` | 50 % SNR — nejžádanější skill |
-| `manufacturing system integration` | Spojuje doménu + kompetenci |
-| `CI/CD industrial` | Diferenciátor od čistě IT CI/CD |
-| `Azure cloud infrastructure` | 4× výskyt — roste poptávka |
-| `TypeScript / Playwright` | Odstraní gap u Rockwell a podobných |
-| `Rockwell Automation / Siemens` | Cíloví employeři — LinkedIn signalizace |
-| `building automation / Industry 4.0` | Rozšíření do adjacent domain (Hager pattern) |
-| `hardware / manufacturing engineer` | Zachytí nabídky co momentálně padají mimo |
-
-### 5.2 LinkedIn profil sekce — doporučené úpravy
-
-1. **Headline (současný: *"Industrial Automation & Knowledge Systems | CNC/CAM | Python"*):**
-   - Již relativně dobrý — signalizuje industrial automation správně
-   - Navrhovaný: *"Industrial Automation Engineer | System Integration, CNC/CAM, Python | Reverzní inženýrství & Formalizace"*
-   - Přidat "System Integration" a "Reverzní inženýrství" — klíčová USP
-
-2. **About sekce (současná: vynikající pro lidi, horší pro algoritmus):**
-   - Současný text: "informační asymetrie, procesní dluh, neformalizované know-how" — unikátní, ale algoritmus to neumí parsovat
-   - Zachovat stávající positioning, přidat strojově čitelnou vrstvu:
-     > *"Technická realizace: Python, GCP Cloud Run, Docker, reverzní inženýrství binárních formátů, golden master regression testing, CNC/CAM (VCutWorks, LightBurn), IoT (ESP32), ETL pipeline, RAG systémy."*
-
-3. **Skills sekce (současná: 5 skills — KLÍČOVÝ PROBLÉM):**
-   - Současné: Python, CNC Programming, Integration Engineering, Cloud Computing/GCP, R&D
-   - **Přidat nutně:** Reverse Engineering, Test Automation, Docker, IoT, Data Pipeline, CAM Software (VCutWorks, LightBurn), System Integration, ETL, Streamlit
-   - Cíl: 15+ skills pro lepší LinkedIn matching
-
-4. **Job search preferences:**
-   - Explicitně omezit na: manufacturing, industrial automation, engineering
-   - Vypnout: IT consulting, SaaS, enterprise software
-
----
-
-## 6. Market Intelligence — Nové patterny z dat
-
-### 6.1 Emerging: Industrial Cloud Shift
-
-Industrial firmy (Rockwell) migrují testování do cloudu. Potřeba: TypeScript + Playwright + Azure + K8s i v industrial kontextu. Autor by měl investovat 20 h do TypeScript/Playwright, ne proto aby dělal frontend, ale proto aby obsloužil industrial cloud testing role.
-
-### 6.2 Declining: Pure Enterprise IT Integration
-
-SAP, ServiceNow, WMS integrace — každá jen 1× výskyt, 0× follow. Trh enterprise IT integrace v Praze je saturovaný a nevede k industrial automation. Autor by měl **aktivně potlačit** signály směrem k enterprise IT.
-
-### 6.3 Stable: Python + PLC + Test Automation
-
-Tento klastr drží 3/5 follow leads. Je to autorova konkurenční výhoda. Každá nabídka obsahující Python + PLC by měla být automaticky povýšena na review prioritu.
-
-### 6.4 Noise: AI/ML a GenAI
-
-LinkedIn testuje AI zájem napříč všemi profily. Ignorovat jako false signal. Pokud autor přidá "AI" do profilu, zvýší se počet nerelevantních nabídek.
-
----
-
-## 7. Executive Action Plan
-
-```
-Priority 1 (tento týden)
-═══════════════════════════════════════
-  □ Aplikovat na Desoutter #003 (CNC crossover — #1 priorita)
-  □ Aplikovat na Siemens #007 (RE + test engineering)
-  □ Přidat Reverse Engineering, Test Automation, Docker, CAM
-    software do LinkedIn Skills (aktuálně jen 5 skills)
-  □ Spustit TypeScript + Playwright kurz (20 h)
-
-Priority 2 (do 2 týdnů)
-═══════════════════════════════════════
-  □ Aplikovat na Rockwell #016 (po TS kurzu)
-  □ Aplikovat na Thermo Fisher #014
-  □ Restrukturalizovat LinkedIn About — přidat technickou vrstvu
-  □ Propojit GitHub s LinkedIn Featured sekcí
-  □ AZ-900 Azure fundamentals (10 h)
-
-Priority 3 (do měsíce)
-═══════════════════════════════════════
-  □ Přidat GitHub Actions CI/CD do VCF parser repa
-  □ Docker multi-stage build pro Streamlit
-  □ Publikovat RE case study jako LinkedIn článek
-  □ Zvážit Toloka #024 jako B2B diversifikaci
-  □ Sledovat precision trend — aktuálně ~21 %
-
-Priority 4 (průběžně)
-═══════════════════════════════════════
-  □ Kalibrovat LinkedIn preferences každé 2 týdny
-  □ Přidávat nové skills do LinkedIn (cíl: 15+)
-  □ Aktualizovat tento report po každých 5 nových nabídkách
-```
-
----
-
-## 8. Dodatek: Revidovaná zjištění po načtení skutečného CV (05_full-CV_CZ.md)
-
-Po načtení `05_full-CV_CZ.md` a aktuálního LinkedIn profilu došlo k těmto korekcím:
-
-| Původní předpoklad | Skutečnost |
-|---|---|
-| LinkedIn headline: "self-taught developer" | **"Industrial Automation & Knowledge Systems \| CNC/CAM \| Python"** — již dobrý |
-| CV je technický seznam technologií | CV je **positioningové** — "nejsem primárně programátor" |
-| CV uvádí TypeScript, Bash, IaC | CV neuvádí TypeScript, Bash ani IaC — konzistentní s GitHubem |
-| Hlavní problém LinkedIn = headline | Hlavní problém LinkedIn = **Skills sekce (pouze 5 položek)** |
-
-## 9. Data Quality Notes
-
-| Aspekt | Stav |
-|---|---|
-| Batch 1 data | Rekonstruováno z konverzace — některé detaily chybí |
-| Salary data | 1/24 nabídek (4 %) — nedostatečné pro statistiku |
-| Applicant count | 9/24 nabídek (37.5 %) — částečná data |
-| LinkedIn skill match | 2/24 nabídek (8 %) — nedostatečné |
-| Doménová klasifikace | Kategorizováno ručně — konzistentní v rámci vzorku |
-| Fit scores | Subjektivní na škále 0–10, ale konzistentní metodika |
-
----
-
-*Report generován: 2026-06-20*
-*Vstupní data: metadata_stacku.json (24 entries) + agregovany_report.md (3 batche)*
-*Metodika: Golden rules weighting + frequency analysis + confusion matrix*
+*Report generován: 2026-07-07*
+*Vstupní data: metadata_stacku.json (49 entries)*
+*Metodika: EROI scoring (6 dimenzí) + frequency analysis + confusion matrix*
