@@ -1,13 +1,10 @@
-
 # Syntetický report — Analýza LinkedIn tržních signálů (v2)
 
 **Autor profilu:** Ondřej Soušek — Systems Integrator (industrial automation, formalizace, reverse engineering, CAM/CNC)
 **Zpracováno:** 2026-07-07
 **Vzorek:** 49 nabídek, Praha/CZ trh, červenec 2026 (2× oproti v1)
 
-
 ---
-
 
 ## 1. Přehledová statistika
 
@@ -23,13 +20,13 @@
 | Z toho falešný engineer | 0 |
 | Strategičtí employeři | 10 |
 
+---
 
 ## 2. Tech Stack Frequency Matrix (z 49 nabídek)
 
-
-
 ### CORE (≥4 výskyty)
 
+```
   AI                        █████████████████████████████████████████████████ 49×
   Git                       ████████████████████████████████ 32×
   Python                    ████████████████████████ 24×
@@ -49,29 +46,30 @@
   data pipeline             ████ 4×
   Docker                    ████ 4×
   agentic                   ████ 4×
-
+```
 
 ### SECONDARY (3 výskyty)
 
+```
   CNC                       ███ 3×
   REST API                  ███ 3×
   Terraform                 ███ 3×
   ETL                       ███ 3×
   TypeScript                ███ 3×
-
+```
 
 ### TERCIÁRNÍ (2 výskyty)
 
+```
   DevSecOps                 ██ 2×
   middleware                ██ 2×
   test automation           ██ 2×
   MCP                       ██ 2×
-
+```
 
 ### EDGE (1 výskyt)
 
-  C#, ESP32, JavaScript, KVM, Playwright, deployment automation, virtualization
-
+`C#, ESP32, JavaScript, KVM, Playwright, deployment automation, virtualization`
 
 ### Signal-to-Noise Ratio (technologie s ≥2 výskyty)
 
@@ -106,6 +104,7 @@
 | Terraform | 3 | 0 | 0% |
 | TypeScript | 3 | 0 | 0% |
 
+---
 
 ## 3. Doménová distribuce
 
@@ -117,6 +116,7 @@
 | Other | 5 | 10% |
 | Automotive | 1 | 2% |
 
+---
 
 ## 4. Mismatch dimenze (kritické gapy)
 
@@ -128,6 +128,7 @@
 | location | 14 | 29% |
 | domain | 9 | 18% |
 
+---
 
 ## 5. LinkedIn Algorithm Performance
 
@@ -138,9 +139,9 @@
 | Falešný engineer rate | 0/40 | Titul Engineer ale náplň support/sales |
 | Strategický employer rate | 20% | Siemens, ABB, Thermo Fisher, ... |
 
+---
 
 ## 6. Inferované klastry a patterny
-
 
 ### Klastr 1: Industrial Automation Core (sweet spot)
 
@@ -163,9 +164,9 @@ Většina v MEDIUM/HRANICNÍ pásmu. Nízký crossover do industrial automation.
 Embedded SW Engineer, FW vývojář, Zkušební technik — role blízké industrial automation
 Vyšší fit než enterprise IT, ale nižší než čistě industrial role.
 
+---
 
 ## 7. Skill Gaps & CV Optimization
-
 
 ### Nejčastější no-match (gaps)
 
@@ -180,7 +181,6 @@ Vyšší fit než enterprise IT, ale nižší než čistě industrial role.
 - **C#**: 1× — nejčastější chybějící skill
 - **JavaScript**: 1× — nejčastější chybějící skill
 
-
 ### Nejčastější direct match (autorovy silné stránky)
 
 - **Git**: 32× — tržně potvrzená kompetence
@@ -194,6 +194,7 @@ Vyšší fit než enterprise IT, ale nižší než čistě industrial role.
 - **data pipeline**: 4× — tržně potvrzená kompetence
 - **Docker**: 4× — tržně potvrzená kompetence
 
+---
 
 ## 8. Závěr a doporučení
 
@@ -203,7 +204,6 @@ Industrial automation + Python/CAM/IoT zůstává nejsilnější kombinací.
 Strategičtí employeři (Siemens, ABB, Thermo Fisher, Renesas, Schneider Electric) tvoří jádro follow leadů.
 AI/ML role jsou konzistentní noise — nenechat se rozptýlit.
 
-
 ### Doporučené akce
 
 - 🔴 Aplikovat na #003 Thermo Fisher (System Integration Engineer, 76.5%)
@@ -212,11 +212,9 @@ AI/ML role jsou konzistentní noise — nenechat se rozptýlit.
 - 🔴 Aplikovat na #019 Siemens (RAM/LCC Engineer, 69.4%)
 - 🔴 Aplikovat na #031 Renesas (Digital Design Engineer, 65.5%)
 - 🔴 Aplikovat na #001 Desoutter (Light Automation Specialist, 65.7%)
-- 
 - 🟡 Sledovat #046 Adamantem/DevOps for Embedded (59.7%) — nový pattern DevOps+embedded
 - 🟡 Sledovat #044 La Fosse/Robotics Engineer (57.4%) — industrial robotics crossover
 - 🟡 Sledovat #043 Adamantem/Embedded SW (56.2%) —embedded je adjacent k industrial
-- 
 - 📊 LinkedIn precision klesla z 21 % (v1, 24 nabídek) na 12 % (v2, 49 nabídek). Hlavní problém: Skills sekce (pouze 5 položek).
 - 📊 Přidat TypeScript/Playwright (objevuje se v no_match) — gap pro industrial cloud testing role.
 
