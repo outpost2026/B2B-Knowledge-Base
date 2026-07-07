@@ -1692,6 +1692,38 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #47 — AI / ML / LLM Research Engineer @ Sourcein
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (53.9% fit)
+
+### Analýza pozice
+- **Role:** AI / ML / LLM Research Engineer
+- **Firma:** Sourcein
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 34.7% | 0.1% | 0 direct, 3 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **53.9%** | **MEDIUM** |
+
+### Skill match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1771,3 +1803,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 44 | Siemens | Systémový inženýr RAM/LCC - lokomotivy (m/ž/n) | 72.5% | Vysoká | 🟢 SLEDOVAT |
 | 45 | Deutsche Börse Group | Solutions Architect - AI & Data Integration (f/m/d) | 60.0% | Střední | 🟡 MEDIUM |
 | 46 | MSM GROUP | LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR | 49.9% | Nízká | 🟡 HRANICNI |
+| 47 | Sourcein | AI / ML / LLM Research Engineer | 53.9% | Střední | 🟡 MEDIUM |
