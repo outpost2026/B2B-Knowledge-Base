@@ -1,0 +1,3924 @@
+{
+  "_meta": {
+    "description": "Strojově čitelná agregace požadavků z LinkedIn nabídek pro kalibraci workflow a filtraci leadů",
+    "schema_version": "1.0",
+    "target_profile": "Ondřej Soušek — Systems Integrator (formalizace, RE, automatizace, CAM/CNC)",
+    "layers": [
+      "role",
+      "seniority",
+      "tech_stack",
+      "domain",
+      "formal_requirements",
+      "company",
+      "eroi"
+    ]
+  },
+  "entries": [
+    {
+      "id": "001",
+      "date": "2026-06-20",
+      "company": {
+        "type": "product_SaaS",
+        "size_range": "50_500",
+        "industry": "AI_web_scraping"
+      },
+      "title": "Data Engineer",
+      "role": {
+        "category": "data_engineering",
+        "subcategory": "data_integration_platform",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "cloud_data_warehouse": [
+          "Snowflake"
+        ],
+        "elt_orchestration": [
+          "Keboola",
+          "dbt"
+        ],
+        "bi": [
+          "Tableau",
+          "Redash"
+        ],
+        "workflow_automation": [
+          "n8n"
+        ],
+        "cdp": [
+          "Segment"
+        ],
+        "crm": [
+          "HubSpot"
+        ],
+        "messaging": [
+          "Intercom"
+        ],
+        "analytics": [
+          "Mixpanel"
+        ],
+        "languages": [
+          "SQL",
+          "Python"
+        ],
+        "reverse_etl": [
+          "Census",
+          "Keboola"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "Python"
+          ],
+          "no_match": [
+            "Snowflake",
+            "Keboola",
+            "dbt",
+            "Tableau",
+            "Redash",
+            "n8n",
+            "Segment",
+            "HubSpot",
+            "Intercom",
+            "Mixpanel",
+            "Census"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "SaaS",
+        "secondary": "web_scraping_AI",
+        "specific": "data_platform_for_AI_agents"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "education": null,
+        "certifications": null,
+        "languages": [
+          "English_B2"
+        ],
+        "other": [
+          "data_engineering_background"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 31.5,
+        "conversion_probability": "<0.20",
+        "estimated_value_monthly_czk": 90000,
+        "estimated_prep_cost_hours": 6,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "domain",
+          "seniority"
+        ]
+      }
+    },
+    {
+      "id": "002",
+      "date": "2026-06-20",
+      "company": {
+        "type": "global_consulting_corporation",
+        "size_range": "800000_plus",
+        "industry": "IT_consulting"
+      },
+      "title": "SAP Integrations Consultant (CPI/PO/PI)",
+      "role": {
+        "category": "enterprise_consulting",
+        "subcategory": "sap_integration",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "remote"
+      },
+      "tech_stack": {
+        "sap_platform": [
+          "SAP_CPI",
+          "SAP_PO",
+          "SAP_PI"
+        ],
+        "sap_erp": [
+          "S/4HANA"
+        ],
+        "integration_protocols": [
+          "IDocs",
+          "BAPIs",
+          "OData",
+          "SOAP",
+          "REST"
+        ],
+        "message_formats": [
+          "XML",
+          "JSON"
+        ],
+        "api_management": [
+          "API_Management",
+          "API_Gateway"
+        ],
+        "sap_btp": [
+          "SAP_BTP"
+        ],
+        "languages": [
+          "ABAP_knowledge_implied"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "REST",
+            "JSON",
+            "XML"
+          ],
+          "no_match": [
+            "SAP_CPI",
+            "SAP_PO",
+            "SAP_PI",
+            "S/4HANA",
+            "IDocs",
+            "BAPIs",
+            "OData",
+            "SOAP",
+            "ABAP",
+            "SAP_BTP"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "enterprise_IT_consulting",
+        "secondary": "SAP_ecosystem",
+        "specific": "SAP_integration_middleware"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "years_experience_preferred": 5,
+        "education": "Bachelor_Master_IT_or_related",
+        "certifications": null,
+        "languages": [
+          "English_B2",
+          "English_C1_preferred"
+        ],
+        "other": [
+          "SAP_CPI_hands_on"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 10,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 100000,
+        "estimated_prep_cost_hours": 10,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "domain",
+          "seniority",
+          "education"
+        ]
+      }
+    },
+    {
+      "id": "003",
+      "date": "2026-06-20",
+      "company": {
+        "type": "global_manufacturing_corporation",
+        "size_range": "large_subsidiary_of_Atlas_Copco",
+        "industry": "industrial_tools_automation"
+      },
+      "title": "Light Automation Specialist",
+      "role": {
+        "category": "industrial_automation",
+        "subcategory": "light_automation_specialist",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Jihomoravsky_kraj",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "industrial_protocols": [
+          "EtherCAT",
+          "PROFINET",
+          "Modbus_TCP",
+          "Ethernet_IP",
+          "OPC_UA"
+        ],
+        "plc_robotics": [
+          "PLC",
+          "robots",
+          "cobots"
+        ],
+        "sensors_io": [
+          "sensors",
+          "I_O"
+        ],
+        "mechanical_electrical": [
+          "2D_drawings",
+          "3D_drawings",
+          "wiring_diagrams",
+          "P_ID"
+        ],
+        "safety_standards": [
+          "ISO_TS_150"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "2D_drawings",
+            "3D_drawings",
+            "manufacturing_process_knowledge",
+            "CNC_background"
+          ],
+          "partial_match": [
+            "industrial_protocols_conceptually",
+            "machine_safety_understanding"
+          ],
+          "no_match": [
+            "EtherCAT",
+            "PROFINET",
+            "Modbus_TCP",
+            "Ethernet_IP",
+            "OPC_UA",
+            "PLC_programming",
+            "robot_programming"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "industrial_automation",
+        "secondary": "manufacturing",
+        "specific": "light_automation_robotics_solutions"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "years_experience_preferred": 7,
+        "education": "Degree_Mechatronics_Electrical_Mechanical_Automation_Robotics",
+        "education_flexible": true,
+        "languages": [
+          "English_fluent",
+          "Eastern_European_languages_plus"
+        ],
+        "other": [
+          "system_integrator_experience",
+          "technical_sales_aptitude"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 65,
+        "conversion_probability": "0.40_0.50",
+        "estimated_value_monthly_czk": 100000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": []
+      }
+    },
+    {
+      "id": "004",
+      "date": "2026-06-20",
+      "company": {
+        "type": "international_corporation",
+        "size_range": "large_B2B_omnichannel",
+        "industry": "B2B_commerce"
+      },
+      "title": "PIM Developer",
+      "role": {
+        "category": "enterprise_software_development",
+        "subcategory": "pim_developer",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid_60pct_office"
+      },
+      "tech_stack": {
+        "pim_platform": [
+          "STEP_PIM"
+        ],
+        "pim_tools": [
+          "STEP_Workbench",
+          "STEP_UI",
+          "STEP_Import_Export_Manager"
+        ],
+        "programming": [
+          "STEP_Business_Rules",
+          "STEPXML",
+          "STEP_SDK",
+          "JavaScript",
+          "XSLT"
+        ],
+        "integration": [
+          "HTTP",
+          "REST",
+          "JSON",
+          "ERP",
+          "eCommerce",
+          "DAM",
+          "CRM"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "HTTP",
+            "REST",
+            "JSON"
+          ],
+          "no_match": [
+            "STEP_PIM",
+            "STEP_Workbench",
+            "STEP_UI",
+            "STEP_Business_Rules",
+            "STEPXML",
+            "STEP_SDK",
+            "JavaScript",
+            "XSLT",
+            "ERP",
+            "eCommerce",
+            "DAM"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "e-commerce",
+        "secondary": "product_information_management",
+        "specific": "B2B_omnichannel_commerce"
+      },
+      "formal_requirements": {
+        "years_experience_min": 2,
+        "education": "Degree_Business_Informatics_IT",
+        "languages": [
+          "English_business_fluent"
+        ],
+        "other": [
+          "STEP_hands_on_experience"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 15,
+        "conversion_probability": "<0.10",
+        "estimated_value_monthly_czk": 80000,
+        "estimated_prep_cost_hours": 8,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "domain",
+          "education"
+        ]
+      }
+    },
+    {
+      "id": "005",
+      "date": "2026-06-20",
+      "company": {
+        "type": "global_consulting_corporation",
+        "size_range": "800000_plus",
+        "industry": "IT_consulting"
+      },
+      "title": "ServiceNow Developer",
+      "role": {
+        "category": "enterprise_consulting",
+        "subcategory": "servicenow_developer",
+        "seniority": "junior_medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "remote"
+      },
+      "tech_stack": {
+        "itsm_platform": [
+          "ServiceNow"
+        ],
+        "web_frontend": [
+          "JavaScript",
+          "HTML",
+          "CSS"
+        ],
+        "frameworks": [
+          "AngularJS"
+        ],
+        "databases": [
+          "MySQL",
+          "Oracle"
+        ],
+        "other": [
+          "ITIL",
+          "Scrum",
+          "Kanban"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [],
+          "no_match": [
+            "ServiceNow",
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "AngularJS",
+            "MySQL",
+            "Oracle",
+            "ITIL"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "IT_service_management",
+        "secondary": "enterprise_consulting",
+        "specific": "ServiceNow_implementation"
+      },
+      "formal_requirements": {
+        "years_experience_min": 1,
+        "years_experience_preferred": 3,
+        "education": "University_degree_IT_or_equivalent",
+        "certifications": [
+          "ITIL_v3_plus"
+        ],
+        "languages": [
+          "English_working_proficiency"
+        ],
+        "other": [
+          "web_application_development",
+          "agile_software_development"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 15,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 80000,
+        "estimated_prep_cost_hours": 10,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "domain",
+          "education"
+        ]
+      }
+    },
+    {
+      "id": "006",
+      "date": "2026-06-20",
+      "company": {
+        "type": "logistics_provider",
+        "size_range": "large_global",
+        "industry": "logistics_supply_chain"
+      },
+      "title": "WMS Integration Solution Engineer",
+      "role": {
+        "category": "logistics_integration",
+        "subcategory": "wms_integration_engineer",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "EU_remote",
+        "remote_policy": "remote"
+      },
+      "tech_stack": {
+        "wms_platform": [
+          "Blue_Yonder_WMS"
+        ],
+        "integration": [
+          "EDI",
+          "API",
+          "WCS"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "API_integration_concept"
+          ],
+          "no_match": [
+            "Blue_Yonder_WMS",
+            "EDI",
+            "WCS",
+            "warehouse_automation"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "logistics_supply_chain",
+        "secondary": "warehouse_management",
+        "specific": "contract_logistics_integration"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "languages": [
+          "English_fluent"
+        ],
+        "other": [
+          "Blue_Yonder_WMS_experience",
+          "customer_facing",
+          "contract_logistics"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 25,
+        "conversion_probability": "<0.10",
+        "estimated_value_monthly_czk": 90000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack_platform",
+          "domain"
+        ]
+      }
+    },
+    {
+      "id": "007",
+      "date": "2026-06-20",
+      "company": {
+        "type": "global_industrial_corporation_R&D",
+        "size_range": "300000_plus",
+        "industry": "industrial_automation_manufacturing"
+      },
+      "title": "Test Engineer for Distributed IO Systems",
+      "role": {
+        "category": "industrial_automation",
+        "subcategory": "test_engineer_io_systems",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "office"
+      },
+      "tech_stack": {
+        "plc_automation": [
+          "PLC",
+          "TIA_Portal"
+        ],
+        "programming": [
+          "Python",
+          "C_sharp"
+        ],
+        "ci_cd": [
+          "CI_CD_pipelines"
+        ],
+        "test_automation": [
+          "automated_test_libraries",
+          "regression_testing",
+          "integration_testing"
+        ],
+        "measurement": [
+          "electrical_measurement_equipment"
+        ],
+        "ai_tools": [
+          "AI_in_engineering_workflows"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI_CD",
+            "test_automation",
+            "regression_testing",
+            "golden_master_testing",
+            "determinism_testing",
+            "AI_LLM_workflows"
+          ],
+          "partial_match": [
+            "manufacturing_domain_knowledge",
+            "CNC_background",
+            "root_cause_analysis"
+          ],
+          "no_match": [
+            "TIA_Portal",
+            "PLC_programming",
+            "C_sharp",
+            "electrical_measurement_equipment",
+            "ET_200_IO"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "industrial_automation",
+        "secondary": "industry_4_0_R_D",
+        "specific": "distributed_IO_systems_testing"
+      },
+      "formal_requirements": {
+        "education": "Bachelor_Master_EE_or_comparable",
+        "education_flexible": true,
+        "certifications": [
+          "electrical_qualification_level_6_plus"
+        ],
+        "languages": [
+          "English_efficient"
+        ],
+        "other": [
+          "PLC_programming_experience",
+          "Python_or_C#",
+          "systematic_quality_mindset"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 75,
+        "conversion_probability": "0.50_0.60",
+        "estimated_value_monthly_czk": 110000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": []
+      }
+    },
+    {
+      "id": "008",
+      "date": "2026-06-20",
+      "company": {
+        "type": "IT_subsidiary_of_shipping_group",
+        "size_range": "4500_group",
+        "industry": "shipping_logistics_IT"
+      },
+      "title": "Integration Engineer",
+      "role": {
+        "category": "data_platform_integration",
+        "subcategory": "integration_engineer_data_platform",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "cloud_azure": [
+          "Azure_Service_Bus",
+          "Microsoft_Fabric",
+          "Databricks"
+        ],
+        "streaming": [
+          "Kafka"
+        ],
+        "event_driven": [
+          "event_driven_architecture"
+        ],
+        "iaac": [
+          "Terraform"
+        ],
+        "ci_cd": [
+          "CI_CD_pipelines",
+          "deployment_automation"
+        ],
+        "other": [
+          "API_development",
+          "distributed_systems"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "CI_CD",
+            "API_development"
+          ],
+          "partial_match": [
+            "event_driven_architecture_concept",
+            "distributed_systems"
+          ],
+          "no_match": [
+            "Azure_Service_Bus",
+            "Microsoft_Fabric",
+            "Databricks",
+            "Kafka",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "shipping_logistics_data_platform",
+        "secondary": "enterprise_integration",
+        "specific": "unified_data_platform_shipping"
+      },
+      "formal_requirements": {
+        "languages": [
+          "English_fluent",
+          "Danish_advantage"
+        ],
+        "other": [
+          "modern_integration_practices",
+          "event_driven_architectures",
+          "cloud_based_data_platforms"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 25,
+        "conversion_probability": "<0.15",
+        "estimated_value_monthly_czk": 95000,
+        "estimated_prep_cost_hours": 5,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "domain"
+        ]
+      }
+    },
+    {
+      "id": "009",
+      "date": "2026-06-20",
+      "company": {
+        "type": "recruitment_agency",
+        "size_range": "unknown",
+        "industry": "warehouse_automation_recruitment"
+      },
+      "title": "Software Commissioning Engineer (WMS/WCS)",
+      "role": {
+        "category": "warehouse_automation",
+        "subcategory": "software_commissioning_engineer",
+        "seniority": "mid_senior_management",
+        "employment_type": "B2B_contract",
+        "location": "Cheb",
+        "remote_policy": "onsite",
+        "contract_duration_months": "6_12"
+      },
+      "tech_stack": {
+        "wms_wcs_wes": [
+          "WMS",
+          "WCS",
+          "WES"
+        ],
+        "warehouse_platforms": [
+          "AutoStore",
+          "Dematic",
+          "Swisslog",
+          "KNAPP",
+          "Accevo",
+          "Accellos",
+          "ANT"
+        ],
+        "enterprise": [
+          "SAP"
+        ],
+        "industrial": [
+          "PLC"
+        ],
+        "it_tools": [
+          "Jira",
+          "Datadog",
+          "OpenShift"
+        ],
+        "integration": [
+          "REST_API"
+        ],
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "PLC_adjacent",
+            "REST_API",
+            "manufacturing_process_knowledge",
+            "hands_on_testing"
+          ],
+          "no_match": [
+            "AutoStore",
+            "Dematic",
+            "Swisslog",
+            "KNAPP",
+            "WMS",
+            "WCS",
+            "WES",
+            "SAP",
+            "Datadog",
+            "OpenShift"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "warehouse_automation",
+        "secondary": "material_handling",
+        "specific": "WMS_WCS_commissioning"
+      },
+      "formal_requirements": {
+        "education": "Bachelor_Engineering_IT_Automation_or_related",
+        "languages": [
+          "English_good"
+        ],
+        "other": [
+          "warehouse_automation_exposure",
+          "commissioning_experience",
+          "EU_citizen_or_CZ_work_permit",
+          "B2B_OSVC_authorization"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 35,
+        "conversion_probability": "<0.10",
+        "estimated_value_monthly_czk": 150000,
+        "estimated_prep_cost_hours": 2,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "location",
+          "specific_platform_experience"
+        ]
+      }
+    },
+    {
+      "id": "010",
+      "date": "2026-06-20",
+      "company": {
+        "type": "big_tech_hyperscaler",
+        "size_range": "180000_plus",
+        "industry": "cloud_infrastructure_AI_hardware",
+        "tc_range_czk": "1580000_1620000_base_plus_15pct_bonus_plus_equity"
+      },
+      "title": "Senior Manufacturing Engineer",
+      "role": {
+        "category": "manufacturing_engineering",
+        "subcategory": "senior_manufacturing_engineer_hardware",
+        "seniority": "senior_8_plus",
+        "employment_type": "HPP",
+        "location": "Praha_CZ_remote",
+        "remote_policy": "hybrid_remote"
+      },
+      "tech_stack": {
+        "manufacturing_processes": [
+          "SMT",
+          "final_assembly",
+          "rack_integration",
+          "PCBA"
+        ],
+        "quality_systems": [
+          "SPC",
+          "CP",
+          "CPK",
+          "statistical_analysis"
+        ],
+        "cad_tools": [
+          "Valor",
+          "AutoCAD",
+          "Cadence_Allegro",
+          "Gerber_tools"
+        ],
+        "inspection_testing": [
+          "manufacturing_inspection",
+          "testing_procedures"
+        ],
+        "smart_factory": [
+          "AI",
+          "predictive_maintenance",
+          "unified_data_platforms"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "manufacturing_process_knowledge",
+            "AI_workflows",
+            "data_platforms"
+          ],
+          "partial_match": [
+            "quality_control_experience",
+            "process_optimization",
+            "manufacturing_domain"
+          ],
+          "no_match": [
+            "SMT",
+            "SPC",
+            "CPK",
+            "Valor",
+            "AutoCAD",
+            "Cadence_Allegro",
+            "Gerber",
+            "PCBA",
+            "rack_integration"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "hardware_manufacturing",
+        "secondary": "cloud_infrastructure_manufacturing",
+        "specific": "SMT_PCBA_system_assembly_hyperscale"
+      },
+      "formal_requirements": {
+        "years_experience_min": 8,
+        "education": "Bachelor_Mechanical_Industrial_Electrical_Manufacturing_Engineering_or_equivalent",
+        "education_flexible": true,
+        "languages": [
+          "English_fluent"
+        ],
+        "other": [
+          "SMT_and_final_assembly_experience",
+          "SPC_CPK_monitoring",
+          "CAD_tools"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 50,
+        "conversion_probability": "0.15_0.25",
+        "estimated_value_monthly_czk": 170000,
+        "estimated_prep_cost_hours": 4,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": [],
+        "note": "Low probability but asymmetric upside — Google TC 2M+ CZK/year"
+      }
+    },
+    {
+      "id": "011",
+      "date": "2026-06-20",
+      "company": {
+        "type": "IT_consulting",
+        "size_range": "6000_plus",
+        "industry": "IT_services"
+      },
+      "title": "Test Automation Engineer",
+      "role": {
+        "category": "it_consulting_testing",
+        "subcategory": "test_automation_engineer",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha_8",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "test_frameworks": [
+          "Selenium",
+          "Cypress",
+          "Playwright",
+          "JMeter",
+          "SoapUI",
+          "Postman"
+        ],
+        "programming": [
+          "Java",
+          "Python",
+          "C++",
+          "C#",
+          "JavaScript"
+        ],
+        "devops_tools": [
+          "Git",
+          "Jenkins",
+          "Azure"
+        ],
+        "monitoring": [
+          "Grafana",
+          "ReportPortal",
+          "Kibana"
+        ],
+        "project_tools": [
+          "JIRA",
+          "Confluence"
+        ],
+        "databases": [
+          "SQL"
+        ],
+        "patterns": [
+          "Page_Object_Pattern"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git",
+            "testing_mindset",
+            "test_automation_concept"
+          ],
+          "partial_match": [
+            "SQL_basic",
+            "CI_CD_concept"
+          ],
+          "no_match": [
+            "Selenium",
+            "Cypress",
+            "Playwright",
+            "JMeter",
+            "Java",
+            "C++",
+            "C#",
+            "JavaScript",
+            "Page_Object_Pattern",
+            "Grafana",
+            "JIRA"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "IT_consulting",
+        "secondary": "enterprise_software_testing",
+        "specific": "test_automation_services"
+      },
+      "formal_requirements": {
+        "languages": [
+          "Czech_Slovak",
+          "English_communicative"
+        ],
+        "other": [
+          "test_automation_experience",
+          "programming_language",
+          "SQL",
+          "test_analysis"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 30,
+        "conversion_probability": "<0.20",
+        "estimated_value_monthly_czk": 85000,
+        "estimated_prep_cost_hours": 4,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "test_frameworks"
+        ]
+      }
+    },
+    {
+      "id": "012",
+      "date": "2026-06-20",
+      "company": {
+        "type": "automotive_engineering_services",
+        "size_range": "medium",
+        "industry": "automotive"
+      },
+      "title": "Automotive CI/CD Engineer (DevOps)",
+      "role": {
+        "category": "automotive_embedded",
+        "subcategory": "autosar_integration_engineer",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid",
+        "applicants": 12
+      },
+      "tech_stack": {
+        "programming": [
+          "C++"
+        ],
+        "automotive_standards": [
+          "AUTOSAR_Adaptive",
+          "AUTOSAR_Classic",
+          "arxml",
+          "ASPICE",
+          "IEEE_12207"
+        ],
+        "ci_cd": [
+          "Github_CI_CD",
+          "Github_Actions"
+        ],
+        "build_tools": [
+          "Bazel",
+          "Conan",
+          "CMake"
+        ],
+        "scripting_nice": [
+          "Python",
+          "Bash"
+        ],
+        "project_tools": [
+          "JIRA",
+          "Confluence"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "CI_CD_concept",
+            "integration_methodology"
+          ],
+          "partial_match": [
+            "Python_nice_to_have"
+          ],
+          "no_match": [
+            "C++",
+            "AUTOSAR_Adaptive",
+            "AUTOSAR_Classic",
+            "Bazel",
+            "Conan",
+            "Github_Actions",
+            "arxml",
+            "ASPICE"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "automotive_embedded",
+        "secondary": "AUTOSAR_software_integration",
+        "specific": "AUTOSAR_Adaptive_CI_CD"
+      },
+      "formal_requirements": {
+        "education": "degree_embedded_or_equivalent",
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "C++",
+          "Github_CI_CD",
+          "embedded_systems",
+          "AUTOSAR",
+          "ASPICE",
+          "software_integration",
+          "Czech_based"
+        ]
+      },
+      "benefits": [
+        "Skoda_car_leasing",
+        "5_weeks_holiday",
+        "cafeteria",
+        "multisport_card",
+        "pension_insurance_900_CZK_month",
+        "sick_days",
+        "language_courses"
+      ],
+      "eroi": {
+        "fit_score_pct": 25,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 100000,
+        "estimated_prep_cost_hours": 8,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack",
+          "C++_must_have",
+          "AUTOSAR",
+          "ASPICE"
+        ]
+      }
+    },
+    {
+      "id": "013",
+      "date": "2026-06-20",
+      "company": {
+        "type": "insurance_corporation",
+        "size_range": "large",
+        "industry": "insurance_financial_services"
+      },
+      "title": "Junior Site Reliability Engineer",
+      "role": {
+        "category": "site_reliability_engineering",
+        "subcategory": "junior_sre",
+        "seniority": "junior_0_2_years",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "cloud": [
+          "AWS",
+          "Azure"
+        ],
+        "observability": [
+          "Grafana",
+          "Prometheus",
+          "Datadog"
+        ],
+        "scripting": [
+          "Python",
+          "Bash"
+        ],
+        "os": [
+          "Linux"
+        ],
+        "version_control": [
+          "Git"
+        ],
+        "nice_have": [
+          "Kubernetes",
+          "CI_CD",
+          "Terraform"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Bash",
+            "Git",
+            "Linux"
+          ],
+          "partial_match": [
+            "GCP_conceptually_similar_to_AWS_Azure"
+          ],
+          "no_match": [
+            "Grafana",
+            "Prometheus",
+            "Datadog",
+            "AWS",
+            "Azure",
+            "Kubernetes_hands_on",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "insurance_financial_services",
+        "secondary": "IT_operations",
+        "specific": "SRE_insurance"
+      },
+      "formal_requirements": {
+        "years_experience_min": 0,
+        "years_experience_preferred": 2,
+        "education": "University_degree_IT_Engineering_or_related",
+        "languages": [
+          "English_C1"
+        ],
+        "other": [
+          "Linux",
+          "Git",
+          "cloud_platform",
+          "scripting"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 25,
+        "conversion_probability": "<0.10",
+        "estimated_value_monthly_czk": 65000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "junior_seniority",
+          "domain",
+          "education",
+          "high_competition_73_applicants"
+        ]
+      }
+    },
+    {
+      "id": "014",
+      "date": "2026-06-20",
+      "company": {
+        "type": "global_scientific_instruments_leader",
+        "size_range": "125000_plus",
+        "industry": "scientific_instruments_life_sciences"
+      },
+      "title": "System Integration Engineer",
+      "role": {
+        "category": "scientific_instruments",
+        "subcategory": "system_integration_engineer",
+        "seniority": "medior_senior",
+        "employment_type": "HPP",
+        "location": "Brno",
+        "remote_policy": "hybrid"
+      },
+      "tech_stack": {
+        "container_orchestration": [
+          "Kubernetes"
+        ],
+        "virtualization": [
+          "KVM",
+          "virtualization"
+        ],
+        "scripting": [
+          "scripting"
+        ],
+        "deployment_automation": [
+          "deployment_automation"
+        ],
+        "networking": [
+          "networking"
+        ],
+        "config_management": [
+          "configuration_management"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "system_integration_methodology",
+            "structured_troubleshooting",
+            "scripting_Python",
+            "deployment_automation_concept"
+          ],
+          "partial_match": [
+            "Docker_to_K8s_concept",
+            "GCP_Cloud_Run_adjacent"
+          ],
+          "no_match": [
+            "Kubernetes_hands_on",
+            "KVM",
+            "microscopy_domain"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "scientific_instruments",
+        "secondary": "electron_microscopy",
+        "specific": "software_deployment_platform_for_microscopes"
+      },
+      "formal_requirements": {
+        "education": "Degree_CS_SE_or_equivalent_practical_experience",
+        "education_flexible": true,
+        "languages": [
+          "English_strong"
+        ],
+        "other": [
+          "system_integration_experience",
+          "complex_HW_SW_environments",
+          "K8s_virtualization"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 62,
+        "conversion_probability": "0.45_0.55",
+        "estimated_value_monthly_czk": 110000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": [],
+        "note": "Strong positioning match — 'System Integration Engineer' je přesně autorův job title. Nízká konkurence (11 applicants). 'Equivalent practical experience' clause je prostor."
+      }
+    },
+    {
+      "id": "015",
+      "date": "2026-07-05",
+      "company": {
+        "type": "defense_sector_subsidiary",
+        "size_range": "medium_large",
+        "industry": "defense_logistics"
+      },
+      "title": "Logistics & System Architect / Integrator",
+      "role": {
+        "category": "logistics_system_architecture",
+        "subcategory": "logistics_system_architect_integrator",
+        "seniority": "senior",
+        "employment_type": "HPP_interim_flexible",
+        "location": "Praha",
+        "remote_policy": "hybrid",
+        "applicants": 7
+      },
+      "tech_stack": {
+        "integration": [
+          "API",
+          "middleware",
+          "microservices",
+          "event_driven_architecture"
+        ],
+        "logistics_specific": [
+          "traceability_systems",
+          "dashboard_design",
+          "planning_tools"
+        ],
+        "methodology": [
+          "system_architecture",
+          "technical_specification",
+          "vendor_selection"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "system_integration_methodology",
+            "API_integration",
+            "middleware_concept",
+            "pragmatic_engineering_approach"
+          ],
+          "partial_match": [
+            "manufacturing_supply_chain_knowledge",
+            "event_driven_architecture_concept"
+          ],
+          "no_match": [
+            "logistics_WMS_specific",
+            "distribution_6_years",
+            "e_commerce_logistics"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "distribution_logistics",
+        "secondary": "e_commerce_supply_chain",
+        "specific": "logistics_system_integration_across_companies"
+      },
+      "formal_requirements": {
+        "years_experience_min": 6,
+        "years_experience_domain": "distribution_logistics",
+        "education": "Master_Degree",
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "system_architecture_experience",
+          "integration_methodology"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 58,
+        "conversion_probability": "0.30_0.40",
+        "estimated_value_monthly_czk": 120000,
+        "estimated_prep_cost_hours": 3,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": false,
+        "mismatch_dimensions": [],
+        "note": "Strongest new batch lead. Positioning match 85 % — text inzerátu je šitý na míru autorovi. Domain gap (logistics vs manufacturing) drží fit dole. Interim/part-time možnost + 7 applicants = nízké riziko."
+      }
+    },
+    {
+      "id": "016",
+      "date": "2026-07-05",
+      "company": {
+        "type": "startup",
+        "size_range": "small",
+        "industry": "AI_ML_research"
+      },
+      "title": "AI/ML/LLM Research Engineer",
+      "role": {
+        "category": "AI_ML_research",
+        "subcategory": "research_engineer_synthetic_data",
+        "seniority": "senior",
+        "employment_type": "HPP",
+        "location": "Praha_CZ_remote",
+        "remote_policy": "remote",
+        "applicants": 100
+      },
+      "tech_stack": {
+        "ml_frameworks": [
+          "classical_ML",
+          "statistical_modeling",
+          "LoRA",
+          "distillation"
+        ],
+        "llm": [
+          "LLM_fine_tuning",
+          "open_weights_models"
+        ],
+        "programming": [
+          "Python"
+        ],
+        "experiment_design": [
+          "experiment_design",
+          "evaluation_pipelines"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "LLM_orchestration_concept"
+          ],
+          "partial_match": [],
+          "no_match": [
+            "classical_ML",
+            "statistical_modeling",
+            "LoRA_fine_tuning",
+            "distillation",
+            "evaluation_pipelines",
+            "model_architecture"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "AI_ML_research",
+        "secondary": "synthetic_data_survey",
+        "specific": "survey_augmentation_audience_profiling"
+      },
+      "formal_requirements": {
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "classical_ML",
+          "statistical_foundations",
+          "LLM_fine_tuning",
+          "production_instincts",
+          "academic_or_research_background"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 24,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 130000,
+        "estimated_prep_cost_hours": 10,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "classical_ML_foundations",
+          "fine_tuning_skills"
+        ]
+      }
+    },
+    {
+      "id": "017",
+      "date": "2026-07-05",
+      "company": {
+        "type": "manufacturing_design",
+        "size_range": "medium",
+        "industry": "glass_manufacturing_lighting_design"
+      },
+      "title": "Lighting R&D Engineer",
+      "role": {
+        "category": "product_R&D_manufacturing",
+        "subcategory": "lighting_rd_engineer",
+        "seniority": "senior",
+        "employment_type": "HPP",
+        "location": "Svetla_nad_Sazavou",
+        "remote_policy": "office",
+        "applicants": 5
+      },
+      "tech_stack": {
+        "cad": [
+          "Fusion_360",
+          "parametric_3D_CAD"
+        ],
+        "materials": [
+          "glass",
+          "metal",
+          "plastic"
+        ],
+        "electrical": [
+          "LED_integration",
+          "electrical_components"
+        ],
+        "documentation": [
+          "technical_documentation",
+          "3D_models",
+          "assembly_drawings",
+          "production_drawings"
+        ],
+        "certification": [
+          "technical_norms",
+          "product_certification"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "manufacturing_process_knowledge",
+            "prototyping_mindset",
+            "technical_documentation"
+          ],
+          "partial_match": [
+            "materials_knowledge_CNC_adjacent",
+            "R&D_methodology"
+          ],
+          "no_match": [
+            "Fusion_360",
+            "parametric_3D_CAD",
+            "glass_processing",
+            "LED_integration",
+            "lighting_design"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "glass_manufacturing_lighting",
+        "secondary": "product_design_R&D",
+        "specific": "design_lighting_R&D_glass_metal"
+      },
+      "formal_requirements": {
+        "years_experience_min": 5,
+        "education": null,
+        "languages": [
+          "English_communicative"
+        ],
+        "other": [
+          "5_years_design",
+          "5_years_Fusion_360",
+          "4_years_3D_CAD",
+          "5_years_architectural_lighting"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 30,
+        "conversion_probability": "<0.05",
+        "estimated_value_monthly_czk": 75000,
+        "estimated_prep_cost_hours": 8,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech_stack_3D_CAD",
+          "location",
+          "specific_domain_experience"
+        ]
+      }
+    },
+    {
+      "id": "018",
+      "date": "2026-07-05",
+      "company": {
+        "type": "global_IT_distributor_Fortune_500",
+        "size_range": "22000_plus",
+        "industry": "IT_distribution"
+      },
+      "title": "AI Integrator / AI Engineer",
+      "role": {
+        "category": "enterprise_AI_engineering",
+        "subcategory": "AI_integrator_center_of_excellence",
+        "seniority": "medior",
+        "employment_type": "HPP",
+        "location": "Praha",
+        "remote_policy": "hybrid_3_2",
+        "applicants": 18
+      },
+      "tech_stack": {
+        "ml_frameworks": [
+          "TensorFlow",
+          "PyTorch",
+          "HuggingFace"
+        ],
+        "programming": [
+          "Python"
+        ],
+        "enterprise_integration": [
+          "ERP",
+          "CRM",
+          "e_commerce",
+          "API"
+        ],
+        "cloud": [
+          "Azure_preferred",
+          "AWS",
+          "GCP"
+        ],
+        "data_pipelines": [
+          "data_pipelines",
+          "orchestration"
+        ],
+        "mlops": [
+          "MLOps",
+          "AI_lifecycle_management",
+          "AI_governance"
+        ],
+        "low_code": [
+          "Power_Platform",
+          "RPA"
+        ],
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "API_integration",
+            "data_pipelines_concept",
+            "LLM_experience"
+          ],
+          "partial_match": [
+            "GCP_experience",
+            "CI_CD_concept"
+          ],
+          "no_match": [
+            "TensorFlow",
+            "PyTorch",
+            "Azure",
+            "MLOps",
+            "Power_Platform",
+            "RPA"
+          ]
+        }
+      },
+      "domain": {
+        "primary": "enterprise_IT_distribution",
+        "secondary": "AI_center_of_excellence",
+        "specific": "enterprise_AI_integration_IT_distributor"
+      },
+      "formal_requirements": {
+        "years_experience_min": 3,
+        "education": null,
+        "education_flexible": true,
+        "languages": [
+          "English"
+        ],
+        "other": [
+          "AI_ML_engineering",
+          "Python",
+          "enterprise_integration",
+          "cloud_platform"
+        ]
+      },
+      "eroi": {
+        "fit_score_pct": 37,
+        "conversion_probability": "0.15_0.20",
+        "estimated_value_monthly_czk": 130000,
+        "estimated_prep_cost_hours": 5,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "ML_frameworks",
+          "Azure_preferred"
+        ]
+      }
+    },
+    {
+      "id": "19",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git",
+            "middleware"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "20",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI / ML / LLM Research Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 53.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "21",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automotive CI/CD Engineer (DevOps)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "22",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Lighting R&D Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "23",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Integrator / AI Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 67.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "24",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 53.5,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "25",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "PLC Software Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 56.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "26",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automation Systems Engineer IoT",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CAM",
+            "IoT",
+            "ESP32"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "AWS",
+            "C#"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "27",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Prototypový technik",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC",
+            "CAM"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "28",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "System Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "IoT",
+            "deployment automation",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI",
+            "virtualization"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "KVM"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 81.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "29",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "CEE Pricing Data Domain Lead",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 54.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "30",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Procurement Expert for Digitalization and Process Automation (m/f)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 48.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "31",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "Docker",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 58.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "32",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Artificial Intelligence Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Docker",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "Azure",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "33",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Senior Quant Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 57.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "34",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Senior Data Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "ETL",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 65.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "35",
+      "date": "2026-07-05",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Integrations Engineer (Open Source ·  Web Search)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "TypeScript"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.2,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "36",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 56.5,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "37",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CNC",
+            "CAM",
+            "test automation",
+            "IoT",
+            "CI/CD",
+            "Git",
+            "Linux",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "PLC",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "38",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Operátor/ka CNC soustruhů",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 41.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "39",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CNC",
+            "CAM",
+            "IoT",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 63.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "40",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Light Automation Specialist",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 67.3,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech"
+        ]
+      }
+    },
+    {
+      "id": "41",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Trainee/Project Support",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 57.3,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "42",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Machine Learning & AI Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CAM",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 66.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "43",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "IAM Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "REST API",
+            "Linux",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 62.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "44",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC",
+            "CAM",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 72.5,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "45",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Solutions Architect - AI & Data Integration (f/m/d)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "AI",
+            "machine learning"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "46",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git",
+            "middleware"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 49.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "47",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI / ML / LLM Research Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 53.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "48",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automotive CI/CD Engineer (DevOps)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "49",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Lighting R&D Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "50",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Integrator / AI Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "data pipeline",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 69.2,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "51",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 57.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "52",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "PLC Software Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 56.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "53",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Automation Systems Engineer IoT",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CAM",
+            "IoT",
+            "ESP32"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "AWS",
+            "C#"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 51.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "54",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "Prototypový technik",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CNC"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 59.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "55",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "System Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "IoT",
+            "deployment automation",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI",
+            "virtualization"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "KVM"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 81.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "location"
+        ]
+      }
+    }
+  ],
+  "aggregate_insights": {
+    "total_offers_analyzed": 18,
+    "total_critical_mismatch": 13,
+    "total_follow": 5,
+    "common_mismatch_dimensions": [
+      "tech_stack",
+      "domain"
+    ],
+    "common_hiring_signals": [
+      "specific_platform_expertise",
+      "English_B2_C1",
+      "university_degree_IT_or_engineering"
+    ],
+    "tech_stack_frequency": {
+      "Python": 5,
+      "PLC": 3,
+      "C++": 2,
+      "AUTOSAR": 2,
+      "API": 2,
+      "CI_CD": 2,
+      "REST_API": 2,
+      "SQL": 2,
+      "JavaScript": 2,
+      "TensorFlow_PyTorch": 1,
+      "HuggingFace": 1,
+      "Azure": 1,
+      "Kubernetes": 1,
+      "TIA_Portal": 1,
+      "Github_Actions": 1,
+      "Bazel": 1,
+      "Conan": 1,
+      "CMake": 1,
+      "ASPICE": 1,
+      "Fusion_360": 1,
+      "3D_CAD": 1,
+      "middleware": 1,
+      "microservices": 1,
+      "event_driven_architecture": 1,
+      "LLM_fine_tuning": 1,
+      "classical_ML": 1,
+      "statistical_modeling": 1,
+      "MLOps": 1,
+      "Power_Platform_RPA": 1,
+      "Snowflake": 1,
+      "Segment": 1,
+      "SAP_CPI": 1,
+      "Azure_Service_Bus": 1,
+      "Kafka": 1,
+      "Databricks": 1,
+      "Terraform": 1,
+      "Selenium_Cypress_Playwright": 1,
+      "AutoStore_Dematic_Swisslog": 1,
+      "ServiceNow": 1,
+      "Blue_Yonder_WMS": 1,
+      "STEP_PIM": 1,
+      "AI_engineering_workflows": 1,
+      "SMT_SPC_CPK": 1,
+      "Grafana_Prometheus": 1
+    },
+    "domain_frequency": {
+      "industrial_automation_manufacturing": 2,
+      "SaaS_data_platform": 1,
+      "enterprise_SAP_consulting": 1,
+      "e-commerce_PIM": 1,
+      "IT_service_management": 1,
+      "logistics_supply_chain": 1,
+      "shipping_logistics_data_platform": 1,
+      "warehouse_automation": 1,
+      "hardware_manufacturing_cloud": 1,
+      "IT_consulting_testing": 1,
+      "automotive_embedded": 1,
+      "insurance_financial_services": 1,
+      "scientific_instruments": 1,
+      "distribution_logistics": 1,
+      "AI_ML_research": 1,
+      "glass_manufacturing_lighting": 1,
+      "enterprise_IT_distribution": 1
+    },
+    "author_stack_crossover_rate": 0.28,
+    "matched_technologies": [
+      "Python",
+      "CI_CD",
+      "API_integration",
+      "system_integration_methodology",
+      "LLM_orchestration",
+      "manufacturing_process_knowledge"
+    ],
+    "crossover_domains": [
+      "industrial_automation_manufacturing",
+      "hardware_manufacturing_cloud_partial",
+      "scientific_instruments",
+      "distribution_logistics_partial"
+    ],
+    "calibration_signals": {
+      "linkedin_algorithm_bias": "LinkedIn posílá ~72 % nabídek mimo autorovu doménu. Z 18 nabídek pouze 5 mají přímý nebo adjacent crossover.",
+      "false_negative_skill_match": "LinkedIn skill match skóre je nespolehlivé. 0/10 u #015 (MSM GROUP) = false negative (positioning match 85 %). 0/7 u #003 (Desoutter) = false negative. 0/10 u #009 (Digi) = realistic.",
+      "new_pattern_positioning_match": "MSM GROUP #015 — nejnižší doménový match z follow leadů (40 %) ale nejvyšší role/competence match (85 %). Text inzerátu je prakticky šitý na míru autorovu positioning (pragmatik, system integrator, ne programmer). To zvyšuje fit přes doménový gap.",
+      "recommended_keywords_for_profile": [
+        "industrial_automation",
+        "PLC_testing",
+        "Python_test_automation",
+        "regression_testing",
+        "golden_master_testing",
+        "Industry_4_0",
+        "CI_CD_industrial",
+        "AI_augmented_engineering",
+        "manufacturing_IT",
+        "test_engineering",
+        "smart_factory",
+        "manufacturing_engineer",
+        "hardware_manufacturing",
+        "process_optimization_AI",
+        "SMT_manufacturing",
+        "PCBA_testing",
+        "system_integration_engineer",
+        "scientific_instrumentation",
+        "Kubernetes_integration",
+        "logistics_system_integration",
+        "supply_chain_integration"
+      ],
+      "note": "Po 18 nabídkách: LinkedIn posílá ~72 % irelevantních matchů. 5 follow z 18 = 28 %. Nový pattern: 'positioning match zachraňuje domain gap' — #015 MSM GROUP. Nové domény: distribution_logistics (první crossover mimo čistý manufacturing), AI_ML_research (potvrzený noise), glass_manufacturing (adjacent but skill gap). Enterprise IT + AI research tvoří 56 % všech nabídek a je konzistentní mismatch."
+    }
+  }
+}

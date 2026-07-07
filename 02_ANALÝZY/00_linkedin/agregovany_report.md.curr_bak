@@ -1,0 +1,665 @@
+# Agregovaný report — LinkedIn nabídky
+
+**Autor profilu:** Ondřej Soušek — Systems Integrator
+**Počet sledovaných leadů:** 20
+**Poslední aktualizace:** 2026-07-07
+
+---
+
+## 🟢 ZÁZNAM #001 — Light Automation Specialist @ industrial_tools_automation
+**Datum:** 2026-06-20
+**EROI verdict:** SLEDOVAT (65% fit)
+
+### Analýza pozice
+- **Role:** Light Automation Specialist
+- **Firma:** industrial_tools_automation
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **65%** | **SLEDOVAT** |
+
+### Skill match
+- **2D_drawings**: direct_match
+- **3D_drawings**: direct_match
+- **manufacturing_process_knowledge**: direct_match
+- **CNC_background**: direct_match
+- **industrial_protocols_conceptually**: partial_match
+- **machine_safety_understanding**: partial_match
+- **EtherCAT**: no_match
+- **PROFINET**: no_match
+- **Modbus_TCP**: no_match
+- **Ethernet_IP**: no_match
+- **OPC_UA**: no_match
+- **PLC_programming**: no_match
+- **robot_programming**: no_match
+
+
+---
+
+## 🔴 ZÁZNAM #002 — Automotive CI/CD Engineer (DevOps) @ automotive
+**Datum:** 2026-06-20
+**EROI verdict:** NESLEDOVAT (25% fit)
+
+### Analýza pozice
+- **Role:** Automotive CI/CD Engineer (DevOps)
+- **Firma:** automotive
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **25%** | **NESLEDOVAT** |
+
+### Skill match
+- **CI_CD_concept**: direct_match
+- **integration_methodology**: direct_match
+- **Python_nice_to_have**: partial_match
+- **C++**: no_match
+- **AUTOSAR_Adaptive**: no_match
+- **AUTOSAR_Classic**: no_match
+- **Bazel**: no_match
+- **Conan**: no_match
+- **Github_Actions**: no_match
+- **arxml**: no_match
+- **ASPICE**: no_match
+
+**Kritické mismatch:** tech_stack, C++_must_have, AUTOSAR, ASPICE
+
+
+---
+
+## 🟢 ZÁZNAM #003 — System Integration Engineer @ scientific_instruments_life_sciences
+**Datum:** 2026-06-20
+**EROI verdict:** SLEDOVAT (62% fit)
+
+### Analýza pozice
+- **Role:** System Integration Engineer
+- **Firma:** scientific_instruments_life_sciences
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **62%** | **SLEDOVAT** |
+
+### Skill match
+- **system_integration_methodology**: direct_match
+- **structured_troubleshooting**: direct_match
+- **scripting_Python**: direct_match
+- **deployment_automation_concept**: direct_match
+- **Docker_to_K8s_concept**: partial_match
+- **GCP_Cloud_Run_adjacent**: partial_match
+- **Kubernetes_hands_on**: no_match
+- **KVM**: no_match
+- **microscopy_domain**: no_match
+
+
+---
+
+## 🟢 ZÁZNAM #004 — Logistics & System Architect / Integrator @ defense_logistics
+**Datum:** 2026-07-05
+**EROI verdict:** SLEDOVAT (58% fit)
+
+### Analýza pozice
+- **Role:** Logistics & System Architect / Integrator
+- **Firma:** defense_logistics
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **58%** | **SLEDOVAT** |
+
+### Skill match
+- **system_integration_methodology**: direct_match
+- **API_integration**: direct_match
+- **middleware_concept**: direct_match
+- **pragmatic_engineering_approach**: direct_match
+- **manufacturing_supply_chain_knowledge**: partial_match
+- **event_driven_architecture_concept**: partial_match
+- **logistics_WMS_specific**: no_match
+- **distribution_6_years**: no_match
+- **e_commerce_logistics**: no_match
+
+
+---
+
+## 🟡 ZÁZNAM #005 — AI / ML / LLM Research Engineer @ None
+**Datum:** 2026-07-05
+**EROI verdict:** MEDIUM (53.9% fit)
+
+### Analýza pozice
+- **Role:** AI / ML / LLM Research Engineer
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **53.9%** | **MEDIUM** |
+
+### Skill match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+
+---
+
+## 🔴 ZÁZNAM #006 — Lighting R&D Engineer @ glass_manufacturing_lighting_design
+**Datum:** 2026-07-05
+**EROI verdict:** NESLEDOVAT (30% fit)
+
+### Analýza pozice
+- **Role:** Lighting R&D Engineer
+- **Firma:** glass_manufacturing_lighting_design
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **30%** | **NESLEDOVAT** |
+
+### Skill match
+- **manufacturing_process_knowledge**: direct_match
+- **prototyping_mindset**: direct_match
+- **technical_documentation**: direct_match
+- **materials_knowledge_CNC_adjacent**: partial_match
+- **R&D_methodology**: partial_match
+- **Fusion_360**: no_match
+- **parametric_3D_CAD**: no_match
+- **glass_processing**: no_match
+- **LED_integration**: no_match
+- **lighting_design**: no_match
+
+**Kritické mismatch:** tech_stack_3D_CAD, location, specific_domain_experience
+
+
+---
+
+## 🔴 ZÁZNAM #007 — AI Integrator / AI Engineer @ IT_distribution
+**Datum:** 2026-07-05
+**EROI verdict:** NESLEDOVAT (37% fit)
+
+### Analýza pozice
+- **Role:** AI Integrator / AI Engineer
+- **Firma:** IT_distribution
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **37%** | **NESLEDOVAT** |
+
+### Skill match
+- **Python**: direct_match
+- **API_integration**: direct_match
+- **data_pipelines_concept**: direct_match
+- **LLM_experience**: direct_match
+- **GCP_experience**: partial_match
+- **CI_CD_concept**: partial_match
+- **TensorFlow**: no_match
+- **PyTorch**: no_match
+- **Azure**: no_match
+- **MLOps**: no_match
+- **Power_Platform**: no_match
+- **RPA**: no_match
+
+**Kritické mismatch:** domain, ML_frameworks, Azure_preferred
+
+
+---
+
+## 🟡 ZÁZNAM #008 — VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE @ None
+**Datum:** 2026-07-05
+**EROI verdict:** MEDIUM (53.5% fit)
+
+### Analýza pozice
+- **Role:** VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **53.5%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CI/CD**: direct_match
+- **Git**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Azure**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** domain, growth, formal
+
+
+---
+
+## 🟡 ZÁZNAM #009 — PLC Software Engineer @ None
+**Datum:** 2026-07-05
+**EROI verdict:** MEDIUM (56.4% fit)
+
+### Analýza pozice
+- **Role:** PLC Software Engineer
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **56.4%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+
+---
+
+## 🟡 ZÁZNAM #010 — Automation Systems Engineer IoT @ None
+**Datum:** 2026-07-05
+**EROI verdict:** MEDIUM (51.8% fit)
+
+### Analýza pozice
+- **Role:** Automation Systems Engineer IoT
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **51.8%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **ESP32**: direct_match
+- **AI**: partial_match
+- **AWS**: no_match
+- **C#**: no_match
+
+**Kritické mismatch:** growth, formal, location
+
+
+---
+
+## 🟡 ZÁZNAM #011 — Prototypový technik @ None
+**Datum:** 2026-07-05
+**EROI verdict:** MEDIUM (63.6% fit)
+
+### Analýza pozice
+- **Role:** Prototypový technik
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **63.6%** | **MEDIUM** |
+
+### Skill match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** growth, formal
+
+
+---
+
+## 🟡 ZÁZNAM #012 — TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (56.5% fit)
+
+### Analýza pozice
+- **Role:** TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **56.5%** | **MEDIUM** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+
+---
+
+## 🟡 ZÁZNAM #013 — Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (60.1% fit)
+
+### Analýza pozice
+- **Role:** Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **test automation**: direct_match
+- **IoT**: direct_match
+- **CI/CD**: direct_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **scripting**: direct_match
+- **AI**: partial_match
+- **Azure**: no_match
+- **PLC**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** formal, location
+
+
+---
+
+## 🟡 ZÁZNAM #014 — Operátor/ka CNC soustruhů @ None
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (41.8% fit)
+
+### Analýza pozice
+- **Role:** Operátor/ka CNC soustruhů
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **41.8%** | **HRANICNI** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth
+
+
+---
+
+## 🟡 ZÁZNAM #015 — Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n) @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (63.7% fit)
+
+### Analýza pozice
+- **Role:** Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **63.7%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **Git**: direct_match
+- **AI**: partial_match
+- **PLC**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** formal
+
+
+---
+
+## 🟡 ZÁZNAM #016 — Trainee/Project Support @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (57.3% fit)
+
+### Analýza pozice
+- **Role:** Trainee/Project Support
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **57.3%** | **MEDIUM** |
+
+### Skill match
+- **Git**: direct_match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, formal
+
+
+---
+
+## 🟢 ZÁZNAM #017 — Machine Learning & AI Developer @ None
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (66.4% fit)
+
+### Analýza pozice
+- **Role:** Machine Learning & AI Developer
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **66.4%** | **SLEDOVAT** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **data pipeline**: direct_match
+- **Git**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Azure**: no_match
+
+**Kritické mismatch:** growth, formal
+
+
+---
+
+## 🟡 ZÁZNAM #018 — IAM Integration Engineer @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (62.1% fit)
+
+### Analýza pozice
+- **Role:** IAM Integration Engineer
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **62.1%** | **MEDIUM** |
+
+### Skill match
+- **REST API**: direct_match
+- **Linux**: direct_match
+- **scripting**: direct_match
+- **AI**: partial_match
+- **AWS**: no_match
+
+**Kritické mismatch:** growth, formal
+
+
+---
+
+## 🟢 ZÁZNAM #019 — Systémový inženýr RAM/LCC - lokomotivy (m/ž/n) @ None
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (72.5% fit)
+
+### Analýza pozice
+- **Role:** Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **72.5%** | **SLEDOVAT** |
+
+### Skill match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **Git**: direct_match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** formal
+
+
+---
+
+## 🟡 ZÁZNAM #020 — Solutions Architect - AI & Data Integration (f/m/d) @ None
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (60.0% fit)
+
+### Analýza pozice
+- **Role:** Solutions Architect - AI & Data Integration (f/m/d)
+- **Firma:** None
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | N/A | N/A | — |
+| tech | 25% | N/A | N/A | — |
+| role | 20% | N/A | N/A | — |
+| growth | 10% | N/A | N/A | — |
+| formal | 5% | N/A | N/A | — |
+| location | 5% | N/A | N/A | — |
+| **Celkem** | **100%** | | **60.0%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **data pipeline**: direct_match
+- **Git**: direct_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+
+**Kritické mismatch:** growth, location
+
+
+---
+
+## Souhrnná statistika
+
+- 🟢 SLEDOVAT: 5
+- 🟡 MEDIUM: 11
+- 🟡 HRANIČNÍ: 1
+- 🔴 NESLEDOVAT: 3
