@@ -1759,6 +1759,36 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #49 — Lighting R&D Engineer @ Bomma
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (45.6% fit)
+
+### Analýza pozice
+- **Role:** Lighting R&D Engineer
+- **Firma:** Bomma
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Adjacent industrial domain (3 keywords) |
+| tech | 25% | 11.6% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **45.6%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 1 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1840,3 +1870,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 46 | MSM GROUP | LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR | 49.9% | Nízká | 🟡 HRANICNI |
 | 47 | Sourcein | AI / ML / LLM Research Engineer | 53.9% | Střední | 🟡 MEDIUM |
 | 48 | Digiteq Automotive | Automotive CI/CD Engineer (DevOps) | 60.0% | Střední | 🟡 MEDIUM |
+| 49 | Bomma | Lighting R&D Engineer | 45.6% | Nízká | 🟡 HRANICNI |
