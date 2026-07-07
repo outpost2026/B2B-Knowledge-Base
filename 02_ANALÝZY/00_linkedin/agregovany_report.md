@@ -1861,6 +1861,37 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #52 — PLC Software Engineer @ Sécheron SA
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (56.4% fit)
+
+### Analýza pozice
+- **Role:** PLC Software Engineer
+- **Firma:** Sécheron SA
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 11.6% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (4x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **56.4%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1945,3 +1976,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 49 | Bomma | Lighting R&D Engineer | 45.6% | Nízká | 🟡 HRANICNI |
 | 50 | TD SYNNEX Czech Republic | AI Integrator / AI Engineer | 69.2% | Vysoká | 🟢 SLEDOVAT |
 | 51 | ČEZ | VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE | 57.0% | Střední | 🟡 MEDIUM |
+| 52 | Sécheron SA | PLC Software Engineer | 56.4% | Střední | 🟡 MEDIUM |
