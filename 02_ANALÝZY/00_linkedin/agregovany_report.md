@@ -512,6 +512,41 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #029 — Data Engineer @ OAKS Consulting s.r.o.
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (49.3% fit)
+
+### Analýza pozice
+- **Role:** Data Engineer
+- **Firma:** OAKS Consulting s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 54.2% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **49.3%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **data pipeline**: direct_match
+- **ETL**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **AWS**: no_match
+
+**Kritické mismatch:** domain, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -573,3 +608,4 @@
 | 026 | EPAM Systems | Senior Data Integration Engineer | 62.9% | Střední | 🟡 MEDIUM |
 | 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
 | 028 | Balikobot.cz | SW Development Team Lead | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 029 | OAKS Consulting s.r.o. | Data Engineer | 49.3% | Nízká | 🟡 HRANICNI |
