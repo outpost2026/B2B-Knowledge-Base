@@ -1958,6 +1958,43 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟢 ZÁZNAM #55 — System Integration Engineer @ Thermo Fisher Scientific
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (81.6% fit)
+
+### Analýza pozice
+- **Role:** System Integration Engineer
+- **Firma:** Thermo Fisher Scientific
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (6 keywords) |
+| tech | 25% | 76.4% | 0.2% | 4 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (7 keywords) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Thermo Fisher |
+| formal | 5% | 40.0% | 0.0% | Degree required (3x) but flexibility found (2x) |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **81.6%** | **SLEDOVAT** |
+
+### Skill match
+- **CAM**: direct_match
+- **IoT**: direct_match
+- **AI**: partial_match
+- **Kubernetes**: no_match
+- **deployment automation**: direct_match
+- **KVM**: no_match
+- **virtualization**: partial_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** location
+
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -2045,3 +2082,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 52 | Sécheron SA | PLC Software Engineer | 56.4% | Střední | 🟡 MEDIUM |
 | 53 | Resideo | Automation Systems Engineer IoT | 51.8% | Střední | 🟡 MEDIUM |
 | 54 | Valeo | Prototypový technik | 59.0% | Střední | 🟡 MEDIUM |
+| 55 | Thermo Fisher Scientific | System Integration Engineer | 81.6% | Vysoká | 🟢 SLEDOVAT |

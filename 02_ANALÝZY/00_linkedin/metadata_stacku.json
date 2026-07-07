@@ -3737,6 +3737,65 @@
           "formal"
         ]
       }
+    },
+    {
+      "id": "55",
+      "date": "2026-07-07",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "System Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "CAM",
+            "IoT",
+            "deployment automation",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI",
+            "virtualization"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "KVM"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 81.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "location"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
