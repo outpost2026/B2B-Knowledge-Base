@@ -696,6 +696,39 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #034 — SW Architect @ RETIA, a.s.
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (43.9% fit)
+
+### Analýza pozice
+- **Role:** SW Architect
+- **Firma:** RETIA, a.s.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 25.4% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **43.9%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **C++**: no_match
+
+**Kritické mismatch:** tech, growth, location
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 4 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -762,3 +795,4 @@
 | 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
 | 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 54.1% | Střední | 🟡 MEDIUM |
 | 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
+| 034 | RETIA, a.s. | SW Architect | 43.9% | Nízká | 🟡 HRANICNI |
