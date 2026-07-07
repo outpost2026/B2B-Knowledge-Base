@@ -73,6 +73,8 @@
 | C07 | `06_full-CV_EN.md` | B2B/Claude_CV_artefacts/ | CV | Plné CV EN | 8/10 |
 | C08 | `07_design-implementation-guide.md` | B2B/Claude_CV_artefacts/ | guide | Implementační guide pro CV design | 7/10 |
 | C09 | `one_pager_CV_v1.0.md` | B2B/CV/ | CV | Starší verze one-pageru | 5/10 |
+| C10 | `Sousek_CV_portfolio_cs.md` | tento repo (01_METODIKY/02_CV_a_profil/) | CV | Plné CV CZ — aktualizace 07/2026: MCP/agentic, CI/CD, timeline granularita, bus-factor narativ | 10/10 |
+| C11 | `CV_Ondrej_Sousek_B2B_onepager_en.md` | tento repo (01_METODIKY/02_CV_a_profil/) | CV | One-pager EN — aktualizace 07/2026: MCP tools, test infrastructure, LinkedIn link | 9/10 |
 
 ### 03_aplikacni_proces — Jak aplikovat, cover letter templaty
 
@@ -104,6 +106,7 @@
 | PA02 | `outpost2026_github_analyza.docx` | B2B/ | analýza | GitHub profil analýza (pouze lokálně) | 5/10 |
 | PA03 | `reame.md_git_analyza.txt` | B2B/ | raw data | Surová data z GitHub scrapu | 4/10 |
 | PA04 | `R&D_evoluce_portfolia_03_2026-07_2026.md` | 02_ANALÝZY/01_portfolio_audit/ | report | Komplexní R&D evoluce — 5 fází, 12 rep, ~494 commitů (427 ř.) | 10/10 |
+| PA05 | `github_portfolio_analysis.md` | 02_ANALÝZY/01_portfolio_audit/ | audit | Hloubková analýza GitHub portfolia — kvantitativní, osobnostní profil, P relevance, tržní fit | 9/10 |
 
 ### 02_konkurence_a_trh
 
@@ -263,8 +266,11 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N11** | **`vcf_optimizer_analytic_engine.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **strategie** | **3. 7. 2026** | **10/10** |
 | **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **analýza** | **3. 7. 2026** | **10/10** |
 | **N13** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **`02_ANALÝZY/00_linkedin/`** | **architektura** | **5. 7. 2026** | **9/10** |
+| **N14** | **`github_portfolio_analysis.md`** | **`02_ANALÝZY/01_portfolio_audit/`** | **audit** | **7. 7. 2026** | **9/10** |
+| **N15** | **`Sousek_CV_portfolio_cs.md`** | **`01_METODIKY/02_CV_a_profil/`** | **CV** | **7. 7. 2026** | **10/10** |
+| **N16** | **`CV_Ondrej_Sousek_B2B_onepager_en.md`** | **`01_METODIKY/02_CV_a_profil/`** | **CV** | **7. 7. 2026** | **9/10** |
 
-**Celkem:** 13 nových artefaktů | ~6 400 řádků | vytvořeno 24. 6.–5. 7. 2026
+**Celkem:** 16 nových artefaktů | ~7 600 řádků | vytvořeno 24. 6.–7. 7. 2026
 
 ---
 
@@ -291,13 +297,13 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~80 |
+| Celkem zmapovaných artefaktů | ~84 |
 | Z toho migrováno z B2B/KB | ~70 |
-| Z toho nově vytvořeno (iterační syntézou) | 13 |
+| Z toho nově vytvořeno (iterační syntézou) | 16 |
 | V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
-| RAG-ready (textové) | ~65 |
-| Nové artefakty řádků | ~6 400 |
+| RAG-ready (textové) | ~68 |
+| Nové artefakty řádků | ~7 600 |
 
 ---
-*Poslední aktualizace: 2026-07-05*
+*Poslední aktualizace: 2026-07-07*
