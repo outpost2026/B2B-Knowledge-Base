@@ -1660,6 +1660,38 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #46 — LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR @ MSM GROUP
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (49.9% fit)
+
+### Analýza pozice
+- **Role:** LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR
+- **Firma:** MSM GROUP
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 34.7% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **49.9%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **middleware**: direct_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1738,3 +1770,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 43 | N-iX | IAM Integration Engineer | 62.1% | Střední | 🟡 MEDIUM |
 | 44 | Siemens | Systémový inženýr RAM/LCC - lokomotivy (m/ž/n) | 72.5% | Vysoká | 🟢 SLEDOVAT |
 | 45 | Deutsche Börse Group | Solutions Architect - AI & Data Integration (f/m/d) | 60.0% | Střední | 🟡 MEDIUM |
+| 46 | MSM GROUP | LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR | 49.9% | Nízká | 🟡 HRANICNI |
