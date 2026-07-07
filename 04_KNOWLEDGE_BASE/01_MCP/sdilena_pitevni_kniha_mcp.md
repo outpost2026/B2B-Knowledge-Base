@@ -23,11 +23,11 @@ Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a
 | 013 | Fragilní extrakce job ID (jen `<a href>`) | linkedin-mcp | ✅ Fixed |
 | 014 | KBWriter dedup fallback: `industry` = vždy None | linkedin-mcp | ✅ Fixed |
 | 015 | Summary table non-idempotent (duplicity při update) | linkedin-mcp | ✅ Fixed |
-| 016 | MCP transport timeout pro batch operace | linkedin-mcp | ⚠️ Workaround |
+| 016 | MCP transport timeout pro batch operace | linkedin-mcp | ✅ Fixed (time-budget + per-job tool) |
 | 017 | Python version mismatch (.venv vs system) | linkedin-mcp | ✅ Fixed |
 | 018 | Console script not in PATH | linkedin-mcp | ✅ Fixed |
 | 019 | Shell escaping fragility (Win/Bash/PS) | cross-repo | ⚠️ Mitigováno |
-| 020 | Cookie lifecycle — silent expiry | linkedin-mcp | ⚠️ Otevřeno |
+| 020 | Cookie lifecycle — silent expiry | linkedin-mcp | ✅ Fixed (session cache + checkpoint detection) |
 
 ---
 
