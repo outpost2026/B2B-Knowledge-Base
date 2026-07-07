@@ -928,6 +928,37 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #041 — Zkušební technik - automotive @ KOSTAL Engineering CR
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (47.7% fit)
+
+### Analýza pozice
+- **Role:** Zkušební technik - automotive
+- **Firma:** KOSTAL Engineering CR
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **47.7%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1001,3 +1032,4 @@
 | 038 | Colours of Data | Data Science & AI Architect Lead | 53.7% | Střední | 🟡 MEDIUM |
 | 039 | TechNET IT Recruitment Ltd | Senior Automation Engineer | 55.3% | Střední | 🟡 MEDIUM |
 | 040 | HR:DONE. | Sap Solutions Architect | 35.6% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 041 | KOSTAL Engineering CR | Zkušební technik - automotive | 47.7% | Nízká | 🟡 HRANICNI |

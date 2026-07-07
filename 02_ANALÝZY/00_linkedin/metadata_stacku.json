@@ -2341,6 +2341,61 @@
           "growth"
         ]
       }
+    },
+    {
+      "id": "041",
+      "date": "2026-07-07",
+      "linkedin_job_id": "4426709601",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "KOSTAL Engineering CR"
+      },
+      "title": "Zkušební technik - automotive",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 47.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
