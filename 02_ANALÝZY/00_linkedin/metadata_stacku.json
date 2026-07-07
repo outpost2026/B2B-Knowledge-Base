@@ -1270,6 +1270,70 @@
           "formal"
         ]
       }
+    },
+    {
+      "id": "023",
+      "date": "2026-07-07",
+      "linkedin_job_id": "4425745972",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": null
+      },
+      "title": "AI Developer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "Docker",
+            "CI/CD",
+            "Git",
+            "MCP"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 59.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth"
+        ]
+      }
     }
   ],
   "aggregate_insights": {

@@ -295,6 +295,46 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #023 — AI Developer @ Trask
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (59.1% fit)
+
+### Analýza pozice
+- **Role:** AI Developer
+- **Firma:** Trask
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal (electronics manufacturing, not core industrial) |
+| tech | 25% | 87.5% | 0.2% | 6 direct, 3 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **59.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **Docker**: direct_match
+- **CI/CD**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **AWS**: no_match
+- **MCP**: direct_match
+
+**Kritické mismatch:** domain, growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Domain mismatch kritický
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -350,3 +390,4 @@
 | 003 | Thermo Fisher Scientific | System Integration Engineer | 76.5% | Vysoká | 🟢 SLEDOVAT |
 | 021 | Schneider Electric | CEE Pricing Data Domain Lead | 52.1% | Střední | 🟡 MEDIUM |
 | 022 | Yunex Traffic | Procurement Expert for Digitalization and Process Automation (m/f) | 46.5% | Nízká | 🟡 HRANICNI |
+| 023 | Trask | AI Developer | 59.1% | Střední | 🟡 MEDIUM |
