@@ -1350,6 +1350,47 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟡 ZÁZNAM #37 — Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) @ Siemens
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (60.1% fit)
+
+### Analýza pozice
+- **Role:** Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)
+- **Firma:** Siemens
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (8 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 82.5% | 0.2% | 9 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (7) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CNC**: direct_match
+- **CAM**: direct_match
+- **test automation**: direct_match
+- **IoT**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **Azure**: no_match
+- **PLC**: no_match
+- **C++**: no_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1419,3 +1460,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 34 | EPAM Systems | Senior Data Integration Engineer | 65.8% | Vysoká | 🟢 SLEDOVAT |
 | 35 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 63.2% | Střední | 🟡 MEDIUM |
 | 36 | Zakládání staveb, a. s. | TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY | 56.5% | Střední | 🟡 MEDIUM |
+| 37 | Siemens | Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n) | 60.1% | Střední | 🟡 MEDIUM |
