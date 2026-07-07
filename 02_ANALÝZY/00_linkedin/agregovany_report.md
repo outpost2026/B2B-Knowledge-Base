@@ -1789,6 +1789,43 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 
 ---
 
+
+## 🟢 ZÁZNAM #50 — AI Integrator / AI Engineer @ TD SYNNEX Czech Republic
+**Datum:** 2026-07-07
+**EROI verdict:** SLEDOVAT (69.2% fit)
+
+### Analýza pozice
+- **Role:** AI Integrator / AI Engineer
+- **Firma:** TD SYNNEX Czech Republic
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 82.6% | 0.2% | 4 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **69.2%** | **SLEDOVAT** |
+
+### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **data pipeline**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **AWS**: no_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika (ke 2026-07-05)
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
@@ -1871,3 +1908,4 @@ AI role v enterprise IT — částečný skill match (Python, API, LLM), ale chy
 | 47 | Sourcein | AI / ML / LLM Research Engineer | 53.9% | Střední | 🟡 MEDIUM |
 | 48 | Digiteq Automotive | Automotive CI/CD Engineer (DevOps) | 60.0% | Střední | 🟡 MEDIUM |
 | 49 | Bomma | Lighting R&D Engineer | 45.6% | Nízká | 🟡 HRANICNI |
+| 50 | TD SYNNEX Czech Republic | AI Integrator / AI Engineer | 69.2% | Vysoká | 🟢 SLEDOVAT |
