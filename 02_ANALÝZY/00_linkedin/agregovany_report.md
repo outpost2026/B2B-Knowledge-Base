@@ -729,6 +729,39 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #035 — Solution Architect @ Element Logic®
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (53.0% fit)
+
+### Analýza pozice
+- **Role:** Solution Architect
+- **Firma:** Element Logic®
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **53.0%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 4 skill mismatches
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -796,3 +829,4 @@
 | 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 54.1% | Střední | 🟡 MEDIUM |
 | 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
 | 034 | RETIA, a.s. | SW Architect | 43.9% | Nízká | 🟡 HRANICNI |
+| 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |
