@@ -21,7 +21,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Desoutter Tools"
       },
       "title": "Light Automation Specialist",
       "role": {
@@ -76,7 +76,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Digiteq Automotive"
       },
       "title": "Automotive CI/CD Engineer (DevOps)",
       "role": {
@@ -93,12 +93,14 @@
             "Python",
             "CI/CD",
             "Git",
+            "Linux",
             "DevSecOps"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
+            "Kubernetes",
             "Azure",
             "C++"
           ]
@@ -117,7 +119,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 58.1,
+        "fit_score_pct": 60.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -135,7 +137,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Thermo Fisher Scientific"
       },
       "title": "System Integration Engineer",
       "role": {
@@ -195,7 +197,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "MSM GROUP"
       },
       "title": "LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR",
       "role": {
@@ -231,7 +233,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 45.8,
+        "fit_score_pct": 47.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -252,7 +254,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Sourcein"
       },
       "title": "AI / ML / LLM Research Engineer",
       "role": {
@@ -307,7 +309,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Bomma"
       },
       "title": "Lighting R&D Engineer",
       "role": {
@@ -360,7 +362,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "TD SYNNEX Czech Republic"
       },
       "title": "AI Integrator / AI Engineer",
       "role": {
@@ -380,7 +382,6 @@
             "Git"
           ],
           "partial_match": [
-            "LLM",
             "AI"
           ],
           "no_match": [
@@ -402,7 +403,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 64.6,
+        "fit_score_pct": 62.5,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -420,7 +421,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "ČEZ"
       },
       "title": "VÝVOJÁŘ/VÝVOJÁŘKA NÁSTROJŮ OPTIMALIZACE",
       "role": {
@@ -435,6 +436,7 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
+            "CI/CD",
             "Git"
           ],
           "partial_match": [
@@ -460,15 +462,17 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.1,
+        "fit_score_pct": 44.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "growth",
-          "formal"
+          "formal",
+          "location"
         ]
       }
     },
@@ -479,7 +483,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Sécheron SA"
       },
       "title": "PLC Software Engineer",
       "role": {
@@ -514,7 +518,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 58.9,
+        "fit_score_pct": 55.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -523,7 +527,8 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal"
+          "formal",
+          "location"
         ]
       }
     },
@@ -534,7 +539,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Resideo"
       },
       "title": "Automation Systems Engineer IoT",
       "role": {
@@ -595,7 +600,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Valeo"
       },
       "title": "Prototypový technik",
       "role": {
@@ -650,7 +655,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Zakládání staveb, a. s."
       },
       "title": "TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY",
       "role": {
@@ -705,7 +710,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Siemens"
       },
       "title": "Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)",
       "role": {
@@ -751,11 +756,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 59.6,
+        "fit_score_pct": 67.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "formal",
@@ -770,7 +775,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Katring, spol. s r.o."
       },
       "title": "Operátor/ka CNC soustruhů",
       "role": {
@@ -824,7 +829,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Siemens"
       },
       "title": "Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)",
       "role": {
@@ -839,6 +844,7 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
+            "CAM",
             "IoT",
             "Git"
           ],
@@ -863,11 +869,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 61.8,
+        "fit_score_pct": 65.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "formal"
@@ -881,7 +887,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "ABB"
       },
       "title": "Trainee/Project Support",
       "role": {
@@ -937,7 +943,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Aon"
       },
       "title": "Machine Learning & AI Developer",
       "role": {
@@ -999,7 +1005,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "N-iX"
       },
       "title": "IAM Integration Engineer",
       "role": {
@@ -1057,7 +1063,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Siemens"
       },
       "title": "Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)",
       "role": {
@@ -1072,6 +1078,7 @@
         "overlap_with_author": {
           "direct_match": [
             "CAM",
+            "IoT",
             "Git"
           ],
           "partial_match": [
@@ -1093,14 +1100,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 52.1,
+        "fit_score_pct": 69.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
           "formal"
         ]
       }
@@ -1112,7 +1118,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Deutsche Börse Group"
       },
       "title": "Solutions Architect - AI & Data Integration (f/m/d)",
       "role": {
@@ -1131,9 +1137,12 @@
             "Git"
           ],
           "partial_match": [
-            "AI"
+            "AI",
+            "machine learning"
           ],
-          "no_match": []
+          "no_match": [
+            "Azure"
+          ]
         }
       },
       "domain": {
@@ -1149,7 +1158,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 53.0,
+        "fit_score_pct": 55.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1168,7 +1177,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Schneider Electric"
       },
       "title": "CEE Pricing Data Domain Lead",
       "role": {
@@ -1223,7 +1232,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Yunex Traffic"
       },
       "title": "Procurement Expert for Digitalization and Process Automation (m/f)",
       "role": {
@@ -1278,7 +1287,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Trask"
       },
       "title": "AI Developer",
       "role": {
@@ -1342,7 +1351,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Carpiness s.r.o."
       },
       "title": "Artificial Intelligence Engineer",
       "role": {
@@ -1386,7 +1395,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 63.0,
+        "fit_score_pct": 62.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1405,7 +1414,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "Radley James"
       },
       "title": "Senior Quant Developer",
       "role": {
@@ -1442,7 +1451,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 51.4,
+        "fit_score_pct": 52.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1461,7 +1470,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "EPAM Systems"
       },
       "title": "Senior Data Integration Engineer",
       "role": {
@@ -1521,7 +1530,7 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": null
+        "industry": "SearchApi"
       },
       "title": "AI Integrations Engineer (Open Source ·  Web Search)",
       "role": {
