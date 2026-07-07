@@ -1197,6 +1197,40 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #049 — Development Engineer @ Lear Corporation
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (49.8% fit)
+
+### Analýza pozice
+- **Role:** Development Engineer
+- **Firma:** Lear Corporation
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (1 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 49.2% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **49.8%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **C++**: no_match
+
+**Kritické mismatch:** growth, formal, location
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1278,3 +1312,4 @@
 | 046 | Adamantem HR, s.r.o. | DevOps Engineer for Embedded Systems | 59.7% | Střední | 🟡 MEDIUM |
 | 047 | CDC Data s.r.o. | AI Ambasador & Specialista inovací | 50.8% | Střední | 🟡 MEDIUM |
 | 048 | JABLOTRON | Vývojář/ka FW | 44.7% | Nízká | 🟡 HRANICNI |
+| 049 | Lear Corporation | Development Engineer | 49.8% | Nízká | 🟡 HRANICNI |
