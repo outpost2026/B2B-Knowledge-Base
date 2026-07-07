@@ -264,6 +264,37 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #022 — Procurement Expert for Digitalization and Process Automation (m/f) @ Yunex Traffic
+**Datum:** 2026-07-07
+**EROI verdict:** HRANICNI (46.5% fit)
+
+### Analýza pozice
+- **Role:** Procurement Expert for Digitalization and Process Automation (m/f)
+- **Firma:** Yunex Traffic
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **46.5%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -318,3 +349,4 @@
 | 011 | Valeo | Prototypový technik | 60.4% | Střední | 🟡 MEDIUM |
 | 003 | Thermo Fisher Scientific | System Integration Engineer | 76.5% | Vysoká | 🟢 SLEDOVAT |
 | 021 | Schneider Electric | CEE Pricing Data Domain Lead | 52.1% | Střední | 🟡 MEDIUM |
+| 022 | Yunex Traffic | Procurement Expert for Digitalization and Process Automation (m/f) | 46.5% | Nízká | 🟡 HRANICNI |
