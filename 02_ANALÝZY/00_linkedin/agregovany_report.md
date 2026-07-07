@@ -1029,6 +1029,41 @@
 
 ---
 
+
+## 🟡 ZÁZNAM #044 — Robotics Engineer @ La Fosse
+**Datum:** 2026-07-07
+**EROI verdict:** MEDIUM (57.4% fit)
+
+### Analýza pozice
+- **Role:** Robotics Engineer
+- **Firma:** La Fosse
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (4 keywords) |
+| tech | 25% | 40.7% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **57.4%** | **MEDIUM** |
+
+### Skill match
+- **CAM**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+- **C++**: no_match
+
+**Kritické mismatch:** growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 5
@@ -1105,3 +1140,4 @@
 | 041 | KOSTAL Engineering CR | Zkušební technik - automotive | 47.7% | Nízká | 🟡 HRANICNI |
 | 042 | Quest Global | Enterprise Software Integration role in Czechia (mid & senior level) | 52.5% | Střední | 🟡 MEDIUM |
 | 043 | Adamantem HR, s.r.o. | Embedded SW Engineer | 56.2% | Střední | 🟡 MEDIUM |
+| 044 | La Fosse | Robotics Engineer | 57.4% | Střední | 🟡 MEDIUM |
