@@ -41,3 +41,9 @@ __pycache__/
 ~$*
 .~lock*
 *.lock.*
+
+# Osobní / neveřejné — exclude z public repa
+_ARCHIVE/
+00_STRATEGIE/
+02_ANALÝZY/01_portfolio_audit/
+03_PROVOZ/
