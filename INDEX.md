@@ -97,6 +97,8 @@
 | L03 | `metadata_stacku.json` | B2B/linkedin_analyzy/ | data | Strojově čitelná agregace tech stacku | 9/10 |
 | L04 | `eroi_chronologicky_plan_s_metodikou.md` | B2B/linkedin_analyzy/ | plán | EROI ranking + 8 metodických koster | 9/10 |
 | **L05** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **02_ANALÝZY/00_linkedin/** | **architektura** | **MCP pipeline pro automatizaci analýzy LinkedIn nabídek — 2 varianty, EROI engine, napojení na existující artefakty** | **9/10** |
+| L06 | `linkedin_mcp_deep_dive_dev_notes.md` | 02_ANALÝZY/00_linkedin/ | dev notes | Technický deep dive linkedin-mcp-custom, Session 1-6 post-mortem | 8/10 |
+| L07 | `linkedin_mcp_roadmap_v2.md` | 02_ANALÝZY/00_linkedin/ | roadmapa | V2 multi-user architektura, kalibrační plán | 8/10 |
 
 ### 01_portfolio_audit — GitHub audit
 
@@ -181,7 +183,7 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | MCP01 | `sdilena_pitevni_kniha_mcp.md` | 04_KNOWLEDGE_BASE/01_MCP/ | postmortem | Cross-repo postmortem — 20 entries (001-020), 16 rules (P1-P16) | 10/10 |
-| MCP02 | `linkedin_mcp_pitevni_kniha_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | postmortem | Detailní postmortem linkedin-mcp-custom — 14 entries s code snippets | 9/10 |
+| MCP02 | `linkedin_mcp_pitevni_kniha_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | postmortem | Detailní postmortem linkedin-mcp-custom — 24 entries (001-020 fixed, 021-024 Session 6) s code snippets + rules | 9/10 |
 | MCP03 | `MCP_komplexni_analyza_a_strategie_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | analýza | Komplexní analýza MCP stacku a strategie | 9/10 |
 
 ### 01_reverse_engineering — RE case studies, binární formáty
@@ -279,8 +281,10 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N16** | **`CV_Ondrej_Sousek_B2B_onepager_en.md`** | **`01_METODIKY/02_CV_a_profil/`** | **CV** | **7. 7. 2026** | **9/10** |
 | **N17** | **`sdilena_pitevni_kniha_mcp.md`** | **`04_KNOWLEDGE_BASE/01_MCP/`** | **postmortem** | **7. 7. 2026** | **10/10** |
 | **N18** | **`linkedin_mcp_pitevni_kniha_v1.md`** | **`04_KNOWLEDGE_BASE/01_MCP/`** | **postmortem** | **7. 7. 2026** | **9/10** |
+| **N19** | **`linkedin_mcp_deep_dive_dev_notes.md`** | **`02_ANALÝZY/00_linkedin/`** | **dev notes** | **8. 7. 2026** | **8/10** |
+| **N20** | **`linkedin_mcp_roadmap_v2.md`** | **`02_ANALÝZY/00_linkedin/`** | **roadmapa** | **8. 7. 2026** | **8/10** |
 
-**Celkem:** 18 nových artefaktů | ~8 000 řádků | vytvořeno 24. 6.–7. 7. 2026
+**Celkem:** 20 nových artefaktů | ~8 000+ řádků | vytvořeno 24. 6.–8. 7. 2026
 
 ---
 

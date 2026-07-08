@@ -275,11 +275,34 @@ The user's KB backend provides what no fork in the ecosystem offers:
 
 This is genuinely unique — **no fork or alternative MCP server has any of this**.
 
-## 9. Files to Clean Up
+## 9. Session 6 Post-Mortem (2026-07-08) — Quality Gates, CI/CD, Cookie Lifecycle
 
-After analysis is complete, remove:
-- `C:\Users\PC\Documents\Repozitar_Dev\_github\tmp_linkedin_mcp\` — cloned repo (can be re-cloned anytime)
+### Completed
+
+| Area | Change | Files |
+|------|--------|-------|
+| Linting | ruff 0 errors (UP017 datetime.UTC fix) | `auth.py` |
+| Typing | mypy 0 errors — SkillConfig TypedDict, type casts | `schemas.py`, `config.py`, `tech.py` |
+| Quality gate | pre-commit hook installed (ruff --fix + ruff-format) | `.pre-commit-config.yaml` |
+| Tests | 28 new scorer unit tests (6 dimenzí, 38 total) | `tests/test_scorer.py` |
+| Cookie lifecycle | `get_session_age()`, `session_needs_refresh()`, health_check warning | `auth.py`, `server.py`, `core/__init__.py` |
+| CI/CD | `.github/workflows/weekly-scrape.yml` — cron + workflow_dispatch | `.github/workflows/` |
+| Cookie export | `scripts/export_cookies.py` — Playwright API export do JSON | `scripts/export_cookies.py` |
+| Post-mortem | Záznam 021-024 v pitevni_kniha_v1.md | `docs/pitevni_kniha_v1.md` |
+
+### New Bug Discoveries (Záznam 021-024)
+
+1. **021 — CI/CD cookie export**: Cookies nejsou JSON v profilu, ale Chromium SQLite. Nutný export přes Playwright API.
+2. **022 — PAT workflow scope**: Push .github/workflows/ vyžaduje `workflow` scope v PAT.
+3. **023 — Session compact directory**: working dir cnc-tools vs. source code linkedin-mcp-custom — dokumentovat mapping.
+4. **024 — Scorer unit test discovery**: 6 testů selhalo — testy jako living documentation odhalily nuance scorer logiky.
+
+### Pending
+
+- LINKEDIN_COOKIES + KB_PAT secrets v GitHub repo → workflow_dispatch test
+- V2 multi-user architektura (plan_v2_integrace.md)
+- Cookie refresh process (monthly re-export linkedin cookies)
 
 ---
 
-*Generated: 2026-07-05 via code analysis of stickerdaniel/linkedin-mcp-server v4.17.0 (1053 commits, cloned to tmp_linkedin_mcp)*
+*Generated: 2026-07-05. Updated: 2026-07-08 — Session 6 post-mortem (quality gates, CI/CD, Záznam 021-024). Active branch: main*

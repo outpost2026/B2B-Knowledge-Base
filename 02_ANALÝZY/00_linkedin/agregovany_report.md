@@ -905,8 +905,9 @@
 ---
 
 
+
 ## 🔴 ZÁZNAM #028 — SW Development Team Lead @ Balikobot.cz
-**Datum:** 2026-07-07
+**Datum:** 2026-07-08
 **EROI verdict:** NESLEDOVAT (39.8% fit)
 
 ### Analýza pozice
@@ -916,9 +917,9 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise |
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
 | tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
@@ -926,20 +927,20 @@
 
 ### Skill match
 - **REST API**: direct_match
-- **agentic**: direct_match
 - **AI**: partial_match
 - **TypeScript**: no_match
 - **C++**: no_match
+- **agentic**: direct_match
 
 **Kritické mismatch:** domain, tech, growth, formal
 
 **Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 5 skill mismatches
 
 ---
 
-
 ## 🟡 ZÁZNAM #029 — Data Engineer @ OAKS Consulting s.r.o.
-**Datum:** 2026-07-07
+**Datum:** 2026-07-08
 **EROI verdict:** HRANICNI (49.3% fit)
 
 ### Analýza pozice
@@ -951,7 +952,7 @@
 |---------|------|-------|--------|--------|
 | domain | 35% | 25.0% | 0.1% | No clear domain signal |
 | tech | 25% | 54.2% | 0.1% | 4 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
@@ -961,20 +962,20 @@
 - **Python**: direct_match
 - **data pipeline**: direct_match
 - **ETL**: direct_match
-- **Git**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 - **AWS**: no_match
 
 **Kritické mismatch:** domain, growth, formal
 
 **Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
 
 ---
 
-
 ## 🟡 ZÁZNAM #030 — Automation Engineer @ ConSol Partners
-**Datum:** 2026-07-07
-**EROI verdict:** MEDIUM (55.5% fit)
+**Datum:** 2026-07-08
+**EROI verdict:** MEDIUM (51.0% fit)
 
 ### Analýza pozice
 - **Role:** Automation Engineer
@@ -983,33 +984,29 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords |
-| tech | 25% | 54.2% | 0.1% | 4 direct, 1 partial matches |
-| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords |
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 33.9% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 15.0% | 0.0% | Distant location detected (1x |
-| **Celkem** | **100%** | | **55.5%** | **MEDIUM** |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **51.0%** | **MEDIUM** |
 
 ### Skill match
 - **Python**: direct_match
-- **IoT**: direct_match
-- **CI/CD**: direct_match
-- **scripting**: direct_match
 - **AI**: partial_match
 - **Terraform**: no_match
-- **PLC**: no_match
-- **C++**: no_match
+- **scripting**: direct_match
 
-**Kritické mismatch:** growth, formal, location
+**Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
 
-
 ## 🟢 ZÁZNAM #031 — Senior Staff Digital Design Engineer @ Renesas Electronics
-**Datum:** 2026-07-07
+**Datum:** 2026-07-08
 **EROI verdict:** SLEDOVAT (65.5% fit)
 
 ### Analýza pozice
@@ -1019,9 +1016,9 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 45.0% | 0.2% | Strong industrial domain (5 keywords) (electronics manufacturing, not core industrial |
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (5 keywords) (electronics manufacturing, not core industrial) |
 | tech | 25% | 88.1% | 0.2% | 8 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
@@ -1031,24 +1028,24 @@
 - **Python**: direct_match
 - **IoT**: direct_match
 - **ETL**: direct_match
+- **AI**: partial_match
 - **Git**: direct_match
 - **Linux**: direct_match
+- **C++**: no_match
 - **middleware**: direct_match
 - **scripting**: direct_match
 - **agentic**: direct_match
-- **AI**: partial_match
-- **C++**: no_match
 
 **Kritické mismatch:** growth, formal
 
 **Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
-
 ## 🟡 ZÁZNAM #032 — Lead Software Engineer (Semiconductor Verification & Tooling) @ Tropic Square
-**Datum:** 2026-07-07
-**EROI verdict:** MEDIUM (54.1% fit)
+**Datum:** 2026-07-08
+**EROI verdict:** HRANICNI (44.4% fit)
 
 ### Analýza pozice
 - **Role:** Lead Software Engineer (Semiconductor Verification & Tooling)
@@ -1057,27 +1054,23 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 45.0% | 0.2% | Weak industrial signal (2 core keywords) (electronics manufacturing, not core industrial |
-| tech | 25% | 42.4% | 0.1% | 3 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords |
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (1 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **54.1%** | **MEDIUM** |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **44.4%** | **HRANICNI** |
 
 ### Skill match
-- **Python**: direct_match
-- **Git**: direct_match
-- **Linux**: direct_match
 - **AI**: partial_match
 
-**Kritické mismatch:** growth, formal
+**Kritické mismatch:** tech, growth
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 1 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
-
-
 ## 🟡 ZÁZNAM #033 — Solution Architect (43156) @ CoolPeople
 **Datum:** 2026-07-07
 **EROI verdict:** HRANICNI (44.1% fit)
@@ -1675,9 +1668,9 @@
 | 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
 | 028 | Balikobot.cz | SW Development Team Lead | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 029 | OAKS Consulting s.r.o. | Data Engineer | 49.3% | Nízká | 🟡 HRANICNI |
-| 030 | ConSol Partners | Automation Engineer | 55.5% | Střední | 🟡 MEDIUM |
+| 030 | ConSol Partners | Automation Engineer | 51.0% | Střední | 🟡 MEDIUM |
 | 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
-| 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 54.1% | Střední | 🟡 MEDIUM |
+| 032 | Tropic Square | Lead Software Engineer (Semiconductor Verification & Tooling) | 44.4% | Nízká | 🟡 HRANICNI |
 | 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
 | 034 | RETIA, a.s. | SW Architect | 43.9% | Nízká | 🟡 HRANICNI |
 | 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |

@@ -1584,7 +1584,7 @@
     },
     {
       "id": "028",
-      "date": "2026-07-07",
+      "date": "2026-07-08",
       "linkedin_job_id": "4434489340",
       "company": {
         "type": null,
@@ -1644,7 +1644,7 @@
     },
     {
       "id": "029",
-      "date": "2026-07-07",
+      "date": "2026-07-08",
       "linkedin_job_id": "4432353478",
       "company": {
         "type": null,
@@ -1704,7 +1704,7 @@
     },
     {
       "id": "030",
-      "date": "2026-07-07",
+      "date": "2026-07-08",
       "linkedin_job_id": "4434333149",
       "company": {
         "type": null,
@@ -1724,17 +1724,13 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "IoT",
-            "CI/CD",
             "scripting"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "Terraform",
-            "PLC",
-            "C++"
+            "Terraform"
           ]
         }
       },
@@ -1751,22 +1747,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 55.5,
+        "fit_score_pct": 51.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "tech",
           "growth",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
     {
       "id": "031",
-      "date": "2026-07-07",
+      "date": "2026-07-08",
       "linkedin_job_id": "4422902321",
       "company": {
         "type": null,
@@ -1829,7 +1825,7 @@
     },
     {
       "id": "032",
-      "date": "2026-07-07",
+      "date": "2026-07-08",
       "linkedin_job_id": "4434451288",
       "company": {
         "type": null,
@@ -1847,11 +1843,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "Git",
-            "Linux"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -1871,15 +1863,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.1,
+        "fit_score_pct": 44.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth",
-          "formal"
+          "tech",
+          "growth"
         ]
       }
     },

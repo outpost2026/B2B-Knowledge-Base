@@ -666,7 +666,32 @@ Pipeline generuje entry v existujícím formátu:
 
 ---
 
-## 9. Open questions
+## 9. Session 6 Update (2026-07-08) — Quality Gates & CI/CD
+
+### Stav po Session 6
+- **ruff 0 errors, mypy 0 errors** (24 source files)
+- **pre-commit hook active** (ruff --fix + ruff-format)
+- **38 tests** (10 old regression + 28 new scorer unit tests)
+- **CI/CD workflow**: `.github/workflows/weekly-scrape.yml` — cron pondělí 7:00 UTC + workflow_dispatch
+- **Cookie export**: `scripts/export_cookies.py` — export LinkedIn cookies pro CI/CD
+- **Cookie lifecycle**: `health_check` tool vrací `session_age_hours` + warning při >24h
+
+### Nové pitevní nálezy (021-024)
+| # | Nález | Stav |
+|---|-------|------|
+| 021 | CI/CD cookie export — cookies nejsou JSON, ale Chromium SQLite | ✅ Fixed (export script) |
+| 022 | PAT workflow scope — push .github/workflows/ vyžaduje `workflow` scope | ✅ Documented |
+| 023 | Session compact directory — MCP workdir vs. source code repo | ✅ Documented |
+| 024 | Scorer unit test discovery — testy jako living documentation | ✅ Fixed (28 tests) |
+
+### Pending pro CI/CD
+1. Nastavit `LINKEDIN_COOKIES` a `KB_PAT` secrets v GitHub repo
+2. Otestovat `workflow_dispatch`
+3. Při expiraci cookies: `uv run python scripts/export_cookies.py` → update secret
+
+---
+
+## 10. Open questions
 
 1. **Frekvence kontroly:** Denně? Týdně? Pouze na vyžádání?
 2. **Notifikace:** Kam? (GitHub issue, email, Telegram, OpenCode prompt?)
