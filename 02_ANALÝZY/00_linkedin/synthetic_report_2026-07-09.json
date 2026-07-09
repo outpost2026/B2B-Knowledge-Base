@@ -1,0 +1,432 @@
+{
+  "_meta": {
+    "generated": "2026-07-09",
+    "source": "metadata_stacku.json",
+    "entries_count": 59,
+    "pipeline": "deterministic L1 report generator (Phase 7)",
+    "generator": "SyntheticReportGenerator"
+  },
+  "overview": {
+    "total": 59,
+    "precision_pct": 5.1,
+    "mean_score": 49.0,
+    "median_score": 51.9,
+    "verdict_distribution": {
+      "MEDIUM": 31,
+      "SLEDOVAT": 3,
+      "HRANICNI": 9,
+      "NESLEDOVAT": 16
+    }
+  },
+  "skill_frequency": {
+    "AI": 59,
+    "Git": 30,
+    "Python": 23,
+    "C++": 15,
+    "IoT": 10,
+    "Azure": 10,
+    "CI/CD": 9,
+    "LLM": 8,
+    "PLC": 8,
+    "Linux": 7,
+    "machine learning": 7,
+    "AWS": 7,
+    "CAM": 6,
+    "scripting": 6,
+    "agentic": 5,
+    "GCP": 4,
+    "Docker": 4,
+    "ETL": 4,
+    "Kubernetes": 3,
+    "data pipeline": 3,
+    "CNC": 3,
+    "Terraform": 3,
+    "DevSecOps": 2,
+    "virtualization": 2,
+    "REST API": 2,
+    "MCP": 2,
+    "TypeScript": 2,
+    "deployment automation": 1,
+    "KVM": 1,
+    "ESP32": 1,
+    "C#": 1,
+    "test automation": 1,
+    "middleware": 1
+  },
+  "signal_to_noise": {
+    "deployment automation": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "KVM": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "test automation": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "virtualization": {
+      "count": 2,
+      "sledovat_count": 1,
+      "snr_pct": 50.0
+    },
+    "Kubernetes": {
+      "count": 3,
+      "sledovat_count": 1,
+      "snr_pct": 33.3
+    },
+    "scripting": {
+      "count": 6,
+      "sledovat_count": 2,
+      "snr_pct": 33.3
+    },
+    "CNC": {
+      "count": 3,
+      "sledovat_count": 1,
+      "snr_pct": 33.3
+    },
+    "PLC": {
+      "count": 8,
+      "sledovat_count": 2,
+      "snr_pct": 25.0
+    },
+    "IoT": {
+      "count": 10,
+      "sledovat_count": 2,
+      "snr_pct": 20.0
+    },
+    "CAM": {
+      "count": 6,
+      "sledovat_count": 1,
+      "snr_pct": 16.7
+    },
+    "Linux": {
+      "count": 7,
+      "sledovat_count": 1,
+      "snr_pct": 14.3
+    },
+    "CI/CD": {
+      "count": 9,
+      "sledovat_count": 1,
+      "snr_pct": 11.1
+    },
+    "Azure": {
+      "count": 10,
+      "sledovat_count": 1,
+      "snr_pct": 10.0
+    },
+    "Git": {
+      "count": 30,
+      "sledovat_count": 2,
+      "snr_pct": 6.7
+    },
+    "C++": {
+      "count": 15,
+      "sledovat_count": 1,
+      "snr_pct": 6.7
+    },
+    "AI": {
+      "count": 59,
+      "sledovat_count": 3,
+      "snr_pct": 5.1
+    },
+    "Python": {
+      "count": 23,
+      "sledovat_count": 1,
+      "snr_pct": 4.3
+    },
+    "agentic": {
+      "count": 5,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "LLM": {
+      "count": 8,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "DevSecOps": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "GCP": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "data pipeline": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "machine learning": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "AWS": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "ESP32": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "C#": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "REST API": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Docker": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "MCP": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Terraform": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "ETL": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "TypeScript": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "middleware": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    }
+  },
+  "mismatch_frequency": {
+    "growth": 52,
+    "tech": 32,
+    "formal": 28,
+    "domain": 20,
+    "location": 12
+  },
+  "clusters": {
+    "other": {
+      "count": 25,
+      "mean_score": 42.2,
+      "entry_ids": [
+        "006",
+        "008",
+        "009",
+        "012",
+        "016",
+        "017",
+        "018",
+        "019",
+        "022",
+        "025",
+        "028",
+        "032",
+        "037",
+        "039",
+        "041",
+        "044",
+        "045",
+        "048",
+        "050",
+        "051",
+        "053",
+        "055",
+        "056",
+        "057",
+        "058"
+      ]
+    },
+    "industrial_automation_core": {
+      "count": 15,
+      "mean_score": 59.4,
+      "entry_ids": [
+        "001",
+        "003",
+        "010",
+        "011",
+        "013",
+        "014",
+        "015",
+        "021",
+        "030",
+        "031",
+        "042",
+        "046",
+        "047",
+        "049",
+        "059"
+      ]
+    },
+    "ai_ml_hype": {
+      "count": 9,
+      "mean_score": 51.6,
+      "entry_ids": [
+        "005",
+        "007",
+        "020",
+        "023",
+        "024",
+        "027",
+        "038",
+        "052",
+        "054"
+      ]
+    },
+    "enterprise_it": {
+      "count": 7,
+      "mean_score": 44.4,
+      "entry_ids": [
+        "002",
+        "004",
+        "033",
+        "034",
+        "035",
+        "036",
+        "040"
+      ]
+    },
+    "data_engineering": {
+      "count": 2,
+      "mean_score": 56.1,
+      "entry_ids": [
+        "026",
+        "029"
+      ]
+    },
+    "embedded_manufacturing": {
+      "count": 1,
+      "mean_score": 59.7,
+      "entry_ids": [
+        "043"
+      ]
+    }
+  },
+  "top_entries": [
+    {
+      "id": "003",
+      "title": "System Integration Engineer",
+      "company": "Thermo Fisher Scientific",
+      "score": 76.5,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "013",
+      "title": "Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)",
+      "company": "Siemens",
+      "score": 73.6,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "059",
+      "title": "Light Automation Specialist",
+      "company": "Desoutter Tools",
+      "score": 65.7,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "007",
+      "title": "AI Integrator / AI Engineer",
+      "company": "TD SYNNEX Czech Republic",
+      "score": 64.6,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "026",
+      "title": "Senior Data Integration Engineer",
+      "company": "EPAM Systems",
+      "score": 62.9,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "031",
+      "title": "Senior Staff Digital Design Engineer",
+      "company": "Renesas Electronics",
+      "score": 62.4,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "024",
+      "title": "Artificial Intelligence Engineer",
+      "company": "Carpiness s.r.o.",
+      "score": 62.0,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "046",
+      "title": "DevOps Engineer for Embedded Systems",
+      "company": "Adamantem HR, s.r.o.",
+      "score": 61.2,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "035",
+      "title": "Solution Architect",
+      "company": "Element Logic®",
+      "score": 61.0,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "010",
+      "title": "Automation Systems Engineer IoT",
+      "company": "Resideo",
+      "score": 60.9,
+      "verdict": "MEDIUM"
+    }
+  ],
+  "skill_gaps": {
+    "C++": 15,
+    "Azure": 10,
+    "PLC": 8,
+    "AWS": 7,
+    "Kubernetes": 3,
+    "Terraform": 3,
+    "TypeScript": 2,
+    "KVM": 1,
+    "C#": 1
+  },
+  "direct_matches": {
+    "Git": 30,
+    "Python": 23,
+    "IoT": 10,
+    "CI/CD": 9,
+    "Linux": 7,
+    "CAM": 6,
+    "scripting": 6,
+    "agentic": 5,
+    "GCP": 4,
+    "Docker": 4,
+    "ETL": 4,
+    "data pipeline": 3,
+    "CNC": 3,
+    "DevSecOps": 2,
+    "REST API": 2,
+    "MCP": 2,
+    "deployment automation": 1,
+    "ESP32": 1,
+    "test automation": 1,
+    "middleware": 1
+  }
+}
