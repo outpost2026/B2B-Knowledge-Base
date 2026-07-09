@@ -1731,6 +1731,43 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #054 — AI & Automation manager @ Hedepy
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (56.7% fit)
+
+### Analýza pozice
+- **Role:** AI & Automation manager
+- **Firma:** Hedepy
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 50.8% | 0.1% | 3 direct, 2 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **56.7%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **TypeScript**: no_match
+- **JavaScript**: no_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1794,3 +1831,4 @@
 | 051 | MSM GROUP | Head of Supply Chain Management | 26.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 052 | Tipsport | Machine Learning Specialist | Python developer | 47.6% | Nízká | 🟡 HRANICNI |
 | 053 | Shoptet | Head of Engineering – Tech Superdomain | 51.5% | Střední | 🟡 MEDIUM |
+| 054 | Hedepy | AI & Automation manager | 56.7% | Střední | 🟡 MEDIUM |
