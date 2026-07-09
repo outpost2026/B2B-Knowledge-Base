@@ -1663,6 +1663,40 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #052 — Machine Learning Specialist | Python developer @ Tipsport
+**Datum:** 2026-07-09
+**EROI verdict:** HRANICNI (47.6% fit)
+
+### Analýza pozice
+- **Role:** Machine Learning Specialist | Python developer
+- **Firma:** Tipsport
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 42.4% | 0.1% | 1 direct, 3 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **47.6%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+
+**Kritické mismatch:** domain, growth
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1724,3 +1758,4 @@
 
 | 050 | Unknown | Unknown | 50.5% | Střední | 🟡 MEDIUM |
 | 051 | MSM GROUP | Head of Supply Chain Management | 26.6% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 052 | Tipsport | Machine Learning Specialist | Python developer | 47.6% | Nízká | 🟡 HRANICNI |
