@@ -79,9 +79,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Digiteq Automotive"
       },
-      "title": "Unknown",
+      "title": "Automotive CI/CD Engineer (DevOps)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -94,12 +94,18 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "reverse engineering",
-            "CNC",
-            "CAM"
+            "CI/CD",
+            "Git",
+            "Linux",
+            "DevSecOps"
           ],
-          "partial_match": [],
-          "no_match": []
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Kubernetes",
+            "C++"
+          ]
         }
       },
       "domain": {
@@ -115,7 +121,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.1,
+        "fit_score_pct": 60.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -193,9 +199,66 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "MSM GROUP"
       },
-      "title": "Unknown",
+      "title": "LOGISTICS & SYSTEM ARCHITECT / INTEGRATOR",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git",
+            "middleware"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "005",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4432613117",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Sourcein"
+      },
+      "title": "AI / ML / LLM Research Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -242,15 +305,15 @@
       }
     },
     {
-      "id": "005",
+      "id": "006",
       "date": "2026-07-09",
-      "linkedin_job_id": "4432613117",
+      "linkedin_job_id": "4434993470",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Bomma"
       },
-      "title": "Unknown",
+      "title": "Lighting R&D Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -261,10 +324,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "CI/CD",
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -284,7 +344,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 44.5,
+        "fit_score_pct": 43.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -292,67 +352,8 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "006",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4434993470",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "GCP",
-            "data pipeline",
-            "Git"
-          ],
-          "partial_match": [
-            "AI",
-            "machine learning"
-          ],
-          "no_match": [
-            "Azure",
-            "AWS"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 64.6,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
@@ -412,7 +413,7 @@
     },
     {
       "id": "008",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4431087594",
       "company": {
         "type": null,
@@ -432,12 +433,11 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "CI/CD",
             "Git"
           ],
           "partial_match": [
-            "LLM",
-            "AI"
+            "AI",
+            "machine learning"
           ],
           "no_match": [
             "Azure",
@@ -458,7 +458,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 44.6,
+        "fit_score_pct": 42.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -479,9 +479,64 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Sécheron SA"
       },
-      "title": "Unknown",
+      "title": "PLC Software Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 58.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "010",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4410985508",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Resideo"
+      },
+      "title": "Automation Systems Engineer IoT",
       "role": {
         "category": null,
         "subcategory": null,
@@ -533,69 +588,9 @@
       }
     },
     {
-      "id": "010",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4410985508",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "IoT",
-            "ESP32"
-          ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "AWS",
-            "C#"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 38.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "growth",
-          "formal",
-          "location"
-        ]
-      }
-    },
-    {
       "id": "011",
       "date": "2026-07-09",
-      "linkedin_job_id": "4414678400",
+      "linkedin_job_id": "4411284048",
       "company": {
         "type": null,
         "size_range": null,
@@ -814,9 +809,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Siemens"
       },
-      "title": "Unknown",
+      "title": "Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -827,11 +822,19 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Python",
+            "CNC",
+            "IoT",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "PLC",
+            "C++"
+          ]
         }
       },
       "domain": {
@@ -847,16 +850,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 57.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "formal"
         ]
       }
     },
@@ -867,9 +868,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "ABB"
       },
-      "title": "Unknown",
+      "title": "Trainee/Project Support",
       "role": {
         "category": null,
         "subcategory": null,
@@ -880,12 +881,16 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI",
-            "machine learning"
+          "direct_match": [
+            "CAM",
+            "Git"
           ],
-          "no_match": []
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
         }
       },
       "domain": {
@@ -901,16 +906,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 38.5,
+        "fit_score_pct": 66.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "formal"
         ]
       }
     },
@@ -970,7 +974,7 @@
     },
     {
       "id": "018",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4437142473",
       "company": {
         "type": null,
@@ -990,7 +994,6 @@
         "overlap_with_author": {
           "direct_match": [
             "REST API",
-            "Linux",
             "scripting"
           ],
           "partial_match": [
@@ -1014,13 +1017,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 58.9,
+        "fit_score_pct": 56.8,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "tech",
           "growth",
           "formal"
         ]
@@ -1033,9 +1037,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Siemens"
       },
-      "title": "Unknown",
+      "title": "Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1047,13 +1051,16 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python",
-            "reverse engineering",
             "CNC",
-            "CAM"
+            "IoT",
+            "Git"
           ],
-          "partial_match": [],
-          "no_match": []
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
         }
       },
       "domain": {
@@ -1069,14 +1076,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.1,
+        "fit_score_pct": 67.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth"
+          "formal"
         ]
       }
     },
