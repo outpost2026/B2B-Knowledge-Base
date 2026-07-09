@@ -2167,6 +2167,37 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #068 — Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) @ Siemens
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (32.4% fit)
+
+### Analýza pozice
+- **Role:** Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n)
+- **Firma:** Siemens
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **32.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, formal
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2244,3 +2275,4 @@
 | 065 | Capco | Murex Consultant | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 066 | Atlas Copco | Sales Engineer | 31.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 067 | Quik Hire Staffing | Manufacturing Specialist (Remote) | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |

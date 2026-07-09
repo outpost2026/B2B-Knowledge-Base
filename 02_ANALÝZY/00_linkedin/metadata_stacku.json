@@ -3806,6 +3806,59 @@
           "growth"
         ]
       }
+    },
+    {
+      "id": "068",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4405749491",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Siemens"
+      },
+      "title": "Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 32.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
