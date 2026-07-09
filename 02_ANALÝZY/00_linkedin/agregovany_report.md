@@ -1868,6 +1868,38 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #058 — Přípravář/ka nástrojů @ Ball Corporation
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (56.0% fit)
+
+### Analýza pozice
+- **Role:** Přípravář/ka nástrojů
+- **Firma:** Ball Corporation
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 22.0% | 0.1% | 1 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 70.0% | 0.0% | CZ-based role (2 location keywords) |
+| **Celkem** | **100%** | | **56.0%** | **MEDIUM** |
+
+### Skill match
+- **CNC**: direct_match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1935,3 +1967,4 @@
 | 055 | Uměláinteligence.cz | Vývojář | 49.8% | Nízká | 🟡 HRANICNI |
 | 056 | LevelUP HCS | Mechanical Integration Engineer | 56.4% | Střední | 🟡 MEDIUM |
 | 057 | Maly Consulting LLC | Truhláři | 50.8% | Střední | 🟡 MEDIUM |
+| 058 | Ball Corporation | Přípravář/ka nástrojů | 56.0% | Střední | 🟡 MEDIUM |
