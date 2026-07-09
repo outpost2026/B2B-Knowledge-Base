@@ -3436,9 +3436,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Blindspot AI"
+        "industry": "Unknown"
       },
-      "title": "ERP konzultant - integrace AI řešení pro logistiku i výrobu",
+      "title": "Blindspot AI",
       "role": {
         "category": null,
         "subcategory": null,
@@ -3449,10 +3449,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "CAM",
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -3472,16 +3469,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 50.1,
+        "fit_score_pct": 26.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -3507,7 +3504,6 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "CAM",
             "test automation",
             "CI/CD",
             "Git"
@@ -3534,7 +3530,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 71.3,
+        "fit_score_pct": 75.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3709,13 +3705,13 @@
     {
       "id": "066",
       "date": "2026-07-09",
-      "linkedin_job_id": "0000000000",
+      "linkedin_job_id": "4438207231",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Atlas Copco"
       },
-      "title": "Stránku se nepodařilo načíst",
+      "title": "Sales Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -3746,7 +3742,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 30.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3755,7 +3751,7 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "growth"
+          "formal"
         ]
       }
     }

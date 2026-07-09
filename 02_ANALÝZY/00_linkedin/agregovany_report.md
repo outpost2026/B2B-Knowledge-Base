@@ -1923,6 +1923,9 @@
 
 
 
+
+
+
 ## 🔴 ZÁZNAM #060 — Product Owner – AI, Automation & Tooling for IT Service Desk @ Aeven
 **Datum:** 2026-07-09
 **EROI verdict:** NESLEDOVAT (28.4% fit)
@@ -1954,39 +1957,37 @@
 
 ---
 
-## 🟡 ZÁZNAM #061 — ERP konzultant - integrace AI řešení pro logistiku i výrobu @ Blindspot AI
+## 🔴 ZÁZNAM #061 — Blindspot AI @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** MEDIUM (50.1% fit)
+**EROI verdict:** NESLEDOVAT (26.4% fit)
 
 ### Analýza pozice
-- **Role:** ERP konzultant - integrace AI řešení pro logistiku i výrobu
-- **Firma:** Blindspot AI
+- **Role:** Blindspot AI
+- **Firma:** Unknown
 
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 30.5% | 0.1% | 2 direct, 1 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
-| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **50.1%** | **MEDIUM** |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
 
 ### Skill match
-- **CAM**: direct_match
 - **AI**: partial_match
-- **Git**: direct_match
 
-**Kritické mismatch:** tech, growth, location
+**Kritické mismatch:** domain, tech, growth
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
 ## 🟢 ZÁZNAM #062 — PLC Test Automation Engineer with Python (m/f/d) @ Siemens
 **Datum:** 2026-07-09
-**EROI verdict:** SLEDOVAT (71.3% fit)
+**EROI verdict:** SLEDOVAT (75.9% fit)
 
 ### Analýza pozice
 - **Role:** PLC Test Automation Engineer with Python (m/f/d)
@@ -1995,17 +1996,16 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 85.0% | 0.3% | Strong industrial domain (16 keywords) |
-| tech | 25% | 71.2% | 0.2% | 5 direct, 1 partial matches |
-| role | 20% | 60.0% | 0.1% | Engineering keywords (4) with fake-engineer signals (1) |
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (8 keywords) |
+| tech | 25% | 57.6% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
-| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **71.3%** | **SLEDOVAT** |
+| **Celkem** | **100%** | | **75.9%** | **SLEDOVAT** |
 
 ### Skill match
 - **Python**: direct_match
-- **CAM**: direct_match
 - **test automation**: direct_match
 - **CI/CD**: direct_match
 - **AI**: partial_match
@@ -2016,6 +2016,7 @@
 **Kritické mismatch:** formal, location
 
 **Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
@@ -2034,7 +2035,7 @@
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
 | role | 20% | 35.0% | 0.1% | No strong role signal detected |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
 | **Celkem** | **100%** | | **24.9%** | **NESLEDOVAT** |
 
@@ -2078,6 +2079,8 @@
 
 
 
+
+
 ## 🟡 ZÁZNAM #065 — Murex Consultant @ Capco
 **Datum:** 2026-07-09
 **EROI verdict:** HRANICNI (45.4% fit)
@@ -2107,31 +2110,29 @@
 
 ---
 
-
-
-## 🔴 ZÁZNAM #066 — Stránku se nepodařilo načíst @ Unknown
+## 🔴 ZÁZNAM #066 — Sales Engineer @ Atlas Copco
 **Datum:** 2026-07-09
-**EROI verdict:** NESLEDOVAT (24.9% fit)
+**EROI verdict:** NESLEDOVAT (30.4% fit)
 
 ### Analýza pozice
-- **Role:** Stránku se nepodařilo načíst
-- **Firma:** Unknown
+- **Role:** Sales Engineer
+- **Firma:** Atlas Copco
 
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
-| growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
-| **Celkem** | **100%** | | **24.9%** | **NESLEDOVAT** |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (1) with fake-engineer signals (1) |
+| growth | 10% | 60.0% | 0.1% | Growth employer: Atlas Copco |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **30.4%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** domain, tech, formal
 
 **Doporučení:** Nealokovat čas
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
@@ -2209,9 +2210,9 @@
 | 058 | Ball Corporation | Přípravář/ka nástrojů | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 059 | Desoutter Tools | Light Automation Specialist | 65.7% | Vysoká | 🟢 SLEDOVAT |
 | 060 | Aeven | Product Owner – AI, Automation & Tooling for IT Service Desk | 28.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 061 | Blindspot AI | ERP konzultant - integrace AI řešení pro logistiku i výrobu | 50.1% | Střední | 🟡 MEDIUM |
-| 062 | Siemens | PLC Test Automation Engineer with Python (m/f/d) | 71.3% | Vysoká | 🟢 SLEDOVAT |
+| 061 | Unknown | Blindspot AI | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 062 | Siemens | PLC Test Automation Engineer with Python (m/f/d) | 75.9% | Vysoká | 🟢 SLEDOVAT |
 | 063 | Averna | APLIKAČNÍ INŽENÝR (PRO MACHINE VISION) | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 064 | LevelUP HCS | Electrical Integration Engineer | 34.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 065 | Capco | Murex Consultant | 45.4% | Nízká | 🟡 HRANICNI |
-| 066 | Unknown | Stránku se nepodařilo načíst | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 066 | Atlas Copco | Sales Engineer | 30.4% | Kriticky nízká | 🔴 NESLEDOVAT |
