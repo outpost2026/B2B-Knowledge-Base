@@ -1697,6 +1697,40 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #053 — Head of Engineering – Tech Superdomain @ Shoptet
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (51.5% fit)
+
+### Analýza pozice
+- **Role:** Head of Engineering – Tech Superdomain
+- **Firma:** Shoptet
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 45.8% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **51.5%** | **MEDIUM** |
+
+### Skill match
+- **Docker**: direct_match
+- **ETL**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1759,3 +1793,4 @@
 | 050 | Unknown | Unknown | 50.5% | Střední | 🟡 MEDIUM |
 | 051 | MSM GROUP | Head of Supply Chain Management | 26.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 052 | Tipsport | Machine Learning Specialist | Python developer | 47.6% | Nízká | 🟡 HRANICNI |
+| 053 | Shoptet | Head of Engineering – Tech Superdomain | 51.5% | Střední | 🟡 MEDIUM |
