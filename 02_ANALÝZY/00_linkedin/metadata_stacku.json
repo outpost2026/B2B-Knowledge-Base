@@ -3392,7 +3392,10 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git",
+            "agentic"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3412,7 +3415,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 23.4,
+        "fit_score_pct": 28.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3476,6 +3479,65 @@
           "domain",
           "tech",
           "growth"
+        ]
+      }
+    },
+    {
+      "id": "062",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4426632138",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Siemens"
+      },
+      "title": "PLC Test Automation Engineer with Python (m/f/d)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "test automation",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC",
+            "TIA Portal"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 78.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
         ]
       }
     }
