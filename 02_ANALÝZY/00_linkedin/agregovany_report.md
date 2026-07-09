@@ -1915,6 +1915,39 @@
 **Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
+
+## 🔴 ZÁZNAM #060 — Product Owner – AI, Automation & Tooling for IT Service Desk @ Aeven
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (28.4% fit)
+
+### Analýza pozice
+- **Role:** Product Owner – AI, Automation & Tooling for IT Service Desk
+- **Firma:** Aeven
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 25.4% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 20.0% | 0.0% | Non-engineering role (1 service/sales keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **28.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** domain, tech, role, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 3 skill mismatches; Role mismatch (fake engineer or non-engineering)
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1984,3 +2017,4 @@
 | 057 | Maly Consulting LLC | Truhláři | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 058 | Ball Corporation | Přípravář/ka nástrojů | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 059 | Desoutter Tools | Light Automation Specialist | 65.7% | Vysoká | 🟢 SLEDOVAT |
+| 060 | Aeven | Product Owner – AI, Automation & Tooling for IT Service Desk | 28.4% | Kriticky nízká | 🔴 NESLEDOVAT |
