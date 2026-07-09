@@ -3415,7 +3415,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 28.4,
+        "fit_score_pct": 36.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3424,7 +3424,6 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "role",
           "growth"
         ]
       }
@@ -3436,9 +3435,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Blindspot AI"
       },
-      "title": "Blindspot AI",
+      "title": "ERP konzultant - integrace AI řešení pro logistiku i výrobu",
       "role": {
         "category": null,
         "subcategory": null,
@@ -3449,7 +3448,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3469,7 +3470,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 25.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3689,16 +3690,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 45.4,
+        "fit_score_pct": 26.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     },
@@ -3742,7 +3743,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 30.4,
+        "fit_score_pct": 31.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3750,8 +3751,59 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
+          "tech"
+        ]
+      }
+    },
+    {
+      "id": "067",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4438572723",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Quik Hire Staffing"
+      },
+      "title": "Manufacturing Specialist (Remote)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 35.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
           "tech",
-          "formal"
+          "growth"
         ]
       }
     }
