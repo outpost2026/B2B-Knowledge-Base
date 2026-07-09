@@ -1630,6 +1630,40 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #050 — Unknown @ Unknown
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (60.1% fit)
+
+### Analýza pozice
+- **Role:** Unknown
+- **Firma:** Unknown
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 59.3% | 0.1% | 4 direct, 0 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **reverse engineering**: direct_match
+- **CNC**: direct_match
+- **CAM**: direct_match
+
+**Kritické mismatch:** growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1688,3 +1722,5 @@
 | 047 | CDC Data s.r.o. | AI Ambasador & Specialista inovací | 50.8% | Střední | 🟡 MEDIUM |
 | 048 | JABLOTRON | Vývojář/ka FW | 44.7% | Nízká | 🟡 HRANICNI |
 | 049 | Lear Corporation | Development Engineer | 49.8% | Nízká | 🟡 HRANICNI |
+
+| 050 | Unknown | Unknown | 60.1% | Střední | 🟡 MEDIUM |
