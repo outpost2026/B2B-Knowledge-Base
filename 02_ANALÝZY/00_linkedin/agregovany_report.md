@@ -12,9 +12,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 ## 🟡 ZÁZNAM #001 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** MEDIUM (53.7% fit)
+**EROI verdict:** MEDIUM (60.6% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -23,23 +33,26 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
-| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 64.4% | 0.2% | 4 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **53.7%** | **MEDIUM** |
+| **Celkem** | **100%** | | **60.6%** | **MEDIUM** |
 
 ### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **LLM**: partial_match
 - **AI**: partial_match
 - **Git**: direct_match
-- **PLC**: no_match
+- **agentic**: direct_match
 
-**Kritické mismatch:** tech, growth, formal
+**Kritické mismatch:** growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 ## 🟡 ZÁZNAM #002 — Unknown @ Unknown
@@ -897,7 +910,41 @@
 
 
 
-## 🟡 ZÁZNAM #028 — Unknown @ Unknown
+
+## 🔴 ZÁZNAM #028 — Unknown @ Unknown
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (39.8% fit)
+
+### Analýza pozice
+- **Role:** Unknown
+- **Firma:** Unknown
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
+| tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **39.8%** | **NESLEDOVAT** |
+
+### Skill match
+- **REST API**: direct_match
+- **AI**: partial_match
+- **TypeScript**: no_match
+- **C++**: no_match
+- **agentic**: direct_match
+
+**Kritické mismatch:** domain, tech, growth, formal
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 5 skill mismatches
+
+---
+
+## 🟡 ZÁZNAM #029 — Unknown @ Unknown
 **Datum:** 2026-07-09
 **EROI verdict:** HRANICNI (49.3% fit)
 
@@ -931,37 +978,9 @@
 
 ---
 
-## 🔴 ZÁZNAM #029 — Unknown @ Unknown
-**Datum:** 2026-07-09
-**EROI verdict:** NESLEDOVAT (36.4% fit)
-
-### Analýza pozice
-- **Role:** Unknown
-- **Firma:** Unknown
-
-### EROI skóre
-| Dimenze | Váha | Skóre | Váženě | Detail |
-|---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
-| growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **36.4%** | **NESLEDOVAT** |
-
-### Skill match
-- **AI**: partial_match
-
-**Kritické mismatch:** domain, tech, growth
-
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
-
----
 ## 🟡 ZÁZNAM #030 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** MEDIUM (60.1% fit)
+**EROI verdict:** MEDIUM (60.8% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -970,44 +989,49 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 59.3% | 0.1% | 4 direct, 0 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
+| tech | 25% | 54.2% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **60.8%** | **MEDIUM** |
 
 ### Skill match
 - **Python**: direct_match
-- **reverse engineering**: direct_match
-- **CNC**: direct_match
-- **CAM**: direct_match
+- **IoT**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Terraform**: no_match
+- **PLC**: no_match
+- **C++**: no_match
+- **scripting**: direct_match
 
-**Kritické mismatch:** growth
+**Kritické mismatch:** growth, formal, location
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
 **Poznámka:** Positioning match zachraňuje domain gap
 
 ---
-## 🟢 ZÁZNAM #031 — Senior Staff Digital Design Engineer @ Renesas Electronics
-**Datum:** 2026-07-08
-**EROI verdict:** SLEDOVAT (65.5% fit)
+
+## 🟡 ZÁZNAM #031 — Unknown @ Unknown
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (64.5% fit)
 
 ### Analýza pozice
-- **Role:** Senior Staff Digital Design Engineer
-- **Firma:** Renesas Electronics
+- **Role:** Unknown
+- **Firma:** Unknown
 
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 45.0% | 0.2% | Strong industrial domain (5 keywords) (electronics manufacturing, not core industrial) |
 | tech | 25% | 88.1% | 0.2% | 8 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
-| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **65.5%** | **SLEDOVAT** |
+| **Celkem** | **100%** | | **64.5%** | **MEDIUM** |
 
 ### Skill match
 - **Python**: direct_match
@@ -1023,15 +1047,46 @@
 
 **Kritické mismatch:** growth, formal
 
-**Doporučení:** Aplikovat — silný lead
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
 **Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
-
-## 🔴 ZÁZNAM #032 — Unknown @ Unknown
+## 🟡 ZÁZNAM #032 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** NESLEDOVAT (34.9% fit)
+**EROI verdict:** MEDIUM (54.1% fit)
+
+### Analýza pozice
+- **Role:** Unknown
+- **Firma:** Unknown
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Weak industrial signal (1 core keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 42.4% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **54.1%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
+## 🔴 ZÁZNAM #033 — Unknown @ Unknown
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (36.4% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -1042,11 +1097,11 @@
 |---------|------|-------|--------|--------|
 | domain | 35% | 25.0% | 0.1% | No clear domain signal |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
-| **Celkem** | **100%** | | **34.9%** | **NESLEDOVAT** |
+| location | 5% | 60.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **36.4%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
@@ -1057,49 +1112,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-## 🟡 ZÁZNAM #033 — Solution Architect (43156) @ CoolPeople
-**Datum:** 2026-07-07
-**EROI verdict:** HRANICNI (44.1% fit)
 
-### Analýza pozice
-- **Role:** Solution Architect (43156)
-- **Firma:** CoolPeople
-
-### EROI skóre
-| Dimenze | Váha | Skóre | Váženě | Detail |
-|---------|------|-------|--------|--------|
-| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise |
-| tech | 25% | 79.4% | 0.2% | 7 direct, 1 partial matches |
-| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1 |
-| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **44.1%** | **HRANICNI** |
-
-### Skill match
-- **Python**: direct_match
-- **GCP**: direct_match
-- **Docker**: direct_match
-- **REST API**: direct_match
-- **CI/CD**: direct_match
-- **Git**: direct_match
-- **Linux**: direct_match
-- **AI**: partial_match
-- **Kubernetes**: no_match
-- **Azure**: no_match
-- **AWS**: no_match
-
-**Kritické mismatch:** domain, growth, formal
-
-**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
-
----
-
-
-
-## 🟡 ZÁZNAM #034 — Unknown @ Unknown
+## 🔴 ZÁZNAM #034 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** MEDIUM (60.1% fit)
+**EROI verdict:** NESLEDOVAT (36.2% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -1108,62 +1124,61 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 59.3% | 0.1% | 4 direct, 0 partial matches |
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
 | role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **36.2%** | **NESLEDOVAT** |
 
 ### Skill match
-- **Python**: direct_match
-- **reverse engineering**: direct_match
-- **CNC**: direct_match
-- **CAM**: direct_match
+- **AI**: partial_match
+- **Linux**: direct_match
+- **C++**: no_match
 
-**Kritické mismatch:** growth
+**Kritické mismatch:** domain, tech, growth, location
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Positioning match zachraňuje domain gap
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 3 skill mismatches
 
 ---
-## 🟡 ZÁZNAM #035 — Solution Architect @ Element Logic®
-**Datum:** 2026-07-07
+
+## 🟡 ZÁZNAM #035 — Unknown @ Unknown
+**Datum:** 2026-07-09
 **EROI verdict:** MEDIUM (53.0% fit)
 
 ### Analýza pozice
-- **Role:** Solution Architect
-- **Firma:** Element Logic®
+- **Role:** Unknown
+- **Firma:** Unknown
 
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords |
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
 | tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
-| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1 |
-| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (5) with fake-engineer signals (1) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
 | **Celkem** | **100%** | | **53.0%** | **MEDIUM** |
 
 ### Skill match
-- **Git**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 - **Azure**: no_match
 - **PLC**: no_match
 
 **Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 4 skill mismatches
 
 ---
 
-
-
-## 🔴 ZÁZNAM #036 — Unknown @ Unknown
+## 🟡 ZÁZNAM #036 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** NESLEDOVAT (24.9% fit)
+**EROI verdict:** HRANICNI (43.5% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -1172,38 +1187,41 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
-| **Celkem** | **100%** | | **24.9%** | **NESLEDOVAT** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **43.5%** | **HRANICNI** |
 
 ### Skill match
 - **AI**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+- **C++**: no_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** tech, growth, formal
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 4 skill mismatches
 
 ---
-## 🟡 ZÁZNAM #037 — Lean Manufacturing Engineer @ ManpowerGroup Czech Republic
-**Datum:** 2026-07-07
+## 🟡 ZÁZNAM #037 — Unknown @ Unknown
+**Datum:** 2026-07-09
 **EROI verdict:** MEDIUM (51.6% fit)
 
 ### Analýza pozice
-- **Role:** Lean Manufacturing Engineer
-- **Firma:** ManpowerGroup Czech Republic
+- **Role:** Unknown
+- **Firma:** Unknown
 
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords |
-| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Unknown employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
 | **Celkem** | **100%** | | **51.6%** | **MEDIUM** |
@@ -1214,12 +1232,9 @@
 **Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 1 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
-
-
-
-
 ## 🔴 ZÁZNAM #038 — Unknown @ Unknown
 **Datum:** 2026-07-09
 **EROI verdict:** NESLEDOVAT (24.9% fit)
@@ -1587,9 +1602,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
+
 ## 🟡 ZÁZNAM #050 — Unknown @ Unknown
 **Datum:** 2026-07-09
-**EROI verdict:** MEDIUM (60.1% fit)
+**EROI verdict:** MEDIUM (50.5% fit)
 
 ### Analýza pozice
 - **Role:** Unknown
@@ -1599,25 +1615,54 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 59.3% | 0.1% | 4 direct, 0 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (8 keywords) |
 | growth | 10% | 20.0% | 0.0% | Unknown employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **60.1%** | **MEDIUM** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **50.5%** | **MEDIUM** |
 
 ### Skill match
-- **Python**: direct_match
-- **reverse engineering**: direct_match
-- **CNC**: direct_match
-- **CAM**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
 
-**Kritické mismatch:** growth
+**Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Positioning match zachraňuje domain gap
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
+
+## 🔴 ZÁZNAM #051 — Head of Supply Chain Management @ MSM GROUP
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (26.6% fit)
+
+### Analýza pozice
+- **Role:** Head of Supply Chain Management
+- **Firma:** MSM GROUP
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **26.6%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, location
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1627,7 +1672,7 @@
 
 | # | Firma | Role | Fit % | EROI | Verdikt |
 |---|-------|------|-------|------|---------|
-| 001 | Unknown | Unknown | 53.7% | Střední | 🟡 MEDIUM |
+| 001 | Unknown | Unknown | 60.6% | Střední | 🟡 MEDIUM |
 | 002 | Unknown | Unknown | 60.1% | Střední | 🟡 MEDIUM |
 | 003 | Thermo Fisher Scientific | System Integration Engineer | 76.5% | Vysoká | 🟢 SLEDOVAT |
 | 004 | Unknown | Unknown | 51.6% | Střední | 🟡 MEDIUM |
@@ -1654,16 +1699,16 @@
 | 025 | Radley James | Senior Quant Developer | 52.4% | Střední | 🟡 MEDIUM |
 | 026 | EPAM Systems | Senior Data Integration Engineer | 62.9% | Střední | 🟡 MEDIUM |
 | 027 | SearchApi | AI Integrations Engineer (Open Source ·  Web Search) | 58.8% | Střední | 🟡 MEDIUM |
-| 028 | Unknown | Unknown | 49.3% | Nízká | 🟡 HRANICNI |
-| 029 | Unknown | Unknown | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 030 | Unknown | Unknown | 60.1% | Střední | 🟡 MEDIUM |
-| 031 | Renesas Electronics | Senior Staff Digital Design Engineer | 65.5% | Vysoká | 🟢 SLEDOVAT |
-| 032 | Unknown | Unknown | 34.9% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 033 | CoolPeople | Solution Architect (43156) | 44.1% | Nízká | 🟡 HRANICNI |
-| 034 | Unknown | Unknown | 60.1% | Střední | 🟡 MEDIUM |
-| 035 | Element Logic® | Solution Architect | 53.0% | Střední | 🟡 MEDIUM |
-| 036 | Unknown | Unknown | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 037 | ManpowerGroup Czech Republic | Lean Manufacturing Engineer | 51.6% | Střední | 🟡 MEDIUM |
+| 028 | Unknown | Unknown | 39.8% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 029 | Unknown | Unknown | 49.3% | Nízká | 🟡 HRANICNI |
+| 030 | Unknown | Unknown | 60.8% | Střední | 🟡 MEDIUM |
+| 031 | Unknown | Unknown | 64.5% | Střední | 🟡 MEDIUM |
+| 032 | Unknown | Unknown | 54.1% | Střední | 🟡 MEDIUM |
+| 033 | Unknown | Unknown | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 034 | Unknown | Unknown | 36.2% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 035 | Unknown | Unknown | 53.0% | Střední | 🟡 MEDIUM |
+| 036 | Unknown | Unknown | 43.5% | Nízká | 🟡 HRANICNI |
+| 037 | Unknown | Unknown | 51.6% | Střední | 🟡 MEDIUM |
 | 038 | Unknown | Unknown | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 039 | Unknown | Unknown | 34.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 040 | Unknown | Unknown | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
@@ -1677,4 +1722,5 @@
 | 048 | Unknown | Unknown | 55.4% | Střední | 🟡 MEDIUM |
 | 049 | Unknown | Unknown | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 
-| 050 | Unknown | Unknown | 60.1% | Střední | 🟡 MEDIUM |
+| 050 | Unknown | Unknown | 50.5% | Střední | 🟡 MEDIUM |
+| 051 | MSM GROUP | Head of Supply Chain Management | 26.6% | Kriticky nízká | 🔴 NESLEDOVAT |
