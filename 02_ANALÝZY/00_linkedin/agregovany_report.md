@@ -1918,6 +1918,7 @@
 
 
 
+
 ## 🔴 ZÁZNAM #060 — Product Owner – AI, Automation & Tooling for IT Service Desk @ Aeven
 **Datum:** 2026-07-09
 **EROI verdict:** NESLEDOVAT (28.4% fit)
@@ -1948,9 +1949,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 3 skill mismatches; Role mismatch (fake engineer or non-engineering)
 
 ---
-## 🔴 ZÁZNAM #061 — ERP konzultant - integrace AI řešení pro logistiku i výrobu @ Blindspot AI
+
+## 🟡 ZÁZNAM #061 — ERP konzultant - integrace AI řešení pro logistiku i výrobu @ Blindspot AI
 **Datum:** 2026-07-09
-**EROI verdict:** NESLEDOVAT (26.4% fit)
+**EROI verdict:** MEDIUM (50.1% fit)
 
 ### Analýza pozice
 - **Role:** ERP konzultant - integrace AI řešení pro logistiku i výrobu
@@ -1959,29 +1961,28 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 30.5% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **50.1%** | **MEDIUM** |
 
 ### Skill match
+- **CAM**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** tech, growth, location
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
-
-
-
 ## 🟢 ZÁZNAM #062 — PLC Test Automation Engineer with Python (m/f/d) @ Siemens
 **Datum:** 2026-07-09
-**EROI verdict:** SLEDOVAT (78.9% fit)
+**EROI verdict:** SLEDOVAT (75.9% fit)
 
 ### Analýza pozice
 - **Role:** PLC Test Automation Engineer with Python (m/f/d)
@@ -1992,11 +1993,11 @@
 |---------|------|-------|--------|--------|
 | domain | 35% | 85.0% | 0.3% | Strong industrial domain (8 keywords) |
 | tech | 25% | 57.6% | 0.1% | 4 direct, 1 partial matches |
-| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: Siemens |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **78.9%** | **SLEDOVAT** |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **75.9%** | **SLEDOVAT** |
 
 ### Skill match
 - **Python**: direct_match
@@ -2007,10 +2008,39 @@
 - **PLC**: no_match
 - **TIA Portal**: no_match
 
-**Kritické mismatch:** formal
+**Kritické mismatch:** formal, location
 
 **Doporučení:** Aplikovat — silný lead
 **Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
+## 🔴 ZÁZNAM #063 — APLIKAČNÍ INŽENÝR (PRO MACHINE VISION) @ Averna
+**Datum:** 2026-07-09
+**EROI verdict:** NESLEDOVAT (24.9% fit)
+
+### Analýza pozice
+- **Role:** APLIKAČNÍ INŽENÝR (PRO MACHINE VISION)
+- **Firma:** Averna
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **24.9%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth, formal
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
 
@@ -2085,5 +2115,6 @@
 | 058 | Ball Corporation | Přípravář/ka nástrojů | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 059 | Desoutter Tools | Light Automation Specialist | 65.7% | Vysoká | 🟢 SLEDOVAT |
 | 060 | Aeven | Product Owner – AI, Automation & Tooling for IT Service Desk | 28.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 061 | Blindspot AI | ERP konzultant - integrace AI řešení pro logistiku i výrobu | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 062 | Siemens | PLC Test Automation Engineer with Python (m/f/d) | 78.9% | Vysoká | 🟢 SLEDOVAT |
+| 061 | Blindspot AI | ERP konzultant - integrace AI řešení pro logistiku i výrobu | 50.1% | Střední | 🟡 MEDIUM |
+| 062 | Siemens | PLC Test Automation Engineer with Python (m/f/d) | 75.9% | Vysoká | 🟢 SLEDOVAT |
+| 063 | Averna | APLIKAČNÍ INŽENÝR (PRO MACHINE VISION) | 24.9% | Kriticky nízká | 🔴 NESLEDOVAT |
