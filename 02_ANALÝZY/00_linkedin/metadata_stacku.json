@@ -3449,10 +3449,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "CAM",
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -3472,16 +3469,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 50.1,
+        "fit_score_pct": 26.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -3507,16 +3504,13 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "test automation",
-            "CI/CD",
-            "Git"
+            "test automation"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "PLC",
-            "TIA Portal"
+            "PLC"
           ]
         }
       },
@@ -3533,16 +3527,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 75.9,
+        "fit_score_pct": 61.8,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "SLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "formal",
-          "location"
-        ]
+        "verdict": "MEDIUM",
+        "critical_mismatch": false,
+        "mismatch_dimensions": []
       }
     },
     {
@@ -3585,7 +3576,61 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 41.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "064",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4434829705",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "LevelUP HCS"
+      },
+      "title": "Electrical Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 34.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3594,8 +3639,7 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     }
