@@ -16,69 +16,14 @@
   "entries": [
     {
       "id": "001",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4430450329",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Desoutter Tools"
+        "industry": "Unknown"
       },
-      "title": "Light Automation Specialist",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "PLC"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 65.7,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "SLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "tech"
-        ]
-      }
-    },
-    {
-      "id": "002",
-      "date": "2026-07-07",
-      "linkedin_job_id": "4426045900",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Digiteq Automotive"
-      },
-      "title": "Automotive CI/CD Engineer (DevOps)",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -91,19 +36,12 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "CI/CD",
-            "Git",
-            "Linux",
-            "DevSecOps"
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "Kubernetes",
-            "Azure",
-            "C++"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -119,7 +57,61 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.2,
+        "fit_score_pct": 60.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "002",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4426045900",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Unknown"
+      },
+      "title": "Unknown",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
+          ],
+          "partial_match": [],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -357,14 +349,14 @@
     },
     {
       "id": "007",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4431502244",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "TD SYNNEX Czech Republic"
+        "industry": "Unknown"
       },
-      "title": "AI Integrator / AI Engineer",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -375,18 +367,12 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "GCP",
-            "data pipeline",
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "Azure",
-            "AWS"
+            "PLC"
           ]
         }
       },
@@ -403,13 +389,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 62.5,
+        "fit_score_pct": 46.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "tech",
           "growth"
         ]
       }
@@ -478,14 +465,14 @@
     },
     {
       "id": "009",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4426619375",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Sécheron SA"
+        "industry": "Unknown"
       },
-      "title": "PLC Software Engineer",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -650,14 +637,14 @@
     },
     {
       "id": "012",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4354336186",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Zakládání staveb, a. s."
+        "industry": "Unknown"
       },
-      "title": "TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -669,11 +656,12 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "CNC"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
+          "partial_match": [],
           "no_match": []
         }
       },
@@ -690,16 +678,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.5,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     },
@@ -1058,14 +1044,14 @@
     },
     {
       "id": "019",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4436064578",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Siemens"
+        "industry": "Unknown"
       },
-      "title": "Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1077,13 +1063,12 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "CAM",
-            "IoT",
-            "Git"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
+          "partial_match": [],
           "no_match": []
         }
       },
@@ -1100,14 +1085,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 69.4,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "SLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "formal"
+          "growth"
         ]
       }
     },
@@ -1704,14 +1689,14 @@
     },
     {
       "id": "030",
-      "date": "2026-07-08",
+      "date": "2026-07-09",
       "linkedin_job_id": "4434333149",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "ConSol Partners"
+        "industry": "Unknown"
       },
-      "title": "Automation Engineer",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1724,14 +1709,12 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "scripting"
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "Terraform"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -1747,16 +1730,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 51.0,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     },
@@ -1825,14 +1806,14 @@
     },
     {
       "id": "032",
-      "date": "2026-07-08",
+      "date": "2026-07-09",
       "linkedin_job_id": "4434451288",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Tropic Square"
+        "industry": "Unknown"
       },
-      "title": "Lead Software Engineer (Semiconductor Verification & Tooling)",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1863,13 +1844,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 44.4,
+        "fit_score_pct": 34.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
           "growth"
         ]
@@ -1942,14 +1924,14 @@
     },
     {
       "id": "034",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4429533662",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "RETIA, a.s."
+        "industry": "Unknown"
       },
-      "title": "SW Architect",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1961,15 +1943,13 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Git",
-            "Linux"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "C++"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -1985,16 +1965,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 43.9,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -2058,14 +2036,14 @@
     },
     {
       "id": "036",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4436314128",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "KBC Global Services"
+        "industry": "Unknown"
       },
-      "title": "System Architect",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2076,15 +2054,11 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
-          "no_match": [
-            "C++"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -2100,17 +2074,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 40.2,
+        "fit_score_pct": 24.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
-          "growth",
-          "formal",
-          "location"
+          "growth"
         ]
       }
     },
@@ -2169,14 +2142,14 @@
     },
     {
       "id": "038",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4415618297",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Colours of Data"
+        "industry": "Unknown"
       },
-      "title": "Data Science & AI Architect Lead",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2189,18 +2162,12 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "GCP",
-            "Git"
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "LLM",
-            "AI",
-            "machine learning"
-          ],
-          "no_match": [
-            "Azure",
-            "AWS"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -2216,14 +2183,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 53.7,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "growth"
         ]
       }
@@ -2292,14 +2258,14 @@
     },
     {
       "id": "040",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4435199835",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "HR:DONE."
+        "industry": "Unknown"
       },
-      "title": "Sap Solutions Architect",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2310,10 +2276,13 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
+          "direct_match": [
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
+          "partial_match": [],
           "no_match": []
         }
       },
@@ -2330,15 +2299,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.6,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
           "growth"
         ]
       }
@@ -2400,14 +2367,14 @@
     },
     {
       "id": "042",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4405119374",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Quest Global"
+        "industry": "Unknown"
       },
-      "title": "Enterprise Software Integration role in Czechia (mid & senior level)",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2419,17 +2386,13 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "CAM",
-            "IoT",
-            "Git",
-            "Linux"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "PLC"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -2445,15 +2408,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 52.5,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -2518,14 +2480,14 @@
     },
     {
       "id": "044",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4434106125",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "La Fosse"
+        "industry": "Unknown"
       },
-      "title": "Robotics Engineer",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2537,17 +2499,13 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "CAM",
-            "CI/CD",
-            "Git"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "PLC",
-            "C++"
-          ]
+          "partial_match": [],
+          "no_match": []
         }
       },
       "domain": {
@@ -2563,16 +2521,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 57.4,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth",
-          "formal",
-          "location"
+          "growth"
         ]
       }
     },
@@ -2691,14 +2647,14 @@
     },
     {
       "id": "047",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4432858738",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "CDC Data s.r.o."
+        "industry": "Unknown"
       },
-      "title": "AI Ambasador & Specialista inovací",
+      "title": "Unknown",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2710,14 +2666,12 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "IoT",
-            "Git"
+            "Python",
+            "reverse engineering",
+            "CNC",
+            "CAM"
           ],
-          "partial_match": [
-            "LLM",
-            "AI",
-            "machine learning"
-          ],
+          "partial_match": [],
           "no_match": []
         }
       },
@@ -2734,7 +2688,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 50.8,
+        "fit_score_pct": 60.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2865,7 +2819,7 @@
     {
       "id": "050",
       "date": "2026-07-09",
-      "linkedin_job_id": "4437152646",
+      "linkedin_job_id": "4437887286",
       "company": {
         "type": null,
         "size_range": null,
