@@ -3415,7 +3415,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 28.4,
+        "fit_score_pct": 36.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3424,7 +3424,6 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "role",
           "growth"
         ]
       }
@@ -3449,7 +3448,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3469,7 +3470,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 25.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3504,13 +3505,17 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "test automation"
+            "CAM",
+            "test automation",
+            "CI/CD",
+            "Git"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "PLC"
+            "PLC",
+            "TIA Portal"
           ]
         }
       },
@@ -3527,13 +3532,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 61.8,
+        "fit_score_pct": 57.3,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
-        "critical_mismatch": false,
-        "mismatch_dimensions": []
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal",
+          "location"
+        ]
       }
     },
     {
@@ -3640,6 +3648,59 @@
           "domain",
           "tech",
           "growth"
+        ]
+      }
+    },
+    {
+      "id": "065",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4368816217",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Capco"
+      },
+      "title": "Murex Consultant",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
         ]
       }
     }
