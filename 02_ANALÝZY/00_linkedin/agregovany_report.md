@@ -1805,6 +1805,37 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #056 — Mechanical Integration Engineer @ LevelUP HCS
+**Datum:** 2026-07-09
+**EROI verdict:** MEDIUM (56.4% fit)
+
+### Analýza pozice
+- **Role:** Mechanical Integration Engineer
+- **Firma:** LevelUP HCS
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
+| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
+| **Celkem** | **100%** | | **56.4%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** tech, growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 1 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1870,3 +1901,4 @@
 | 053 | Shoptet | Head of Engineering – Tech Superdomain | 51.5% | Střední | 🟡 MEDIUM |
 | 054 | Hedepy | AI & Automation manager | 56.7% | Střední | 🟡 MEDIUM |
 | 055 | Uměláinteligence.cz | Vývojář | 49.8% | Nízká | 🟡 HRANICNI |
+| 056 | LevelUP HCS | Mechanical Integration Engineer | 56.4% | Střední | 🟡 MEDIUM |
