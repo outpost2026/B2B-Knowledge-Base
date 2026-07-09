@@ -1768,6 +1768,43 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #055 — Vývojář @ Uměláinteligence.cz
+**Datum:** 2026-07-09
+**EROI verdict:** HRANICNI (49.8% fit)
+
+### Analýza pozice
+- **Role:** Vývojář
+- **Firma:** Uměláinteligence.cz
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
+| tech | 25% | 61.0% | 0.2% | 4 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **49.8%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **Docker**: direct_match
+- **LLM**: partial_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **TypeScript**: no_match
+- **middleware**: direct_match
+
+**Kritické mismatch:** domain, growth
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -1832,3 +1869,4 @@
 | 052 | Tipsport | Machine Learning Specialist | Python developer | 47.6% | Nízká | 🟡 HRANICNI |
 | 053 | Shoptet | Head of Engineering – Tech Superdomain | 51.5% | Střední | 🟡 MEDIUM |
 | 054 | Hedepy | AI & Automation manager | 56.7% | Střední | 🟡 MEDIUM |
+| 055 | Uměláinteligence.cz | Vývojář | 49.8% | Nízká | 🟡 HRANICNI |
