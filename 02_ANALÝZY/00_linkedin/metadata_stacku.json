@@ -21,9 +21,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "WPP Media"
       },
-      "title": "Unknown",
+      "title": "Head of Automation & AI",
       "role": {
         "category": null,
         "subcategory": null,
@@ -60,7 +60,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.6,
+        "fit_score_pct": 61.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -594,8 +594,8 @@
     },
     {
       "id": "011",
-      "date": "2026-07-07",
-      "linkedin_job_id": "4411284048",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4414678400",
       "company": {
         "type": null,
         "size_range": null,
@@ -635,7 +635,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.4,
+        "fit_score_pct": 57.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -643,7 +643,8 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "growth",
-          "formal"
+          "formal",
+          "location"
         ]
       }
     },
@@ -654,9 +655,114 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Zakládání staveb, a. s."
       },
-      "title": "Unknown",
+      "title": "TECHNICKÝ PRACOVNÍK PŘÍPRAVY STROJNÍ VÝROBY",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 25.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "013",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4418809922",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Siemens"
+      },
+      "title": "Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 44.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech"
+        ]
+      }
+    },
+    {
+      "id": "014",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4412855971",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Katring, spol. s r.o."
+      },
+      "title": "Operátor/ka CNC soustruhů",
       "role": {
         "category": null,
         "subcategory": null,
@@ -696,124 +802,6 @@
         "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "013",
-      "date": "2026-07-07",
-      "linkedin_job_id": "4418809922",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Siemens"
-      },
-      "title": "Technical Test Engineer / Automation Engineer – SIMATIC IPC ( m-ž-n)",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "CAM",
-            "test automation",
-            "IoT",
-            "CI/CD",
-            "Git",
-            "Linux",
-            "scripting"
-          ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "Azure",
-            "PLC",
-            "C++"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 67.6,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "SLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "formal",
-          "location"
-        ]
-      }
-    },
-    {
-      "id": "014",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4412855971",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 24.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
           "tech",
           "growth"
         ]
@@ -1570,9 +1558,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Balikobot.cz"
       },
-      "title": "Unknown",
+      "title": "SW Development Team Lead",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1630,9 +1618,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "OAKS Consulting s.r.o."
       },
-      "title": "Unknown",
+      "title": "Data Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1752,9 +1740,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Renesas Electronics"
       },
-      "title": "Unknown",
+      "title": "Senior Staff Digital Design Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1770,7 +1758,6 @@
             "IoT",
             "ETL",
             "Git",
-            "Linux",
             "middleware",
             "scripting",
             "agentic"
@@ -1796,7 +1783,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 64.5,
+        "fit_score_pct": 62.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1815,9 +1802,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Tropic Square"
       },
-      "title": "Unknown",
+      "title": "Lead Software Engineer (Semiconductor Verification & Tooling)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1871,9 +1858,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "CoolPeople"
       },
-      "title": "Unknown",
+      "title": "Solution Architect (43156)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1904,7 +1891,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 36.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1924,9 +1911,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "RETIA, a.s."
       },
-      "title": "Unknown",
+      "title": "SW Architect",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1982,9 +1969,62 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Element Logic®"
       },
-      "title": "Unknown",
+      "title": "Solution Architect",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 37.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "036",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4436314128",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "KBC Global Services"
+      },
+      "title": "System Architect",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2001,9 +2041,122 @@
           "partial_match": [
             "AI"
           ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 35.5,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "037",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4431925325",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "ManpowerGroup Czech Republic"
+      },
+      "title": "Lean Manufacturing Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 45.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "038",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4415618297",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Colours of Data"
+      },
+      "title": "Data Science & AI Architect Lead",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "GCP",
+            "Git"
+          ],
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
           "no_match": [
             "Azure",
-            "PLC"
+            "AWS"
           ]
         }
       },
@@ -2020,29 +2173,28 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 53.0,
+        "fit_score_pct": 52.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth",
-          "formal"
+          "domain",
+          "growth"
         ]
       }
     },
     {
-      "id": "036",
+      "id": "039",
       "date": "2026-07-09",
-      "linkedin_job_id": "4436314128",
+      "linkedin_job_id": "4431935108",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "TechNET IT Recruitment Ltd"
       },
-      "title": "Unknown",
+      "title": "Senior Automation Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2054,13 +2206,17 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Git"
+            "Python",
+            "test automation",
+            "CI/CD"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "Azure",
+            "TypeScript",
+            "JavaScript",
+            "Playwright",
             "C++"
           ]
         }
@@ -2078,175 +2234,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 43.5,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "tech",
-          "growth",
-          "formal"
-        ]
-      }
-    },
-    {
-      "id": "037",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4431925325",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 51.6,
+        "fit_score_pct": 55.3,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
           "growth",
-          "formal"
-        ]
-      }
-    },
-    {
-      "id": "038",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4415618297",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 24.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "039",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4431935108",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 34.6,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "formal",
+          "location"
         ]
       }
     },
@@ -2310,9 +2307,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "KOSTAL Engineering CR"
       },
-      "title": "Unknown",
+      "title": "Zkušební technik - automotive",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2323,7 +2320,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -2343,16 +2342,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 47.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
@@ -2412,7 +2411,7 @@
     },
     {
       "id": "043",
-      "date": "2026-07-07",
+      "date": "2026-07-09",
       "linkedin_job_id": "4437145358",
       "company": {
         "type": null,
@@ -2476,9 +2475,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "La Fosse"
       },
-      "title": "Unknown",
+      "title": "Robotics Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2490,16 +2489,13 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python",
-            "Docker",
-            "CI/CD",
-            "Git"
+            "CI/CD"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "Terraform",
+            "PLC",
             "C++"
           ]
         }
@@ -2517,14 +2513,17 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 57.3,
+        "fit_score_pct": 51.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth"
+          "tech",
+          "growth",
+          "formal",
+          "location"
         ]
       }
     },
@@ -2588,9 +2587,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "Adamantem HR, s.r.o."
       },
-      "title": "Unknown",
+      "title": "DevOps Engineer for Embedded Systems",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2601,11 +2600,21 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Python",
+            "Docker",
+            "IoT",
+            "CI/CD",
+            "Git",
+            "DevSecOps"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "Terraform",
+            "C++"
+          ]
         }
       },
       "domain": {
@@ -2621,15 +2630,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 61.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
           "growth"
         ]
       }
@@ -2641,9 +2648,9 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "CDC Data s.r.o."
       },
-      "title": "Unknown",
+      "title": "AI Ambasador & Specialista inovací",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2654,9 +2661,14 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "IoT",
+            "Git"
+          ],
           "partial_match": [
-            "AI"
+            "LLM",
+            "AI",
+            "machine learning"
           ],
           "no_match": []
         }
@@ -2674,15 +2686,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 51.8,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
           "growth"
         ]
       }
@@ -2694,9 +2704,68 @@
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "JABLOTRON"
       },
-      "title": "Unknown",
+      "title": "Vývojář/ka FW",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "CI/CD",
+            "Git"
+          ],
+          "partial_match": [
+            "AI",
+            "virtualization"
+          ],
+          "no_match": [
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 49.0,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "049",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4436206469",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Lear Corporation"
+      },
+      "title": "Development Engineer",
       "role": {
         "category": null,
         "subcategory": null,
@@ -2735,7 +2804,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 55.4,
+        "fit_score_pct": 56.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2749,68 +2818,15 @@
       }
     },
     {
-      "id": "049",
-      "date": "2026-07-09",
-      "linkedin_job_id": "4436206469",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unknown"
-      },
-      "title": "Unknown",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 24.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
       "id": "050",
       "date": "2026-07-09",
       "linkedin_job_id": "4437887286",
       "company": {
         "type": null,
         "size_range": null,
-        "industry": "Unknown"
+        "industry": "MSD Czech Republic"
       },
-      "title": "Unknown",
+      "title": "Lead Integration Platform Engineer - SRE",
       "role": {
         "category": null,
         "subcategory": null,
@@ -3300,6 +3316,61 @@
         "mismatch_dimensions": [
           "tech",
           "growth"
+        ]
+      }
+    },
+    {
+      "id": "059",
+      "date": "2026-07-09",
+      "linkedin_job_id": "4430450329",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Desoutter Tools"
+      },
+      "title": "Light Automation Specialist",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 65.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech"
         ]
       }
     }
