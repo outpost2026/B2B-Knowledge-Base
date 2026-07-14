@@ -2,7 +2,7 @@
 
 Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a linkedin-mcp-custom.
 
-**Datum:** 2026-07-07 | **Verze:** 2
+**Datum:** 2026-07-14 | **Verze:** 3
 
 ## Přehled záznamů
 
@@ -28,12 +28,13 @@ Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a
 | 018 | Console script not in PATH | linkedin-mcp | ✅ Fixed |
 | 019 | Shell escaping fragility (Win/Bash/PS) | cross-repo | ⚠️ Mitigováno |
 | 020 | Cookie lifecycle — silent expiry | linkedin-mcp | ✅ Fixed (session cache + checkpoint detection) |
+| 021 | LLM blind path navigation (Workspace discovery gap) | cnc-tools | ✅ Fixed (`_load_workspace_context` + `tool_workspace_info`) |
 
 ---
 
 ### Detailní záznamy
 
-**cnc-tools (001–006):** → `mcp-local-server/pitevni_kniha_mcp_v1.md`
+**cnc-tools (001–006, 021):** → `mcp-local-server/pitevni_kniha_mcp_v1.md`
 **linkedin-mcp (007–020):** → `linkedin-mcp-custom/pitevni_kniha_v1.md`
 
 ---
@@ -203,16 +204,52 @@ Nikdy nevkládej PowerShell one-linery do bash stringů. Vždy:
 
 Toto eliminuje dvojité escaping (bash → PowerShell → Windows API) a dělá operaci reviewovatelnou/opakovatelnou.
 
+### P17 — Workspace context export
+Každý MCP server, který očekává LLM agenty jako primární uživatele (nikoliv jen CLI), musí poskytnout mechanismus pro zjištění workspace kontextu bez explorace:
+
+1. Při startu vypsat workspace root do stderr: `print(f"[server] Workspace root: {root}", file=sys.stderr)`
+2. Poskytnout dedikovaný tool (např. `tool_workspace_info()`) vracející:
+   - Root cesta (ALLOWED_ROOTS[0])
+   - Guardrails profil z `.ai_guardrails.json`
+   - Index summary z `index.md` (datum, session, aktivní repa)
+3. Kontextové soubory přednačíst při startu do cache (ne až při prvním volání toolu)
+
+**Bez toho LLM háže cesty, ztrácí 2–3 iterace explorací a snižuje SNR session.**
+
+Referenční implementace: `mcp-local-server/server.py` — `_load_workspace_context()` + `tool_workspace_info()`.
+
+### P18 — Console encoding na Windows (Unicode safety)
+Windows console defaultuje na cp1250 (Central European), která neobsahuje emoji (U+1F000+) ani mnoho Unicode znaků. Python 3.x zdědí tuto kódovku pro stdout/stderr.
+
+1. **Před každým python příkazem v PowerShellu:**
+   ```powershell
+   $env:PYTHONIOENCODING='utf-8'
+   ```
+2. **V MCP server startupu:**
+   ```python
+   import sys
+   sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+   ```
+3. **V Python skriptech, které tisknou webový obsah:**
+   ```python
+   sys.stdout.reconfigure(encoding='utf-8', errors='replace')  # před prvním print()
+   ```
+4. **Ve zdrojovém kódu — emoji zakázána** (`.ai_guardrails.json` encoding_rules).
+
+Toto je runtime vrstva — liší se od "zákazu emoji v kódu" (vývojová vrstva). Obě jsou nutné.
+
 ---
 
 ## Dědičnost napříč projekty
 
-Pravidla P1–P16 se přenášejí do každého nového MCP projektu. Při zakládání nového repozitáře:
+Pravidla P1–P18 se přenášejí do každého nového MCP projektu. Při zakládání nového repozitáře:
 
 1. Kopírovat `P11` (console script) + `P12` (`.bat` launcher) — první věc po `uv sync`
 2. Kopírovat `P14` (path quoting) — při každém file I/O
 3. Kopírovat `P16` (PS1 scripts) — při každé Windows administraci
+4. Kopírovat `P17` (workspace context) — ihned po vytvoření server skeletonu
+5. Kopírovat `P18` (console encoding) — při prvním `print()` v kódu
 
 ---
 
-*sdilena_pitevni_kniha_mcp.md — 2026-07-07 — v2*
+*sdilena_pitevni_kniha_mcp.md — 2026-07-14 — v3 — přidány 021 (workspace discovery), P17 (workspace context export), P18 (console encoding Windows)*
