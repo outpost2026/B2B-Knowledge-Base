@@ -2221,6 +2221,41 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #073 — AI & Automation Lead @ Allwyn Česko
+**Datum:** 2026-07-15
+**EROI verdict:** HRANICNI (46.1% fit)
+
+### Analýza pozice
+- **Role:** AI & Automation Lead
+- **Firma:** Allwyn Česko
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 42.4% | 0.1% | 2 direct, 2 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **46.1%** | **HRANICNI** |
+
+### Skill match
+- **Python**: direct_match
+- **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
+
+**Kritické mismatch:** domain, growth, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2303,3 +2338,4 @@
 | 070 | ABB | Automation SW Engineer | 49.5% | Nízká | 🟡 HRANICNI |
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 63.3% | Střední | 🟡 MEDIUM |
+| 073 | Allwyn Česko | AI & Automation Lead | 46.1% | Nízká | 🟡 HRANICNI |

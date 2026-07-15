@@ -3944,6 +3944,65 @@
           "growth"
         ]
       }
+    },
+    {
+      "id": "073",
+      "date": "2026-07-15",
+      "linkedin_job_id": "4431678714",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Allwyn Česko"
+      },
+      "title": "AI & Automation Lead",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
+          "partial_match": [
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 46.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "growth",
+          "formal"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
