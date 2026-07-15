@@ -2256,6 +2256,39 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #074 — Elektronik @ Mubea
+**Datum:** 2026-07-15
+**EROI verdict:** MEDIUM (51.9% fit)
+
+### Analýza pozice
+- **Role:** Elektronik
+- **Firma:** Mubea
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (4 keywords) |
+| tech | 25% | 18.6% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **51.9%** | **MEDIUM** |
+
+### Skill match
+- **IoT**: direct_match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2339,3 +2372,4 @@
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 63.3% | Střední | 🟡 MEDIUM |
 | 073 | Allwyn Česko | AI & Automation Lead | 46.1% | Nízká | 🟡 HRANICNI |
+| 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
