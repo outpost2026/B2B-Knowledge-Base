@@ -2541,6 +2541,37 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
+**Datum:** 2026-07-15
+**EROI verdict:** NESLEDOVAT (35.9% fit)
+
+### Analýza pozice
+- **Role:** Knowledge Graph Engineer
+- **Firma:** IDC
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **35.9%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2633,3 +2664,4 @@
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 081 | ABB | Automation Solution Engineer - part time | 42.4% | Nízká | 🟡 HRANICNI |
 | 082 | PRO.MED.CS | Data Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 083 | IDC | Knowledge Graph Engineer | 35.9% | Kriticky nízká | 🔴 NESLEDOVAT |
