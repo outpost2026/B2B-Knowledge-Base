@@ -2090,9 +2090,10 @@
 
 
 
-## 🔴 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
+
+## 🟡 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-15
-**EROI verdict:** NESLEDOVAT (22.9% fit)
+**EROI verdict:** HRANICNI (50.0% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Specialist
@@ -2101,21 +2102,53 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **22.9%** | **NESLEDOVAT** |
+| **Celkem** | **100%** | | **50.0%** | **HRANICNI** |
 
 ### Skill match
 - **AI**: partial_match
+- **Git**: direct_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** tech, growth
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+## 🟡 ZÁZNAM #070 — Automation SW Engineer @ ABB
+**Datum:** 2026-07-15
+**EROI verdict:** HRANICNI (49.5% fit)
+
+### Analýza pozice
+- **Role:** Automation SW Engineer
+- **Firma:** ABB
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (2) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **49.5%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Tech gap: 3 skill mismatches
 
 ---
 
@@ -2198,4 +2231,5 @@
 | 066 | Atlas Copco | Sales Engineer | 31.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 067 | Quik Hire Staffing | Manufacturing Specialist (Remote) | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 069 | Reas.cz | AI & Automation Specialist | 22.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 069 | Reas.cz | AI & Automation Specialist | 50.0% | Nízká | 🟡 HRANICNI |
+| 070 | ABB | Automation SW Engineer | 49.5% | Nízká | 🟡 HRANICNI |
