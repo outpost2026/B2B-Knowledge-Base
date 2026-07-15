@@ -2572,6 +2572,37 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #084 — UX Designer / Researcher @ Resistant AI - Fraud Detection
+**Datum:** 2026-07-15
+**EROI verdict:** NESLEDOVAT (26.4% fit)
+
+### Analýza pozice
+- **Role:** UX Designer / Researcher
+- **Firma:** Resistant AI - Fraud Detection
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2665,3 +2696,4 @@
 | 081 | ABB | Automation Solution Engineer - part time | 42.4% | Nízká | 🟡 HRANICNI |
 | 082 | PRO.MED.CS | Data Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 083 | IDC | Knowledge Graph Engineer | 35.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
