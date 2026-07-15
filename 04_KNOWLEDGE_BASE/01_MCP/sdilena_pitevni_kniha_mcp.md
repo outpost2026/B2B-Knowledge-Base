@@ -2,7 +2,7 @@
 
 Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a linkedin-mcp-custom.
 
-**Datum:** 2026-07-14 | **Verze:** 3
+**Datum:** 2026-07-15 | **Verze:** 5
 
 ## Přehled záznamů
 
@@ -29,6 +29,13 @@ Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a
 | 019 | Shell escaping fragility (Win/Bash/PS) | cross-repo | ⚠️ Mitigováno |
 | 020 | Cookie lifecycle — silent expiry | linkedin-mcp | ✅ Fixed (session cache + checkpoint detection) |
 | 021 | LLM blind path navigation (Workspace discovery gap) | cnc-tools | ✅ Fixed (`_load_workspace_context` + `tool_workspace_info`) |
+| 022 | Silent failure pattern (`except Exception: continue`) | MCP-Jobs | ✅ Fixed (per-card logging + skip count + 0-ads alert) |
+| 023 | Salary filter: split() vs regex false-reject | MCP-Jobs | ✅ Fixed (`_SALARY_NUM_RE` regex) |
+| 024 | Exclude čeština — domain-specific semantics | MCP-Jobs | ✅ Fixed (portal-contextual exclude lists) |
+| 025 | ETL feedback loop dependency (real data reveals silent degradation) | MCP-Jobs | ✅ Mitigated (ETL runner + session-start health check protocol) |
+| 026 | LLM-assisted dev blind spots (can't detect silent degradations) | cross-repo | ⚠️ Mitigated (require ETL feedback loop for all data pipelines) |
+| 027 | L2 Resources (mcp-jobs://ads/{query_id}) | MCP-Jobs | ✅ Fixed (3 resources: /list, /{query_id}, /{query_id}/report) |
+| 028 | PowerShell f-string quoting + cp1250 encoding (6-layer stack) | cross-repo | ✅ Fixed (6-layer defence-in-depth from $PROFILE to Python runtime) |
 
 ---
 
@@ -36,6 +43,7 @@ Cross-repo ponaučení z vývoje MCP serverů — cnc-tools (mcp-local-server) a
 
 **cnc-tools (001–006, 021):** → `mcp-local-server/pitevni_kniha_mcp_v1.md`
 **linkedin-mcp (007–020):** → `linkedin-mcp-custom/pitevni_kniha_v1.md`
+**MCP-Jobs (022–027):** → `04_KNOWLEDGE_BASE/01_MCP/mcp_jobs_pitevni_kniha_v1.md`
 
 ---
 
@@ -127,6 +135,132 @@ cmd.exe //c "where linkedin-mcp.exe 2>&1"
 **Dopad:** MCP server vracející `auth_required` error uprostřed pipeline. Uživatel musí ručně zavolat `--login`.
 
 **Otevřeno:** Chybí (a) automatická detekce expirace před scrapingem, (b) obnovení session bez zásahu uživatele, (c) notifikace o expiraci v logu s časovým razítkem.
+
+---
+
+## Detail MCP-Jobs (022–027)
+
+### 022 — Silent failure pattern (`except Exception: continue`)
+
+**Root cause:** Všichni 4 provider scrapers v MCP-Jobs používaly `except Exception: continue` při parsování jednotlivých karet inzerátů. Pokud HTML struktura změnila (např. Bazos změnil CSS třídy), parsovací kód tiše failoval — žádná chyba, žádný warning, 0 výsledků.
+
+**Detekce:** Claude audit identifikoval pattern teoreticky, teprve ETL běh odhalil, že Bazos selectory byly roky rozbité.
+
+**Dopad:** Bazos vracel 0 výsledků po dobu ~měsíců (od změny HTML struktury). Uživatel/LLM akceptoval 0 jako "není poptávka".
+
+**Fix:**
+1. Per-card `logger.warning()` s detailní zprávou (na jakém poli parsování selhalo)
+2. Počítadlo skipnutých karet (`skipped` proměnná)
+3. 0-ads `logger.error()` alert — pokud provider vrátí 0, logger.error s CTX
+4. `logger.exception()` v `server.py` `_run_pipeline()` error handleru
+
+**Lesson:** `except Exception: continue` je systematické riziko — nezpůsobuje pád, ale tichou ztrátu dat. Každý scrape kód musí logovat skipnuté položky a alertovat na 0 výsledků.
+
+---
+
+### 023 — Salary filter: split() vs regex false-reject
+
+**Root cause:** `_salary_filter()` používal `str.split()` + `int()` na surový string "30 000 - 50 000 Kč". `split()` na mezerách vytvořil `['30', '000', '-', '50', '000', 'Kč']` → `int('000')` = `ValueError` → false reject validní inzeráty s českým formátem čísel (mezera jako tisícový oddělovač).
+
+**Detekce:** Claude audit — test s 3 sample stringy, 2/3 failovaly.
+
+**Fix:** Nahrazen `_SALARY_NUM_RE` regexem: `re.findall(r'\d{1,3}(?:[ \u00a0]\d{3})+|\d+', text)` — zachytí "30 000" i "50000", ignoruje "000" bez prefixu.
+
+**Lesson:** Nikdy nepoužívej `str.split()` na user-facing textových datech. Český formát čísel používá mezeru jako tisícový oddělovač. Regex je jediný robustní přístup.
+
+---
+
+### 024 — Exclude čeština — domain-specific semantics
+
+**Root cause:** Czech exclude terms `poptavam`, `poptavame`, `shanim`, `hledam` byly aplikovány globálně. Na většině portálů znamenají "hledám práci" (spam). Na Bazosu ale znamenají "poptávám zaměstnance" (validní job ad inzerce v sekcích jako zahradník/truhlář/střechy).
+
+**Detekce:** Debug script na zahradník query — 451/462 Bazos ads zamítnuto booleanem, 11/11 zbývajících zamítnuto exclude termy.
+
+**Fix:** Odebrány `poptavam/poptavame/shanim/hledam` z exclude listů pro Bazos-only query (zahradnik, truhlar, strechy). Multi-word `hledam praci`, `hledame kolegu` ponechány (jednoznačné).
+
+**Lesson:** Stejné slovo může mít opačný význam podle kontextu a portálu. Exclude listy musí být portal-specific nebo alespoň portal-aware.
+
+---
+
+### 025 — ETL feedback loop dependency
+
+**Root cause:** Žádný mechanismus pro pravidelné ověření, že scrapers stále fungují. Selectory se rozbijí při změně HTML struktury (typicky každých pár měsíců u českých portálů). Bez ETL běhu s vizuální kontrolou výsledků nelze degradaci detekovat.
+
+**Detekce:** Manuální ETL run s analýzou matched vs skipped poměru.
+
+**Fix:**
+1. Vytvořen `scripts/run_etl.py` — ETL runner s timestampovaným výstupem
+2. `output/etl_latest.json` — poslední běh pro snadné porovnání
+3. Protokol: spustit ETL na začátku každé session jako health check
+4. Doporučeno: automatický diff proti předchozímu běhu s alertem na >20% pokles matched ads
+
+**Lesson:** MCP data pipeline bez ETL health checku je slepá. LLM-assisted vývoj vyžaduje reálná data pro detekci degradace. Audit bez ETL je jen teorie.
+
+---
+
+### 026 — LLM-assisted dev blind spots
+
+**Root cause:** LLM generuje nový kód výborně, ale nedokáže detekovat degradaci existujícího kódu. Tři z pěti odhalených bugů byly v kódu, který LLM neviděl (staré selectory, config exclude listy). LLM nemá "paměť" fungujícího stavu — neví, že dříve selectory fungovaly.
+
+**Detekce:** Meta-analýza session — porovnání audit predikcí s ETL realitou.
+
+**Dopad:** LLM-assisted vývoj může vytvářet iluzi stability. Nový kód je otestovaný, ale starý kód tiše degraduje.
+
+**Mitigace:**
+1. Pravidelný ETL feedback loop (entry 025)
+2. Version comparison v ETL runneru (matched count trend)
+3. Testy, které testují reálné HTML (mocky s aktuální strukturou)
+4. Session-start health check
+
+---
+
+### 027 — L2 Resources: mcp-jobs://ads/{query_id}
+
+**Status:** ✅ Fixed (MCP-Jobs v0.4.0)
+
+**Symptom:** Search tooly vracely data pouze v kontextu LLM odpovědi. Bez možnosti znovu získat stejná data bez nového scrapingu. L2 vrstva (Resources) chyběla v celém MCP maturity modelu projektu.
+
+**Root cause:** FastMCP podporuje Resources, ale žádný tool je neimplementoval. Data byla pomíjivá — doručena jako tool response, pak ztracena.
+
+**Fix:** 3 resources na URI `mcp-jobs://ads/`:
+- `/list` — JSON seznam všech uložených resultsetů
+- `/{query_id}` — JSON data (shodná s tool response)
+- `/{query_id}/report` — Markdown report
+
+Architektura: in-memory `_query_store`, `_store_results()` helper, modifikace všech 3 search toolů pro ukládání + vrácení `query_id` a `resource_uri`.
+
+**Verifikace:** 103/103 testů, 6 nových resource testů. L2 maturity: ⬜ → ✅
+
+---
+
+### 028 — PowerShell f-string quoting + cp1250 encoding
+
+**Status:** ✅ Fixed (cross-repo, 6-layer stack)
+
+**Symptom:** Dva persistentní problémy při agentním vývoji na Windows:
+1. `SyntaxError: f-string: unmatched '['` při `python -c "..."` s f-stringy
+2. `UnicodeEncodeError: 'charmap' codec can't encode` při tisku emoji/unicode
+
+**Root cause (quoting):** Windows API `CommandLineToArgvW` rozděluje argumenty Python `-c` na mezerách. Víceřádkový kód s vnořenými uvozovkami se rozseká dřív, než ho Python vstupně zpracuje. Tři vrstvy interpretace (PowerShell → cmd.exe → Python) každá přidává vlastní escaping pravidla.
+
+**Root cause (encoding):** Windows Console defaultuje na cp1250. Python stdout encoding = cp1250 → emoji a Unicode supplementary planes (U+1F000+) nelze zobrazit.
+
+**Fix — 6-vrstvý stack:**
+
+| # | Vrstva | Mechanismus |
+|---|--------|-------------|
+| 6 | PowerShell autoload | `_github/_init.ps1` → `$PROFILE` (PS5.1 + PS7) |
+| 5 | AI guardrails | `.ai_guardrails.json` shell_rules — zákaz `python -c` s komplexním kódem |
+| 4 | Dokumentace | `docs/powershell_encoding.md` — root cause + FAQ pro junior dev |
+| 3 | Project helpers | `scripts/init.ps1` — Run-Python, Invoke-Pipeline, Compare-ETL wrappery |
+| 2 | Batch launcher | `mcp-jobs.bat` — `set PYTHONIOENCODING=utf-8` + `PYTHONUTF8=1` |
+| 1 | Python runtime | `cli.py` + `server.py` → `ensure_utf8_stdout()` |
+
+Plus: `opencode.jsonc` — přidáno `-X utf8` do commandů všech 3 MCP serverů.
+
+**Hlavní pravidlo:** Nikdy `python -c "..."` s komplexním kódem na Windows PowerShellu. Vždy .py soubor → `python -X utf8 script.py`.
+
+**Verifikace:** 12 syntetických guardrail testů (12/12 PASS). 103 unit testů OK. Encoding OK: české znaky + emoji + azbuka.
 
 ---
 
@@ -240,16 +374,163 @@ Toto je runtime vrstva — liší se od "zákazu emoji v kódu" (vývojová vrst
 
 ---
 
+### P19 — Structured logging v scrape path
+
+Každý scrape/provider modul musí mít:
+
+1. **Per-card logging** — `logger.warning()` při selhání parsování jedné karty (ne `except Exception: continue`)
+2. **Počítadlo skipů** — `skipped` proměnná, logovaná na konci scrape cyklu
+3. **0-ads alert** — pokud provider vrátí 0 výsledků, `logger.error()` s CTX (portál url, query)
+4. **Per-provider skip count** — agregace v pipeline logu
+
+```python
+# GOOD pattern
+matched = 0
+skipped = 0
+for card in cards:
+    try:
+        ad = parse_card(card)
+        matched += 1
+    except Exception as e:
+        skipped += 1
+        logger.warning("Skipped card %d/%d: %s", i, total, e)
+if matched == 0:
+    logger.error("Provider %s returned 0 ads — possible selector breakage", provider_name)
+```
+
+Bez strukturovaného logování je `except Exception: continue` time bomb — nikdo neví, že data tiše mizí.
+
+---
+
+### P20 — ETL health check / session-start protocol
+
+Každý MCP server, který zpracovává data z externích zdrojů (scraping, API), musí mít:
+
+1. **Spustitelný ETL runner** — `scripts/run_etl.py` nebo ekvivalent, který:
+   - Projde pipeline od začátku do konce
+   - Uloží timestampovaný výstup do `output/` adresáře
+   - Udržuje `output/etl_latest.json` (poslední běh)
+2. **Session-start health check** — na začátku každé session spustit ETL a zkontrolovat matched count proti baseline
+3. **Alert threshold** — pokud matched ads klesnou o >20 % oproti baseline, je pravděpodobné, že se změnila HTML struktura nebo API response (trigger pro audit selektorů)
+
+**Bez ETL feedback loopu LLM neví, že scrapers tiše degradují. Audit bez reálných dat je jen teorie.**
+
+Referenční implementace: `MCP-Jobs/scripts/run_etl.py`
+
+---
+
+### P21 — L2 Resources (URI-adresovatelná data)
+
+Každý MCP server, který produkuje data přes tooly, by měl tato data zpřístupnit jako **MCP Resources** (L2 maturity). Důvody:
+
+1. **Oddělení produkce od konzumu** — tool vyrobí data jednou, resource je zpřístupňuje opakovaně (0ms latence oproti novému scrapingu)
+2. **Adresovatelnost** — URI `mcp-server://{namespace}/{id}` lze sdílet, ukládat, indexovat
+3. **UI integrace** — MCP Apps a další klienti umí resources zobrazit jako karty/odkazy
+4. **RAG připravenost** — markdown report z resource je přímo indexovatelný
+
+Referenční implementace: `MCP-Jobs/src/mcp_jobs/server.py` — `_query_store` + 3 resource handlery.
+
+URI schéma:
+```
+server://ads/list                  — JSON: seznam všech uložených sad
+server://ads/{id}                  — JSON: data dané sady
+server://ads/{id}/report           — markdown: human-readable report
+```
+
+Architektura: in-memory dict + export helper. Storage perzistence je oddělený concern (lze přidat později).
+
+---
+
+### P22 — Windows PowerShell: nikdy `python -c` s komplexním kódem
+
+Na Windows PowerShellu je `python -c "..."` s komplexním kódem (f-stringy, vnořené uvozovky, cykly, dict comprehension) křehký. Root cause: Windows API `CommandLineToArgvW` rozděluje argument na mezerách → kód se rozseká dřív, než ho Python uvidí.
+
+**Zakázaný pattern:**
+```powershell
+# FAIL: f-string s vnorenyma uvozovkama
+python -c "print(f'{a['title']}')"
+
+# FAIL: komplexni kod s cykly ve vice radcich
+python -c @"
+for a in data:
+    print(f'  * {a["title"]}')
+"@
+```
+
+**Bezpečný pattern:**
+```powershell
+# 1. Zapiste kod do .py souboru
+@"
+for a in data:
+    t = a.get('title','')
+    print(f'  * {t}')
+"@ | Out-File $env:TEMP\script.py -Encoding UTF8
+
+# 2. Spustete s -X utf8
+python -X utf8 $env:TEMP\script.py
+
+# 3. (volitelne) smazani
+Remove-Item $env:TEMP\script.py
+```
+
+**Výjimka:** Jednoduché jednořádkové příkazy bez f-stringů a vnořených uvozovek jsou OK:
+```powershell
+python -X utf8 -c "print('hello')"
+python -X utf8 -c "import json; print(json.dumps({'a': 1}))"
+```
+
+Toto pravidlo je zakotveno v `.ai_guardrails.json` shell_rules a dokumentováno v `docs/powershell_encoding.md`.
+
+---
+
+### P23 — Windows encoding: vždy PYTHONIOENCODING + PYTHONUTF8 + -X utf8
+
+Windows Console defaultuje na cp1250 (Central European). Python stdout encoding = cp1250 → emoji a supplementary Unicode selhávají.
+
+**Tři úrovně ochrany:**
+
+1. **Shell-level** (nejspolehlivější):
+   ```powershell
+   $env:PYTHONIOENCODING = "utf-8"
+   $env:PYTHONUTF8 = "1"
+   ```
+   Nastaví se automaticky z `$PROFILE` → `_init.ps1` (6. vrstva stacku).
+
+2. **Process-level** (vždy při spuštění):
+   ```powershell
+   python -X utf8 script.py
+   ```
+   `-X utf8` flag říká Pythonu: "používej UTF-8 všude, ignoruj console encoding."
+
+3. **Code-level** (poslední záchrana):
+   ```python
+   import sys
+   sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+   ```
+   Implementováno v `cli.py` a `server.py` (P18 rule).
+
+**Checklist při encoding erroru:**
+1. `$env:PYTHONIOENCODING` je 'utf-8'? → pokud ne, načti `_init.ps1` nebo nastav ručně
+2. Používáš `-X utf8`? → pokud ne, přidej
+3. Má Python kód `sys.stdout.reconfigure()`? → pokud ne, přidej (nebo importuj `ensure_utf8_stdout()` z utils)
+
+---
+
 ## Dědičnost napříč projekty
 
-Pravidla P1–P18 se přenášejí do každého nového MCP projektu. Při zakládání nového repozitáře:
+Pravidla P1–P23 se přenášejí do každého nového MCP projektu. Při zakládání nového repozitáře:
 
 1. Kopírovat `P11` (console script) + `P12` (`.bat` launcher) — první věc po `uv sync`
 2. Kopírovat `P14` (path quoting) — při každém file I/O
 3. Kopírovat `P16` (PS1 scripts) — při každé Windows administraci
 4. Kopírovat `P17` (workspace context) — ihned po vytvoření server skeletonu
 5. Kopírovat `P18` (console encoding) — při prvním `print()` v kódu
+6. Kopírovat `P19` (structured logging) — při prvním scrape cyklu
+7. Kopírovat `P20` (ETL health check) — ihned po zprovoznění pipeline
+8. Kopírovat `P21` (L2 Resources) — při návrhu API (tool = produkce, resource = konzum)
+9. Kopírovat `P22` (no `python -c` inline) — při prvním agentním vývoji na Windows PowerShellu
+10. Kopírovat `P23` (encoding triad) — ihned po instalaci Pythonu (PYTHONIOENCODING + PYTHONUTF8 + -X utf8)
 
 ---
 
-*sdilena_pitevni_kniha_mcp.md — 2026-07-14 — v3 — přidány 021 (workspace discovery), P17 (workspace context export), P18 (console encoding Windows)*
+*sdilena_pitevni_kniha_mcp.md — 2026-07-15 — v5 — přidány 027 (L2 Resources: mcp-jobs://ads), 028 (PowerShell f-string + cp1250 6-layer stack), P21 (L2 Resources), P22 (no python -c inline), P23 (encoding triad: PYTHONIOENCODING + PYTHONUTF8 + -X utf8), dědičnost rozšířena na 10 kroků*
