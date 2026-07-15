@@ -2479,6 +2479,37 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #081 — Automation Solution Engineer - part time @ ABB
+**Datum:** 2026-07-15
+**EROI verdict:** HRANICNI (42.4% fit)
+
+### Analýza pozice
+- **Role:** Automation Solution Engineer - part time
+- **Firma:** ABB
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 70.0% | 0.0% | CZ-based role (2 location keywords) |
+| **Celkem** | **100%** | | **42.4%** | **HRANICNI** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, formal
+
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2569,3 +2600,4 @@
 | 078 | Grafton Recruitment | PLC Programátor | 44.6% | Nízká | 🟡 HRANICNI |
 | 079 | Airswift | Integration Engineer | 52.6% | Střední | 🟡 MEDIUM |
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 081 | ABB | Automation Solution Engineer - part time | 42.4% | Nízká | 🟡 HRANICNI |
