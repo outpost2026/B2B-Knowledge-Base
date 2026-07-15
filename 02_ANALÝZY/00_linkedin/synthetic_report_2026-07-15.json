@@ -1,0 +1,465 @@
+{
+  "_meta": {
+    "generated": "2026-07-15",
+    "source": "metadata_stacku.json",
+    "entries_count": 84,
+    "pipeline": "deterministic L1 report generator (Phase 7)",
+    "generator": "SyntheticReportGenerator"
+  },
+  "overview": {
+    "total": 84,
+    "precision_pct": 1.2,
+    "mean_score": 42.3,
+    "median_score": 38.2,
+    "verdict_distribution": {
+      "MEDIUM": 22,
+      "SLEDOVAT": 1,
+      "HRANICNI": 15,
+      "NESLEDOVAT": 46
+    }
+  },
+  "skill_frequency": {
+    "AI": 84,
+    "Git": 22,
+    "Python": 18,
+    "PLC": 11,
+    "LLM": 7,
+    "C++": 7,
+    "Azure": 7,
+    "agentic": 6,
+    "IoT": 6,
+    "machine learning": 6,
+    "CI/CD": 5,
+    "Linux": 5,
+    "CAM": 4,
+    "AWS": 4,
+    "TypeScript": 4,
+    "Kubernetes": 3,
+    "GCP": 3,
+    "Docker": 3,
+    "data pipeline": 2,
+    "CNC": 2,
+    "MCP": 2,
+    "Terraform": 2,
+    "test automation": 2,
+    "JavaScript": 2,
+    "DevSecOps": 1,
+    "deployment automation": 1,
+    "scripting": 1,
+    "virtualization": 1,
+    "KVM": 1,
+    "ESP32": 1,
+    "C#": 1,
+    "ETL": 1,
+    "REST API": 1,
+    "Playwright": 1
+  },
+  "signal_to_noise": {
+    "deployment automation": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "scripting": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "virtualization": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "KVM": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "Kubernetes": {
+      "count": 3,
+      "sledovat_count": 1,
+      "snr_pct": 33.3
+    },
+    "CAM": {
+      "count": 4,
+      "sledovat_count": 1,
+      "snr_pct": 25.0
+    },
+    "IoT": {
+      "count": 6,
+      "sledovat_count": 1,
+      "snr_pct": 16.7
+    },
+    "AI": {
+      "count": 84,
+      "sledovat_count": 1,
+      "snr_pct": 1.2
+    },
+    "Python": {
+      "count": 18,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Git": {
+      "count": 22,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "agentic": {
+      "count": 6,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "LLM": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "CI/CD": {
+      "count": 5,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Linux": {
+      "count": 5,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "DevSecOps": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "C++": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "GCP": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "data pipeline": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "machine learning": {
+      "count": 6,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Azure": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "AWS": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "PLC": {
+      "count": 11,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "ESP32": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "C#": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "CNC": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Docker": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "MCP": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Terraform": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "ETL": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "TypeScript": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "REST API": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "test automation": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "JavaScript": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Playwright": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    }
+  },
+  "mismatch_frequency": {
+    "growth": 72,
+    "tech": 66,
+    "domain": 45,
+    "formal": 23,
+    "location": 10,
+    "role": 1
+  },
+  "clusters": {
+    "other": {
+      "count": 45,
+      "mean_score": 37.6,
+      "entry_ids": [
+        "006",
+        "008",
+        "009",
+        "011",
+        "012",
+        "016",
+        "018",
+        "019",
+        "022",
+        "025",
+        "028",
+        "030",
+        "031",
+        "032",
+        "037",
+        "039",
+        "041",
+        "044",
+        "045",
+        "048",
+        "049",
+        "050",
+        "051",
+        "053",
+        "055",
+        "056",
+        "058",
+        "059",
+        "062",
+        "063",
+        "064",
+        "065",
+        "066",
+        "067",
+        "068",
+        "070",
+        "075",
+        "076",
+        "077",
+        "078",
+        "079",
+        "080",
+        "081",
+        "083",
+        "084"
+      ]
+    },
+    "ai_ml_hype": {
+      "count": 14,
+      "mean_score": 47.3,
+      "entry_ids": [
+        "005",
+        "007",
+        "017",
+        "020",
+        "023",
+        "024",
+        "027",
+        "038",
+        "052",
+        "054",
+        "060",
+        "061",
+        "069",
+        "073"
+      ]
+    },
+    "industrial_automation_core": {
+      "count": 10,
+      "mean_score": 53.9,
+      "entry_ids": [
+        "001",
+        "003",
+        "010",
+        "014",
+        "021",
+        "042",
+        "047",
+        "057",
+        "072",
+        "074"
+      ]
+    },
+    "enterprise_it": {
+      "count": 9,
+      "mean_score": 45.1,
+      "entry_ids": [
+        "002",
+        "004",
+        "033",
+        "034",
+        "035",
+        "036",
+        "040",
+        "046",
+        "071"
+      ]
+    },
+    "embedded_manufacturing": {
+      "count": 3,
+      "mean_score": 40.0,
+      "entry_ids": [
+        "013",
+        "015",
+        "043"
+      ]
+    },
+    "data_engineering": {
+      "count": 3,
+      "mean_score": 45.1,
+      "entry_ids": [
+        "026",
+        "029",
+        "082"
+      ]
+    }
+  },
+  "top_entries": [
+    {
+      "id": "003",
+      "title": "System Integration Engineer",
+      "company": "Thermo Fisher Scientific",
+      "score": 76.5,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "007",
+      "title": "AI Integrator / AI Engineer",
+      "company": "TD SYNNEX Czech Republic",
+      "score": 64.6,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "072",
+      "title": "Enterprise Software Integration Specialist - Czech",
+      "company": "Quest Global",
+      "score": 63.3,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "026",
+      "title": "Senior Data Integration Engineer",
+      "company": "EPAM Systems",
+      "score": 62.9,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "024",
+      "title": "Artificial Intelligence Engineer",
+      "company": "Carpiness s.r.o.",
+      "score": 62.0,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "062",
+      "title": "PLC Test Automation Engineer with Python (m/f/d)",
+      "company": "Siemens",
+      "score": 61.8,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "010",
+      "title": "Automation Systems Engineer IoT",
+      "company": "Resideo",
+      "score": 60.9,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "039",
+      "title": "Senior Automation Engineer",
+      "company": "TechNET IT Recruitment Ltd",
+      "score": 60.5,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "002",
+      "title": "Automotive CI/CD Engineer (DevOps)",
+      "company": "Digiteq Automotive",
+      "score": 60.2,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "001",
+      "title": "Head of Automation & AI",
+      "company": "WPP Media",
+      "score": 59.6,
+      "verdict": "MEDIUM"
+    }
+  ],
+  "skill_gaps": {
+    "PLC": 11,
+    "C++": 7,
+    "Azure": 7,
+    "AWS": 4,
+    "TypeScript": 4,
+    "Kubernetes": 3,
+    "Terraform": 2,
+    "JavaScript": 2,
+    "KVM": 1,
+    "C#": 1,
+    "Playwright": 1
+  },
+  "direct_matches": {
+    "Git": 22,
+    "Python": 18,
+    "agentic": 6,
+    "IoT": 6,
+    "CI/CD": 5,
+    "Linux": 5,
+    "CAM": 4,
+    "GCP": 3,
+    "Docker": 3,
+    "data pipeline": 2,
+    "CNC": 2,
+    "MCP": 2,
+    "test automation": 2,
+    "DevSecOps": 1,
+    "deployment automation": 1,
+    "scripting": 1,
+    "ESP32": 1,
+    "ETL": 1,
+    "REST API": 1
+  }
+}

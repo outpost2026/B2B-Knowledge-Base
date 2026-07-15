@@ -2971,9 +2971,7 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python",
-            "Git",
-            "agentic"
+            "Python"
           ],
           "partial_match": [
             "LLM",
@@ -2998,15 +2996,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 57.0,
+        "fit_score_pct": 41.5,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth",
-          "formal"
+          "tech",
+          "growth"
         ]
       }
     },
@@ -3295,10 +3293,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git",
-            "agentic"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -3318,7 +3313,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 28.4,
+        "fit_score_pct": 23.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3533,7 +3528,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 33.4,
+        "fit_score_pct": 34.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3542,8 +3537,7 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     },
@@ -3777,9 +3771,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -3799,13 +3791,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 50.0,
+        "fit_score_pct": 22.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
           "growth"
         ]
@@ -3831,15 +3824,11 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
-          "no_match": [
-            "PLC"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -3855,15 +3844,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 49.5,
+        "fit_score_pct": 43.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "formal"
+          "domain",
+          "tech"
         ]
       }
     },
@@ -3912,7 +3901,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 50.9,
+        "fit_score_pct": 50.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -3920,8 +3909,7 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -3945,16 +3933,11 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "IoT",
-            "Linux"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
-          "no_match": [
-            "PLC"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -3970,13 +3953,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 63.3,
+        "fit_score_pct": 25.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
           "growth"
         ]
@@ -4003,12 +3987,10 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python",
-            "Git"
+            "Python"
           ],
           "partial_match": [
-            "AI",
-            "machine learning"
+            "AI"
           ],
           "no_match": [
             "Azure"
@@ -4028,14 +4010,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 46.1,
+        "fit_score_pct": 29.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
+          "tech",
           "growth",
           "formal"
         ]
@@ -4061,9 +4044,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "IoT"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -4085,17 +4066,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 51.9,
+        "fit_score_pct": 35.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth",
-          "formal",
-          "location"
+          "growth"
         ]
       }
     },
@@ -4301,16 +4280,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 44.6,
+        "fit_score_pct": 33.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
@@ -4356,7 +4334,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 52.6,
+        "fit_score_pct": 54.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4365,7 +4343,6 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal",
           "location"
         ]
       }
@@ -4394,9 +4371,7 @@
           "partial_match": [
             "AI"
           ],
-          "no_match": [
-            "PLC"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -4412,13 +4387,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.1,
+        "fit_score_pct": 25.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
           "growth"
         ]
@@ -4464,7 +4440,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 42.4,
+        "fit_score_pct": 43.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4472,8 +4448,7 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
-          "formal"
+          "tech"
         ]
       }
     },
@@ -4497,11 +4472,17 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "ETL",
+            "CI/CD",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "Azure"
+          ]
         }
       },
       "domain": {
@@ -4517,15 +4498,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 52.3,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
           "growth"
         ]
       }
