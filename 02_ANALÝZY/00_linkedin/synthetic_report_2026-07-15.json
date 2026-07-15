@@ -9,31 +9,31 @@
   "overview": {
     "total": 84,
     "precision_pct": 1.2,
-    "mean_score": 41.3,
-    "median_score": 37.3,
+    "mean_score": 41.1,
+    "median_score": 37.1,
     "verdict_distribution": {
-      "MEDIUM": 21,
+      "MEDIUM": 20,
       "SLEDOVAT": 1,
       "HRANICNI": 14,
-      "NESLEDOVAT": 48
+      "NESLEDOVAT": 49
     }
   },
   "skill_frequency": {
     "AI": 84,
     "Python": 19,
-    "Git": 18,
+    "Git": 17,
     "PLC": 9,
     "Azure": 8,
     "LLM": 7,
-    "C++": 7,
     "CI/CD": 6,
+    "C++": 6,
     "agentic": 5,
     "machine learning": 5,
     "AWS": 5,
     "CAM": 4,
-    "Linux": 4,
     "IoT": 4,
     "TypeScript": 4,
+    "Linux": 3,
     "Kubernetes": 3,
     "GCP": 3,
     "Docker": 3,
@@ -101,7 +101,7 @@
       "snr_pct": 0.0
     },
     "Git": {
-      "count": 18,
+      "count": 17,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -121,7 +121,7 @@
       "snr_pct": 0.0
     },
     "Linux": {
-      "count": 4,
+      "count": 3,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -131,7 +131,7 @@
       "snr_pct": 0.0
     },
     "C++": {
-      "count": 7,
+      "count": 6,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -229,7 +229,7 @@
   "mismatch_frequency": {
     "growth": 72,
     "tech": 66,
-    "domain": 48,
+    "domain": 49,
     "formal": 18,
     "location": 7,
     "role": 1
@@ -290,7 +290,7 @@
     },
     "ai_ml_hype": {
       "count": 14,
-      "mean_score": 43.0,
+      "mean_score": 42.8,
       "entry_ids": [
         "005",
         "007",
@@ -310,7 +310,7 @@
     },
     "enterprise_it": {
       "count": 9,
-      "mean_score": 45.0,
+      "mean_score": 43.4,
       "entry_ids": [
         "002",
         "004",
@@ -431,7 +431,7 @@
   "skill_gaps": {
     "PLC": 9,
     "Azure": 8,
-    "C++": 7,
+    "C++": 6,
     "AWS": 5,
     "TypeScript": 4,
     "Kubernetes": 3,
@@ -443,12 +443,12 @@
   },
   "direct_matches": {
     "Python": 19,
-    "Git": 18,
+    "Git": 17,
     "CI/CD": 6,
     "agentic": 5,
     "CAM": 4,
-    "Linux": 4,
     "IoT": 4,
+    "Linux": 3,
     "GCP": 3,
     "Docker": 3,
     "scripting": 2,

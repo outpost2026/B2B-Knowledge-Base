@@ -11,12 +11,12 @@
 |---------|---------|
 | Celkem nabídek | 84 |
 | 🟢 SLEDOVAT (≥65%) | 1 |
-| 🟡 MEDIUM (≥50%) | 21 |
+| 🟡 MEDIUM (≥50%) | 20 |
 | 🟡 HRANICNI (≥40%) | 14 |
-| 🔴 NESLEDOVAT (≥0%) | 48 |
+| 🔴 NESLEDOVAT (≥0%) | 49 |
 | Precision (SLEDOVAT / celkem) | 1.2% |
-| Mean score | 41.3% |
-| Median score | 37.3% |
+| Mean score | 41.1% |
+| Median score | 37.1% |
 
 ## 2. Tech Stack Frequency Matrix
 
@@ -24,22 +24,22 @@
 
   AI                             ████████████████████████████████████████████████████████████ 84×
   Python                         █████████████ 19×
-  Git                            ████████████ 18×
+  Git                            ████████████ 17×
   PLC                            ██████ 9×
   Azure                          █████ 8×
   LLM                            █████ 7×
-  C++                            █████ 7×
   CI/CD                          ████ 6×
+  C++                            ████ 6×
   agentic                        ███ 5×
   machine learning               ███ 5×
   AWS                            ███ 5×
   CAM                            ██ 4×
-  Linux                          ██ 4×
   IoT                            ██ 4×
   TypeScript                     ██ 4×
 
 ### SECONDARY (2-3 výskyty)
 
+  Linux                          ███ 3×
   Kubernetes                     ███ 3×
   GCP                            ███ 3×
   Docker                         ███ 3×
@@ -72,12 +72,12 @@
 | IoT | 4 | 1 | 25.0% |
 | AI | 84 | 1 | 1.2% |
 | Python | 19 | 0 | 0.0% |
-| Git | 18 | 0 | 0.0% |
+| Git | 17 | 0 | 0.0% |
 | agentic | 5 | 0 | 0.0% |
 | LLM | 7 | 0 | 0.0% |
 | CI/CD | 6 | 0 | 0.0% |
-| Linux | 4 | 0 | 0.0% |
-| C++ | 7 | 0 | 0.0% |
+| Linux | 3 | 0 | 0.0% |
+| C++ | 6 | 0 | 0.0% |
 | GCP | 3 | 0 | 0.0% |
 | data pipeline | 2 | 0 | 0.0% |
 | machine learning | 5 | 0 | 0.0% |
@@ -99,7 +99,7 @@
 | --- | --- | --- |
 | growth | 72 | 85.7% |
 | tech | 66 | 78.6% |
-| domain | 48 | 57.1% |
+| domain | 49 | 58.3% |
 | formal | 18 | 21.4% |
 | location | 7 | 8.3% |
 | role | 1 | 1.2% |
@@ -113,12 +113,12 @@
 
 ### Ai Ml Hype
 - **Počet nabídek:** 14
-- **Průměrné EROI:** 43.0%
+- **Průměrné EROI:** 42.8%
 - **IDs:** 005, 007, 017, 020, 023, 024, 027, 038, 052, 054, 060, 061, 069, 073
 
 ### Enterprise It
 - **Počet nabídek:** 9
-- **Průměrné EROI:** 45.0%
+- **Průměrné EROI:** 43.4%
 - **IDs:** 002, 004, 033, 034, 035, 036, 040, 046, 071
 
 ### Industrial Automation Core
@@ -142,7 +142,7 @@
 
 - **PLC**: 9×
 - **Azure**: 8×
-- **C++**: 7×
+- **C++**: 6×
 - **AWS**: 5×
 - **TypeScript**: 4×
 - **Kubernetes**: 3×
@@ -154,12 +154,12 @@
 ### Nejčastější direct match (autorovy silné stránky)
 
 - **Python**: 19×
-- **Git**: 18×
+- **Git**: 17×
 - **CI/CD**: 6×
 - **agentic**: 5×
 - **CAM**: 4×
-- **Linux**: 4×
 - **IoT**: 4×
+- **Linux**: 3×
 - **GCP**: 3×
 - **Docker**: 3×
 - **scripting**: 2×
@@ -181,7 +181,7 @@
 
 ## 8. Závěr a doporučení
 
-Ze 84 analyzovaných nabídek: **1 SLEDOVAT** (1.2% precision), **21 MEDIUM**, **14 HRANIČNÍ**, **48 NESLEDOVAT**.
+Ze 84 analyzovaných nabídek: **1 SLEDOVAT** (1.2% precision), **20 MEDIUM**, **14 HRANIČNÍ**, **49 NESLEDOVAT**.
 
 ### Doporučené akce
 
