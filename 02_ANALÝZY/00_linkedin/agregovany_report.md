@@ -2187,6 +2187,40 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #072 — Enterprise Software Integration Specialist - Czech @ Quest Global
+**Datum:** 2026-07-15
+**EROI verdict:** MEDIUM (63.3% fit)
+
+### Analýza pozice
+- **Role:** Enterprise Software Integration Specialist - Czech
+- **Firma:** Quest Global
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (6 keywords) |
+| tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 35.0% | 0.0% | Degree required (2x) but flexibility found (1x) |
+| location | 5% | 60.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **63.3%** | **MEDIUM** |
+
+### Skill match
+- **IoT**: direct_match
+- **AI**: partial_match
+- **Linux**: direct_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2268,3 +2302,4 @@
 | 069 | Reas.cz | AI & Automation Specialist | 50.0% | Nízká | 🟡 HRANICNI |
 | 070 | ABB | Automation SW Engineer | 49.5% | Nízká | 🟡 HRANICNI |
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
+| 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 63.3% | Střední | 🟡 MEDIUM |
