@@ -2289,6 +2289,38 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #075 — OT/IT & Manufacturing Digitalization Specialist @ Brunel
+**Datum:** 2026-07-15
+**EROI verdict:** NESLEDOVAT (35.7% fit)
+
+### Analýza pozice
+- **Role:** OT/IT & Manufacturing Digitalization Specialist
+- **Firma:** Brunel
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
+| **Celkem** | **100%** | | **35.7%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Tech gap: 2 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2373,3 +2405,4 @@
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 63.3% | Střední | 🟡 MEDIUM |
 | 073 | Allwyn Česko | AI & Automation Lead | 46.1% | Nízká | 🟡 HRANICNI |
 | 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
+| 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 35.7% | Kriticky nízká | 🔴 NESLEDOVAT |
