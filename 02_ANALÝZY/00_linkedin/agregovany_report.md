@@ -2153,6 +2153,40 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #071 — System Architect @ Škoda Group
+**Datum:** 2026-07-15
+**EROI verdict:** MEDIUM (50.9% fit)
+
+### Analýza pozice
+- **Role:** System Architect
+- **Firma:** Škoda Group
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 25.4% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **50.9%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **Git**: direct_match
+- **Linux**: direct_match
+- **C++**: no_match
+
+**Kritické mismatch:** tech, growth, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2233,3 +2267,4 @@
 | 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 069 | Reas.cz | AI & Automation Specialist | 50.0% | Nízká | 🟡 HRANICNI |
 | 070 | ABB | Automation SW Engineer | 49.5% | Nízká | 🟡 HRANICNI |
+| 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
