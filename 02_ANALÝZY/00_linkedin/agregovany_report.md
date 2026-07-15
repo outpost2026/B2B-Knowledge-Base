@@ -2119,9 +2119,10 @@
 
 ---
 
+
 ## 🔴 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-15
-**EROI verdict:** NESLEDOVAT (26.4% fit)
+**EROI verdict:** NESLEDOVAT (22.9% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Specialist
@@ -2130,13 +2131,13 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
 | role | 20% | 35.0% | 0.1% | No strong role signal detected |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
+| **Celkem** | **100%** | | **22.9%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
@@ -2147,7 +2148,6 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-
 ## 🟡 ZÁZNAM #070 — Automation SW Engineer @ ABB
 **Datum:** 2026-07-15
 **EROI verdict:** HRANICNI (43.9% fit)
@@ -2176,9 +2176,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-## 🟡 ZÁZNAM #071 — System Architect @ Škoda Group
+
+## 🔴 ZÁZNAM #071 — System Architect @ Škoda Group
 **Datum:** 2026-07-15
-**EROI verdict:** MEDIUM (50.6% fit)
+**EROI verdict:** NESLEDOVAT (35.9% fit)
 
 ### Analýza pozice
 - **Role:** System Architect
@@ -2187,27 +2188,23 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 25.4% | 0.1% | 2 direct, 1 partial matches |
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
 | role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **50.6%** | **MEDIUM** |
+| **Celkem** | **100%** | | **35.9%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
-- **Git**: direct_match
-- **Linux**: direct_match
-- **C++**: no_match
 
-**Kritické mismatch:** tech, growth
+**Kritické mismatch:** domain, tech, growth
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-
 ## 🔴 ZÁZNAM #072 — Enterprise Software Integration Specialist - Czech @ Quest Global
 **Datum:** 2026-07-15
 **EROI verdict:** NESLEDOVAT (25.9% fit)
@@ -2675,9 +2672,9 @@
 | 066 | Atlas Copco | Sales Engineer | 31.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 067 | Quik Hire Staffing | Manufacturing Specialist (Remote) | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 069 | Reas.cz | AI & Automation Specialist | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 069 | Reas.cz | AI & Automation Specialist | 22.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 070 | ABB | Automation SW Engineer | 43.9% | Nízká | 🟡 HRANICNI |
-| 071 | Škoda Group | System Architect | 50.6% | Střední | 🟡 MEDIUM |
+| 071 | Škoda Group | System Architect | 35.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 25.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 073 | Allwyn Česko | AI & Automation Lead | 29.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 074 | Mubea | Elektronik | 35.4% | Kriticky nízká | 🔴 NESLEDOVAT |

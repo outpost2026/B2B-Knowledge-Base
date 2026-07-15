@@ -9,44 +9,44 @@
   "overview": {
     "total": 84,
     "precision_pct": 1.2,
-    "mean_score": 40.9,
-    "median_score": 37.0,
+    "mean_score": 41.3,
+    "median_score": 37.3,
     "verdict_distribution": {
-      "MEDIUM": 20,
+      "MEDIUM": 21,
       "SLEDOVAT": 1,
-      "HRANICNI": 13,
-      "NESLEDOVAT": 50
+      "HRANICNI": 14,
+      "NESLEDOVAT": 48
     }
   },
   "skill_frequency": {
     "AI": 84,
-    "Python": 18,
+    "Python": 19,
     "Git": 18,
+    "PLC": 9,
     "Azure": 8,
-    "PLC": 8,
     "LLM": 7,
     "C++": 7,
     "CI/CD": 6,
+    "agentic": 5,
     "machine learning": 5,
+    "AWS": 5,
     "CAM": 4,
-    "agentic": 4,
     "Linux": 4,
     "IoT": 4,
-    "AWS": 4,
     "TypeScript": 4,
     "Kubernetes": 3,
     "GCP": 3,
     "Docker": 3,
+    "JavaScript": 3,
+    "scripting": 2,
     "data pipeline": 2,
     "CNC": 2,
     "MCP": 2,
     "Terraform": 2,
     "ETL": 2,
     "test automation": 2,
-    "JavaScript": 2,
     "DevSecOps": 1,
     "deployment automation": 1,
-    "scripting": 1,
     "virtualization": 1,
     "KVM": 1,
     "ESP32": 1,
@@ -60,11 +60,6 @@
       "sledovat_count": 1,
       "snr_pct": 100.0
     },
-    "scripting": {
-      "count": 1,
-      "sledovat_count": 1,
-      "snr_pct": 100.0
-    },
     "virtualization": {
       "count": 1,
       "sledovat_count": 1,
@@ -74,6 +69,11 @@
       "count": 1,
       "sledovat_count": 1,
       "snr_pct": 100.0
+    },
+    "scripting": {
+      "count": 2,
+      "sledovat_count": 1,
+      "snr_pct": 50.0
     },
     "Kubernetes": {
       "count": 3,
@@ -96,7 +96,7 @@
       "snr_pct": 1.2
     },
     "Python": {
-      "count": 18,
+      "count": 19,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -106,7 +106,7 @@
       "snr_pct": 0.0
     },
     "agentic": {
-      "count": 4,
+      "count": 5,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -156,12 +156,12 @@
       "snr_pct": 0.0
     },
     "AWS": {
-      "count": 4,
+      "count": 5,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
     "PLC": {
-      "count": 8,
+      "count": 9,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -216,7 +216,7 @@
       "snr_pct": 0.0
     },
     "JavaScript": {
-      "count": 2,
+      "count": 3,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -228,16 +228,16 @@
   },
   "mismatch_frequency": {
     "growth": 72,
-    "tech": 67,
+    "tech": 66,
     "domain": 48,
-    "formal": 17,
+    "formal": 18,
     "location": 7,
     "role": 1
   },
   "clusters": {
     "other": {
       "count": 47,
-      "mean_score": 36.9,
+      "mean_score": 37.6,
       "entry_ids": [
         "006",
         "008",
@@ -290,7 +290,7 @@
     },
     "ai_ml_hype": {
       "count": 14,
-      "mean_score": 42.8,
+      "mean_score": 43.0,
       "entry_ids": [
         "005",
         "007",
@@ -393,6 +393,13 @@
       "verdict": "MEDIUM"
     },
     {
+      "id": "075",
+      "title": "OT/IT & Manufacturing Digitalization Specialist",
+      "company": "Brunel",
+      "score": 61.0,
+      "verdict": "MEDIUM"
+    },
+    {
       "id": "010",
       "title": "Automation Systems Engineer IoT",
       "company": "Resideo",
@@ -419,38 +426,32 @@
       "company": "WPP Media",
       "score": 59.6,
       "verdict": "MEDIUM"
-    },
-    {
-      "id": "023",
-      "title": "AI Developer",
-      "company": "Trask",
-      "score": 59.1,
-      "verdict": "MEDIUM"
     }
   ],
   "skill_gaps": {
+    "PLC": 9,
     "Azure": 8,
-    "PLC": 8,
     "C++": 7,
-    "AWS": 4,
+    "AWS": 5,
     "TypeScript": 4,
     "Kubernetes": 3,
+    "JavaScript": 3,
     "Terraform": 2,
-    "JavaScript": 2,
     "KVM": 1,
     "C#": 1,
     "Playwright": 1
   },
   "direct_matches": {
-    "Python": 18,
+    "Python": 19,
     "Git": 18,
     "CI/CD": 6,
+    "agentic": 5,
     "CAM": 4,
-    "agentic": 4,
     "Linux": 4,
     "IoT": 4,
     "GCP": 3,
     "Docker": 3,
+    "scripting": 2,
     "data pipeline": 2,
     "CNC": 2,
     "MCP": 2,
@@ -458,7 +459,6 @@
     "test automation": 2,
     "DevSecOps": 1,
     "deployment automation": 1,
-    "scripting": 1,
     "ESP32": 1,
     "REST API": 1
   }
