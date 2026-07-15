@@ -4332,6 +4332,60 @@
           "location"
         ]
       }
+    },
+    {
+      "id": "080",
+      "date": "2026-07-15",
+      "linkedin_job_id": "4412861908",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "invelt-elektro s.r.o."
+      },
+      "title": "Projektant HW v oddělení řídících systémů",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 35.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth"
+        ]
+      }
     }
   ],
   "aggregate_insights": {

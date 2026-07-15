@@ -2447,6 +2447,38 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #080 — Projektant HW v oddělení řídících systémů @ invelt-elektro s.r.o.
+**Datum:** 2026-07-15
+**EROI verdict:** NESLEDOVAT (35.1% fit)
+
+### Analýza pozice
+- **Role:** Projektant HW v oddělení řídících systémů
+- **Firma:** invelt-elektro s.r.o.
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **35.1%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Tech gap: 2 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2536,3 +2568,4 @@
 | 077 | Similarweb | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 078 | Grafton Recruitment | PLC Programátor | 44.6% | Nízká | 🟡 HRANICNI |
 | 079 | Airswift | Integration Engineer | 52.6% | Střední | 🟡 MEDIUM |
+| 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
