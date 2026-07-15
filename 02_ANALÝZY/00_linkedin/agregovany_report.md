@@ -2118,9 +2118,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
+
 ## 🔴 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-15
-**EROI verdict:** NESLEDOVAT (22.9% fit)
+**EROI verdict:** NESLEDOVAT (26.4% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Specialist
@@ -2129,13 +2130,13 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 15.0% | 0.1% | Mostly non-industrial (1 noise keywords) (pure noise) |
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
 | role | 20% | 35.0% | 0.1% | No strong role signal detected |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **22.9%** | **NESLEDOVAT** |
+| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
@@ -2235,7 +2236,6 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-
 ## 🔴 ZÁZNAM #073 — AI & Automation Lead @ Allwyn Česko
 **Datum:** 2026-07-15
 **EROI verdict:** NESLEDOVAT (29.9% fit)
@@ -2297,9 +2297,9 @@
 
 ---
 
-## 🔴 ZÁZNAM #075 — OT/IT & Manufacturing Digitalization Specialist @ Brunel
+## 🟡 ZÁZNAM #075 — OT/IT & Manufacturing Digitalization Specialist @ Brunel
 **Datum:** 2026-07-15
-**EROI verdict:** NESLEDOVAT (35.7% fit)
+**EROI verdict:** MEDIUM (61.0% fit)
 
 ### Analýza pozice
 - **Role:** OT/IT & Manufacturing Digitalization Specialist
@@ -2308,25 +2308,25 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
 | tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 50.0% | 0.0% | No clear location/mode signal |
-| **Celkem** | **100%** | | **35.7%** | **NESLEDOVAT** |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **61.0%** | **MEDIUM** |
 
 ### Skill match
 - **AI**: partial_match
 - **Git**: direct_match
+- **PLC**: no_match
 
 **Kritické mismatch:** tech, growth
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Tech gap: 2 skill mismatches
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
-
 ## 🔴 ZÁZNAM #076 — Integration Engineer @ Unit IT
 **Datum:** 2026-07-15
 **EROI verdict:** NESLEDOVAT (36.4% fit)
@@ -2356,9 +2356,10 @@
 
 ---
 
-## 🔴 ZÁZNAM #077 — Integration Engineer @ Similarweb
+
+## 🟡 ZÁZNAM #077 — Integration Engineer @ Similarweb
 **Datum:** 2026-07-15
-**EROI verdict:** NESLEDOVAT (36.4% fit)
+**EROI verdict:** HRANICNI (46.1% fit)
 
 ### Analýza pozice
 - **Role:** Integration Engineer
@@ -2368,20 +2369,25 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| tech | 25% | 42.4% | 0.1% | 3 direct, 1 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **36.4%** | **NESLEDOVAT** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **46.1%** | **HRANICNI** |
 
 ### Skill match
+- **Python**: direct_match
 - **AI**: partial_match
+- **JavaScript**: no_match
+- **AWS**: no_match
+- **scripting**: direct_match
+- **agentic**: direct_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** domain, growth, formal
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
 
 ---
 
@@ -2414,7 +2420,6 @@
 **Poznámka:** Tech gap: 2 skill mismatches
 
 ---
-
 ## 🟡 ZÁZNAM #079 — Integration Engineer @ Airswift
 **Datum:** 2026-07-15
 **EROI verdict:** MEDIUM (54.1% fit)
@@ -2670,15 +2675,15 @@
 | 066 | Atlas Copco | Sales Engineer | 31.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 067 | Quik Hire Staffing | Manufacturing Specialist (Remote) | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 069 | Reas.cz | AI & Automation Specialist | 22.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 069 | Reas.cz | AI & Automation Specialist | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 070 | ABB | Automation SW Engineer | 43.9% | Nízká | 🟡 HRANICNI |
 | 071 | Škoda Group | System Architect | 50.6% | Střední | 🟡 MEDIUM |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 25.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 073 | Allwyn Česko | AI & Automation Lead | 29.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 074 | Mubea | Elektronik | 35.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 35.7% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 61.0% | Střední | 🟡 MEDIUM |
 | 076 | Unit IT | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 077 | Similarweb | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 077 | Similarweb | Integration Engineer | 46.1% | Nízká | 🟡 HRANICNI |
 | 078 | Grafton Recruitment | PLC Programátor | 33.6% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 079 | Airswift | Integration Engineer | 54.1% | Střední | 🟡 MEDIUM |
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 25.9% | Kriticky nízká | 🔴 NESLEDOVAT |

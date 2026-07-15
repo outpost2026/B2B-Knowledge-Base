@@ -9,29 +9,29 @@
   "overview": {
     "total": 84,
     "precision_pct": 1.2,
-    "mean_score": 42.3,
-    "median_score": 38.2,
+    "mean_score": 40.9,
+    "median_score": 37.0,
     "verdict_distribution": {
-      "MEDIUM": 22,
+      "MEDIUM": 20,
       "SLEDOVAT": 1,
-      "HRANICNI": 15,
-      "NESLEDOVAT": 46
+      "HRANICNI": 13,
+      "NESLEDOVAT": 50
     }
   },
   "skill_frequency": {
     "AI": 84,
-    "Git": 22,
     "Python": 18,
-    "PLC": 11,
+    "Git": 18,
+    "Azure": 8,
+    "PLC": 8,
     "LLM": 7,
     "C++": 7,
-    "Azure": 7,
-    "agentic": 6,
-    "IoT": 6,
-    "machine learning": 6,
-    "CI/CD": 5,
-    "Linux": 5,
+    "CI/CD": 6,
+    "machine learning": 5,
     "CAM": 4,
+    "agentic": 4,
+    "Linux": 4,
+    "IoT": 4,
     "AWS": 4,
     "TypeScript": 4,
     "Kubernetes": 3,
@@ -41,6 +41,7 @@
     "CNC": 2,
     "MCP": 2,
     "Terraform": 2,
+    "ETL": 2,
     "test automation": 2,
     "JavaScript": 2,
     "DevSecOps": 1,
@@ -50,7 +51,6 @@
     "KVM": 1,
     "ESP32": 1,
     "C#": 1,
-    "ETL": 1,
     "REST API": 1,
     "Playwright": 1
   },
@@ -86,9 +86,9 @@
       "snr_pct": 25.0
     },
     "IoT": {
-      "count": 6,
+      "count": 4,
       "sledovat_count": 1,
-      "snr_pct": 16.7
+      "snr_pct": 25.0
     },
     "AI": {
       "count": 84,
@@ -101,12 +101,12 @@
       "snr_pct": 0.0
     },
     "Git": {
-      "count": 22,
+      "count": 18,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
     "agentic": {
-      "count": 6,
+      "count": 4,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -116,12 +116,12 @@
       "snr_pct": 0.0
     },
     "CI/CD": {
-      "count": 5,
+      "count": 6,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
     "Linux": {
-      "count": 5,
+      "count": 4,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -146,12 +146,12 @@
       "snr_pct": 0.0
     },
     "machine learning": {
-      "count": 6,
+      "count": 5,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
     "Azure": {
-      "count": 7,
+      "count": 8,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -161,7 +161,7 @@
       "snr_pct": 0.0
     },
     "PLC": {
-      "count": 11,
+      "count": 8,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -196,7 +196,7 @@
       "snr_pct": 0.0
     },
     "ETL": {
-      "count": 1,
+      "count": 2,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -228,16 +228,16 @@
   },
   "mismatch_frequency": {
     "growth": 72,
-    "tech": 66,
-    "domain": 45,
-    "formal": 23,
-    "location": 10,
+    "tech": 67,
+    "domain": 48,
+    "formal": 17,
+    "location": 7,
     "role": 1
   },
   "clusters": {
     "other": {
-      "count": 45,
-      "mean_score": 37.6,
+      "count": 47,
+      "mean_score": 36.9,
       "entry_ids": [
         "006",
         "008",
@@ -275,6 +275,8 @@
         "067",
         "068",
         "070",
+        "072",
+        "074",
         "075",
         "076",
         "077",
@@ -288,7 +290,7 @@
     },
     "ai_ml_hype": {
       "count": 14,
-      "mean_score": 47.3,
+      "mean_score": 42.8,
       "entry_ids": [
         "005",
         "007",
@@ -306,25 +308,9 @@
         "073"
       ]
     },
-    "industrial_automation_core": {
-      "count": 10,
-      "mean_score": 53.9,
-      "entry_ids": [
-        "001",
-        "003",
-        "010",
-        "014",
-        "021",
-        "042",
-        "047",
-        "057",
-        "072",
-        "074"
-      ]
-    },
     "enterprise_it": {
       "count": 9,
-      "mean_score": 45.1,
+      "mean_score": 45.0,
       "entry_ids": [
         "002",
         "004",
@@ -335,6 +321,20 @@
         "040",
         "046",
         "071"
+      ]
+    },
+    "industrial_automation_core": {
+      "count": 8,
+      "mean_score": 53.0,
+      "entry_ids": [
+        "001",
+        "003",
+        "010",
+        "014",
+        "021",
+        "042",
+        "047",
+        "057"
       ]
     },
     "embedded_manufacturing": {
@@ -348,7 +348,7 @@
     },
     "data_engineering": {
       "count": 3,
-      "mean_score": 45.1,
+      "mean_score": 50.4,
       "entry_ids": [
         "026",
         "029",
@@ -369,13 +369,6 @@
       "title": "AI Integrator / AI Engineer",
       "company": "TD SYNNEX Czech Republic",
       "score": 64.6,
-      "verdict": "MEDIUM"
-    },
-    {
-      "id": "072",
-      "title": "Enterprise Software Integration Specialist - Czech",
-      "company": "Quest Global",
-      "score": 63.3,
       "verdict": "MEDIUM"
     },
     {
@@ -426,12 +419,19 @@
       "company": "WPP Media",
       "score": 59.6,
       "verdict": "MEDIUM"
+    },
+    {
+      "id": "023",
+      "title": "AI Developer",
+      "company": "Trask",
+      "score": 59.1,
+      "verdict": "MEDIUM"
     }
   ],
   "skill_gaps": {
-    "PLC": 11,
+    "Azure": 8,
+    "PLC": 8,
     "C++": 7,
-    "Azure": 7,
     "AWS": 4,
     "TypeScript": 4,
     "Kubernetes": 3,
@@ -442,24 +442,24 @@
     "Playwright": 1
   },
   "direct_matches": {
-    "Git": 22,
     "Python": 18,
-    "agentic": 6,
-    "IoT": 6,
-    "CI/CD": 5,
-    "Linux": 5,
+    "Git": 18,
+    "CI/CD": 6,
     "CAM": 4,
+    "agentic": 4,
+    "Linux": 4,
+    "IoT": 4,
     "GCP": 3,
     "Docker": 3,
     "data pipeline": 2,
     "CNC": 2,
     "MCP": 2,
+    "ETL": 2,
     "test automation": 2,
     "DevSecOps": 1,
     "deployment automation": 1,
     "scripting": 1,
     "ESP32": 1,
-    "ETL": 1,
     "REST API": 1
   }
 }

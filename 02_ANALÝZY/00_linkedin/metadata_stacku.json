@@ -3791,7 +3791,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 22.9,
+        "fit_score_pct": 26.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4104,7 +4104,9 @@
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "PLC"
+          ]
         }
       },
       "domain": {
@@ -4120,11 +4122,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.7,
+        "fit_score_pct": 61.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
@@ -4205,11 +4207,18 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Python",
+            "scripting",
+            "agentic"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "JavaScript",
+            "AWS"
+          ]
         }
       },
       "domain": {
@@ -4225,16 +4234,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 46.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
