@@ -2415,6 +2415,38 @@
 ---
 
 
+
+## 🟡 ZÁZNAM #079 — Integration Engineer @ Airswift
+**Datum:** 2026-07-15
+**EROI verdict:** MEDIUM (52.6% fit)
+
+### Analýza pozice
+- **Role:** Integration Engineer
+- **Firma:** Airswift
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (5 keywords) |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **52.6%** | **MEDIUM** |
+
+### Skill match
+- **AI**: partial_match
+- **PLC**: no_match
+
+**Kritické mismatch:** tech, growth, formal, location
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2503,3 +2535,4 @@
 | 076 | Unit IT | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 077 | Similarweb | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 078 | Grafton Recruitment | PLC Programátor | 44.6% | Nízká | 🟡 HRANICNI |
+| 079 | Airswift | Integration Engineer | 52.6% | Střední | 🟡 MEDIUM |

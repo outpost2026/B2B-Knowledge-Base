@@ -4276,6 +4276,62 @@
           "location"
         ]
       }
+    },
+    {
+      "id": "079",
+      "date": "2026-07-15",
+      "linkedin_job_id": "4429891739",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Airswift"
+      },
+      "title": "Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 52.6,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
