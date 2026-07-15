@@ -2352,6 +2352,37 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #077 — Integration Engineer @ Similarweb
+**Datum:** 2026-07-15
+**EROI verdict:** NESLEDOVAT (36.4% fit)
+
+### Analýza pozice
+- **Role:** Integration Engineer
+- **Firma:** Similarweb
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **36.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2438,3 +2469,4 @@
 | 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
 | 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 35.7% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 076 | Unit IT | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 077 | Similarweb | Integration Engineer | 36.4% | Kriticky nízká | 🔴 NESLEDOVAT |
