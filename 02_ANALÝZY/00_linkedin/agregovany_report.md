@@ -2722,6 +2722,37 @@
 ---
 
 
+
+## 🔴 ZÁZNAM #086 — Purchasing Automation & AI Solution Architect (m/f/d) @ Knorr-Bremse AG
+**Datum:** 2026-07-16
+**EROI verdict:** NESLEDOVAT (37.4% fit)
+
+### Analýza pozice
+- **Role:** Purchasing Automation & AI Solution Architect (m/f/d)
+- **Firma:** Knorr-Bremse AG
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **37.4%** | **NESLEDOVAT** |
+
+### Skill match
+- **AI**: partial_match
+
+**Kritické mismatch:** domain, tech, growth
+
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2817,3 +2848,4 @@
 | 083 | IDC | Knowledge Graph Engineer | 59.5% | Střední | 🟡 MEDIUM |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 085 | Thermo Fisher Scientific | System Design Engineer for SEMI RnD | 52.4% | Střední | 🟡 MEDIUM |
+| 086 | Knorr-Bremse AG | Purchasing Automation & AI Solution Architect (m/f/d) | 37.4% | Kriticky nízká | 🔴 NESLEDOVAT |

@@ -4801,6 +4801,59 @@
         "critical_mismatch": false,
         "mismatch_dimensions": []
       }
+    },
+    {
+      "id": "086",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4437664433",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Knorr-Bremse AG"
+      },
+      "title": "Purchasing Automation & AI Solution Architect (m/f/d)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 37.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth"
+        ]
+      }
     }
   ],
   "aggregate_insights": {
