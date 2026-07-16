@@ -352,6 +352,7 @@
 
 ---
 
+
 ## 🟢 ZÁZNAM #011 — Prototypový technik @ Valeo
 **Datum:** 2026-07-16
 **EROI verdict:** SLEDOVAT (65.6% fit)
