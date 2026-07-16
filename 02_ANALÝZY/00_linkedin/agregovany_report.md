@@ -2164,6 +2164,7 @@
 
 ---
 
+
 ## 🟡 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-16
 **EROI verdict:** MEDIUM (52.4% fit)
@@ -2331,7 +2332,7 @@
 
 ## 🟡 ZÁZNAM #074 — Elektronik @ Mubea
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (51.9% fit)
+**EROI verdict:** MEDIUM (55.1% fit)
 
 ### Analýza pozice
 - **Role:** Elektronik
@@ -2340,20 +2341,20 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 70.0% | 0.2% | Core industrial domain (4 keywords) |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
 | tech | 25% | 18.6% | 0.0% | 1 direct, 1 partial matches |
 | role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **51.9%** | **MEDIUM** |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **55.1%** | **MEDIUM** |
 
 ### Skill match
 - **IoT**: direct_match
 - **AI**: partial_match
 - **PLC**: no_match
 
-**Kritické mismatch:** tech, growth, formal, location
+**Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
 **Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
@@ -2558,7 +2559,7 @@
 
 ## 🟢 ZÁZNAM #081 — Automation Solution Engineer - part time @ ABB
 **Datum:** 2026-07-16
-**EROI verdict:** SLEDOVAT (69.7% fit)
+**EROI verdict:** SLEDOVAT (75.7% fit)
 
 ### Analýza pozice
 - **Role:** Automation Solution Engineer - part time
@@ -2567,24 +2568,26 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 85.0% | 0.3% | Strong industrial domain (5 keywords) |
-| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 40.7% | 0.1% | 3 direct, 1 partial matches |
 | role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
-| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **69.7%** | **SLEDOVAT** |
+| **Celkem** | **100%** | | **75.7%** | **SLEDOVAT** |
 
 ### Skill match
+- **CAM**: direct_match
+- **ETL**: direct_match
 - **AI**: partial_match
 - **Git**: direct_match
 - **PLC**: no_match
 - **C#**: no_match
 
-**Kritické mismatch:** tech, formal
+**Kritické mismatch:** formal
 
 **Doporučení:** Aplikovat — silný lead
-**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
@@ -2621,9 +2624,9 @@
 **Poznámka:** Positioning match zachraňuje domain gap
 
 ---
-## 🔴 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
+## 🟡 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
 **Datum:** 2026-07-16
-**EROI verdict:** NESLEDOVAT (35.9% fit)
+**EROI verdict:** MEDIUM (61.7% fit)
 
 ### Analýza pozice
 - **Role:** Knowledge Graph Engineer
@@ -2632,21 +2635,28 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 62.7% | 0.2% | 3 direct, 3 partial matches |
+| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **35.9%** | **NESLEDOVAT** |
+| formal | 5% | 20.0% | 0.0% | Degree required (4x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **61.7%** | **MEDIUM** |
 
 ### Skill match
+- **Python**: direct_match
+- **GCP**: direct_match
+- **LLM**: partial_match
 - **AI**: partial_match
+- **machine learning**: partial_match
+- **Azure**: no_match
+- **AWS**: no_match
+- **agentic**: direct_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** growth, formal
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 ## 🔴 ZÁZNAM #084 — UX Designer / Researcher @ Resistant AI - Fraud Detection
@@ -2762,14 +2772,14 @@
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 52.5% | Střední | 🟡 MEDIUM |
 | 073 | Allwyn Česko | AI & Automation Lead | 45.1% | Nízká | 🟡 HRANICNI |
-| 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
+| 074 | Mubea | Elektronik | 55.1% | Střední | 🟡 MEDIUM |
 | 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 62.6% | Střední | 🟡 MEDIUM |
 | 076 | Unit IT | Integration Engineer | 48.8% | Nízká | 🟡 HRANICNI |
 | 077 | Similarweb | Integration Engineer | 62.4% | Střední | 🟡 MEDIUM |
 | 078 | Grafton Recruitment | PLC Programátor | 39.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 079 | Airswift | Integration Engineer | 57.1% | Střední | 🟡 MEDIUM |
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 46.4% | Nízká | 🟡 HRANICNI |
-| 081 | ABB | Automation Solution Engineer - part time | 69.7% | Vysoká | 🟢 SLEDOVAT |
+| 081 | ABB | Automation Solution Engineer - part time | 75.7% | Vysoká | 🟢 SLEDOVAT |
 | 082 | PRO.MED.CS | Data Integration Engineer | 55.5% | Střední | 🟡 MEDIUM |
-| 083 | IDC | Knowledge Graph Engineer | 35.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 083 | IDC | Knowledge Graph Engineer | 61.7% | Střední | 🟡 MEDIUM |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |

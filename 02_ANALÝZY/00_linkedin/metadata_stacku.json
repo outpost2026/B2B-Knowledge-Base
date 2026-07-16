@@ -4153,7 +4153,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 51.9,
+        "fit_score_pct": 55.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4162,8 +4162,7 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
@@ -4539,6 +4538,8 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
+            "CAM",
+            "ETL",
             "Git"
           ],
           "partial_match": [
@@ -4563,14 +4564,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 69.7,
+        "fit_score_pct": 75.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
           "formal"
         ]
       }
@@ -4653,11 +4653,20 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
+          "direct_match": [
+            "Python",
+            "GCP",
+            "agentic"
           ],
-          "no_match": []
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
         }
       },
       "domain": {
@@ -4673,16 +4682,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.9,
+        "fit_score_pct": 61.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
