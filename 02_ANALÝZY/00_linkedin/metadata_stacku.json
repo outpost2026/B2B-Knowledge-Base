@@ -16,7 +16,7 @@
   "entries": [
     {
       "id": "001",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4410607040",
       "company": {
         "type": null,
@@ -587,7 +587,7 @@
     },
     {
       "id": "011",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4414678400",
       "company": {
         "type": null,
@@ -605,7 +605,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "CNC"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -625,14 +627,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 25.9,
+        "fit_score_pct": 48.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
           "growth"
         ]
@@ -640,7 +641,7 @@
     },
     {
       "id": "012",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4354336186",
       "company": {
         "type": null,
@@ -1066,7 +1067,7 @@
     },
     {
       "id": "020",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4436824903",
       "company": {
         "type": null,
@@ -1084,10 +1085,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "data pipeline"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -1107,13 +1105,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.1,
+        "fit_score_pct": 36.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
+          "tech",
           "growth"
         ]
       }
@@ -1532,7 +1532,7 @@
     },
     {
       "id": "028",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434489340",
       "company": {
         "type": null,
@@ -1558,7 +1558,8 @@
             "AI"
           ],
           "no_match": [
-            "TypeScript"
+            "TypeScript",
+            "C++"
           ]
         }
       },
@@ -1575,7 +1576,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.0,
+        "fit_score_pct": 39.8,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1697,7 +1698,7 @@
     },
     {
       "id": "031",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4422902321",
       "company": {
         "type": null,
@@ -1705,6 +1706,122 @@
         "industry": "Renesas Electronics"
       },
       "title": "Senior Staff Digital Design Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "IoT",
+            "ETL",
+            "Git",
+            "scripting"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "C++"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 56.4,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "032",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4434451288",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Tropic Square"
+      },
+      "title": "Lead Software Engineer (Semiconductor Verification & Tooling)",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "Git",
+            "Linux"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 54.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal"
+        ]
+      }
+    },
+    {
+      "id": "033",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4435817200",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "CoolPeople"
+      },
+      "title": "Solution Architect (43156)",
       "role": {
         "category": null,
         "subcategory": null,
@@ -1737,7 +1854,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 38.0,
+        "fit_score_pct": 32.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1746,118 +1863,14 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "032",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4434451288",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Tropic Square"
-      },
-      "title": "Lead Software Engineer (Semiconductor Verification & Tooling)",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 44.4,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "033",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4435817200",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "CoolPeople"
-      },
-      "title": "Solution Architect (43156)",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 36.4,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "growth",
+          "location"
         ]
       }
     },
     {
       "id": "034",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4429533662",
       "company": {
         "type": null,
@@ -1881,9 +1894,7 @@
           "partial_match": [
             "AI"
           ],
-          "no_match": [
-            "C++"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -1899,7 +1910,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 37.2,
+        "fit_score_pct": 37.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -1908,14 +1919,13 @@
         "mismatch_dimensions": [
           "domain",
           "tech",
-          "growth",
-          "location"
+          "growth"
         ]
       }
     },
     {
       "id": "035",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4394623057",
       "company": {
         "type": null,
@@ -1933,9 +1943,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -1958,23 +1966,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 49.7,
+        "fit_score_pct": 58.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
     {
       "id": "036",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4436314128",
       "company": {
         "type": null,
@@ -1992,11 +1999,15 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "C++"
+          ]
         }
       },
       "domain": {
@@ -2012,22 +2023,23 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 40.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "growth",
+          "formal",
+          "location"
         ]
       }
     },
     {
       "id": "037",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4431925325",
       "company": {
         "type": null,
@@ -2080,7 +2092,7 @@
     },
     {
       "id": "038",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4415618297",
       "company": {
         "type": null,
@@ -2098,11 +2110,20 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
+          "direct_match": [
+            "Python",
+            "GCP",
+            "Git"
           ],
-          "no_match": []
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
         }
       },
       "domain": {
@@ -2118,22 +2139,21 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.4,
+        "fit_score_pct": 52.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
           "growth"
         ]
       }
     },
     {
       "id": "039",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4431935108",
       "company": {
         "type": null,
@@ -2153,8 +2173,7 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "test automation",
-            "CI/CD"
+            "test automation"
           ],
           "partial_match": [
             "AI"
@@ -2162,9 +2181,7 @@
           "no_match": [
             "TypeScript",
             "JavaScript",
-            "Playwright",
-            "PLC",
-            "C++"
+            "Playwright"
           ]
         }
       },
@@ -2181,7 +2198,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.5,
+        "fit_score_pct": 54.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2189,14 +2206,13 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "growth",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
     {
       "id": "040",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4435199835",
       "company": {
         "type": null,
@@ -2234,7 +2250,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 36.6,
+        "fit_score_pct": 34.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2301,7 +2317,7 @@
     },
     {
       "id": "042",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4405119374",
       "company": {
         "type": null,
@@ -2413,7 +2429,7 @@
     },
     {
       "id": "044",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434106125",
       "company": {
         "type": null,
@@ -2435,7 +2451,9 @@
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "PLC"
+          ]
         }
       },
       "domain": {
@@ -2451,15 +2469,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 46.9,
+        "fit_score_pct": 50.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
@@ -2632,7 +2651,7 @@
     },
     {
       "id": "048",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434501730",
       "company": {
         "type": null,
@@ -2650,11 +2669,16 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Python",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "C++"
+          ]
         }
       },
       "domain": {
@@ -2670,11 +2694,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 25.9,
+        "fit_score_pct": 44.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
@@ -2685,7 +2709,7 @@
     },
     {
       "id": "049",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4436206469",
       "company": {
         "type": null,
@@ -2703,7 +2727,11 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Python",
+            "CAM",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -2723,22 +2751,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.9,
+        "fit_score_pct": 48.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal",
+          "location"
         ]
       }
     },
     {
       "id": "050",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437887286",
       "company": {
         "type": null,
@@ -2776,22 +2804,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.9,
+        "fit_score_pct": 48.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
     {
       "id": "051",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437152646",
       "company": {
         "type": null,
@@ -2809,7 +2837,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "CAM"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -2829,7 +2859,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 29.9,
+        "fit_score_pct": 35.2,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2837,13 +2867,14 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth"
+          "growth",
+          "location"
         ]
       }
     },
     {
       "id": "052",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437818273",
       "company": {
         "type": null,
@@ -2862,9 +2893,11 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python"
+            "Python",
+            "Git"
           ],
           "partial_match": [
+            "LLM",
             "AI",
             "machine learning"
           ],
@@ -2884,7 +2917,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 42.7,
+        "fit_score_pct": 49.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -2892,14 +2925,13 @@
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
           "growth"
         ]
       }
     },
     {
       "id": "053",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437768305",
       "company": {
         "type": null,
@@ -2917,7 +2949,12 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Docker",
+            "ETL",
+            "Git",
+            "Linux"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -2937,22 +2974,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 37.4,
+        "fit_score_pct": 48.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
     {
       "id": "054",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4436701298",
       "company": {
         "type": null,
@@ -3063,7 +3100,7 @@
     },
     {
       "id": "056",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434828687",
       "company": {
         "type": null,
@@ -3116,7 +3153,7 @@
     },
     {
       "id": "057",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4421291511",
       "company": {
         "type": null,
@@ -3275,7 +3312,7 @@
     },
     {
       "id": "060",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437314242",
       "company": {
         "type": null,
@@ -3293,7 +3330,10 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git",
+            "agentic"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3313,23 +3353,21 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 23.4,
+        "fit_score_pct": 45.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "role",
           "growth"
         ]
       }
     },
     {
       "id": "061",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4436772014",
       "company": {
         "type": null,
@@ -3347,7 +3385,10 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "CAM",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3367,22 +3408,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 50.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "growth",
+          "location"
         ]
       }
     },
     {
       "id": "062",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4426632138",
       "company": {
         "type": null,
@@ -3402,13 +3443,16 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "test automation"
+            "test automation",
+            "CI/CD",
+            "Git"
           ],
           "partial_match": [
             "AI"
           ],
           "no_match": [
-            "PLC"
+            "PLC",
+            "TIA Portal"
           ]
         }
       },
@@ -3425,18 +3469,20 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 61.8,
+        "fit_score_pct": 78.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
-        "critical_mismatch": false,
-        "mismatch_dimensions": []
+        "verdict": "SLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "formal"
+        ]
       }
     },
     {
       "id": "063",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4418950272",
       "company": {
         "type": null,
@@ -3454,7 +3500,10 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "CAM",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3474,14 +3523,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 24.9,
+        "fit_score_pct": 50.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
           "growth",
           "formal"
@@ -3490,7 +3538,7 @@
     },
     {
       "id": "064",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434829705",
       "company": {
         "type": null,
@@ -3508,7 +3556,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3528,14 +3578,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 34.9,
+        "fit_score_pct": 55.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
           "growth"
         ]
@@ -3543,7 +3592,7 @@
     },
     {
       "id": "065",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4368816217",
       "company": {
         "type": null,
@@ -3581,22 +3630,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 45.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
     {
       "id": "066",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4438207231",
       "company": {
         "type": null,
@@ -3614,7 +3663,10 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "CAM",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -3634,15 +3686,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 31.9,
+        "fit_score_pct": 55.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech"
+          "tech",
+          "formal"
         ]
       }
     },
@@ -3700,7 +3752,7 @@
     },
     {
       "id": "068",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4405749491",
       "company": {
         "type": null,
@@ -3718,11 +3770,15 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "PLC"
+          ]
         }
       },
       "domain": {
@@ -3738,14 +3794,13 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 32.4,
+        "fit_score_pct": 53.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
           "tech",
           "formal"
         ]
@@ -3753,7 +3808,7 @@
     },
     {
       "id": "069",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4440959667",
       "company": {
         "type": null,
@@ -3806,7 +3861,7 @@
     },
     {
       "id": "070",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4438087448",
       "company": {
         "type": null,
@@ -3858,7 +3913,7 @@
     },
     {
       "id": "071",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4439059407",
       "company": {
         "type": null,
@@ -3911,7 +3966,7 @@
     },
     {
       "id": "072",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4432609371",
       "company": {
         "type": null,
@@ -3964,7 +4019,7 @@
     },
     {
       "id": "073",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4431678714",
       "company": {
         "type": null,
@@ -3983,237 +4038,15 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "Python"
-          ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "Azure"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 29.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth",
-          "formal"
-        ]
-      }
-    },
-    {
-      "id": "074",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4184432857",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Mubea"
-      },
-      "title": "Elektronik",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "PLC"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 35.4,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "075",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4440004966",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Brunel"
-      },
-      "title": "OT/IT & Manufacturing Digitalization Specialist",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
+            "Python",
             "Git"
           ],
           "partial_match": [
-            "AI"
+            "AI",
+            "machine learning"
           ],
           "no_match": [
-            "PLC"
-          ]
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 61.0,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "076",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4429912678",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Unit IT"
-      },
-      "title": "Integration Engineer",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 36.4,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
-        ]
-      }
-    },
-    {
-      "id": "077",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4432550852",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "Similarweb"
-      },
-      "title": "Integration Engineer",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "scripting",
-            "agentic"
-          ],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": [
-            "JavaScript",
-            "AWS"
+            "Azure"
           ]
         }
       },
@@ -4244,8 +4077,236 @@
       }
     },
     {
+      "id": "074",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4184432857",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Mubea"
+      },
+      "title": "Elektronik",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 24.9,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "domain",
+          "tech",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "075",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4440004966",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Brunel"
+      },
+      "title": "OT/IT & Manufacturing Digitalization Specialist",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Git"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": []
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 35.7,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "NESLEDOVAT",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth"
+        ]
+      }
+    },
+    {
+      "id": "076",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4429912678",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Unit IT"
+      },
+      "title": "Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "IoT",
+            "CI/CD",
+            "deployment automation"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "Azure",
+            "Terraform"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 48.8,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "077",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4432550852",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "Similarweb"
+      },
+      "title": "Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "Python",
+            "IoT",
+            "scripting",
+            "agentic"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "JavaScript",
+            "AWS"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 49.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "HRANICNI",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
       "id": "078",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4429855704",
       "company": {
         "type": null,
@@ -4285,21 +4346,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 33.6,
+        "fit_score_pct": 45.6,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth"
+          "growth",
+          "location"
         ]
       }
     },
     {
       "id": "079",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4429891739",
       "company": {
         "type": null,
@@ -4307,6 +4369,64 @@
         "industry": "Airswift"
       },
       "title": "Integration Engineer",
+      "role": {
+        "category": null,
+        "subcategory": null,
+        "seniority": null,
+        "employment_type": null,
+        "location": null,
+        "remote_policy": null
+      },
+      "tech_stack": {
+        "overlap_with_author": {
+          "direct_match": [
+            "IoT"
+          ],
+          "partial_match": [
+            "AI"
+          ],
+          "no_match": [
+            "PLC"
+          ]
+        }
+      },
+      "domain": {
+        "primary": null,
+        "secondary": null,
+        "specific": null
+      },
+      "formal_requirements": {
+        "years_experience_min": null,
+        "education": null,
+        "certifications": null,
+        "languages": [],
+        "other": []
+      },
+      "eroi": {
+        "fit_score_pct": 57.1,
+        "conversion_probability": null,
+        "estimated_value_monthly_czk": null,
+        "estimated_prep_cost_hours": null,
+        "verdict": "MEDIUM",
+        "critical_mismatch": true,
+        "mismatch_dimensions": [
+          "tech",
+          "growth",
+          "formal",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "080",
+      "date": "2026-07-16",
+      "linkedin_job_id": "4412861908",
+      "company": {
+        "type": null,
+        "size_range": null,
+        "industry": "invelt-elektro s.r.o."
+      },
+      "title": "Projektant HW v oddělení řídících systémů",
       "role": {
         "category": null,
         "subcategory": null,
@@ -4339,75 +4459,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.1,
+        "fit_score_pct": 46.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "location"
-        ]
-      }
-    },
-    {
-      "id": "080",
-      "date": "2026-07-15",
-      "linkedin_job_id": "4412861908",
-      "company": {
-        "type": null,
-        "size_range": null,
-        "industry": "invelt-elektro s.r.o."
-      },
-      "title": "Projektant HW v oddělení řídících systémů",
-      "role": {
-        "category": null,
-        "subcategory": null,
-        "seniority": null,
-        "employment_type": null,
-        "location": null,
-        "remote_policy": null
-      },
-      "tech_stack": {
-        "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
-          ],
-          "no_match": []
-        }
-      },
-      "domain": {
-        "primary": null,
-        "secondary": null,
-        "specific": null
-      },
-      "formal_requirements": {
-        "years_experience_min": null,
-        "education": null,
-        "certifications": null,
-        "languages": [],
-        "other": []
-      },
-      "eroi": {
-        "fit_score_pct": 25.9,
-        "conversion_probability": null,
-        "estimated_value_monthly_czk": null,
-        "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
-        "critical_mismatch": true,
-        "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "formal"
         ]
       }
     },
     {
       "id": "081",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4434982581",
       "company": {
         "type": null,
@@ -4425,11 +4492,17 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "ETL",
+            "Git"
+          ],
           "partial_match": [
             "AI"
           ],
-          "no_match": []
+          "no_match": [
+            "PLC",
+            "C#"
+          ]
         }
       },
       "domain": {
@@ -4445,21 +4518,22 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 43.9,
+        "fit_score_pct": 60.3,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech"
+          "tech",
+          "formal",
+          "location"
         ]
       }
     },
     {
       "id": "082",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437666061",
       "company": {
         "type": null,
@@ -4480,7 +4554,8 @@
           "direct_match": [
             "ETL",
             "CI/CD",
-            "Git"
+            "Git",
+            "agentic"
           ],
           "partial_match": [
             "AI"
@@ -4503,7 +4578,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 52.3,
+        "fit_score_pct": 56.5,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4516,7 +4591,7 @@
     },
     {
       "id": "083",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4437298926",
       "company": {
         "type": null,
@@ -4534,11 +4609,20 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
+          "direct_match": [
+            "Python",
+            "GCP",
+            "agentic"
           ],
-          "no_match": []
+          "partial_match": [
+            "LLM",
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure",
+            "AWS"
+          ]
         }
       },
       "domain": {
@@ -4554,22 +4638,21 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.9,
+        "fit_score_pct": 61.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
     {
       "id": "084",
-      "date": "2026-07-15",
+      "date": "2026-07-16",
       "linkedin_job_id": "4440544054",
       "company": {
         "type": null,
@@ -4587,9 +4670,12 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "Git"
+          ],
           "partial_match": [
-            "AI"
+            "AI",
+            "machine learning"
           ],
           "no_match": []
         }
@@ -4607,7 +4693,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 38.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
