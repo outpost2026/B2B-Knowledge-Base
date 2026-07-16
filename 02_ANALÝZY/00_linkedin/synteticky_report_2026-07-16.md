@@ -2,40 +2,40 @@
 
 **Autor profilu:** Ondřej Soušek — Systems Integrator (industrial automation, formalizace, reverse engineering, CAM/CNC)
 **Zpracováno:** 2026-07-16 (automatický generátor)
-**Vzorek:** 84 nabídek, Praha/CZ trh
+**Vzorek:** 87 nabídek, Praha/CZ trh
 **Pipeline:** deterministic L1 report generator (Phase 7)
 
 ## 1. Přehledová statistika
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem nabídek | 84 |
+| Celkem nabídek | 87 |
 | 🟢 SLEDOVAT (≥65%) | 5 |
-| 🟡 MEDIUM (≥50%) | 36 |
-| 🟡 HRANICNI (≥40%) | 17 |
-| 🔴 NESLEDOVAT (≥0%) | 26 |
-| Precision (SLEDOVAT / celkem) | 6.0% |
-| Mean score | 48.1% |
-| Median score | 48.7% |
+| 🟡 MEDIUM (≥50%) | 37 |
+| 🟡 HRANICNI (≥40%) | 18 |
+| 🔴 NESLEDOVAT (≥0%) | 27 |
+| Precision (SLEDOVAT / celkem) | 5.7% |
+| Mean score | 48.0% |
+| Median score | 48.6% |
 
 ## 2. Tech Stack Frequency Matrix
 
 ### CORE (≥4 výskyty)
 
-  AI                             ████████████████████████████████████████████████████████████ 84×
-  Git                            ████████████████████████████ 40×
-  Python                         ███████████████ 21×
-  PLC                            ████████████ 17×
-  CAM                            █████████ 13×
+  AI                             ████████████████████████████████████████████████████████████ 87×
+  Git                            ████████████████████████████ 41×
+  Python                         ███████████████ 22×
+  PLC                            ███████████ 17×
+  CAM                            █████████ 14×
   C++                            ████████ 12×
-  IoT                            ███████ 11×
-  Azure                          ███████ 10×
+  IoT                            ████████ 12×
+  Azure                          ██████ 10×
   LLM                            ██████ 9×
   CI/CD                          ██████ 9×
   machine learning               ██████ 9×
   agentic                        █████ 8×
   AWS                            █████ 8×
-  Linux                          █████ 7×
+  Linux                          ████ 7×
   ETL                            ███ 5×
   GCP                            ██ 4×
   CNC                            ██ 4×
@@ -74,14 +74,14 @@
 | ETL | 5 | 2 | 40.0% |
 | scripting | 3 | 1 | 33.3% |
 | CNC | 4 | 1 | 25.0% |
-| CAM | 13 | 3 | 23.1% |
 | CI/CD | 9 | 2 | 22.2% |
+| CAM | 14 | 3 | 21.4% |
 | PLC | 17 | 3 | 17.6% |
-| IoT | 11 | 1 | 9.1% |
 | C++ | 12 | 1 | 8.3% |
-| Git | 40 | 3 | 7.5% |
-| AI | 84 | 5 | 6.0% |
-| Python | 21 | 1 | 4.8% |
+| IoT | 12 | 1 | 8.3% |
+| Git | 41 | 3 | 7.3% |
+| AI | 87 | 5 | 5.7% |
+| Python | 22 | 1 | 4.5% |
 | agentic | 8 | 0 | 0.0% |
 | LLM | 9 | 0 | 0.0% |
 | machine learning | 9 | 0 | 0.0% |
@@ -99,11 +99,11 @@
 
 | Dimenze | Počet výskytů | Podíl |
 | --- | --- | --- |
-| growth | 72 | 85.7% |
-| tech | 56 | 66.7% |
-| formal | 39 | 46.4% |
-| domain | 30 | 35.7% |
-| location | 23 | 27.4% |
+| growth | 74 | 85.1% |
+| tech | 58 | 66.7% |
+| formal | 39 | 44.8% |
+| domain | 31 | 35.6% |
+| location | 23 | 26.4% |
 
 ## 5. Klastry a patterny
 
@@ -113,14 +113,14 @@
 - **IDs:** 006, 008, 009, 016, 018, 019, 021, 022, 025, 028, 030, 031, 032, 037, 039, 041, 045, 048, 050, 053, 055, 056, 058, 059, 064, 065, 066, 067, 068, 078, 080, 083, 084
 
 ### Industrial Automation Core
-- **Počet nabídek:** 24
-- **Průměrné EROI:** 55.9%
-- **IDs:** 001, 003, 010, 011, 012, 014, 015, 042, 044, 047, 049, 051, 057, 061, 062, 063, 070, 072, 074, 075, 076, 077, 079, 081
+- **Počet nabídek:** 26
+- **Průměrné EROI:** 55.3%
+- **IDs:** 001, 003, 010, 011, 012, 014, 015, 042, 044, 047, 049, 051, 057, 061, 062, 063, 070, 072, 074, 075, 076, 077, 079, 081, 085, 087
 
 ### Ai Ml Hype
-- **Počet nabídek:** 13
-- **Průměrné EROI:** 48.0%
-- **IDs:** 005, 007, 017, 020, 023, 024, 027, 038, 052, 054, 060, 069, 073
+- **Počet nabídek:** 14
+- **Průměrné EROI:** 47.3%
+- **IDs:** 005, 007, 017, 020, 023, 024, 027, 038, 052, 054, 060, 069, 073, 086
 
 ### Enterprise It
 - **Počet nabídek:** 9
@@ -154,10 +154,10 @@
 
 ### Nejčastější direct match (autorovy silné stránky)
 
-- **Git**: 40×
-- **Python**: 21×
-- **CAM**: 13×
-- **IoT**: 11×
+- **Git**: 41×
+- **Python**: 22×
+- **CAM**: 14×
+- **IoT**: 12×
 - **CI/CD**: 9×
 - **agentic**: 8×
 - **Linux**: 7×
@@ -182,7 +182,7 @@
 
 ## 8. Závěr a doporučení
 
-Ze 84 analyzovaných nabídek: **5 SLEDOVAT** (6.0% precision), **36 MEDIUM**, **17 HRANIČNÍ**, **26 NESLEDOVAT**.
+Ze 87 analyzovaných nabídek: **5 SLEDOVAT** (5.7% precision), **37 MEDIUM**, **18 HRANIČNÍ**, **27 NESLEDOVAT**.
 
 ### Doporučené akce
 
@@ -198,11 +198,11 @@ Ze 84 analyzovaných nabídek: **5 SLEDOVAT** (6.0% precision), **36 MEDIUM**, *
 | --- | --- |
 | Generátor | deterministic L1 report generator |
 | Datum | 2026-07-16 |
-| Vstup | metadata_stacku.json (84 entries) |
+| Vstup | metadata_stacku.json (87 entries) |
 | Metodika | EROI scoring (6 dimenzí) + frequency analysis + SNR + cluster detection |
 
 ---
 
 *Report generated automatically by SyntheticReportGenerator (Phase 7) on 2026-07-16*
-*Vstupní data: metadata_stacku.json (84 entries)*
+*Vstupní data: metadata_stacku.json (87 entries)*
 *Metodika: EROI scoring (6 dimenzí) + frequency analysis + SNR computation + rule-based clustering*
