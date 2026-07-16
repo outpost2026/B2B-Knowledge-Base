@@ -12,10 +12,10 @@
 | Celkem nabídek | 84 |
 | 🟢 SLEDOVAT (≥65%) | 5 |
 | 🟡 MEDIUM (≥50%) | 37 |
-| 🟡 HRANICNI (≥40%) | 17 |
-| 🔴 NESLEDOVAT (≥0%) | 25 |
+| 🟡 HRANICNI (≥40%) | 16 |
+| 🔴 NESLEDOVAT (≥0%) | 26 |
 | Precision (SLEDOVAT / celkem) | 6.0% |
-| Mean score | 48.3% |
+| Mean score | 48.1% |
 | Median score | 49.5% |
 
 ## 2. Tech Stack Frequency Matrix
@@ -28,16 +28,16 @@
   PLC                            ████████████ 17×
   CAM                            █████████ 13×
   C++                            ████████ 12×
-  IoT                            ███████ 11×
   Azure                          ███████ 10×
+  IoT                            ███████ 10×
   LLM                            ██████ 9×
   CI/CD                          ██████ 9×
   machine learning               ██████ 9×
   agentic                        █████ 8×
   AWS                            █████ 8×
   Linux                          █████ 7×
+  GCP                            ███ 5×
   ETL                            ███ 5×
-  GCP                            ██ 4×
   CNC                            ██ 4×
   Docker                         ██ 4×
 
@@ -77,7 +77,7 @@
 | CAM | 13 | 3 | 23.1% |
 | CI/CD | 9 | 2 | 22.2% |
 | PLC | 17 | 3 | 17.6% |
-| IoT | 11 | 1 | 9.1% |
+| IoT | 10 | 1 | 10.0% |
 | C++ | 12 | 1 | 8.3% |
 | Git | 41 | 3 | 7.3% |
 | AI | 84 | 5 | 6.0% |
@@ -85,7 +85,7 @@
 | agentic | 8 | 0 | 0.0% |
 | LLM | 9 | 0 | 0.0% |
 | machine learning | 9 | 0 | 0.0% |
-| GCP | 4 | 0 | 0.0% |
+| GCP | 5 | 0 | 0.0% |
 | Azure | 10 | 0 | 0.0% |
 | AWS | 8 | 0 | 0.0% |
 | Linux | 7 | 0 | 0.0% |
@@ -101,25 +101,25 @@
 | --- | --- | --- |
 | growth | 72 | 85.7% |
 | tech | 56 | 66.7% |
-| formal | 39 | 46.4% |
+| formal | 37 | 44.0% |
 | domain | 29 | 34.5% |
-| location | 21 | 25.0% |
+| location | 23 | 27.4% |
 
 ## 5. Klastry a patterny
 
 ### Other
-- **Počet nabídek:** 33
-- **Průměrné EROI:** 44.1%
-- **IDs:** 006, 008, 009, 016, 018, 019, 021, 022, 025, 028, 030, 031, 032, 037, 039, 041, 045, 048, 050, 053, 055, 056, 058, 059, 064, 065, 066, 067, 068, 078, 080, 083, 084
+- **Počet nabídek:** 34
+- **Průměrné EROI:** 44.0%
+- **IDs:** 006, 008, 009, 016, 018, 019, 021, 022, 025, 028, 030, 031, 032, 037, 039, 041, 045, 048, 050, 053, 055, 056, 058, 059, 064, 065, 066, 067, 068, 078, 079, 080, 083, 084
 
 ### Industrial Automation Core
-- **Počet nabídek:** 24
-- **Průměrné EROI:** 56.2%
-- **IDs:** 001, 003, 010, 011, 012, 014, 015, 042, 044, 047, 049, 051, 057, 061, 062, 063, 070, 072, 074, 075, 076, 077, 079, 081
+- **Počet nabídek:** 23
+- **Průměrné EROI:** 55.8%
+- **IDs:** 001, 003, 010, 011, 012, 014, 015, 042, 044, 047, 049, 051, 057, 061, 062, 063, 070, 072, 074, 075, 076, 077, 081
 
 ### Ai Ml Hype
 - **Počet nabídek:** 13
-- **Průměrné EROI:** 49.1%
+- **Průměrné EROI:** 49.4%
 - **IDs:** 005, 007, 017, 020, 023, 024, 027, 038, 052, 054, 060, 069, 073
 
 ### Enterprise It
@@ -157,20 +157,20 @@
 - **Git**: 41×
 - **Python**: 21×
 - **CAM**: 13×
-- **IoT**: 11×
+- **IoT**: 10×
 - **CI/CD**: 9×
 - **agentic**: 8×
 - **Linux**: 7×
+- **GCP**: 5×
 - **ETL**: 5×
-- **GCP**: 4×
 - **CNC**: 4×
 
 ## 7. Top 10 nabídek (dle EROI skóre)
 
 | # | ID | Titul | Firma | Skóre | Verdikt |
 | --- | --- | --- | --- | --- | --- |
-| 1 | 081 | Automation Solution Engineer - part time | ABB | 75.7% | 🟢 SLEDOVAT |
-| 2 | 070 | Automation SW Engineer | ABB | 72.1% | 🟢 SLEDOVAT |
+| 1 | 070 | Automation SW Engineer | ABB | 72.1% | 🟢 SLEDOVAT |
+| 2 | 081 | Automation Solution Engineer - part time | ABB | 71.7% | 🟢 SLEDOVAT |
 | 3 | 003 | System Integration Engineer | Thermo Fisher Scientific | 68.5% | 🟢 SLEDOVAT |
 | 4 | 062 | PLC Test Automation Engineer with Python (m/f/d) | Siemens | 67.9% | 🟢 SLEDOVAT |
 | 5 | 011 | Prototypový technik | Valeo | 65.6% | 🟢 SLEDOVAT |
@@ -182,12 +182,12 @@
 
 ## 8. Závěr a doporučení
 
-Ze 84 analyzovaných nabídek: **5 SLEDOVAT** (6.0% precision), **37 MEDIUM**, **17 HRANIČNÍ**, **25 NESLEDOVAT**.
+Ze 84 analyzovaných nabídek: **5 SLEDOVAT** (6.0% precision), **37 MEDIUM**, **16 HRANIČNÍ**, **26 NESLEDOVAT**.
 
 ### Doporučené akce
 
-- 🟢 Aplikovat na #081 ABB (Automation Solution Engineer - part time, 75.7%)
 - 🟢 Aplikovat na #070 ABB (Automation SW Engineer, 72.1%)
+- 🟢 Aplikovat na #081 ABB (Automation Solution Engineer - part time, 71.7%)
 - 🟢 Aplikovat na #003 Thermo Fisher Scientific (System Integration Engineer, 68.5%)
 - 🟢 Aplikovat na #062 Siemens (PLC Test Automation Engineer with Python (m/f/d), 67.9%)
 - 🟢 Aplikovat na #011 Valeo (Prototypový technik, 65.6%)

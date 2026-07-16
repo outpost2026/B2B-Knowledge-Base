@@ -9,13 +9,13 @@
   "overview": {
     "total": 84,
     "precision_pct": 6.0,
-    "mean_score": 48.3,
+    "mean_score": 48.1,
     "median_score": 49.5,
     "verdict_distribution": {
       "MEDIUM": 37,
       "SLEDOVAT": 5,
-      "HRANICNI": 17,
-      "NESLEDOVAT": 25
+      "HRANICNI": 16,
+      "NESLEDOVAT": 26
     }
   },
   "skill_frequency": {
@@ -25,16 +25,16 @@
     "PLC": 17,
     "CAM": 13,
     "C++": 12,
-    "IoT": 11,
     "Azure": 10,
+    "IoT": 10,
     "LLM": 9,
     "CI/CD": 9,
     "machine learning": 9,
     "agentic": 8,
     "AWS": 8,
     "Linux": 7,
+    "GCP": 5,
     "ETL": 5,
-    "GCP": 4,
     "CNC": 4,
     "Docker": 4,
     "scripting": 3,
@@ -122,9 +122,9 @@
       "snr_pct": 17.6
     },
     "IoT": {
-      "count": 11,
+      "count": 10,
       "sledovat_count": 1,
-      "snr_pct": 9.1
+      "snr_pct": 10.0
     },
     "C++": {
       "count": 12,
@@ -167,7 +167,7 @@
       "snr_pct": 0.0
     },
     "GCP": {
-      "count": 4,
+      "count": 5,
       "sledovat_count": 0,
       "snr_pct": 0.0
     },
@@ -235,14 +235,14 @@
   "mismatch_frequency": {
     "growth": 72,
     "tech": 56,
-    "formal": 39,
+    "formal": 37,
     "domain": 29,
-    "location": 21
+    "location": 23
   },
   "clusters": {
     "other": {
-      "count": 33,
-      "mean_score": 44.1,
+      "count": 34,
+      "mean_score": 44.0,
       "entry_ids": [
         "006",
         "008",
@@ -274,14 +274,15 @@
         "067",
         "068",
         "078",
+        "079",
         "080",
         "083",
         "084"
       ]
     },
     "industrial_automation_core": {
-      "count": 24,
-      "mean_score": 56.2,
+      "count": 23,
+      "mean_score": 55.8,
       "entry_ids": [
         "001",
         "003",
@@ -305,13 +306,12 @@
         "075",
         "076",
         "077",
-        "079",
         "081"
       ]
     },
     "ai_ml_hype": {
       "count": 13,
-      "mean_score": 49.1,
+      "mean_score": 49.4,
       "entry_ids": [
         "005",
         "007",
@@ -363,17 +363,17 @@
   },
   "top_entries": [
     {
-      "id": "081",
-      "title": "Automation Solution Engineer - part time",
-      "company": "ABB",
-      "score": 75.7,
-      "verdict": "SLEDOVAT"
-    },
-    {
       "id": "070",
       "title": "Automation SW Engineer",
       "company": "ABB",
       "score": 72.1,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "081",
+      "title": "Automation Solution Engineer - part time",
+      "company": "ABB",
+      "score": 71.7,
       "verdict": "SLEDOVAT"
     },
     {
@@ -451,12 +451,12 @@
     "Git": 41,
     "Python": 21,
     "CAM": 13,
-    "IoT": 11,
+    "IoT": 10,
     "CI/CD": 9,
     "agentic": 8,
     "Linux": 7,
+    "GCP": 5,
     "ETL": 5,
-    "GCP": 4,
     "CNC": 4,
     "Docker": 4,
     "scripting": 3,

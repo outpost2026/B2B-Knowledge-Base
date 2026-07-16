@@ -3836,9 +3836,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Git"
-          ],
+          "direct_match": [],
           "partial_match": [
             "LLM",
             "AI"
@@ -3859,13 +3857,14 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 52.4,
+        "fit_score_pct": 38.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
+          "domain",
           "tech",
           "growth"
         ]
@@ -4072,7 +4071,6 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "GCP",
             "Git"
           ],
           "partial_match": [
@@ -4097,7 +4095,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 49.0,
+        "fit_score_pct": 46.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4426,7 +4424,9 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
+          "direct_match": [
+            "IoT"
+          ],
           "partial_match": [
             "AI"
           ],
@@ -4448,7 +4448,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 54.1,
+        "fit_score_pct": 57.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4457,6 +4457,7 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
+          "formal",
           "location"
         ]
       }
@@ -4503,15 +4504,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 35.1,
+        "fit_score_pct": 46.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
