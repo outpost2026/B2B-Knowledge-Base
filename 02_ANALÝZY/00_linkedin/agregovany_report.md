@@ -2166,6 +2166,7 @@
 
 
 
+
 ## 🟡 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-16
 **EROI verdict:** MEDIUM (52.4% fit)
@@ -2266,7 +2267,7 @@
 
 ## 🟡 ZÁZNAM #072 — Enterprise Software Integration Specialist - Czech @ Quest Global
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (63.3% fit)
+**EROI verdict:** MEDIUM (52.5% fit)
 
 ### Analýza pozice
 - **Role:** Enterprise Software Integration Specialist - Czech
@@ -2275,30 +2276,32 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 85.0% | 0.3% | Strong industrial domain (6 keywords) |
-| tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| domain | 35% | 45.0% | 0.2% | Strong industrial domain (7 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 49.2% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 35.0% | 0.0% | Degree required (2x) but flexibility found (1x) |
-| location | 5% | 60.0% | 0.0% | CZ-based role (1 location keywords) |
-| **Celkem** | **100%** | | **63.3%** | **MEDIUM** |
+| formal | 5% | 35.0% | 0.0% | Degree required (3x) but flexibility found (1x) |
+| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
+| **Celkem** | **100%** | | **52.5%** | **MEDIUM** |
 
 ### Skill match
+- **CAM**: direct_match
 - **IoT**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 - **Linux**: direct_match
 - **PLC**: no_match
 
-**Kritické mismatch:** tech, growth
+**Kritické mismatch:** growth, location
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
-## 🔴 ZÁZNAM #073 — AI & Automation Lead @ Allwyn Česko
+## 🟡 ZÁZNAM #073 — AI & Automation Lead @ Allwyn Česko
 **Datum:** 2026-07-16
-**EROI verdict:** NESLEDOVAT (26.4% fit)
+**EROI verdict:** HRANICNI (45.1% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Lead
@@ -2308,26 +2311,30 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 35.0% | 0.1% | No strong role signal detected |
+| tech | 25% | 42.4% | 0.1% | 2 direct, 2 partial matches |
+| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 50.0% | 0.0% | No formal education signal |
-| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **26.4%** | **NESLEDOVAT** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **45.1%** | **HRANICNI** |
 
 ### Skill match
+- **Python**: direct_match
 - **AI**: partial_match
+- **machine learning**: partial_match
+- **Git**: direct_match
+- **Azure**: no_match
 
-**Kritické mismatch:** domain, tech, growth
+**Kritické mismatch:** domain, growth, formal
 
-**Doporučení:** Nealokovat čas
-**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
+**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Poznámka:** Domain mismatch kritický
 
 ---
 
 ## 🟡 ZÁZNAM #074 — Elektronik @ Mubea
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (51.9% fit)
+**EROI verdict:** MEDIUM (55.1% fit)
 
 ### Analýza pozice
 - **Role:** Elektronik
@@ -2336,20 +2343,20 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 70.0% | 0.2% | Core industrial domain (4 keywords) |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
 | tech | 25% | 18.6% | 0.0% | 1 direct, 1 partial matches |
 | role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
-| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **51.9%** | **MEDIUM** |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **55.1%** | **MEDIUM** |
 
 ### Skill match
 - **IoT**: direct_match
 - **AI**: partial_match
 - **PLC**: no_match
 
-**Kritické mismatch:** tech, growth, formal, location
+**Kritické mismatch:** tech, growth, formal
 
 **Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
 **Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
@@ -2621,7 +2628,7 @@
 ---
 ## 🟡 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (61.7% fit)
+**EROI verdict:** MEDIUM (59.5% fit)
 
 ### Analýza pozice
 - **Role:** Knowledge Graph Engineer
@@ -2631,12 +2638,12 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 62.7% | 0.2% | 3 direct, 3 partial matches |
+| tech | 25% | 54.2% | 0.1% | 2 direct, 3 partial matches |
 | role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (4x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **61.7%** | **MEDIUM** |
+| **Celkem** | **100%** | | **59.5%** | **MEDIUM** |
 
 ### Skill match
 - **Python**: direct_match
@@ -2646,7 +2653,6 @@
 - **machine learning**: partial_match
 - **Azure**: no_match
 - **AWS**: no_match
-- **agentic**: direct_match
 
 **Kritické mismatch:** growth, formal
 
@@ -2765,9 +2771,9 @@
 | 069 | Reas.cz | AI & Automation Specialist | 52.4% | Střední | 🟡 MEDIUM |
 | 070 | ABB | Automation SW Engineer | 72.1% | Vysoká | 🟢 SLEDOVAT |
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
-| 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 63.3% | Střední | 🟡 MEDIUM |
-| 073 | Allwyn Česko | AI & Automation Lead | 26.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
+| 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 52.5% | Střední | 🟡 MEDIUM |
+| 073 | Allwyn Česko | AI & Automation Lead | 45.1% | Nízká | 🟡 HRANICNI |
+| 074 | Mubea | Elektronik | 55.1% | Střední | 🟡 MEDIUM |
 | 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 62.6% | Střední | 🟡 MEDIUM |
 | 076 | Unit IT | Integration Engineer | 48.8% | Nízká | 🟡 HRANICNI |
 | 077 | Similarweb | Integration Engineer | 62.4% | Střední | 🟡 MEDIUM |
@@ -2776,5 +2782,5 @@
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 46.4% | Nízká | 🟡 HRANICNI |
 | 081 | ABB | Automation Solution Engineer - part time | 75.7% | Vysoká | 🟢 SLEDOVAT |
 | 082 | PRO.MED.CS | Data Integration Engineer | 55.5% | Střední | 🟡 MEDIUM |
-| 083 | IDC | Knowledge Graph Engineer | 61.7% | Střední | 🟡 MEDIUM |
+| 083 | IDC | Knowledge Graph Engineer | 59.5% | Střední | 🟡 MEDIUM |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |

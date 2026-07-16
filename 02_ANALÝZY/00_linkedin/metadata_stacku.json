@@ -4012,7 +4012,9 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
+            "CAM",
             "IoT",
+            "Git",
             "Linux"
           ],
           "partial_match": [
@@ -4036,15 +4038,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 63.3,
+        "fit_score_pct": 52.5,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "tech",
-          "growth"
+          "growth",
+          "location"
         ]
       }
     },
@@ -4068,11 +4070,17 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [],
-          "partial_match": [
-            "AI"
+          "direct_match": [
+            "Python",
+            "Git"
           ],
-          "no_match": []
+          "partial_match": [
+            "AI",
+            "machine learning"
+          ],
+          "no_match": [
+            "Azure"
+          ]
         }
       },
       "domain": {
@@ -4088,16 +4096,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 26.4,
+        "fit_score_pct": 45.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "NESLEDOVAT",
+        "verdict": "HRANICNI",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "domain",
-          "tech",
-          "growth"
+          "growth",
+          "formal"
         ]
       }
     },
@@ -4145,7 +4153,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 51.9,
+        "fit_score_pct": 55.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4154,8 +4162,7 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
@@ -4648,8 +4655,7 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "GCP",
-            "agentic"
+            "GCP"
           ],
           "partial_match": [
             "LLM",
@@ -4675,7 +4681,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 61.7,
+        "fit_score_pct": 59.5,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
