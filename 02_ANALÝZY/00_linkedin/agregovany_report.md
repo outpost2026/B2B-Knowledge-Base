@@ -2691,6 +2691,37 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 3 skill mismatches
 
 ---
+
+## 🟡 ZÁZNAM #085 — System Design Engineer for SEMI RnD @ Thermo Fisher Scientific
+**Datum:** 2026-07-16
+**EROI verdict:** MEDIUM (52.4% fit)
+
+### Analýza pozice
+- **Role:** System Design Engineer for SEMI RnD
+- **Firma:** Thermo Fisher Scientific
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 45.0% | 0.2% | Core industrial domain (3 keywords) (electronics manufacturing, not core industrial) |
+| tech | 25% | 35.6% | 0.1% | 2 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (4) with fake-engineer signals (1) |
+| growth | 10% | 100.0% | 0.1% | Strategic employer: Thermo Fisher |
+| formal | 5% | 35.0% | 0.0% | Degree required (4x) but flexibility found (1x) |
+| location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
+| **Celkem** | **100%** | | **52.4%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **IoT**: direct_match
+- **AI**: partial_match
+
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2785,3 +2816,4 @@
 | 082 | PRO.MED.CS | Data Integration Engineer | 55.5% | Střední | 🟡 MEDIUM |
 | 083 | IDC | Knowledge Graph Engineer | 59.5% | Střední | 🟡 MEDIUM |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |
+| 085 | Thermo Fisher Scientific | System Design Engineer for SEMI RnD | 52.4% | Střední | 🟡 MEDIUM |
