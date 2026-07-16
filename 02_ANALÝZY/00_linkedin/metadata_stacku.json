@@ -3840,6 +3840,7 @@
             "Git"
           ],
           "partial_match": [
+            "LLM",
             "AI"
           ],
           "no_match": []
@@ -3858,11 +3859,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 48.2,
+        "fit_score_pct": 52.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
@@ -3891,6 +3892,7 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
+            "CAM",
             "test automation",
             "IoT",
             "ETL",
@@ -3919,11 +3921,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 64.8,
+        "fit_score_pct": 72.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "formal",
@@ -4070,7 +4072,6 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
-            "GCP",
             "Git"
           ],
           "partial_match": [
@@ -4095,7 +4096,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 48.0,
+        "fit_score_pct": 45.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4152,11 +4153,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 43.1,
+        "fit_score_pct": 51.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
@@ -4306,7 +4307,10 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
+            "CAM",
             "IoT",
+            "ETL",
+            "Git",
             "scripting",
             "agentic"
           ],
@@ -4332,11 +4336,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 49.1,
+        "fit_score_pct": 62.4,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "MEDIUM",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "growth",
@@ -4370,6 +4374,7 @@
             "AI"
           ],
           "no_match": [
+            "AWS",
             "PLC"
           ]
         }
@@ -4387,11 +4392,11 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 45.6,
+        "fit_score_pct": 39.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
@@ -4534,7 +4539,6 @@
       "tech_stack": {
         "overlap_with_author": {
           "direct_match": [
-            "ETL",
             "Git"
           ],
           "partial_match": [
@@ -4559,16 +4563,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.3,
+        "fit_score_pct": 69.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "formal",
-          "location"
+          "formal"
         ]
       }
     },
@@ -4650,19 +4653,11 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "Python",
-            "GCP",
-            "agentic"
-          ],
+          "direct_match": [],
           "partial_match": [
-            "AI",
-            "machine learning"
+            "AI"
           ],
-          "no_match": [
-            "Azure",
-            "AWS"
-          ]
+          "no_match": []
         }
       },
       "domain": {
@@ -4678,15 +4673,16 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 60.5,
+        "fit_score_pct": 35.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "MEDIUM",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "growth",
-          "formal"
+          "domain",
+          "tech",
+          "growth"
         ]
       }
     },

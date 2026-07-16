@@ -2163,9 +2163,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
+
 ## 🟡 ZÁZNAM #069 — AI & Automation Specialist @ Reas.cz
 **Datum:** 2026-07-16
-**EROI verdict:** HRANICNI (48.2% fit)
+**EROI verdict:** MEDIUM (52.4% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Specialist
@@ -2175,27 +2176,28 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
-| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
-| role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
+| tech | 25% | 25.4% | 0.1% | 1 direct, 2 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **48.2%** | **HRANICNI** |
+| **Celkem** | **100%** | | **52.4%** | **MEDIUM** |
 
 ### Skill match
+- **LLM**: partial_match
 - **AI**: partial_match
 - **Git**: direct_match
 
 **Kritické mismatch:** tech, growth
 
-**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
-**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
 
-## 🟡 ZÁZNAM #070 — Automation SW Engineer @ ABB
+## 🟢 ZÁZNAM #070 — Automation SW Engineer @ ABB
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (64.8% fit)
+**EROI verdict:** SLEDOVAT (72.1% fit)
 
 ### Analýza pozice
 - **Role:** Automation SW Engineer
@@ -2204,15 +2206,16 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 85.0% | 0.3% | Strong industrial domain (5 keywords) |
-| tech | 25% | 61.0% | 0.2% | 5 direct, 1 partial matches |
-| role | 20% | 40.0% | 0.1% | Engineering keywords (7) with fake-engineer signals (2) |
+| domain | 35% | 85.0% | 0.3% | Strong industrial domain (7 keywords) |
+| tech | 25% | 74.6% | 0.2% | 6 direct, 1 partial matches |
+| role | 20% | 60.0% | 0.1% | Engineering keywords (7) with fake-engineer signals (1) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
 | formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **64.8%** | **MEDIUM** |
+| **Celkem** | **100%** | | **72.1%** | **SLEDOVAT** |
 
 ### Skill match
+- **CAM**: direct_match
 - **test automation**: direct_match
 - **IoT**: direct_match
 - **ETL**: direct_match
@@ -2224,7 +2227,7 @@
 
 **Kritické mismatch:** formal, location
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Doporučení:** Aplikovat — silný lead
 
 ---
 ## 🟡 ZÁZNAM #071 — System Architect @ Škoda Group
@@ -2272,7 +2275,7 @@
 |---------|------|-------|--------|--------|
 | domain | 35% | 45.0% | 0.2% | Strong industrial domain (7 keywords) (electronics manufacturing, not core industrial) |
 | tech | 25% | 49.2% | 0.1% | 4 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (7 keywords) |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 35.0% | 0.0% | Degree required (3x) but flexibility found (1x) |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
@@ -2295,7 +2298,7 @@
 
 ## 🟡 ZÁZNAM #073 — AI & Automation Lead @ Allwyn Česko
 **Datum:** 2026-07-16
-**EROI verdict:** HRANICNI (48.0% fit)
+**EROI verdict:** HRANICNI (45.1% fit)
 
 ### Analýza pozice
 - **Role:** AI & Automation Lead
@@ -2305,16 +2308,15 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 25.0% | 0.1% | No clear domain signal |
-| tech | 25% | 54.2% | 0.1% | 3 direct, 2 partial matches |
+| tech | 25% | 42.4% | 0.1% | 2 direct, 2 partial matches |
 | role | 20% | 90.0% | 0.2% | Engineering role confirmed (2 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **48.0%** | **HRANICNI** |
+| **Celkem** | **100%** | | **45.1%** | **HRANICNI** |
 
 ### Skill match
 - **Python**: direct_match
-- **GCP**: direct_match
 - **AI**: partial_match
 - **machine learning**: partial_match
 - **Git**: direct_match
@@ -2329,7 +2331,7 @@
 
 ## 🟡 ZÁZNAM #074 — Elektronik @ Mubea
 **Datum:** 2026-07-16
-**EROI verdict:** HRANICNI (43.1% fit)
+**EROI verdict:** MEDIUM (51.9% fit)
 
 ### Analýza pozice
 - **Role:** Elektronik
@@ -2338,13 +2340,13 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 45.0% | 0.2% | Core industrial domain (4 keywords) (electronics manufacturing, not core industrial) |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (4 keywords) |
 | tech | 25% | 18.6% | 0.0% | 1 direct, 1 partial matches |
 | role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **43.1%** | **HRANICNI** |
+| **Celkem** | **100%** | | **51.9%** | **MEDIUM** |
 
 ### Skill match
 - **IoT**: direct_match
@@ -2353,7 +2355,7 @@
 
 **Kritické mismatch:** tech, growth, formal, location
 
-**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
 **Poznámka:** Tech gap: 3 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
@@ -2426,7 +2428,7 @@
 
 ## 🟡 ZÁZNAM #077 — Integration Engineer @ Similarweb
 **Datum:** 2026-07-16
-**EROI verdict:** HRANICNI (49.1% fit)
+**EROI verdict:** MEDIUM (62.4% fit)
 
 ### Analýza pozice
 - **Role:** Integration Engineer
@@ -2435,18 +2437,21 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 35.0% | 0.1% | Marginally adjacent (1 keywords) |
-| tech | 25% | 52.5% | 0.1% | 4 direct, 1 partial matches |
+| domain | 35% | 50.0% | 0.2% | Weak industrial signal (1 core keywords) |
+| tech | 25% | 84.7% | 0.2% | 7 direct, 1 partial matches |
 | role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| formal | 5% | 20.0% | 0.0% | Degree required (3x), no flexibility clause |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **49.1%** | **HRANICNI** |
+| **Celkem** | **100%** | | **62.4%** | **MEDIUM** |
 
 ### Skill match
 - **Python**: direct_match
+- **CAM**: direct_match
 - **IoT**: direct_match
+- **ETL**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 - **JavaScript**: no_match
 - **AWS**: no_match
 - **scripting**: direct_match
@@ -2454,13 +2459,14 @@
 
 **Kritické mismatch:** growth, formal, location
 
-**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
 
-## 🟡 ZÁZNAM #078 — PLC Programátor @ Grafton Recruitment
+## 🔴 ZÁZNAM #078 — PLC Programátor @ Grafton Recruitment
 **Datum:** 2026-07-16
-**EROI verdict:** HRANICNI (45.6% fit)
+**EROI verdict:** NESLEDOVAT (39.9% fit)
 
 ### Analýza pozice
 - **Role:** PLC Programátor
@@ -2469,22 +2475,23 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| domain | 35% | 70.0% | 0.2% | Core industrial domain (3 keywords) |
 | tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
-| role | 20% | 95.0% | 0.2% | Engineering role confirmed (3 keywords) |
+| role | 20% | 40.0% | 0.1% | Engineering keywords (4) with fake-engineer signals (2) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 50.0% | 0.0% | No formal education signal |
 | location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **45.6%** | **HRANICNI** |
+| **Celkem** | **100%** | | **39.9%** | **NESLEDOVAT** |
 
 ### Skill match
 - **AI**: partial_match
+- **AWS**: no_match
 - **PLC**: no_match
 
 **Kritické mismatch:** tech, growth, location
 
-**Doporučení:** Hraniční — aplikovat jen pokud zbývající čas
-**Poznámka:** Tech gap: 2 skill mismatches; Positioning match zachraňuje domain gap
+**Doporučení:** Nealokovat čas
+**Poznámka:** Tech gap: 3 skill mismatches
 
 ---
 
@@ -2549,9 +2556,9 @@
 
 ---
 
-## 🟡 ZÁZNAM #081 — Automation Solution Engineer - part time @ ABB
+## 🟢 ZÁZNAM #081 — Automation Solution Engineer - part time @ ABB
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (60.3% fit)
+**EROI verdict:** SLEDOVAT (69.7% fit)
 
 ### Analýza pozice
 - **Role:** Automation Solution Engineer - part time
@@ -2561,24 +2568,23 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 85.0% | 0.3% | Strong industrial domain (5 keywords) |
-| tech | 25% | 27.1% | 0.1% | 2 direct, 1 partial matches |
-| role | 20% | 60.0% | 0.1% | Engineering keywords (6) with fake-engineer signals (1) |
+| tech | 25% | 16.9% | 0.0% | 1 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: ABB |
-| formal | 5% | 20.0% | 0.0% | Degree required (2x), no flexibility clause |
-| location | 5% | 15.0% | 0.0% | Distant location detected (1x) |
-| **Celkem** | **100%** | | **60.3%** | **MEDIUM** |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **69.7%** | **SLEDOVAT** |
 
 ### Skill match
-- **ETL**: direct_match
 - **AI**: partial_match
 - **Git**: direct_match
 - **PLC**: no_match
 - **C#**: no_match
 
-**Kritické mismatch:** tech, formal, location
+**Kritické mismatch:** tech, formal
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Tech gap: 5 skill mismatches
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Tech gap: 4 skill mismatches; Positioning match zachraňuje domain gap
 
 ---
 
@@ -2615,9 +2621,9 @@
 **Poznámka:** Positioning match zachraňuje domain gap
 
 ---
-## 🟡 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
+## 🔴 ZÁZNAM #083 — Knowledge Graph Engineer @ IDC
 **Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (60.5% fit)
+**EROI verdict:** NESLEDOVAT (35.9% fit)
 
 ### Analýza pozice
 - **Role:** Knowledge Graph Engineer
@@ -2626,30 +2632,23 @@
 ### EROI skóre
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
-| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
-| tech | 25% | 54.2% | 0.1% | 3 direct, 2 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
+| domain | 35% | 25.0% | 0.1% | No clear domain signal |
+| tech | 25% | 8.5% | 0.0% | 0 direct, 1 partial matches |
+| role | 20% | 85.0% | 0.2% | Engineering role confirmed (1 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
-| formal | 5% | 20.0% | 0.0% | Degree required (4x), no flexibility clause |
-| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
-| **Celkem** | **100%** | | **60.5%** | **MEDIUM** |
+| formal | 5% | 50.0% | 0.0% | No formal education signal |
+| location | 5% | 70.0% | 0.0% | CZ-based role (1 location keywords) |
+| **Celkem** | **100%** | | **35.9%** | **NESLEDOVAT** |
 
 ### Skill match
-- **Python**: direct_match
-- **GCP**: direct_match
 - **AI**: partial_match
-- **machine learning**: partial_match
-- **Azure**: no_match
-- **AWS**: no_match
-- **agentic**: direct_match
 
-**Kritické mismatch:** growth, formal
+**Kritické mismatch:** domain, tech, growth
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
-**Poznámka:** Positioning match zachraňuje domain gap
+**Doporučení:** Nealokovat čas
+**Poznámka:** Domain mismatch kritický; Tech gap: 1 skill mismatches
 
 ---
-
 ## 🔴 ZÁZNAM #084 — UX Designer / Researcher @ Resistant AI - Fraud Detection
 **Datum:** 2026-07-16
 **EROI verdict:** NESLEDOVAT (38.9% fit)
@@ -2758,19 +2757,19 @@
 | 066 | Atlas Copco | Sales Engineer | 30.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 067 | Quik Hire Staffing | Manufacturing Specialist (Remote) | 35.1% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 068 | Siemens | Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n) | 32.4% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 069 | Reas.cz | AI & Automation Specialist | 48.2% | Nízká | 🟡 HRANICNI |
-| 070 | ABB | Automation SW Engineer | 64.8% | Střední | 🟡 MEDIUM |
+| 069 | Reas.cz | AI & Automation Specialist | 52.4% | Střední | 🟡 MEDIUM |
+| 070 | ABB | Automation SW Engineer | 72.1% | Vysoká | 🟢 SLEDOVAT |
 | 071 | Škoda Group | System Architect | 50.9% | Střední | 🟡 MEDIUM |
 | 072 | Quest Global | Enterprise Software Integration Specialist - Czech | 52.5% | Střední | 🟡 MEDIUM |
-| 073 | Allwyn Česko | AI & Automation Lead | 48.0% | Nízká | 🟡 HRANICNI |
-| 074 | Mubea | Elektronik | 43.1% | Nízká | 🟡 HRANICNI |
+| 073 | Allwyn Česko | AI & Automation Lead | 45.1% | Nízká | 🟡 HRANICNI |
+| 074 | Mubea | Elektronik | 51.9% | Střední | 🟡 MEDIUM |
 | 075 | Brunel | OT/IT & Manufacturing Digitalization Specialist | 62.6% | Střední | 🟡 MEDIUM |
 | 076 | Unit IT | Integration Engineer | 48.8% | Nízká | 🟡 HRANICNI |
-| 077 | Similarweb | Integration Engineer | 49.1% | Nízká | 🟡 HRANICNI |
-| 078 | Grafton Recruitment | PLC Programátor | 45.6% | Nízká | 🟡 HRANICNI |
+| 077 | Similarweb | Integration Engineer | 62.4% | Střední | 🟡 MEDIUM |
+| 078 | Grafton Recruitment | PLC Programátor | 39.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 079 | Airswift | Integration Engineer | 57.1% | Střední | 🟡 MEDIUM |
 | 080 | invelt-elektro s.r.o. | Projektant HW v oddělení řídících systémů | 46.4% | Nízká | 🟡 HRANICNI |
-| 081 | ABB | Automation Solution Engineer - part time | 60.3% | Střední | 🟡 MEDIUM |
+| 081 | ABB | Automation Solution Engineer - part time | 69.7% | Vysoká | 🟢 SLEDOVAT |
 | 082 | PRO.MED.CS | Data Integration Engineer | 55.5% | Střední | 🟡 MEDIUM |
-| 083 | IDC | Knowledge Graph Engineer | 60.5% | Střední | 🟡 MEDIUM |
+| 083 | IDC | Knowledge Graph Engineer | 35.9% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |
