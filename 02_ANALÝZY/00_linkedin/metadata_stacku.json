@@ -4072,6 +4072,7 @@
         "overlap_with_author": {
           "direct_match": [
             "Python",
+            "GCP",
             "Git"
           ],
           "partial_match": [
@@ -4096,7 +4097,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 45.1,
+        "fit_score_pct": 49.0,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4153,7 +4154,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 55.1,
+        "fit_score_pct": 51.9,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4162,7 +4163,8 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal"
+          "formal",
+          "location"
         ]
       }
     },
@@ -4424,9 +4426,7 @@
       },
       "tech_stack": {
         "overlap_with_author": {
-          "direct_match": [
-            "IoT"
-          ],
+          "direct_match": [],
           "partial_match": [
             "AI"
           ],
@@ -4448,7 +4448,7 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 57.1,
+        "fit_score_pct": 54.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
@@ -4457,7 +4457,6 @@
         "mismatch_dimensions": [
           "tech",
           "growth",
-          "formal",
           "location"
         ]
       }
@@ -4504,16 +4503,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 46.4,
+        "fit_score_pct": 35.1,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
-        "verdict": "HRANICNI",
+        "verdict": "NESLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
           "tech",
-          "growth",
-          "formal"
+          "growth"
         ]
       }
     },
@@ -4564,14 +4562,15 @@
         "other": []
       },
       "eroi": {
-        "fit_score_pct": 75.7,
+        "fit_score_pct": 71.7,
         "conversion_probability": null,
         "estimated_value_monthly_czk": null,
         "estimated_prep_cost_hours": null,
         "verdict": "SLEDOVAT",
         "critical_mismatch": true,
         "mismatch_dimensions": [
-          "formal"
+          "formal",
+          "location"
         ]
       }
     },
