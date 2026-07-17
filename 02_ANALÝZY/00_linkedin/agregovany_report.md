@@ -2809,6 +2809,42 @@
 **Poznámka:** Tech gap: 3 skill mismatches
 
 ---
+
+## 🟡 ZÁZNAM #088 — System Integrator, Automotive, ADAS toolchain @ T&S (Technology & Strategy)
+**Datum:** 2026-07-17
+**EROI verdict:** MEDIUM (63.5% fit)
+
+### Analýza pozice
+- **Role:** System Integrator, Automotive, ADAS toolchain
+- **Firma:** T&S (Technology & Strategy)
+
+### EROI skóre
+| Dimenze | Váha | Skóre | Váženě | Detail |
+|---------|------|-------|--------|--------|
+| domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
+| tech | 25% | 66.1% | 0.2% | 5 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| growth | 10% | 20.0% | 0.0% | Non-strategic employer |
+| formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
+| location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
+| **Celkem** | **100%** | | **63.5%** | **MEDIUM** |
+
+### Skill match
+- **Python**: direct_match
+- **CAM**: direct_match
+- **CI/CD**: direct_match
+- **AI**: partial_match
+- **Git**: direct_match
+- **scripting**: direct_match
+
+**Kritické mismatch:** growth, formal
+
+**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Poznámka:** Positioning match zachraňuje domain gap
+
+---
+
+
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2906,3 +2942,4 @@
 | 085 | Thermo Fisher Scientific | System Design Engineer for SEMI RnD | 52.4% | Střední | 🟡 MEDIUM |
 | 086 | Knorr-Bremse AG | Purchasing Automation & AI Solution Architect (m/f/d) | 37.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 087 | RESRG Automotive | Technický produktový specialista (Engineering) | 41.6% | Nízká | 🟡 HRANICNI |
+| 088 | T&S (Technology & Strategy) | System Integrator, Automotive, ADAS toolchain | 63.5% | Střední | 🟡 MEDIUM |
