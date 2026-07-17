@@ -2721,9 +2721,10 @@
 **Poznámka:** Domain mismatch kritický; Tech gap: 3 skill mismatches
 
 ---
-## 🟡 ZÁZNAM #085 — System Design Engineer for SEMI RnD @ Thermo Fisher Scientific
-**Datum:** 2026-07-16
-**EROI verdict:** MEDIUM (52.4% fit)
+
+## 🟢 ZÁZNAM #085 — System Design Engineer for SEMI RnD @ Thermo Fisher Scientific
+**Datum:** 2026-07-17
+**EROI verdict:** SLEDOVAT (65.9% fit)
 
 ### Analýza pozice
 - **Role:** System Design Engineer for SEMI RnD
@@ -2733,23 +2734,25 @@
 | Dimenze | Váha | Skóre | Váženě | Detail |
 |---------|------|-------|--------|--------|
 | domain | 35% | 45.0% | 0.2% | Core industrial domain (3 keywords) (electronics manufacturing, not core industrial) |
-| tech | 25% | 35.6% | 0.1% | 2 direct, 1 partial matches |
-| role | 20% | 60.0% | 0.1% | Engineering keywords (4) with fake-engineer signals (1) |
+| tech | 25% | 57.6% | 0.1% | 4 direct, 1 partial matches |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (4 keywords) |
 | growth | 10% | 100.0% | 0.1% | Strategic employer: Thermo Fisher |
-| formal | 5% | 35.0% | 0.0% | Degree required (4x) but flexibility found (1x) |
+| formal | 5% | 35.0% | 0.0% | Degree required (3x) but flexibility found (1x) |
 | location | 5% | 80.0% | 0.0% | Remote or hybrid work available |
-| **Celkem** | **100%** | | **52.4%** | **MEDIUM** |
+| **Celkem** | **100%** | | **65.9%** | **SLEDOVAT** |
 
 ### Skill match
 - **Python**: direct_match
+- **CAM**: direct_match
 - **IoT**: direct_match
 - **AI**: partial_match
+- **Git**: direct_match
 
 
-**Doporučení:** Zvážit aplikaci — střední fit, nutná mitigace gapů
+**Doporučení:** Aplikovat — silný lead
+**Poznámka:** Positioning match zachraňuje domain gap
 
 ---
-
 ## 🔴 ZÁZNAM #086 — Purchasing Automation & AI Solution Architect (m/f/d) @ Knorr-Bremse AG
 **Datum:** 2026-07-16
 **EROI verdict:** NESLEDOVAT (37.4% fit)
@@ -2810,6 +2813,7 @@
 
 ---
 
+
 ## 🟡 ZÁZNAM #088 — System Integrator, Automotive, ADAS toolchain @ T&S (Technology & Strategy)
 **Datum:** 2026-07-17
 **EROI verdict:** MEDIUM (63.5% fit)
@@ -2823,7 +2827,7 @@
 |---------|------|-------|--------|--------|
 | domain | 35% | 55.0% | 0.2% | Weak industrial signal (2 core keywords) |
 | tech | 25% | 66.1% | 0.2% | 5 direct, 1 partial matches |
-| role | 20% | 100.0% | 0.2% | Engineering role confirmed (5 keywords) |
+| role | 20% | 100.0% | 0.2% | Engineering role confirmed (6 keywords) |
 | growth | 10% | 20.0% | 0.0% | Non-strategic employer |
 | formal | 5% | 20.0% | 0.0% | Degree required (1x), no flexibility clause |
 | location | 5% | 95.0% | 0.0% | Strong remote/hybrid signal |
@@ -2843,8 +2847,6 @@
 **Poznámka:** Positioning match zachraňuje domain gap
 
 ---
-
-
 ## Souhrnná statistika
 
 - 🟢 SLEDOVAT: 6
@@ -2939,7 +2941,7 @@
 | 082 | PRO.MED.CS | Data Integration Engineer | 56.5% | Střední | 🟡 MEDIUM |
 | 083 | IDC | Knowledge Graph Engineer | 61.7% | Střední | 🟡 MEDIUM |
 | 084 | Resistant AI - Fraud Detection | UX Designer / Researcher | 38.9% | Kriticky nízká | 🔴 NESLEDOVAT |
-| 085 | Thermo Fisher Scientific | System Design Engineer for SEMI RnD | 52.4% | Střední | 🟡 MEDIUM |
+| 085 | Thermo Fisher Scientific | System Design Engineer for SEMI RnD | 65.9% | Vysoká | 🟢 SLEDOVAT |
 | 086 | Knorr-Bremse AG | Purchasing Automation & AI Solution Architect (m/f/d) | 37.4% | Kriticky nízká | 🔴 NESLEDOVAT |
 | 087 | RESRG Automotive | Technický produktový specialista (Engineering) | 41.6% | Nízká | 🟡 HRANICNI |
 | 088 | T&S (Technology & Strategy) | System Integrator, Automotive, ADAS toolchain | 63.5% | Střední | 🟡 MEDIUM |
