@@ -1,0 +1,490 @@
+{
+  "_meta": {
+    "generated": "2026-07-17",
+    "source": "metadata_stacku.json",
+    "entries_count": 88,
+    "pipeline": "deterministic L1 report generator (Phase 7)",
+    "generator": "SyntheticReportGenerator"
+  },
+  "overview": {
+    "total": 88,
+    "precision_pct": 8.0,
+    "mean_score": 49.7,
+    "median_score": 50.8,
+    "verdict_distribution": {
+      "MEDIUM": 41,
+      "SLEDOVAT": 7,
+      "HRANICNI": 18,
+      "NESLEDOVAT": 22
+    }
+  },
+  "skill_frequency": {
+    "AI": 88,
+    "Git": 45,
+    "Python": 26,
+    "CAM": 16,
+    "IoT": 15,
+    "C++": 14,
+    "PLC": 14,
+    "CI/CD": 12,
+    "Azure": 12,
+    "LLM": 10,
+    "machine learning": 10,
+    "agentic": 9,
+    "Linux": 8,
+    "AWS": 7,
+    "ETL": 7,
+    "scripting": 5,
+    "GCP": 5,
+    "CNC": 4,
+    "Docker": 4,
+    "JavaScript": 4,
+    "C#": 3,
+    "Terraform": 3,
+    "TypeScript": 3,
+    "deployment automation": 2,
+    "virtualization": 2,
+    "Kubernetes": 2,
+    "data pipeline": 2,
+    "REST API": 2,
+    "test automation": 2,
+    "DevSecOps": 1,
+    "KVM": 1,
+    "middleware": 1,
+    "ESP32": 1,
+    "MCP": 1,
+    "GitHub Actions": 1,
+    "Playwright": 1,
+    "TIA Portal": 1
+  },
+  "signal_to_noise": {
+    "KVM": {
+      "count": 1,
+      "sledovat_count": 1,
+      "snr_pct": 100.0
+    },
+    "deployment automation": {
+      "count": 2,
+      "sledovat_count": 1,
+      "snr_pct": 50.0
+    },
+    "virtualization": {
+      "count": 2,
+      "sledovat_count": 1,
+      "snr_pct": 50.0
+    },
+    "Kubernetes": {
+      "count": 2,
+      "sledovat_count": 1,
+      "snr_pct": 50.0
+    },
+    "C#": {
+      "count": 3,
+      "sledovat_count": 1,
+      "snr_pct": 33.3
+    },
+    "ETL": {
+      "count": 7,
+      "sledovat_count": 2,
+      "snr_pct": 28.6
+    },
+    "IoT": {
+      "count": 15,
+      "sledovat_count": 4,
+      "snr_pct": 26.7
+    },
+    "CAM": {
+      "count": 16,
+      "sledovat_count": 4,
+      "snr_pct": 25.0
+    },
+    "CNC": {
+      "count": 4,
+      "sledovat_count": 1,
+      "snr_pct": 25.0
+    },
+    "scripting": {
+      "count": 5,
+      "sledovat_count": 1,
+      "snr_pct": 20.0
+    },
+    "PLC": {
+      "count": 14,
+      "sledovat_count": 2,
+      "snr_pct": 14.3
+    },
+    "Git": {
+      "count": 45,
+      "sledovat_count": 5,
+      "snr_pct": 11.1
+    },
+    "CI/CD": {
+      "count": 12,
+      "sledovat_count": 1,
+      "snr_pct": 8.3
+    },
+    "AI": {
+      "count": 88,
+      "sledovat_count": 7,
+      "snr_pct": 8.0
+    },
+    "C++": {
+      "count": 14,
+      "sledovat_count": 1,
+      "snr_pct": 7.1
+    },
+    "Python": {
+      "count": 26,
+      "sledovat_count": 1,
+      "snr_pct": 3.8
+    },
+    "agentic": {
+      "count": 9,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "LLM": {
+      "count": 10,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "DevSecOps": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Azure": {
+      "count": 12,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "middleware": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "machine learning": {
+      "count": 10,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "GCP": {
+      "count": 5,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "data pipeline": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "AWS": {
+      "count": 7,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "ESP32": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Linux": {
+      "count": 8,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "REST API": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Docker": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "MCP": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Terraform": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "TypeScript": {
+      "count": 3,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "GitHub Actions": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "JavaScript": {
+      "count": 4,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "test automation": {
+      "count": 2,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "Playwright": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    },
+    "TIA Portal": {
+      "count": 1,
+      "sledovat_count": 0,
+      "snr_pct": 0.0
+    }
+  },
+  "mismatch_frequency": {
+    "growth": 75,
+    "tech": 53,
+    "formal": 42,
+    "domain": 27,
+    "location": 22,
+    "role": 1
+  },
+  "clusters": {
+    "industrial_automation_core": {
+      "count": 30,
+      "mean_score": 57.3,
+      "entry_ids": [
+        "001",
+        "003",
+        "010",
+        "011",
+        "012",
+        "014",
+        "015",
+        "019",
+        "031",
+        "042",
+        "044",
+        "047",
+        "049",
+        "051",
+        "057",
+        "062",
+        "063",
+        "066",
+        "068",
+        "070",
+        "072",
+        "074",
+        "075",
+        "076",
+        "077",
+        "079",
+        "081",
+        "085",
+        "087",
+        "088"
+      ]
+    },
+    "other": {
+      "count": 29,
+      "mean_score": 44.9,
+      "entry_ids": [
+        "006",
+        "008",
+        "009",
+        "016",
+        "018",
+        "021",
+        "022",
+        "025",
+        "028",
+        "030",
+        "032",
+        "037",
+        "039",
+        "041",
+        "045",
+        "048",
+        "050",
+        "053",
+        "055",
+        "056",
+        "058",
+        "059",
+        "064",
+        "065",
+        "067",
+        "078",
+        "080",
+        "083",
+        "084"
+      ]
+    },
+    "ai_ml_hype": {
+      "count": 15,
+      "mean_score": 47.1,
+      "entry_ids": [
+        "005",
+        "007",
+        "017",
+        "020",
+        "023",
+        "024",
+        "027",
+        "038",
+        "052",
+        "054",
+        "060",
+        "061",
+        "069",
+        "073",
+        "086"
+      ]
+    },
+    "enterprise_it": {
+      "count": 9,
+      "mean_score": 48.6,
+      "entry_ids": [
+        "002",
+        "004",
+        "033",
+        "034",
+        "035",
+        "036",
+        "040",
+        "046",
+        "071"
+      ]
+    },
+    "data_engineering": {
+      "count": 3,
+      "mean_score": 42.4,
+      "entry_ids": [
+        "026",
+        "029",
+        "082"
+      ]
+    },
+    "embedded_manufacturing": {
+      "count": 2,
+      "mean_score": 40.6,
+      "entry_ids": [
+        "013",
+        "043"
+      ]
+    }
+  },
+  "top_entries": [
+    {
+      "id": "081",
+      "title": "Automation Solution Engineer - part time",
+      "company": "ABB",
+      "score": 71.7,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "019",
+      "title": "Systémový inženýr RAM/LCC - lokomotivy (m/ž/n)",
+      "company": "Siemens",
+      "score": 71.3,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "068",
+      "title": "Systémový inženýr/ka řídicích systémů a ochran v energetice (m/ž/n)",
+      "company": "Siemens",
+      "score": 70.3,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "070",
+      "title": "Automation SW Engineer",
+      "company": "ABB",
+      "score": 68.8,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "003",
+      "title": "System Integration Engineer",
+      "company": "Thermo Fisher Scientific",
+      "score": 68.5,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "085",
+      "title": "System Design Engineer for SEMI RnD",
+      "company": "Thermo Fisher Scientific",
+      "score": 65.9,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "011",
+      "title": "Prototypový technik",
+      "company": "Valeo",
+      "score": 65.6,
+      "verdict": "SLEDOVAT"
+    },
+    {
+      "id": "015",
+      "title": "Vývojář/ka embedded nástrojů a knihoven - C, Python (m/ž/n)",
+      "company": "Siemens",
+      "score": 64.6,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "062",
+      "title": "PLC Test Automation Engineer with Python (m/f/d)",
+      "company": "Siemens",
+      "score": 64.5,
+      "verdict": "MEDIUM"
+    },
+    {
+      "id": "059",
+      "title": "Light Automation Specialist",
+      "company": "Desoutter Tools",
+      "score": 63.6,
+      "verdict": "MEDIUM"
+    }
+  ],
+  "skill_gaps": {
+    "C++": 14,
+    "PLC": 14,
+    "Azure": 12,
+    "AWS": 7,
+    "JavaScript": 4,
+    "C#": 3,
+    "Terraform": 3,
+    "TypeScript": 3,
+    "Kubernetes": 2,
+    "KVM": 1,
+    "Playwright": 1,
+    "TIA Portal": 1
+  },
+  "direct_matches": {
+    "Git": 45,
+    "Python": 26,
+    "CAM": 16,
+    "IoT": 15,
+    "CI/CD": 12,
+    "agentic": 9,
+    "Linux": 8,
+    "ETL": 7,
+    "scripting": 5,
+    "GCP": 5,
+    "CNC": 4,
+    "Docker": 4,
+    "deployment automation": 2,
+    "data pipeline": 2,
+    "REST API": 2,
+    "test automation": 2,
+    "DevSecOps": 1,
+    "middleware": 1,
+    "ESP32": 1,
+    "MCP": 1,
+    "GitHub Actions": 1
+  }
+}
