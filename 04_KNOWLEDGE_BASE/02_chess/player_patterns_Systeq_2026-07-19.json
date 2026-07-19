@@ -1,0 +1,13 @@
+{
+  "username": "Systeq",
+  "date": "2026-07-19",
+  "patterns": [
+    {
+      "pattern_id": "P",
+      "pattern_name": "Visual misrecognition",
+      "confidence": 0.5,
+      "severity": "high"
+    }
+  ],
+  "total": 1
+}
