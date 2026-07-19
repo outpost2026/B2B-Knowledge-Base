@@ -1,0 +1,13 @@
+{
+  "username": "Systeq",
+  "date": "2026-07-18",
+  "patterns": [
+    {
+      "pattern_id": "Q",
+      "pattern_name": "Active defense",
+      "confidence": 0.8,
+      "severity": "low"
+    }
+  ],
+  "total": 1
+}

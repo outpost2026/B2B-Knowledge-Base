@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "source": "chess_pattern_v5.json",
+    "import_date": "2026-07-18",
+    "version": 1,
+    "total_patterns": 17,
+    "player": "Ondřej Soušek"
+  },
+  "patterns": [
+    {
+      "id": "A",
+      "name": "Anonymous effect",
+      "type": "trigger",
+      "mechanism": "Absence of rating lowers perceived threat → reduced attention",
+      "it_analogy": "Production deployment without dry-run",
+      "detection_rules": {
+        "method": "compare_blunder_rate",
+        "anonymous_vs_named_threshold": 0.3,
+        "metrics_needed": ["blunder_rate_anonymous", "blunder_rate_named"]
+      },
+      "mitigation": "Assign imaginary 2700 rating to every anonymous opponent",
+      "severity": "high"
+    },
+    {
+      "id": "B",
+      "name": "Automatic grab",
+      "type": "author_error",
+      "mechanism": "Capturing without checking opponent's counterplay",
+      "it_analogy": "git push --force",
+      "detection_rules": {
+        "method": "capture_eval_drop",
+        "threshold_cp": 150,
+        "require_counter_threat": true,
+        "metrics_needed": ["eval_before_capture", "eval_after_capture", "opponent_best_reply"]
+      },
+      "mitigation": "3-second pause + 'A CO ON?' before every capture",
+      "severity": "high"
+    },
+    {
+      "id": "C",
+      "name": "Attention tunneling",
+      "type": "mechanism",
+      "mechanism": "Local tactical stimulus overrides global board evaluation",
+      "it_analogy": "Fixing one bug while creating another",
+      "detection_rules": {
+        "method": "sector_focus_sequence",
+        "threshold_consecutive_moves_same_sector": 3,
+        "metrics_needed": ["move_sector_history"]
+      },
+      "mitigation": "Set 15-min timer; ask: 'Has a new problem emerged elsewhere?'",
+      "severity": "medium"
+    },
+    {
+      "id": "D",
+      "name": "Controlled vs. uncontrolled risk",
+      "type": "dichotomy",
+      "mechanism": "Difference lies in conscious calculation before action",
+      "it_analogy": "Refactoring with tests vs. without",
+      "detection_rules": {
+        "method": "eval_swing_analysis",
+        "threshold_controlled_swing": 0.5,
+        "threshold_uncontrolled_swing": 2.0,
+        "metrics_needed": ["eval_swing", "calculation_time"]
+      },
+      "mitigation": "Every sacrifice must have predefined exit condition",
+      "severity": "medium"
+    },
+    {
+      "id": "E",
+      "name": "Metacognitive activation",
+      "type": "performance_switch",
+      "mechanism": "Actively asking 'What is my opponent threatening?'",
+      "it_analogy": "Code review checklist",
+      "detection_rules": {
+        "method": "ritual_compliance",
+        "metrics_needed": ["ritual_applied_flags", "eval_accuracy"]
+      },
+      "mitigation": "In-game checklist before every critical move",
+      "severity": "high"
+    },
+    {
+      "id": "F",
+      "name": "Resilience after mistake",
+      "type": "recovery",
+      "mechanism": "Blunder does not cascade; player recovers composure",
+      "it_analogy": "Post-mortem without panic",
+      "detection_rules": {
+        "method": "cascade_analysis",
+        "threshold_consecutive_blunders": 1,
+        "metrics_needed": ["blunder_sequence", "eval_recovery"]
+      },
+      "mitigation": "5-second pause + deep breath after mistake",
+      "severity": "medium"
+    },
+    {
+      "id": "G",
+      "name": "Color as modulator",
+      "type": "stylistic_shift",
+      "mechanism": "As Black patient and reactive; as White impulsive and proactive",
+      "it_analogy": "Proactive vs. reactive development roles",
+      "detection_rules": {
+        "method": "compare_per_color",
+        "threshold_blunder_rate_ratio": 1.4,
+        "metrics_needed": ["blunder_rate_white", "blunder_rate_black", "acpl_white", "acpl_black"]
+      },
+      "mitigation": "'Play White as if Black' — imagine being down a pawn",
+      "severity": "high"
+    },
+    {
+      "id": "H",
+      "name": "Systematic strangulation",
+      "type": "strategy",
+      "mechanism": "Accumulate small advantages, convert in endgame without sacrifices",
+      "it_analogy": "Incremental refactoring",
+      "detection_rules": {
+        "method": "advantage_accumulation",
+        "metrics_needed": ["eval_trajectory", "game_length", "material_conversion_efficiency"]
+      },
+      "mitigation": "Reinforce — this is a core strength",
+      "severity": "low"
+    },
+    {
+      "id": "I",
+      "name": "Poison pawn / Bait trap",
+      "type": "strategy",
+      "mechanism": "Leave a pawn/figure seemingly hanging to punish opponent's automatic grab",
+      "it_analogy": "Honeypot endpoint",
+      "detection_rules": {
+        "method": "bait_detection",
+        "metrics_needed": ["hanging_piece_offered", "opponent_capture_result", "eval_after_capture"]
+      },
+      "mitigation": "Continue developing — this is the strongest weapon",
+      "severity": "low"
+    },
+    {
+      "id": "J",
+      "name": "Impulsive check block",
+      "type": "author_error",
+      "mechanism": "Blocking a check with a piece without calculating king safety or material loss",
+      "it_analogy": "Silencing an alert instead of fixing the root cause",
+      "detection_rules": {
+        "method": "check_response_analysis",
+        "metrics_needed": ["check_type", "block_move", "king_safety_after_block", "eval_change"]
+      },
+      "mitigation": "When in check, evaluate king moves before considering blocks",
+      "severity": "medium"
+    },
+    {
+      "id": "K",
+      "name": "Passive-active role confusion",
+      "type": "author_error",
+      "mechanism": "Playing passively when activity is required (or vice versa), often due to misjudging the position's dynamic potential",
+      "it_analogy": "Using a synchronous call where async is needed — blocking the event loop",
+      "detection_rules": {
+        "method": "role_consistency",
+        "metrics_needed": ["position_type", "move_aggressiveness_score", "eval_correct_role"]
+      },
+      "mitigation": "Before each move, classify position as 'tactical' or 'positional' and adjust",
+      "severity": "medium"
+    },
+    {
+      "id": "L",
+      "name": "Early queen exchange for technical win",
+      "type": "strategy",
+      "mechanism": "When opponent's king cannot castle, exchange queens to exploit king's vulnerability with active pieces",
+      "it_analogy": "Disabling a service's API gateway to expose internal endpoints",
+      "detection_rules": {
+        "method": "queen_exchange_analysis",
+        "metrics_needed": ["king_castled", "queen_exchange_offered", "eval_before_after_exchange"]
+      },
+      "mitigation": "Recognize pattern and apply deliberately",
+      "severity": "low"
+    },
+    {
+      "id": "M",
+      "name": "Provocation sacrifice for open file",
+      "type": "strategy",
+      "mechanism": "Offer a harmless-looking exchange that opens a file toward opponent's king while retaining central control",
+      "it_analogy": "Intentionally triggering a controlled failover to test disaster recovery",
+      "detection_rules": {
+        "method": "exchange_to_open_file",
+        "metrics_needed": ["file_opened", "king_exposure", "eval_result"]
+      },
+      "mitigation": "Recognize pattern and apply deliberately",
+      "severity": "low"
+    },
+    {
+      "id": "N",
+      "name": "X-ray pin exploitation",
+      "type": "tactic",
+      "mechanism": "Aligning rook/queen with opponent's queen on an open file, then removing the shielding piece",
+      "it_analogy": "Exploiting a misconfigured CORS policy to access internal data",
+      "detection_rules": {
+        "method": "xray_detection",
+        "metrics_needed": ["aligned_pieces", "shielding_piece_removed", "material_won"]
+      },
+      "mitigation": "Practice x-ray tactic puzzles",
+      "severity": "low"
+    },
+    {
+      "id": "O",
+      "name": "Repetition avoidance greed",
+      "type": "author_error",
+      "mechanism": "Refusing a clear threefold repetition because 'I have a better position' or 'I don't want a draw', leading to unnecessary risk and collapse",
+      "it_analogy": "Refusing to merge a stable PR because 'I can ship one more feature' — ends up breaking production",
+      "detection_rules": {
+        "method": "repetition_refusal",
+        "threshold_moves_after_refusal": 3,
+        "metrics_needed": ["threefold_repetition_available", "eval_before_refusal", "eval_after_refusal", "eval_3_moves_later"]
+      },
+      "mitigation": "Before refusing repetition: 5-second pause + 'Is it really better than draw?'",
+      "severity": "critical"
+    },
+    {
+      "id": "P",
+      "name": "Visual pattern misrecognition (forced move illusion)",
+      "type": "author_error",
+      "mechanism": "Mistaking a threatening-looking piece placement for a forcing sequence, without calculating actual replies",
+      "it_analogy": "Assuming a function is idempotent because its name contains 'safe' — without reading the implementation",
+      "detection_rules": {
+        "method": "forcing_move_classification",
+        "metrics_needed": ["move_is_forcing", "player_thinks_forcing", "eval_if_non_forcing"]
+      },
+      "mitigation": "Before 'forcing' moves: ask 'Is this actually forcing, or a visual illusion?'",
+      "severity": "high"
+    },
+    {
+      "id": "Q",
+      "name": "Active defense under material deficit",
+      "type": "recovery_strategy",
+      "mechanism": "When down material, avoid exchanges, keep pieces active, create threats against opponent's king, and wait for opponent's time trouble or blunder",
+      "it_analogy": "Server under DDoS — instead of shutting down, return fake 200 OKs and slow down the attacker",
+      "detection_rules": {
+        "method": "defensive_phase_analysis",
+        "metrics_needed": ["material_deficit", "exchange_count_after_deficit", "king_attacks_created", "opponent_blunders_forced"]
+      },
+      "mitigation": "Reinforce — this is a core strength",
+      "severity": "low"
+    },
+    {
+      "id": "Q1",
+      "name": "Desperate Gambit Mode",
+      "type": "recovery_strategy",
+      "mechanism": "When objectively lost (eval < -3), reject simplifying exchanges, actively seek tactical chaos on the opponent's king side, and wait for automatic grab from opponent",
+      "it_analogy": "When server is crashing, instead of graceful shutdown, start random port scans to confuse the attacker",
+      "detection_rules": {
+        "method": "desperate_gambit_detection",
+        "threshold_eval": -3.0,
+        "metrics_needed": ["eval_before_switch", "exchange_rejected", "king_attack_created", "opponent_blunder_following"]
+      },
+      "mitigation": "Reinforce — but only as last resort. Primary goal: prevent lost positions",
+      "severity": "low"
+    }
+  ],
+  "rituals": [
+    {
+      "name": "2 seconds and one question",
+      "description": "Before every capture: 'What about him?' (What is opponent's reply?)",
+      "extends_to": "all critical moves (not just captures)",
+      "effectiveness_tracked": true
+    },
+    {
+      "name": "Repetition = 5-second pause + A CO ON?",
+      "description": "Before refusing threefold repetition: 'Is it really better than draw?'",
+      "trigger_pattern": "O",
+      "effectiveness_tracked": true
+    },
+    {
+      "name": "Anonymous = Magnus Carlsen (ELO 2700)",
+      "description": "Assign imaginary high rating to every Anonymous opponent",
+      "trigger_pattern": "A",
+      "effectiveness_tracked": true
+    },
+    {
+      "name": "Play White as if Black",
+      "description": "Imagine you are down a pawn as White to compensate for impulsivity",
+      "trigger_pattern": "G",
+      "effectiveness_tracked": true
+    },
+    {
+      "name": "5-second pause after mistake",
+      "description": "Deep breath before next move to prevent cascade",
+      "trigger_pattern": "F",
+      "effectiveness_tracked": true
+    },
+    {
+      "name": "Check = King safety first",
+      "description": "When in check, evaluate king moves before considering blocks",
+      "trigger_pattern": "J",
+      "effectiveness_tracked": true
+    }
+  ],
+  "game_database": {
+    "total_games": 21,
+    "platforms": {
+      "lichess": 2,
+      "chesscom": 19
+    },
+    "openings_played": [
+      "Scandinavian", "Vienna", "Caro-Kann", "Scotch", "Bishop's Opening",
+      "King's Knight", "King's Pawn Game", "French Defense", "Czech Defense",
+      "Slav Defense", "Maroczy Defense", "Ruy Lopez", "Ponziani",
+      "Rossolimo/Sicilian hybrid", "Pirc Defense", "Queen's Gambit Declined"
+    ],
+    "elo_range": "1650-2150",
+    "metacognition_true_avg_elo": 1975,
+    "metacognition_false_avg_elo": 1675,
+    "key_insight": "Metacognitive activation gap = ~300 ELO points"
+  }
+}
