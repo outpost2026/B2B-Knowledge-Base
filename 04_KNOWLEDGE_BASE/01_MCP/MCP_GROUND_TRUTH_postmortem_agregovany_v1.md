@@ -804,6 +804,32 @@ Golden rules:
 
 ---
 
+#### GT-059 (lichess-017): _build_game_prompt wrong key names → low SNR
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Poznatek:** Per-game LLM výstupy mely low SNR. Debug odhalil 3 bugy:
+
+1. **Wrong key names v `_build_game_prompt()`**: `move_number` misto `ply`, `san` misto `move_san`, `cp_loss` misto `centipawn_loss`. LLM dostaval `move ?, loss ?cp` — skutecná data se ztrácela.
+2. **`accuracy: 0.0`**: auto_annotate() nepočítalo accuracy. Všechny cache soubory mely accuracy=0.0.
+3. **`phase_stats: {}`**: phase_stats nebylo nikdy populováno.
+
+**Resení:**
+- Opraveny klíce v `_build_game_prompt()`: `ply`, `move_san`, `centipawn_loss`
+- Přidány `_compute_accuracy()` a `_compute_phase_stats()` do `GameAnalysis.auto_annotate()`
+- Opraveno 18 stale cache souborů skriptem `scripts/repair_cache.py`
+- Vytvořeny contract testy v `tests/test_prompt_contract.py` (13 testu, 11 jednotkových schema testu + 2 integracní kontrolující real cache data)
+
+**Contract test strategy:**
+Testy kontrolují mapování klíčů mezi GameAnalysis → Stockfish JSON cache → _build_game_prompt(). Pokud nekdo prejmenuje `ply` na `move_number` v modelu, test `test_blunder_subkeys` selze drive, nez se bug dostane do produkce.
+
+**Vysledek po fixu:**
+- Pred: `"accuracy 0.0%", "Middlegame blunder (move ?, loss ?cp)"`
+- Po: `"přesnost 94,6%", "move 27, Ng3 (blunder), cp_loss 497"` — specifická, akcní rada
+
+**Pravidlo:** P44 — Contract testy mezi moduly. Kazdy modul (Stockfish analyzer → prompt builder → LLM) musí mít test, který overuje konzistenci klíčů. Bez tohoto testu jsou silent data corruption bugs neodhalitelné.
+
+---
+
 ## 4. Průřezová pravidla P1-P40 (konsolidovaná)
 
 ### P1 — Paralelizace
@@ -987,6 +1013,9 @@ Timeout nebo error jednoho providera v cascade nesmí blokovat pipeline. Cascade
 ### P43 — Pipeline mode (monolit vs inkrementalni)
 N≤30 → monolit (1 LLM call). N>30 → inkrementalni (per-game cache + aggregate). Golden rules: rychlá analýza = monolit, hromadná / PGN import = inkrementalni. Explicitní override pres `PIPELINE_MODE` env var.
 
+### P44 — Contract testy mezi moduly
+Kazdy modul v pipeline musi mit test, ktery overuje konzistenci klícu mezi producerem a consumerem. Stockfish analyzer produkuje JSON s klíci `ply`, `move_san`, `centipawn_loss` → prompt builder je musí císt pod stejnými jmény. Contract test selze dríve, nez se bug dostane do LLM outputu.
+
 ---
 
 ## 5. Diagnostický filtr — 49 checkpoints
@@ -1147,14 +1176,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem bugů (GT-001 az GT-058) | 58 |
-| Fixed | 49 (84%) |
-| Workaround/Mitigated | 5 (9%) |
+| Celkem bugů (GT-001 az GT-059) | 59 |
+| Fixed | 50 (85%) |
+| Workaround/Mitigated | 5 (8%) |
 | Documented | 4 (7%) |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 47 |
+| Z toho application logic issues | 48 |
 | Z toho cross-repo (platí pro vsechny) | 13 |
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-058, pravidla P30-P43, SNR framework, provider governance, per-game LLM cache, pipeline mode switch. Pridany lichess-analyzer LLM sekce (3.5).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-059, pravidla P30-P44, SNR framework, provider governance, per-game LLM cache, pipeline mode switch, contract testy. Pridany lichess-analyzer LLM sekce (3.5).*
