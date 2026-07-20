@@ -2,7 +2,7 @@
 
 **Datum:** 2026-07-18 | **Verze:** 1
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
-**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools)
+**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
 
 ---
@@ -536,7 +536,52 @@
 
 ---
 
-## 4. Průřezová pravidla P1-P28 (konsolidovaná)
+#### GT-043 (lichess-001): Editable install — .pth path jen src/, chybi project root
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** `python -m src.server` → `ModuleNotFoundError: No module named 'src'`. Opencode hlasi status "invalid".
+
+**Root cause:** `uv pip install -e .` vytvorilo `__editable__.lichess_analyzer_mcp-0.1.0.pth` s jedinou radkou: `C:\...\lichess-analyzer-mcp\src`. Kod ale importuje `from src.app import app` — potrebuje project root na sys.path, ne `src/`. Bez nej `-m src.server` hleda `src/server.py` pod `src/` → `src/src/server.py`, ktere neexistuje.
+
+**Fix:** Pridana druha radka do `.pth`:
+```
+C:\Users\PC\Documents\Repozitar_Dev\_github\lichess-analyzer-mcp
+C:\Users\PC\Documents\Repozitar_Dev\_github\lichess-analyzer-mcp\src
+```
+
+**Pravidlo:** P29 (cast) — Po `pip install -e .` se `src` layoutem over `.pth` content. Project root musi byt prvni.
+
+---
+
+#### GT-044 (lichess-002): async def main() + asyncio.run(app.run()) — event loop konflikt
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** Server startne (logy do stderr), pak okamzite pada s `RuntimeError: Already running asyncio in this thread`. Bez otevreneho STDIO kanalu.
+
+**Root cause:** FastMCP `app.run()` interně volá `anyio.run(self.run_stdio_async)` — spousti vlastni event loop. Obaleni do `asyncio.run(main())` vytvari druhy event loop → konflikt.
+
+**Fix:** main() musi byt sync:
+```python
+def main():
+    app.run()
+
+if __name__ == "__main__":
+    main()
+```
+
+Misto puvodniho:
+```python
+async def main():
+    await app.run()
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())  # RuntimeError: Already running asyncio
+```
+
+**Pravidlo:** P29 — FastMCP server: main() vzdy sync `def main(): app.run()`. Nikdy `asyncio.run(app.run())` — app.run() uz spousti vlastni event loop.
+
+## 4. Průřezová pravidla P1-P29 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -655,9 +700,31 @@ Kazdý build musí kontrolovat, ze zdrojové soubory neobsahují emoji:
 rg "[\u2600-\u27BF\U0001F000-\U0001FFFF]" src/
 ```
 
+### P29 — FastMCP main() sync, nikdy async wrapper
+`app.run()` (FastMCP) interně volá `anyio.run()` = spoustí vlastní event loop. main() musí byt sync:
+
+```python
+# SPRAVNE
+def main():
+    app.run()
+
+if __name__ == "__main__":
+    main()
+
+# CHYBNE — RuntimeError: Already running asyncio
+async def main():
+    await app.run()
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
+```
+
+**Rozsireni:** Po `pip install -e .` se `src` layoutem over `.pth` obsahuje project root, nejen `src/`.
+
 ---
 
-## 5. Diagnostický filtr — 47 checkpoints
+## 5. Diagnostický filtr — 49 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -734,6 +801,10 @@ rg "[\u2600-\u27BF\U0001F000-\U0001FFFF]" src/
 46. Jsou emoji a Unicode supplementary zakázány v kódu? (P28)
 47. Vrací tool ceské znaky bez chyby? (P23)
 
+### O — Server initialization (P29)
+48. Je main() sync `def main(): app.run()`? Nikdy `async` + `asyncio.run()` (P29)
+49. Ma `.pth` soubor po `pip install -e .` project root + `src/`, ne jen `src/`? (P29)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -796,6 +867,8 @@ Při zakládání nového MCP repozitáře:
 8. **L2 Resources** (P21) — URI-adresovatelná data
 9. **Async subprocess** (P26) — asyncio.create_subprocess_exec, ne subprocess.run
 10. **Python version audit** (P24) — requires-python + startup check
+11. **FastMCP sync main** (P29) — `def main(): app.run()`. Nikdy `async def` + `asyncio.run()`.
+12. **Editable install path** (P29) — po `pip install -e .` se `src` layoutem over `.pth` ma project root + `src/`
 
 ---
 
@@ -803,13 +876,13 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem bugů (GT-001 az GT-042) | 42 |
-| Fixed | 37 (88%) |
+| Celkem bugů (GT-001 az GT-044) | 44 |
+| Fixed | 39 (89%) |
 | Workaround/Mitigated | 3 (7%) |
 | Documented | 2 (5%) |
-| Z toho environment/CI issues | 10 |
-| Z toho application logic issues | 32 |
-| Z toho cross-repo (platí pro vsechny) | 8 |
+| Z toho environment/CI issues | 11 |
+| Z toho application logic issues | 33 |
+| Z toho cross-repo (platí pro vsechny) | 9 |
 
 ---
 
