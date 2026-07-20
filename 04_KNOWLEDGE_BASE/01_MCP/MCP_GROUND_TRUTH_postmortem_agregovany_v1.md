@@ -805,7 +805,7 @@ Golden rules:
 ---
 
 #### GT-059 (lichess-017): _build_game_prompt wrong key names → low SNR
-**Server:** lichess-analyzer | **Status:** Fixed
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Key mapping bug
 
 **Poznatek:** Per-game LLM výstupy mely low SNR. Debug odhalil 3 bugy:
 
@@ -817,16 +817,38 @@ Golden rules:
 - Opraveny klíce v `_build_game_prompt()`: `ply`, `move_san`, `centipawn_loss`
 - Přidány `_compute_accuracy()` a `_compute_phase_stats()` do `GameAnalysis.auto_annotate()`
 - Opraveno 18 stale cache souborů skriptem `scripts/repair_cache.py`
-- Vytvořeny contract testy v `tests/test_prompt_contract.py` (13 testu, 11 jednotkových schema testu + 2 integracní kontrolující real cache data)
+- Vytvořeny contract testy v `tests/test_prompt_contract.py` (13 testu)
 
-**Contract test strategy:**
-Testy kontrolují mapování klíčů mezi GameAnalysis → Stockfish JSON cache → _build_game_prompt(). Pokud nekdo prejmenuje `ply` na `move_number` v modelu, test `test_blunder_subkeys` selze drive, nez se bug dostane do produkce.
+**Contract test strategy — detail:**
+Problém spadá do domény **Contract Testing** (Consumer-Driven Contract), podmnoziny Integration Testing v testovací ontologii:
+
+```
+Unit Tests          ← testují jednu funkci/třídu izolovaně
+  ↓
+Contract Tests      ← ← ← testují rozhraní mezi moduly
+  ↓
+Integration Tests   ← testují vice modulu dohromady
+  ↓
+E2E Tests           ← testují celý systém
+```
+
+Oba moduly (GameAnalysis.to_dict() a _build_game_prompt()) procházely unit testy v izolaci. Problém byl v *rozhraní mezi nimi* — nikdo netestoval, zda klíče, které prompt builder čte, odpovídají klíčům, které model produkuje.
+
+Implementováno ve 3 vrstvách:
+
+1. **Schema testy** — load real cache JSON, check all keys prompt reads:
+   `test_blunder_subkeys` overuje, ze kazdy blunder ma `ply, move_san, centipawn_loss, phase`
+2. **Placeholder detection** — `test_prompt_has_no_unknown_move` kontroluje, ze prompt neobsahuje `?`
+3. **Noise-floor detection** — `test_accuracy_not_zero` overuje semantickou konzistenci dat
+
+**Profesionální nástroje vs lightweight varianta:**
+V enterprise microservices se pouziva **Pact** (pact.io) — consumer definuje ocekavani v testu, producer se verifikuje proti nemu. Pro MCP server je adekvátní lightweight varianta: schema test na realnych datech + placeholder detection (`assert "?" not in prompt`). Viz `01_METODIKY/05_testing/contract_testing_ontologie_v1.md`.
 
 **Vysledek po fixu:**
 - Pred: `"accuracy 0.0%", "Middlegame blunder (move ?, loss ?cp)"`
 - Po: `"přesnost 94,6%", "move 27, Ng3 (blunder), cp_loss 497"` — specifická, akcní rada
 
-**Pravidlo:** P44 — Contract testy mezi moduly. Kazdy modul (Stockfish analyzer → prompt builder → LLM) musí mít test, který overuje konzistenci klíčů. Bez tohoto testu jsou silent data corruption bugs neodhalitelné.
+**Pravidlo:** P44 — Contract testy mezi moduly. Kazdy modul v pipeline musí mít test, ktery overuje konzistenci klícu mezi producerem a consumerem. Consumer definuje kontrakt. Test selze dríve, nez se bug dostane do LLM outputu.
 
 ---
 
@@ -1013,8 +1035,8 @@ Timeout nebo error jednoho providera v cascade nesmí blokovat pipeline. Cascade
 ### P43 — Pipeline mode (monolit vs inkrementalni)
 N≤30 → monolit (1 LLM call). N>30 → inkrementalni (per-game cache + aggregate). Golden rules: rychlá analýza = monolit, hromadná / PGN import = inkrementalni. Explicitní override pres `PIPELINE_MODE` env var.
 
-### P44 — Contract testy mezi moduly
-Kazdy modul v pipeline musi mit test, ktery overuje konzistenci klícu mezi producerem a consumerem. Stockfish analyzer produkuje JSON s klíci `ply`, `move_san`, `centipawn_loss` → prompt builder je musí císt pod stejnými jmény. Contract test selze dríve, nez se bug dostane do LLM outputu.
+### P44 — Contract testy mezi moduly (Consumer-Driven Contract)
+Kazdy modul v pipeline (Stockfish analyzer → prompt builder → LLM) musí mit contract test, ktery overuje konzistenci klícu mezi producerem a consumerem. Consumer definuje kontrakt (jake klíce potrebuje). Test je schema test na realnych datech + placeholder detection. Profesionalni nastroj: Pact. Lightweight varianta: `assert key in data` + `assert "?" not in prompt`. Reference: `01_METODIKY/05_testing/contract_testing_ontologie_v1.md`.
 
 ---
 
@@ -1183,6 +1205,7 @@ Při zakládání nového MCP repozitáře:
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 48 |
 | Z toho cross-repo (platí pro vsechny) | 13 |
+| Z toho zachyceno contract testy (GT-059) | 1 |
 
 ---
 
