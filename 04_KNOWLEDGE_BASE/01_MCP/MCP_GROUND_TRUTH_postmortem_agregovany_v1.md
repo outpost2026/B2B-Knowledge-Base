@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-07-18 | **Verze:** 1
+**Datum:** 2026-07-20 | **Verze:** 2
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -581,7 +581,230 @@ if __name__ == "__main__":
 
 **Pravidlo:** P29 — FastMCP server: main() vzdy sync `def main(): app.run()`. Nikdy `asyncio.run(app.run())` — app.run() uz spousti vlastni event loop.
 
-## 4. Průřezová pravidla P1-P29 (konsolidovaná)
+---
+
+### 3.5 lichess-analyzer-mcp — LLM Reasoning Pipeline
+
+#### GT-045 (lichess-003): Cerebras API response format — `reasoning` misto `content`
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** Cerebras API vrací 200 OK, ale `content = data["choices"][0]["message"]["content"]` je `None`. Pipeline hlásí "fallback" nebo padá do `str(data)` raw JSON dumpu.
+
+**Root cause:** Cerebras API používá proprietární `reasoning` field v message objektu namísto standardního `content`. OpenAI kompatibilní klienti očekávají `message.content`.
+
+**Fix:** Fallback chain v parseru:
+```python
+msg = data["choices"][0]["message"]
+content = msg.get("content") or msg.get("reasoning")
+```
+
+**Pravidlo:** P30 — LLM klient musí mít fallback chain pro nestandardní response fieldy u kazdého provideru. Nikdy nespoléhat na `["content"]` bez `get()`.
+
+---
+
+#### GT-046 (lichess-004): LLM_MAX_TOKENS clipping — nekompletní coaching reporty
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** DeepSeek V4 Flash vrací report useknutý uprostřed vety (2895 tok). Chybí sekce "Silné stránky" a "Zaměření na další sezení".
+
+**Root cause:** Default `LLM_MAX_TOKENS=2000` je nedostatecný pro 6 patternu + weakness report + 5 sekcí. DeepSeek V4 Flash má prumernou odezvu ~3500 tok pro plný report.
+
+**Fix:** `LLM_MAX_TOKENS` zvýsen na 4000. Report rozsíren na 3472 tok (plných 5 sekcí, 53 lines).
+
+**Pravidlo:** P31 — LLM coaching pipeline: `max_tokens >= 4000`. Default 2000 testovat na reprezentativním vzorku, ne jen na 1-2 patternech.
+
+---
+
+#### GT-047 (lichess-005): Cascade provider silence
+**Server:** lichess-analyzer | **Status:** Mitigated
+
+**Symptom:** Uzivatel neví, které providery byly k dispozici a který z nich vyhrál. Cascade skončí na prvním úspechu, ale stav ostatních není videt.
+
+**Root cause:** `generate_coaching_report_with_logs` vrací cascade_log jako tuple, ale volající kód casto pouzívá jen `generate_coaching_report` (bez logu). Console vitezství providera není nikde perzistentní.
+
+**Fix:** Cascade log vracen paralelne s reportem. Report header nyní uvádí providera, model, tokens, cost, latency.
+
+**Pravidlo:** P32 — Cascade fallback: vzdy expose per-provider status (attempted/skipped/error) do výstupu. Nikdy netlacit stav provideru.
+
+---
+
+#### GT-048 (lichess-006): Timing dict type change — silent crash
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** `TypeError: unsupported format string passed to dict.__format__`. Pipeline crashne po LLM callu, report se nezapíse.
+
+**Root cause:** Time format zmenen z `{"phase": float}` na `{"phase": {"duration": float, "label": str}}`. `md_reporter.py` pouzíval `timing.get("total", 0)` — ocekava float, dostává dict.
+
+**Fix:** Zmena vsech prístupu k timing datum: `.get("total", {}).get("duration", 0)`.
+
+**Pravidlo:** P33 — Po zmene datového formatu aktualizuj VŠECHNY konzumenty, nejen producenta. Testuj s reprezentativními daty (ne jen unit testy s mocky).
+
+---
+
+#### GT-049 (lichess-007): Cache dump key mismatch
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** `compare_providers.py` nacítá 0 patternu z cached dumpu. Provideri generují reporty bez pattern analyzy (pouze weakness report).
+
+**Root cause:** Dump file (`test_optimized_output.json`) pouzívá klíce `patterns_detected` a `games_analyzed` (list). Skript hledá `patterns` a `analyses_data`. Zádný klíč nesedí.
+
+**Fix:** Fallback chain: `.get("patterns_detected", data.get("patterns", data.get("pattern_results", [])))`.
+
+**Pravidlo:** P34 — Cache/export JSON schema musí být explicitne zdokumentována a verze kontrolována. Libovolný konzument musí pouzívat fallback chain.
+
+---
+
+#### GT-050 (lichess-008): Stockfish re-analýza pri kazdém běhu — 24 min pipeline
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** 5 her = 24 min pipeline. 99.9% casu spotrebovává Stockfish (deterministický, opakovatelný krok).
+
+**Root cause:** Zádné cache-mechanismus. Kazdý pipeline run analyzuje vsechny hry Stockfishem znovu, i kdyz výsledek je deterministicky stejný.
+
+**Fix:** `cache_first` strategie:
+1. Pred Stockfish analyzou zkontrolovat `data/game_cache/{game_id}.json`
+2. Pokud existuje a depth >= requested → pouzít cache
+3. Jinak analyzovat a ulozit do cache
+4. Výsledek: 5 her = 0.1s (místo 24 min)
+
+**Pravidlo:** P35 — Deterministické pipeline kroky (Stockfish analyza) cacheovat (game_id + depth jako klíč). LLM inference ne — kazdý běh = nová odpoved.
+
+---
+
+#### GT-051 (lichess-009): Provider model ID — UI vs API discrepancy
+**Server:** lichess-analyzer | **Status:** Mitigated
+
+**Symptom:** Cerebras model `llama3.1-8b` (z dokumentace) vrací 404. NVIDIA model `nvidia/nemotron-3-super-120b-a12b` na `api.nvidia.com` vrací SSL error.
+
+**Root cause:** (a) Cerebras API model ID != display name/docs. Skutecný model: `gpt-oss-120b`, `zai-glm-4.7`, `gemma-4-31b`. (b) NVIDIA endpoint `api.nvidia.com` nepouzívá standardní /v1 schema — SSL hostname mismatch fix pres `integrate.api.nvidia.com/v1`.
+
+**Fix:** Vzdy volat `/v1/models` endpoint pro discovery. Vyreseno 2026-07-20: NVIDIA base URL fix, Cerebras model ID correct.
+
+**Pravidlo:** P36 — Provider model ID vzdy overit pres `/v1/models` API. Docs a UI jsou nespolehlivé. Po zmene providera endpointu testovat s minimálním promptem (1 token).
+
+---
+
+#### GT-052 (lichess-010): SNR evaluation framework
+**Server:** lichess-analyzer | **Status:** Documented
+
+**Poznatek:** Při porovnání 3 LLM provideru (NVIDIA, Cerebras, DeepSeek V4 Flash) vznikl metodologický problém: jak objektivne urcit, který výstup je kvalitnejsí, bez subjektivního biasu.
+
+**Resení:** SNR (Signal-to-Noise Ratio) evaluation framework:
+
+| Kriterium | Váha | Co merí |
+|---|---|---|
+| Grounding k patternum | 30% | Zda report pouzívá stejné patterny jako vstup (ne inventuje) |
+| Konfidence % citace | 20% | Zda uvádí confidence hodnoty z pattern detectionu |
+| Phase ACPL citace | 15% | Zda cituje fázová ACPL data z weakness reportu |
+| Hallucinace (míň = líp) | 20% | Inventované patterny nebo nepodlozená tvrzení |
+| Struktura/délka | 10% | Zda pokrývá vsech 5 sekcí |
+| Tréninková konkrétnost | 5% | Konkrétní cvicení vs obecná doporucení |
+
+**Aplikace:** DeepSeek V4 Flash SNR 93/100 (nejvyssí), NVIDIA 57, Cerebras 54.
+
+**Pravidlo:** P38 (metodologické) — Porovnání LLM výstupu: vzdy pouzít SNR framework s váhami. Nikdy subjektivní "libí se mi".
+
+---
+
+#### GT-053 (lichess-011): DeepSeek Chat — cost ban policy
+**Server:** lichess-analyzer | **Status:** Fixed (policy)
+
+**Symptom:** Financní — DeepSeek Chat ($0.27/$1.10 per 1M tok) je 3.6× drazsí nez DeepSeek V4 Flash ($0.14/$0.28) za stejnou nebo horsí kvalitu.
+
+**Decision:** DeepSeek Chat vyrazen z default cascade. Ponechán v `PROVIDERS` konfiguraci pro explicitní volání. Zakázán v default `cascade_order`.
+
+**Pravidlo:** P37 — Kazdý provider v LLM cascade musí mít explicitní cost/benefit schválení. Drazsí alternativy (>2× cena za stejnou kvalitu) blokovat v default konfiguraci.
+
+---
+
+#### GT-054 (lichess-012): Multi-provider API key management
+**Server:** lichess-analyzer | **Status:** Documented
+
+**Poznatek:** Tři API klíce (NVIDIA, Cerebras, DeepSeek) vyzadují kazdý jiné nakládání:
+- NVIDIA: spolecný free key, omezený rate limit
+- Cerebras: free + $5 credit, model specificky
+- DeepSeek: jeden key pro chat i v4 flash, paid (credit-based)
+
+**Best practice:** `.env` soubor s exportem vsech klícu. `auth.json` v `~/.local/share/opencode/` pro centrální správu.
+
+**Pravidlo:** P39 — Multi-API key management: `.env` pro lokální vývoj, `auth.json` pro opencode, `.gitignore` pro oba. Nikdy necommitovat.
+
+---
+
+#### GT-055 (lichess-013): LLM_MAX_TOKENS env var — silent fallback na default
+**Server:** lichess-analyzer | **Status:** Fixed
+
+**Symptom:** `os.environ.get("LLM_MAX_TOKENS", "2000")` vrací 2000 i kdyz promenná není nastavena. Zádná warning/error ze by default mohl být nedostatecný.
+
+**Root cause:** Env var je optional. Pokud chybí, pouzije se default — ale uzivatel neví, ze by mel nastavit vyssi hodnotu pro plný report.
+
+**Fix:** Startup log: `print(f"[llm] LLM_MAX_TOKENS={llm_max_tokens} (recommended >=4000 for full reports)", file=sys.stderr)`.
+
+**Pravidlo:** P40 — Env var s velkým dopadem na kvalitu výstupu musí logovat varování pri nedoporučené hodnote. Ne jen tichý default.
+
+---
+
+#### GT-056 (lichess-014): Per-game LLM cache — Level 2 cache pro inkrementální agregaci
+**Server:** lichess-analyzer | **Status:** Implemented
+
+**Symptom:** Pri pridání nové hry do pipeline se LLM layer spoustí znovu na VŠECHNY hry. S rostoucím N lineárne roste prompt size i cost.
+
+**Root cause:** LLM prompt obsahuje inline raw data vsech her. Nelze oddelit "uz analyzované" od "nových".
+
+**Resení:** Dvouúrovnová cache:
+
+| Level | Obsah | Cache soubor |
+|---|---|---|
+| L1 (existuje) | Stockfish analyza | `{game_id}_{color}_d{depth}.json` |
+| L2 (nový) | LLM per-game analyza | `{game_id}_llm.json` |
+
+Per-game LLM analyza (deep analysis frontiervým modelem) → cache. Agregace pouzívá L2 summaries místo raw dat. Nová hra = jen 1 L2 call + 1 agregacní call se summaries z cache.
+
+**Implementace:** `src/services/game_llm_cache.py`. Uprava `build_coaching_prompt()` o `game_summaries` parametr.
+
+**Pravidlo:** P41 — Dvouúrovnová cache pro LLM pipeline: Level 2 (per-game LLM) oddeluje analyzu od agregace.
+
+---
+
+#### GT-057 (lichess-015): NVIDIA timeout na agregaci s per-game summaries
+**Server:** lichess-analyzer | **Status:** Documented
+
+**Symptom:** Agregacní call s 5 per-game summaries timeoutuje na NVIDIA. Cerebras nebo DeepSeek V4 uspějí.
+
+**Root cause:** Prompt s summaries (~2500 chars) delsí → vyssi pravdepodobnost timeoutu na free NVIDIA tieru.
+
+**Fix:** Cascade resilience: timeout providera preskocí. Pro agregaci se summaries pouzít Cerebras nebo DeepSeek V4.
+
+**Pravidlo:** P42 — Cascade je resilience pattern. Timeout jednoho providera neblokuje pipeline.
+
+---
+
+#### GT-058 (lichess-016): Pipeline mode — monolit vs inkrementalni cache
+**Server:** lichess-analyzer | **Status:** Implemented
+
+**Poznatek:** Per-game LLM cache není univerzálne výhodná. Pro malé N (≤30) je monolit efektivnejší (méne tokenu, kratsí cas). Pro velké N (100+) se cache amortizuje a prinásí 44% úsporu.
+
+**Resení:** `run_coaching_pipeline(mode)` s auto-detekcí:
+
+```python
+def run_coaching_pipeline(..., mode="auto"):
+    if mode == "auto":
+        mode = "mono" if n <= 30 else "incremental"
+```
+
+Golden rules:
+- N≤30 + rychlá analýza → monolit
+- N>30 + dávková analýza → inkrementalní (cache)
+- PGN import / GM hry → inkrementalní (per-game deep analysis)
+- Explicitní `PIPELINE_MODE` env var override
+
+**Implementace:** `run_coaching_pipeline()` v `llm_client.py`. Minimalní scope creep — jedna wrapper funkce, stávající API beze zmeny.
+
+**Pravidlo:** P43 — Pipeline mode: monolit pro N≤30, inkrementalní pro N>30. Golden rules: explicitní override pres PIPELINE_MODE env var nebo parametr.
+
+---
+
+## 4. Průřezová pravidla P1-P40 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -721,6 +944,48 @@ if __name__ == "__main__":
 ```
 
 **Rozsireni:** Po `pip install -e .` se `src` layoutem over `.pth` obsahuje project root, nejen `src/`.
+
+### P30 — LLM response format fallback
+`data["choices"][0]["message"]["content"]` není univerzální. Cerebras pouzívá `reasoning` místo `content`. Pouzívat `msg.get("content") or msg.get("reasoning")`.
+
+### P31 — LLM max_tokens pro coaching
+Coaching pipeline s 6+ patterny a 5 sekcemi vyzaduje `max_tokens >= 4000`. Default 2000 testovat na reprezentativním vzorku.
+
+### P32 — Cascade status exposure
+Cascade fallback musí expose per-provider status (attempted/skipped/error + tokens + cost) do výstupu. Nikdy netlacit stav provideru.
+
+### P33 — Data format change consistency
+Po zmene datového formatu aktualizovat VŠECHNY konzumenty. Testovat s reprezentativními daty, ne jen unit testy.
+
+### P34 — Cache schema versioning
+Cache/export JSON schema explicitne dokumentovat a verze kontrolovat. Konzumenti pouzívat fallback chain pres `.get()`.
+
+### P35 — Deterministické kroky cacheovat
+Stockfish analyza (deterministická) cacheovat pres `game_id + depth`. LLM inference ne — kazdý běh = nová odpoved.
+
+### P36 — Provider model ID overení
+Vzdy volat `/v1/models` API pro discovery. Docs a UI jsou nespolehlivé. Testovat s minimálním promptem.
+
+### P37 — Cost/benefit provider governance
+Kazdý provider v LLM cascade musí mít explicitní cost schválení. Drazsí alternativy (>2× cena za stejnou kvalitu) blokovat.
+
+### P38 — SNR evaluation framework
+Porovnání LLM výstupu: vzdy pouzít SNR framework (grounding 30%, confidence 20%, phase data 15%, hallucinations 20%, structure 10%, concreteness 5%).
+
+### P39 — Multi-API key management
+`.env` pro lokální vývoj, `auth.json` pro opencode, `.gitignore` pro oba. Kazdý provider muze mít jiný key management (free vs paid, shared vs dedicated).
+
+### P40 — Env var warning na suboptimal values
+Env var s dopadem na kvalitu musí logovat varování pri hodnotách pod doporuceným minimem. Příklad: `LLM_MAX_TOKENS=2000` → warning "recommended >=4000".
+
+### P41 — Dvouúrovnová LLM cache (Level 2)
+Per-game LLM analyzu cacheovat do `{game_id}_llm.json`. Agregace pouzívá summaries z cache místo raw dat. Nová hra = 1 L2 call + 1 agregace, ne full re-run.
+
+### P42 — Cascade resilience
+Timeout nebo error jednoho providera v cascade nesmí blokovat pipeline. Cascade je resilience pattern — dalsí provider v poradí prevezme.
+
+### P43 — Pipeline mode (monolit vs inkrementalni)
+N≤30 → monolit (1 LLM call). N>30 → inkrementalni (per-game cache + aggregate). Golden rules: rychlá analýza = monolit, hromadná / PGN import = inkrementalni. Explicitní override pres `PIPELINE_MODE` env var.
 
 ---
 
@@ -869,6 +1134,12 @@ Při zakládání nového MCP repozitáře:
 10. **Python version audit** (P24) — requires-python + startup check
 11. **FastMCP sync main** (P29) — `def main(): app.run()`. Nikdy `async def` + `asyncio.run()`.
 12. **Editable install path** (P29) — po `pip install -e .` se `src` layoutem over `.pth` ma project root + `src/`
+13. **LLM response format fallback** (P30) — `msg.get("content") or msg.get("reasoning")` pro kazdého providera
+14. **LLM max_tokens** (P31) — `max_tokens >= 4000` pro coaching pipeline
+15. **Cascade log exposure** (P32) — per-provider status, tokens, cost v kazdém reportu
+16. **API key management** (P39) — `.env` + `auth.json` + `.gitignore` pro vsechny providery
+17. **Per-game LLM cache** (P41) — `{game_id}_llm.json` pro inkrementální agregaci
+18. **Cascade resilience** (P42) — timeout jednoho providera neblokuje pipeline
 
 ---
 
@@ -876,14 +1147,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem bugů (GT-001 az GT-044) | 44 |
-| Fixed | 39 (89%) |
-| Workaround/Mitigated | 3 (7%) |
-| Documented | 2 (5%) |
+| Celkem bugů (GT-001 az GT-058) | 58 |
+| Fixed | 49 (84%) |
+| Workaround/Mitigated | 5 (9%) |
+| Documented | 4 (7%) |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 33 |
-| Z toho cross-repo (platí pro vsechny) | 9 |
+| Z toho application logic issues | 47 |
+| Z toho cross-repo (platí pro vsechny) | 13 |
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-18 — v1 — Agregace vsech MCP postmortem artefaktů. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, pitevni_kniha_mcp_v1.md (cnc-tools). Postmortem části z MCP_komplexni_analyza_a_strategie_v1.md a MCP_practical_workflow_guide_v1.md jsou rovněz začleněny.*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-058, pravidla P30-P43, SNR framework, provider governance, per-game LLM cache, pipeline mode switch. Pridany lichess-analyzer LLM sekce (3.5).*
