@@ -851,6 +851,26 @@ V enterprise microservices se pouziva **Pact** (pact.io) — consumer definuje o
 **Pravidlo:** P44 — Contract testy mezi moduly. Kazdy modul v pipeline musí mít test, ktery overuje konzistenci klícu mezi producerem a consumerem. Consumer definuje kontrakt. Test selze dríve, nez se bug dostane do LLM outputu.
 
 ---
+#### GT-060 (lichess-018): Iteracni optimalizace - JSON validation, CI/CD, unit testy sluzeb, API key check
+**Server:** lichess-analyzer | **Status:** Implemented | **Typ:** Infrastructure + kvalita
+
+**Poznatek:** Meta-analyza po GT-059 odhalila 4 kriticke slabiny:
+1. Per-game LLM output neni validovan jako JSON pred cachingem - tichy fail na dalsim cteni
+2. Chybi CI/CD - testy se pousteji jen rucne
+3. `engine_client.py` nema unit testy - sluzba je netestovana
+4. API klice se nekontroluji pri startu - vyprseny klic = silent fail na cascade
+
+**Reseni:**
+1. `game_llm_cache.py`: Pridano `_validate_json_output()` - kontroluje JSON parsovatelnost, extrakci z ```json bloku. Pokud LLM vrati garbage, cascade zkusi dalsiho providera.
+2. `.github/workflows/test.yml`: GitHub Actions - push/PR na main spusti `ruff check` + `pytest` na Python 3.12.
+3. `tests/test_engine_client.py`: 5 unit testu s mocknutym Stockfish - `_find_stockfish()`, `analyze_position()`, `evaluate_move()`, `close_engine()`. Zadna realna binary potreba.
+4. `llm_client.py` + `server.py`: `verify_api_keys()` pri startupu posle ping (max_tokens=1, timeout=10s). Vystup: `[server] API key check`. Detekuje 401/402/429.
+
+**Stav testu:** 33/33 pass (15 unit + 13 contract + 5 engine mock)
+**CI/CD:** `.github/workflows/test.yml` (Linux, Python 3.12, ruff + pytest)
+
+**Pravidlo:** P45 - API key health check pri startupu. `verify_api_keys()` v `server.py`. Lightweight ping (max_tokens=1, timeout=10s). Detekuje neplatny/vyprseny klic pred prvnim tool volanim.
+
 
 ## 4. Průřezová pravidla P1-P40 (konsolidovaná)
 
@@ -1191,6 +1211,8 @@ Při zakládání nového MCP repozitáře:
 16. **API key management** (P39) — `.env` + `auth.json` + `.gitignore` pro vsechny providery
 17. **Per-game LLM cache** (P41) — `{game_id}_llm.json` pro inkrementální agregaci
 18. **Cascade resilience** (P42) — timeout jednoho providera neblokuje pipeline
+19. **Contract testing** (P44) — P44 — Consumer-Driven Contract mezi Stockfish → prompt builder → LLM
+20. **API key health check** (P45) — `verify_api_keys()` při startupu, detekuje 401/402/429
 
 ---
 
@@ -1209,4 +1231,4 @@ Při zakládání nového MCP repozitáře:
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-059, pravidla P30-P44, SNR framework, provider governance, per-game LLM cache, pipeline mode switch, contract testy. Pridany lichess-analyzer LLM sekce (3.5).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-060, pravidla P30-P45, SNR framework, provider governance, per-game LLM cache, pipeline mode switch, contract testy. Pridany lichess-analyzer LLM sekce (3.5).*
