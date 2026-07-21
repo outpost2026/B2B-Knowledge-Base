@@ -53,8 +53,7 @@ git status  # must be clean
 
 Agent smí číst libovolný soubor v repozitáři. Povinně načíst:
 
-1. **README.md** — struktura a pravidla
-2. **AGENTS.md** — tento soubor (aktuální kontext)
+1. **AGENTS.md** — tento soubor (aktuální kontext, obsahuje všechna pravidla)
 3. **INDEX.md** — registr artefaktů pro orientaci
 4. Relevantní modulové soubory dle zadání
 
@@ -173,11 +172,10 @@ git commit -m "[METODIKY] update: LinkedIn skills list (EROI 9/10)"
 
 ## 9. Zdroje pro inicializaci agenta
 
-Při prvním kontaktu agent načte v tomto pořadí:
-1. `README.md` — struktura a účel
-2. `AGENTS.md` — tento soubor
-3. `INDEX.md` — registr artefaktů
-4. Relevantní soubory z modulu dle zadání
+Při prvním kontaktu agent načte:
+1. `AGENTS.md` — tento soubor (obsahuje všechna pravidla)
+2. `INDEX.md` — registr artefaktů pro orientaci
+3. Relevantní soubory z modulu dle zadání
 
 ---
 
