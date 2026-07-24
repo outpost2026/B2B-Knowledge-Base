@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-07-20 | **Verze:** 2
+**Datum:** 2026-07-24 | **Verze:** 4
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -900,13 +900,15 @@ elif classification == "mistake":
 
 **Pravidlo:** P46 — Classification branches must be mutually exclusive. Kazda kategorie v if/elif chainu musi mit vlastni append target. Unit test musi overit, ze zadne dve kategorie nesdileji stejny cil.
 
+**Provenance:** Overeno source-read (game_analyzer.py:161-162, v2 audit code path verification 2026-07-24). Popis presne odpovida kodu. Zadna konfabulace.
+
 ---
 
 #### GT-062 (lichess-020) — Cross-LLM audit workflow validation (Methodology)
 **Server:** lichess-analyzer | **Status:** Documented | **Typ:** Methodology — Development process
 
 **Poznatek:** Prvni cross-LLM audit lichess-analyzer-mcp probehl 2026-07-24 ve dvou fazich:
-1. **v1 (DIGITAL_TWIN, de novo scan):** 13h brain dump knowledge + architecture analysis → 8 nalezu (4 structural, 4 pattern-based)
+1. **v1 (DIGITAL_TWIN, de novo scan):** ~13h brain dump knowledge (subjektivni odhad autora, nikoliv merena velicina) + architecture analysis → 8 nalezu (4 structural, 4 pattern-based)
 2. **v2 (Code review, citelny kod):** Code path verification → 7 nalezu (5 implementation, 2 security confirmed)
 
 **Vysledky:**
@@ -916,7 +918,7 @@ elif classification == "mistake":
 | v1→v2 confirm rate | 71 % (5/7 code review nalezu potvrzeno z v1) |
 | v2-only nalezy (unikli twinovi) | 2 (N1: mistakes bug, N4: Pattern G semantic) |
 | Efektivita | 9.6 nalezu/hod (15 / 1.55h) |
-| Twin time-to-audit | 13h knowledge → 5 min audit script |
+| Twin time-to-audit | ~13h (odhad autora) → 5 min audit script |
 
 **Zaver:** Twin scan (de novo bez kodu) spolehlive zachyti architekturni a structuralni problemy, ale unikaji mu implementacni detaily (chybejici elif, semantic mismatches). Code review (v2) je nezbytny pro nizkourovnove verifikace. Ani jedna faze sama o sobe nestaci.
 
@@ -924,22 +926,26 @@ elif classification == "mistake":
 
 **Pravidlo:** P47 — Cross-LLM audit gate. Pre-release: v1 twin scan (architektura, struktura) + v2 code review (implementace, verifikace). Ani jedna faze nestaci sama.
 
+**Provenance:** Agregace z audit session — casove udaje (1.55h) mereny, "~13h" je subjektivni odhad autora. Metodologie v1+v2 overena externim auditorem (Claude, 2026-07-24).
+
 ---
 
 #### GT-063 (lichess-021) — Pattern detection: hardcoded confidence + semantic mismatch (Methodology)
 **Server:** lichess-analyzer | **Status:** Documented | **Typ:** Application logic — Pattern confidence & semantics
 
-**Nalezeno:** Cross-LLM audit v1 + v2. F3 (hardcoded confidence) a N4 (Pattern G semantic mismatch).
+**Nalezeno:** Cross-LLM audit v1 + v2. F3 (hardcoded confidence) a N4 (Pattern G semantic mismatch — frequency vs rate mixup).
 
 **Symptom:**
 1. Confidence vsude hardcoded: 0.6/0.5/0.8/0.7/0.7 v pattern_detector.py, nezavisle na poctu her nebo sile evidence.
-2. Pattern G (closed center) detekovan positional match (tahy `d4 d5`, `e6`, `c6`) misto semantic (centrum blokovano pesci). Nizka presnost — pattern fire i na hrach s opacnou strukturou centra.
+2. Pattern G ("Color as modulator", `_detect_g`) detekuje asymetrii blunder rate mezi hrou za bileho a cerneho (trigger pri `ratio > 1.4`). Pole `frequency = int(max(white_blunder_rate, black_blunder_rate))` vsak micha semantiku — u ostatnich patternu `frequency` = pocet postizenych her, u G = zaokrouhlena blunder rate. `detect_all()` pak filtruje `match.frequency >= pdef.min_occurrences`, coz muze zpusobit, ze pattern projde/neprojde filtrem z jineho duvodu, nez autor zamyslel.
 
-**Root cause:** Pattern detection implementovan jako boolean rules (match/nomatch), bez skore podle poctu her nebo sily evidence.
+**Root cause:** Pattern detection implementovan jako boolean rules (match/nomatch), bez skore podle poctu her nebo sily evidence. Pattern G navic pouziva `frequency` v odlisne semantice nez ostatni detektory.
 
-**Reseni:** Pattern confidence = f(N, evidence_strength). Pravidelnost zvysuje confidence, ale ne linearne. Minimalni N = 5 pro confidence > 0.5. Pattern G: nahradit positional match semantic detectorem (closed pawn chain).
+**Reseni:** Pattern confidence = f(N, evidence_strength). Pravidelnost zvysuje confidence, ale ne linearne. Minimalni N = 5 pro confidence > 0.5. Pattern G: `frequency = len(game_ids)` pro konzistenci semantiky s ostatnimi patterny.
 
 **Pravidlo:** P48 — Pattern confidence weighted by sample size. `confidence = min(0.95, base * (1 - 1/(N+1))) * evidence_factor`. Minimal sample N >= 5.
+
+**Provenance:** Tento zaznam obsahoval v puvodni v3 konfabulaci — Pattern G byl popsan jako "closed center positional match" (tahy `d4 d5`, `e6`, `c6`), coz neodpovida skutecnemu kodu. Opraveno v v4 na zaklade externiho cross-auditu (Claude, 2026-07-24). Reference: `04_KNOWLEDGE_BASE/01_MCP/MCP_GT_ANALYZA_kvalita_originalita_semantika.md`, nalezy B1.
 
 ---
 
@@ -954,6 +960,8 @@ elif classification == "mistake":
 
 **Reseni:** Normalizace: `blunder_rate = blunder_count / moves_in_phase`. Threshold aplikovat na rate, ne na absolutni pocet.
 
+**Provenance:** Nalez N3 z cross-LLM audit v1 (twin scan). Overitelne v diagnostician.py:52. Popis je precizni — zadna konfabulace.
+
 ---
 
 #### GT-065 (lichess-023) — Path traversal via unsanitized game_id / username (Security)
@@ -961,12 +969,21 @@ elif classification == "mistake":
 
 **Nalezeno:** Cross-LLM audit v1 (F2), potvrzeno v2 code review.
 
-**Symptom:** `game_id` a `username` pouzity primo v cestach:
+**Symptom:** `game_id` a `username` pouzity primo v cestach bez sanitizace:
 ```python
-CACHE_DIR / f"{game_id}.json"
-LOGS_DIR / f"{username}_diagnosis.json"
+# game_analyzer.py:14-15
+def _cache_path(game_id, depth, color="white"):
+    return os.path.join(CACHE_DIR, f"{game_id}_{color}_d{depth}.json")
+
+# lichess_client.py:47-48
+def _pgn_cache_path(game_id):
+    return os.path.join(PGN_CACHE_DIR, f"{game_id}.pgn")
+
+# lichess_client.py:74-77
+def _user_games_cache_path(username):
+    return os.path.join(..., f"{username}_games.json")
 ```
-Bez sanitizace. `game_id = "../../sensitive"` by mohl zapisovat/ctist mimo cache adresar.
+Zadna z funkci nesanitizuje vstup pred `os.path.join()`. `game_id = "../../sensitive"` by mohl zapisovat/ctist mimo cache adresar.
 
 **Root cause:** Chybi sanitizace user-supplied identifieru pred filesystem use. Path traversal guard neni implementovan.
 
@@ -974,6 +991,7 @@ Bez sanitizace. `game_id = "../../sensitive"` by mohl zapisovat/ctist mimo cache
 
 **Pravidlo:** P49 — Sanitize user-supplied identifiers before filesystem use. `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na vsech vstupech pred konstrukci File Path. Zaden user input nesmi byt primo v path segmentu.
 
+**Provenance:** Nalez F2 — jadro (sanitizace chybi) spravne, ale puvodni v3 obsahovala fabrikovane code snippety (`LOGS_DIR` neexistuje). Opraveno v v4 na skutecna API (lichess_client.py, game_analyzer.py). Overeno source-read.
 
 ## 4. Průřezová pravidla P1-P40 (konsolidovaná)
 
@@ -1329,7 +1347,7 @@ Při zakládání nového MCP repozitáře:
 16. **API key management** (P39) — `.env` + `auth.json` + `.gitignore` pro vsechny providery
 17. **Per-game LLM cache** (P41) — `{game_id}_llm.json` pro inkrementální agregaci
 18. **Cascade resilience** (P42) — timeout jednoho providera neblokuje pipeline
-19. **Contract testing** (P44) — P44 — Consumer-Driven Contract mezi Stockfish → prompt builder → LLM
+19. **Contract testing** (P44) — Consumer-Driven Contract mezi Stockfish → prompt builder → LLM
 20. **API key health check** (P45) — `verify_api_keys()` při startupu, detekuje 401/402/429
 21. **Mutual exclusive classifications** (P46) — kazda kategorie v if/elif ma vlastni append target. Unit test overi separaci.
 22. **Cross-LLM audit gate** (P47) — v1 twin scan + v2 code review pred major release.
@@ -1342,16 +1360,21 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem bugů (GT-001 az GT-065) | 65 |
-| Fixed | 52 (80%) |
-| Workaround/Mitigated | 5 (8%) |
-| Documented | 8 (12%) |
+| Celkem GT (GT-001 az GT-065) | 65 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 46 |
+| Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
+| Mitigated | 5 |
+| Documented | 8 |
+| Workaround | 2 |
+| **Kontrolni soucet** | **65** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 50 |
-| Z toho cross-repo (platí pro vsechny) | 15 |
+| Z toho cross-repo (plati pro vsechny) | 15 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
 | Z toho zachyceno contract testy (GT-059) | 1 |
 
+**Poznamka ke statistice:** `Fixed` (46) + `Implemented` (4) + `Mitigated` (5) + `Documented` (8) + `Workaround` (2) = 65. `Fixed` zahrnuje kombinovane statusy: `Fixed / Mitigated` a `Fixed (policy)`. `Implemented` je vlastni kategorie — oznacuje novy feature/mechanismus (napr. L2 cache, pipeline mode switch), ne opravu chyby. Slouceni techto kategorii do jedne "Fixed" (jako ve v3) by zkreslovalo pomer oprav vs. novych funkci.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-24 — v3 — Cross-LLM audit session: GT-061 az GT-065 (mistakes bug, audit workflow methodology, pattern detection confidence/path traversal security, diagnostician normalization), pravidla P46-P49. Cross-LLM audit gate (P47) jako standard pre-release process. Rozsirena sekce 4 o P45-P49. Update statistik a dedicneho checklistu.*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-24 — v4 — Cross-audit fixy: GT-063 (oprava konfabulace Pattern G), GT-065 (oprava fabrikovanych code snippet), GT-062 (13h oznaceno jako odhad). Konsolidace statistik (transparentni rozpad statusu). Oprava hlavicky na Verze: 4. Pridan provenance tag system pro GT-061 az GT-065. C4: odstranena duplicita "P44 — P44" v sekci 7. Reference: MCP_GT_ANALYZA_kvalita_originalita_semantika.md.*
