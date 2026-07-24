@@ -872,6 +872,109 @@ V enterprise microservices se pouziva **Pact** (pact.io) — consumer definuje o
 **Pravidlo:** P45 - API key health check pri startupu. `verify_api_keys()` v `server.py`. Lightweight ping (max_tokens=1, timeout=10s). Detekuje neplatny/vyprseny klic pred prvnim tool volanim.
 
 
+#### GT-061 (lichess-019) — mistakes list always empty (Cross-LLM Audit N1)
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Classification branch bug
+
+**Nalezeno:** Cross-LLM audit v2 (code path verification, 2026-07-24). Predchozi audity (v1 twin, rucni code review) neodhalily.
+
+**Symptom:** `GameAnalysis.mistakes` je vzdy prazdny. Vsechny tahy s cp loss 150-299 cp konci v `blunders` misto `mistakes`.
+
+**Root cause:** `game_analyzer.py:161-162`:
+```python
+if classification in ("blunder", "mistake"):
+    analysis.blunders.append(...)
+```
+Chybi separatni `elif classification == "mistake"` branch. Obe kategorie sdieleji append target.
+
+**Fix:** Rozdeleni na separatni vetve:
+```python
+if classification == "blunder":
+    analysis.blunders.append(...)
+elif classification == "mistake":
+    analysis.mistakes.append(...)
+```
+
+**Dopad:** 100% tahu s cp loss 150-299 cp je chybne oznaceno jako blunder. Ovlivnuje: coaching report, diagnostician analyzu, pattern detection. Latentni od v1.0.
+
+**Detection gap:** Contract testy (P44) kontroluji klicove struktury, ale ne overuji, ze kazda kategorie ma vlastni cil. Unit testy nepokryvaji vetveni classification logiky.
+
+**Pravidlo:** P46 — Classification branches must be mutually exclusive. Kazda kategorie v if/elif chainu musi mit vlastni append target. Unit test musi overit, ze zadne dve kategorie nesdileji stejny cil.
+
+---
+
+#### GT-062 (lichess-020) — Cross-LLM audit workflow validation (Methodology)
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Methodology — Development process
+
+**Poznatek:** Prvni cross-LLM audit lichess-analyzer-mcp probehl 2026-07-24 ve dvou fazich:
+1. **v1 (DIGITAL_TWIN, de novo scan):** 13h brain dump knowledge + architecture analysis → 8 nalezu (4 structural, 4 pattern-based)
+2. **v2 (Code review, citelny kod):** Code path verification → 7 nalezu (5 implementation, 2 security confirmed)
+
+**Vysledky:**
+| Metrika | Hodnota |
+|---------|---------|
+| Celkem unikatnich nalezu | 12 |
+| v1→v2 confirm rate | 71 % (5/7 code review nalezu potvrzeno z v1) |
+| v2-only nalezy (unikli twinovi) | 2 (N1: mistakes bug, N4: Pattern G semantic) |
+| Efektivita | 9.6 nalezu/hod (15 / 1.55h) |
+| Twin time-to-audit | 13h knowledge → 5 min audit script |
+
+**Zaver:** Twin scan (de novo bez kodu) spolehlive zachyti architekturni a structuralni problemy, ale unikaji mu implementacni detaily (chybejici elif, semantic mismatches). Code review (v2) je nezbytny pro nizkourovnove verifikace. Ani jedna faze sama o sobe nestaci.
+
+**Doporuceni:** Cross-LLM audit gate: v1 (twin, architecture scan) + v2 (code review, implementation scan) pred kazdym major release.
+
+**Pravidlo:** P47 — Cross-LLM audit gate. Pre-release: v1 twin scan (architektura, struktura) + v2 code review (implementace, verifikace). Ani jedna faze nestaci sama.
+
+---
+
+#### GT-063 (lichess-021) — Pattern detection: hardcoded confidence + semantic mismatch (Methodology)
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Application logic — Pattern confidence & semantics
+
+**Nalezeno:** Cross-LLM audit v1 + v2. F3 (hardcoded confidence) a N4 (Pattern G semantic mismatch).
+
+**Symptom:**
+1. Confidence vsude hardcoded: 0.6/0.5/0.8/0.7/0.7 v pattern_detector.py, nezavisle na poctu her nebo sile evidence.
+2. Pattern G (closed center) detekovan positional match (tahy `d4 d5`, `e6`, `c6`) misto semantic (centrum blokovano pesci). Nizka presnost — pattern fire i na hrach s opacnou strukturou centra.
+
+**Root cause:** Pattern detection implementovan jako boolean rules (match/nomatch), bez skore podle poctu her nebo sily evidence.
+
+**Reseni:** Pattern confidence = f(N, evidence_strength). Pravidelnost zvysuje confidence, ale ne linearne. Minimalni N = 5 pro confidence > 0.5. Pattern G: nahradit positional match semantic detectorem (closed pawn chain).
+
+**Pravidlo:** P48 — Pattern confidence weighted by sample size. `confidence = min(0.95, base * (1 - 1/(N+1))) * evidence_factor`. Minimal sample N >= 5.
+
+---
+
+#### GT-064 (lichess-022) — Diagnostician: middlegame absolute count vs per-move rate (Methodology)
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Application logic — Normalization
+
+**Nalezeno:** Cross-LLM audit v1 (N3).
+
+**Symptom:** `diagnostician.py:52` pouziva absolutni pocet blunderu v middlegame misto blunders-per-move rate. Hry s vice tahy maji prirozene vice chyb = bias vuci dlouhym hram.
+
+**Root cause:** `blunder_count > threshold` bez normalizace poctem provedenych tahu v dane fazi.
+
+**Reseni:** Normalizace: `blunder_rate = blunder_count / moves_in_phase`. Threshold aplikovat na rate, ne na absolutni pocet.
+
+---
+
+#### GT-065 (lichess-023) — Path traversal via unsanitized game_id / username (Security)
+**Server:** lichess-analyzer | **Status:** Mitigated | **Typ:** Security — Path traversal
+
+**Nalezeno:** Cross-LLM audit v1 (F2), potvrzeno v2 code review.
+
+**Symptom:** `game_id` a `username` pouzity primo v cestach:
+```python
+CACHE_DIR / f"{game_id}.json"
+LOGS_DIR / f"{username}_diagnosis.json"
+```
+Bez sanitizace. `game_id = "../../sensitive"` by mohl zapisovat/ctist mimo cache adresar.
+
+**Root cause:** Chybi sanitizace user-supplied identifieru pred filesystem use. Path traversal guard neni implementovan.
+
+**Reseni:** `re.sub(r'[^a-zA-Z0-9_-]', '_', game_id)` nebo `re.sub(r'[^a-zA-Z0-9_.-]', '_', username)` na vsech vstupech pred konstrukci cesty.
+
+**Pravidlo:** P49 — Sanitize user-supplied identifiers before filesystem use. `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na vsech vstupech pred konstrukci File Path. Zaden user input nesmi byt primo v path segmentu.
+
+
 ## 4. Průřezová pravidla P1-P40 (konsolidovaná)
 
 ### P1 — Paralelizace
@@ -1056,7 +1159,22 @@ Timeout nebo error jednoho providera v cascade nesmí blokovat pipeline. Cascade
 N≤30 → monolit (1 LLM call). N>30 → inkrementalni (per-game cache + aggregate). Golden rules: rychlá analýza = monolit, hromadná / PGN import = inkrementalni. Explicitní override pres `PIPELINE_MODE` env var.
 
 ### P44 — Contract testy mezi moduly (Consumer-Driven Contract)
-Kazdy modul v pipeline (Stockfish analyzer → prompt builder → LLM) musí mit contract test, ktery overuje konzistenci klícu mezi producerem a consumerem. Consumer definuje kontrakt (jake klíce potrebuje). Test je schema test na realnych datech + placeholder detection. Profesionalni nastroj: Pact. Lightweight varianta: `assert key in data` + `assert "?" not in prompt`. Reference: `01_METODIKY/05_testing/contract_testing_ontologie_v1.md`.
+Kazdy modul v pipeline (Stockfish analyzer → prompt builder → LLM) musi mit contract test, ktery overuje konzistenci klícu mezi producerem a consumerem. Consumer definuje kontrakt (jake klíce potrebuje). Test je schema test na realnych datech + placeholder detection. Profesionalni nastroj: Pact. Lightweight varianta: `assert key in data` + `assert "?" not in prompt`. Reference: `01_METODIKY/05_testing/contract_testing_ontologie_v1.md`.
+
+### P45 — API key health check pri startupu
+`verify_api_keys()` v `server.py`. Lightweight ping (max_tokens=1, timeout=10s, per-provider). Detekuje neplatny/vyprseny/rate-limited klic pred prvnim tool volanim. Fail fast. Reference: GT-060.
+
+### P46 — Classification branches must be mutually exclusive
+Kazda kategorie v if/elif chainu musi mit vlastni append target. Spolecny cil = tichy data corruption. Unit test overuje, ze zadne dve kategorie nesdileji stejny cil. Reference: GT-061.
+
+### P47 — Cross-LLM audit gate
+Pred major release: v1 twin scan (architektura, struktura, bez kodu) + v2 code review (implementace, verifikace). Ani jedna faze nestaci sama. Reference: GT-062.
+
+### P48 — Pattern confidence weighted by sample size
+`confidence = min(0.95, base * (1 - 1/(N+1))) * evidence_factor`. Minimal sample N >= 5. Hardcoded confidence neodrazi silu evidence. Reference: GT-063.
+
+### P49 — Sanitize user-supplied identifiers before filesystem use
+`re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na vsech vstupech (game_id, username, job_id) pred konstrukci File Path. Zaden user input nesmi byt primo segment v ceste. Reference: GT-065.
 
 ---
 
@@ -1213,6 +1331,10 @@ Při zakládání nového MCP repozitáře:
 18. **Cascade resilience** (P42) — timeout jednoho providera neblokuje pipeline
 19. **Contract testing** (P44) — P44 — Consumer-Driven Contract mezi Stockfish → prompt builder → LLM
 20. **API key health check** (P45) — `verify_api_keys()` při startupu, detekuje 401/402/429
+21. **Mutual exclusive classifications** (P46) — kazda kategorie v if/elif ma vlastni append target. Unit test overi separaci.
+22. **Cross-LLM audit gate** (P47) — v1 twin scan + v2 code review pred major release.
+23. **Pattern confidence weighting** (P48) — `f(N, evidence_strength)`, hardcoded confidence zakazano.
+24. **Path sanitization** (P49) — `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na user inputech pred filesystem use.
 
 ---
 
@@ -1220,15 +1342,16 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem bugů (GT-001 az GT-059) | 59 |
-| Fixed | 50 (85%) |
+| Celkem bugů (GT-001 az GT-065) | 65 |
+| Fixed | 52 (80%) |
 | Workaround/Mitigated | 5 (8%) |
-| Documented | 4 (7%) |
+| Documented | 8 (12%) |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 48 |
-| Z toho cross-repo (platí pro vsechny) | 13 |
+| Z toho application logic issues | 50 |
+| Z toho cross-repo (platí pro vsechny) | 15 |
+| Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
 | Z toho zachyceno contract testy (GT-059) | 1 |
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-20 — v2 — Rozsírení o LLM reasoning pipeline: GT-045 az GT-060, pravidla P30-P45, SNR framework, provider governance, per-game LLM cache, pipeline mode switch, contract testy. Pridany lichess-analyzer LLM sekce (3.5).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-24 — v3 — Cross-LLM audit session: GT-061 az GT-065 (mistakes bug, audit workflow methodology, pattern detection confidence/path traversal security, diagnostician normalization), pravidla P46-P49. Cross-LLM audit gate (P47) jako standard pre-release process. Rozsirena sekce 4 o P45-P49. Update statistik a dedicneho checklistu.*
