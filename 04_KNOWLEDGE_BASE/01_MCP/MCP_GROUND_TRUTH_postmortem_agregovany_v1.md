@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-07-24 | **Verze:** 4
+**Datum:** 2026-07-26 | **Verze:** 5
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -991,10 +991,109 @@ Zadna z funkci nesanitizuje vstup pred `os.path.join()`. `game_id = "../../sensi
 **Reseni:** `re.sub(r'[^a-zA-Z0-9_-]', '_', game_id)` nebo `re.sub(r'[^a-zA-Z0-9_.-]', '_', username)` na vsech vstupech pred konstrukci cesty.
 
 **Pravidlo:** P49 — Sanitize user-supplied identifiers before filesystem use. `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na vsech vstupech pred konstrukci File Path. Zaden user input nesmi byt primo v path segmentu.
-
 **Provenance:** Nalez F2 — jadro (sanitizace chybi) spravne, ale puvodni v3 obsahovala fabrikovane code snippety (`LOGS_DIR` neexistuje). Opraveno v v4 na skutecna API (lichess_client.py, game_analyzer.py). Overeno source-read.
 
-## 4. Průřezová pravidla P1-P40 (konsolidovaná)
+---
+
+#### GT-066 (lichess-024): Pipeline consistency — max_games hidden clamp
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Hidden limit
+
+**Symptom:** `fetch_games(max_games=999)` nikdy nevrátí více než 50 her. Interní clamp `min(50, max_games)` ignoruje explicitní request. Stejný clamp v `match_patterns` a `diagnose_player` — default 50 aplikovaný i při požadavku na vyšší počet.
+
+**Root cause:** Trojice clampů:
+1. `fetch_games.py` — `max(1, min(pages, 50))` v dokumentaci i kódu, ale popis sliboval 999
+2. `match_patterns.py` — `max_games=50` v argumentu + `clamp(1, 50)` bez signalizace
+3. `diagnose_player.py` — stejný clamp
+
+Uživatel zadá `max_games=100` → tichý ořez na 50. Žádný warning. Cache zůstane nekonzistentní — načteno 50, analyzováno 50, ale index hlásí 63 her.
+
+**Fix:**
+1. `fetch_games.py`: clamp změněn na `clamp(1, 999)`, dokumentace konzistentní
+2. `match_patterns.py` + `diagnose_player.py`: clamp odstraněn, ponecháno `max_games=999` v parametru
+3. Kontrola: `get_pending_analysis()` vrací rozdíl mezi game indexem a analyzovanými hrami
+
+**Pravidlo:** P50 — Parametr clamp musí být explicitně signalizován uživateli. Pokud clamp snižuje hodnotu, logovat warning: `f"[clamp] max_games={max_games} clamped to {clamped}"`.
+
+**Provenance:** Overeno source-read fetch_games.py, match_patterns.py, diagnose_player.py (2026-07-26).
+
+---
+
+#### GT-067 (lichess-025): Pending analysis — missing warning mechanism
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Cache consistency gap
+
+**Symptom:** Uživatel zavolá `diagnose_player` nebo `match_patterns` na N hrách, ale M není dosud analyzováno Stockfishem. Tool vrátí nekompletní výsledky bez jakéhokoliv upozornění. Pipeline je konzistentní podle cache → bug-free, ale uživatel má falešný pocit kompletnosti.
+
+**Root cause:** Chybí mechanismus (a) detekce pending her a (b) signalizace uživateli. Všechny tooly analyzují jen tolik her, kolik je v cache, bez kontroly rozdílu proti indexu.
+
+**Fix:**
+1. `get_pending_analysis()` v `lichess_client.py` — porovná index vs. cache, vrátí počet + seznam pending game ID
+2. Warning v `match_patterns.py` a `diagnose_player.py`: `f"[warning] {n_pending} her není analyzováno. Použij lichess_analyze_pending pro doanalýzu."`
+3. `analyze_pending.py` — nový MCP tool pro batch doanalýzu pending her (depth d, max_games, auto-detect)
+
+**Pravidlo:** P51 — Každý tool závislý na per-game cache musí před zpracováním zkontrolovat pending count a varovat uživatele. Struktura: cache-first → pending warning → processing → výsledek.
+
+**Provenance:** Overeno source-read (2026-07-26).
+
+---
+
+#### GT-068 (lichess-026): Berserk 0.14 — no `before` pagination parameter
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Environment — Library limitation
+
+**Symptom:** První pokus o paginaci her použil `client.games.export_by_player(..., before=last_created_at)` → `TypeError: unexpected keyword argument 'before'`. Berserk vrací jen nejnovějších ~30-60 her z endpointu `GET /api/games/user/{username}` (server-side limit).
+
+**Root cause:** Berserk 0.14 nepodporuje `before` parametr v `export_by_player()`. Tento parametr byl přidán až v berserk 0.15+. API endpoint Lichess podporuje `before`, ale berserk knihovna ho neexponuje.
+
+**Dopad:** Nelze stáhnout historické hry mimo "recent" okno (cca 30-60 her). Paginace je omezena na to, co server vrátí v prvním response. Omezení není kritické pro coaching (63 her = celý recent dataset), ale znemožňuje analýzu deep history (>60 her).
+
+**Fix:** Reverzní — kód vrácen do původního stavu bez `before`. Paginace řešena interně berserkem. Feature request: upgrade na berserk 0.15+ až bude k dispozici.
+
+**Pravidlo:** P52 — Před použitím parametru knihovny ověř jeho dostupnost v aktuální verzi. `pip show berserk | grep Version`. API dokumentace Lichess a berserk dokumentace mohou být desynchronizované.
+
+**Provenance:** Overeno runtime error (2026-07-26), verifikováno `pip show berserk = 0.14.0`.
+
+---
+
+#### GT-069 (lichess-027): opencode MCP tool cache — tool registered but invisible
+**Server:** lichess-analyzer | **Status:** Workaround | **Typ:** Infrastructure — opencode host caching
+
+**Symptom:** `lichess_analyze_pending` tool je registrován v Python kódu (`@app.tool()` dekorátor, FastMCP init), ale v opencode client tool listu není vidět. Python import funguje (`from .tools.analyze_pending import ...`), FastMCP registruje, ale host neaktualizuje tool list.
+
+**Root cause:** opencode host udržuje cache tool listu při startu. Nový tool přidaný za běhu (restart serveru) se neprojeví, dokud host znovu nenačte tool list z MCP `initialize` handshake. opencode nerevaliduje tool list při reconnectu nebo session refresh — používá cached verzi z prvního handshaku.
+
+**Dopad:** Tool existuje v Python procesu (`app._tool_manager.list_tools()`), je volatelný přes přímé API, ale není dostupný přes opencode tool selection UI. Uživatel ho nemůže vybrat ani zavolat.
+
+**Práce:** (1) Restartovat opencode celý (ne jen MCP server). (2) Nebo volat Python přímo: `.venv/Scripts/python -c "from src.server import app; app.call_tool('analyze_pending', {...})"`.
+
+**Fix (budoucí):** opencode by měl podporovat hot-reload tool listu nebo periodickou revalidaci. Alternativně: skill `mcp-server-update` pro vynucení refresh.
+
+**Pravidlo:** P53 — MCP tool registrace není dostatečná pro viditelnost v host clientu. Po přidání nového toolu: (1) restart MCP server, (2) restart opencode session, (3) ověř v `list_tools` že tool je vidět. Tool list je snapshot při initialize handshaku.
+
+**Provenance:** Overeno prakticky — `list_tools` neobsahuje analyze_pending (2026-07-26).
+
+---
+
+#### GT-070 (lichess-028): Pattern G (Color as modulator) — new pattern detection
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Application logic — New pattern
+
+**Symptom:** Při analýze 63 her (44W/17L/2D) detekován nový pattern: hráč hraje výrazně hůře jako White (1.47× více bludrů) než jako Black. Pattern má confidence 49% (N=63, base 0.4 * evidence_factor 1.22).
+
+**Root cause:** Pattern G v `pattern_detector.py` porovnává blunder rate (blunders/game) mezi White a Black games. Trigger při `ratio > 1.4`. Dříve nebyl detekován kvůli:
+1. Nízkému N v předchozích analýzách (28 her, nedostatečný sample)
+2. Hardcoded confidence (0.5) bez vztahu k sample size — pred GT-063 fixem
+
+**Význam:** Color as modulator je vzácný pattern — většina hráčů má symetrickou chybovost. Jeho detekce signalizuje specifický psychologický nebo opening-preference problém. Vyžaduje separátní tréninkový přístup (opening repertoire review, time management jako White).
+
+**Fix:** Pattern G zachován v pattern setu. Confidence vážena dle P48 (f(N, evidence_strength)). `frequency` sémantika sjednocena s ostatními patterny (počet her, ne blunder rate).
+
+**Pravidlo:** P54 — Pattern discovery je vedlejší produkt pipeline. Nový pattern musí být validován: (a) N >= 30 pro statistickou signifikanci, (b) ratio >= 1.4 pro praktickou relevanti, (c) potvrzen v 2+ nezávislých analýzách.
+
+**Provenance:** Detekován `match_patterns(max_games=63)` na datech 2026-07-26. Overeno vizuální kontrolou blunder distribuce.
+
+As compared with lichess-analyzer.
+
+---
+
+## 4. Průřezová pravidla P1-P54 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1195,9 +1294,24 @@ Pred major release: v1 twin scan (architektura, struktura, bez kodu) + v2 code r
 ### P49 — Sanitize user-supplied identifiers before filesystem use
 `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na vsech vstupech (game_id, username, job_id) pred konstrukci File Path. Zaden user input nesmi byt primo segment v ceste. Reference: GT-065.
 
+### P50 — Parametr clamp musí být signalizován
+Pokud clamp (max/min) implicitně ořezává uživatelský vstup, musí logovat warning: `f"[clamp] {param}={value} clamped to {clamped}"`. Tichý ořez = nekonzistentní chování. Reference: GT-066.
+
+### P51 — Pending analysis warning
+Každý tool závislý na per-game cache musí před zpracováním zkontrolovat pending count a varovat uživatele. Struktura: cache-first → pending warning → processing → výsledek. Reference: GT-067.
+
+### P52 — Ověř parametr knihovny před použitím
+`pip show <library> | grep Version` před použitím nového API parametru. API dokumentace Lichess a berserk dokumentace mohou být desynchronizované. Reference: GT-068.
+
+### P53 — MCP tool list je initialize snapshot
+Po přidání nového toolu: (1) restart MCP server, (2) restart opencode session, (3) ověř v `list_tools`. Tool list se neaktualizuje za běhu. Reference: GT-069.
+
+### P54 — Pattern discovery validace
+Nový pattern musí být validován: (a) N >= 30 pro statistickou signifikanci, (b) ratio >= 1.4 pro praktickou relevanti, (c) potvrzen v 2+ nezávislých analýzách. Reference: GT-070.
+
 ---
 
-## 5. Diagnostický filtr — 49 checkpoints
+## 5. Diagnostický filtr — 54 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1278,6 +1392,13 @@ Pred major release: v1 twin scan (architektura, struktura, bez kodu) + v2 code r
 48. Je main() sync `def main(): app.run()`? Nikdy `async` + `asyncio.run()` (P29)
 49. Ma `.pth` soubor po `pip install -e .` project root + `src/`, ne jen `src/`? (P29)
 
+### P — Pipeline consistency & cache governance (P50-P54)
+50. Je parametr clamp explicitně signalizován warningem při ořezu? (P50)
+51. Kontroluje tool před zpracováním pending count a varuje uživatele? (P51)
+52. Je verze knihovny ověřena před použitím nového API parametru? (P52)
+53. Je nový tool viditelný v `list_tools` po restartu serveru + opencode session? (P53)
+54. Je nový pattern validován N>=30, ratio>=1.4, 2+ analýzami? (P54)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1354,6 +1475,11 @@ Při zakládání nového MCP repozitáře:
 22. **Cross-LLM audit gate** (P47) — v1 twin scan + v2 code review pred major release.
 23. **Pattern confidence weighting** (P48) — `f(N, evidence_strength)`, hardcoded confidence zakazano.
 24. **Path sanitization** (P49) — `re.sub(r'[^a-zA-Z0-9_-]', '_', value)` na user inputech pred filesystem use.
+25. **Parametr clamp signalizace** (P50) — clamp nesmi byt tichy, logovat warning pri orezavani.
+26. **Pending analysis warning** (P51) — detekce + signalizace neanalyzo-vanych her pred kazdym tool zpracovanim.
+27. **Library version check** (P52) — `pip show <library>` pred pouzitim noveho API parametru.
+28. **Tool list snapshot** (P53) — po pridani toolu restartovat server + opencode session, overit `list_tools`.
+29. **Pattern discovery validation** (P54) — N>=30, ratio>=1.4, potvrzeno 2+ analyzami.
 
 ---
 
@@ -1361,21 +1487,21 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-065) | 65 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 46 |
+| Celkem GT (GT-001 az GT-070) | 70 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 48 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 5 |
-| Documented | 8 |
-| Workaround | 2 |
-| **Kontrolni soucet** | **65** |
+| Documented | 10 |
+| Workaround | 3 |
+| **Kontrolni soucet** | **70** |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 50 |
+| Z toho application logic issues | 54 |
 | Z toho cross-repo (plati pro vsechny) | 15 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
-| Z toho zachyceno contract testy (GT-059) | 1 |
+| Z toho coaching session 2026-07-26 | 5 (GT-066 az GT-070) |
 
-**Poznamka ke statistice:** `Fixed` (46) + `Implemented` (4) + `Mitigated` (5) + `Documented` (8) + `Workaround` (2) = 65. `Fixed` zahrnuje kombinovane statusy: `Fixed / Mitigated` a `Fixed (policy)`. `Implemented` je vlastni kategorie — oznacuje novy feature/mechanismus (napr. L2 cache, pipeline mode switch), ne opravu chyby. Slouceni techto kategorii do jedne "Fixed" (jako ve v3) by zkreslovalo pomer oprav vs. novych funkci.
+**Poznamka ke statistice:** `Fixed` (48) + `Implemented` (4) + `Mitigated` (5) + `Documented` (10) + `Workaround` (3) = 70. `Fixed` zahrnuje kombinovane statusy: `Fixed / Mitigated` a `Fixed (policy)`. `Implemented` je vlastni kategorie — oznacuje novy feature/mechanismus (napr. L2 cache, pipeline mode switch), ne opravu chyby. Slouceni techto kategorii do jedne "Fixed" by zkreslovalo pomer oprav vs. novych funkci. Polozky GT-066 az GT-070 pridany v5 (2026-07-26) — pipeline consistency audit + opencode tool cache limbo.
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-24 — v4 — Cross-audit fixy: GT-063 (oprava konfabulace Pattern G), GT-065 (oprava fabrikovanych code snippet), GT-062 (13h oznaceno jako odhad). Konsolidace statistik (transparentni rozpad statusu). Oprava hlavicky na Verze: 4. Pridan provenance tag system pro GT-061 az GT-065. C4: odstranena duplicita "P44 — P44" v sekci 7. Reference: MCP_GT_ANALYZA_kvalita_originalita_semantika.md.*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-26 — v5 — Pridano GT-066 az GT-070 (pipeline consistency audit: hidden clamp, pending warning mechanism, berserk 0.14 pagination, opencode tool cache limbo, Pattern G discovery). Pridana pravidla P50-P54. Rozsiren checklist dedictvi o 5 polozek. Aktualizovany statistiky (70 entries).*
