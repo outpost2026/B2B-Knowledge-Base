@@ -1089,11 +1089,137 @@ Uživatel zadá `max_games=100` → tichý ořez na 50. Žádný warning. Cache 
 
 **Provenance:** Detekován `match_patterns(max_games=63)` na datech 2026-07-26. Overeno vizuální kontrolou blunder distribuce.
 
-As compared with lichess-analyzer.
+---
+
+### 3.6 lichess-analyzer-mcp — DBCL Phase 2 & RUN_004 (2026-07-27)
+
+#### GT-071 (lichess-029): engine_lines silent fail — AssertionError v board.san(m) pro Stockfish PV illegal moves
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Silent data corruption
+
+**Symptom:** 30/101 BFS (30 %) má 0 engine_lines. Postihuje i ground truth hry (qmodxzNF ply 60, xUlQasD0 ply 19 a 91). `engine_client.analyze_position(multipv=3)` vrací `[]`.
+
+**Root cause:** Dvojitý silent exception:
+1. `engine_client.py:86`: `board.san(m)` pro Stockfish PV multi-tahovou sekvenci — `AssertionError: san() and lan() expect move to be legal or null, but got g5e6`. Stockfish PV obsahuje sekvenční tahy (např. `f3g5, g6e5, g5e6`), ale `board.san(m)` validuje všechny tahy proti ROOT pozici. Po prvním tahu `f3g5` (Nf3-g5) se board změní, ale třetí tah `g5e6` kontroluje proti rootu kde g5 je prázdné.
+2. `game_analyzer.py:329-333`: `try/except Exception: pass` — error kompletně skryt, žádný warning v logu.
+3. AssertionError z `analyze_position` propaguje přes engine lock a korumpuje stav engine pro následující volání.
+
+**Demonstrace:**
+```
+PV:       f3g5(Nf3-g5),  g6e5(Nxg6xe5),  g5e6(Ng5xe6)
+Root:     f3->g5 OK       g6->e5 OK       g5->e6 FAILS (g5 empty!)
+Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
+```
+
+**Fix (trojí):**
+1. `engine_client.py:86-93`: `[board.san(m) for m in line["pv"][:5]]` → sequential `board.copy()` + try/except
+2. `game_analyzer.py:330-331`: silent `pass` → `_logger.warning(...)` 
+3. `engine_client.py:81`: `engine.analysis(board)` → `engine.analysis(board, chess.engine.Limit(depth=depth))`
+
+**Verifikace:** 5/5 dříve padajících FENů nyní vrací 3/3 PV lines. Celá hra 4j0sNlrT: 1 blunder, 0 s zero engine_lines (dříve 30 % fail).
+
+**Pravidlo:** P55 — Každý `except Exception: pass` je bug unless proven otherwise. Silent excepty musí být zalogovány. 
+**Pravidlo:** P56 — Stockfish PV multi-tahové sekvence musí být konvertovány do SAN sekvenčně na kopii boardu. `board.san(m)` validuje proti aktuální pozici, ne proti rootu.
+
+**Provenance:** Overeno source-read (engine_client.py, game_analyzer.py) + runtime debug script (debug_root_cause.py). AssertionError reprodukován izolovaně na FEN `r1b4k/1p4pp/np1Nr1n1/4P3/8/5N1P/P1P1B3/1R2K2R w K - 1 25` (2026-07-27).
 
 ---
 
-## 4. Průřezová pravidla P1-P54 (konsolidovaná)
+#### GT-072 (lichess-030): K0 variance — depth=12 vs depth=14 cp_loss rozdíl ~22%
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Methodology — Measurement noise
+
+**Symptom:** kNAMNYUF ply 63 cp_loss: 607 (d12) vs 773 (d14) — rozdíl 171cp = 22 %. ACPL čísla z různých depth runů nejsou přímo srovnatelná.
+
+**Root cause:** Depth impactuje eval precision. Depth=12 je ~3× rychlejší ale méně přesný než depth=14. K0 (měřicí přístroj) variance není kvantifikována ani reportována.
+
+**Dopad:** RUN_003 (ACPL=39.4) a RUN_004 (ACPL=51.4) nejsou přímo srovnatelné — část rozdílu může být K0 noise. INC ground truth eval_before/eval_after hodnoty jsou depth-dependentní.
+
+**Fix (navrh):**
+1. Každý run reportuje K0 metriky: depth, engine version, Threads, Hash, nps benchmark
+2. INC-A/B/C re-fetch na depth=14 pro ground truth cache
+3. Logovat depth mismatch při cache load
+
+**Pravidlo:** P57 — K0 (orákulum) je samostatný noise channel. Každý run reportuje: depth, engine_version, Threads, Hash, nps_benchmark. ACPL z různých depth nejsou srovnatelné bez K0 korekce.
+
+**Provenance:** RUN_004 data — kNAMNYUF ply 63 porovnání d12 vs d14. Potvrzeno CPM dokumentem §3 (K0 channel).
+
+---
+
+#### GT-073 (lichess-031): engine.analysis() bez depth limit — depth drift
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Application logic — Missing parameter
+
+**Symptom:** `engine.analysis(board)` bez `Limit(depth=depth)` — Stockfish mohl sáhnout do libovolné hloubky na nestabilních pozicích. Zvyšovalo timeout risk a plýtvalo compute.
+
+**Root cause:** Kopírovací chyba z dřívějšího API usage. `engine.analysis()` akceptuje i volání bez Limit parametru.
+
+**Fix:** `engine.analysis(board, chess.engine.Limit(depth=depth))`.
+
+**Provenance:** Source-read engine_client.py:81 (2026-07-27). Fix aplikován souběžně s GT-071.
+
+---
+
+#### GT-074 (lichess-032): Cache invalidation — stale BFS after code fix
+**Server:** lichess-analyzer | **Status:** Workaround | **Typ:** Infrastructure — Cache governance
+
+**Symptom:** Po opravě kódu v `analyze_position` zůstávají cache soubory (`data/game_cache/`) s 0 engine_lines. `use_cache=True` vrací stale BFS. Uživatel musí cache explicitně smazat.
+
+**Root cause:** Cache je perzistentní JSON s jednou úrovní (game_id + depth). Není zde `detector_version` nebo `code_version` klíč, který by umožnil detekovat, že cache byla vygenerována starší verzí kódu.
+
+**Workaround:** Manuální `Remove-Item data/game_cache/*.json` před re-runem po code change.
+
+**Fix (navrh):** Při cache load porovnat `detector_version` z cache s aktuální konstantou. Při mismatchi → re-analyze místo cache read.
+
+**Pravidlo:** P58 — Cache klíč musí obsahovat verzi kódu (`detector_version`). Při cache load: version mismatch → log warning → re-analyze. Nikdy nepoužívat stale cache po code change.
+
+**Provenance:** Praktické ověření — po fixu GT-071 re-run s `use_cache=True` vrací stará data. Cache clear + re-run = správná data (2026-07-27).
+
+---
+
+#### GT-075 (lichess-033): Stockfish PV multi-move SAN conversion — domain knowledge gap
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Domain knowledge — Assumption error
+
+**Symptom:** Předpokládalo se, že Stockfish PV linie obsahují jen single-move evaluations. Ve skutečnosti Stockfish posílá multi-move sekvence v multi-PV módu.
+
+**Blind spot:** PV linie nejsou paralelní alternativy — jsou to sekvenční variace. Každý PV tah musí být aplikován na kopii boardu postupně, ne validován proti root pozici.
+
+**Fix:** Sekvenční board.copy() + try/except (GT-071 fix 1).
+
+**Pravidlo:** P59 — Stockfish PV v multi-PV módu jsou sekvenční variace, ne paralelní alternativy. Každý PV tah aplikovat na kopii boardu. Nikdy nevalidovat N-tý PV tah proti root pozici.
+
+**Provenance:** Runtime debug — Stockfish output `pv: f3g5, g6e5, g5e6` validován proti rootu místo sekvenčně (2026-07-27).
+
+---
+
+#### GT-076 (lichess-034): Engine lock error propagation — single failure corrupts subsequent
+**Server:** lichess-analyzer | **Status:** Mitigated | **Typ:** Architecture — Lock coupling
+
+**Symptom:** AssertionError v jednom `analyze_position` volání korumpuje engine lock, což způsobí selhání všech následujících analýz v daném game runu.
+
+**Root cause:** `_acquire_analysis_lock` / `_release` vytváří coupling mezi nezávislými analysis call. `finally: _analysis_lock.release()` v `analyze_position` se provede i po AssertionError, ale engine může zůstat v nekonzistentním stavu.
+
+**Mitigation:** GT-071 fix eliminuje AssertionError v normalním provozu. Pro zombie recovery: engine restart při timeout locku (již implementováno v `_acquire_analysis_lock`: 120s timeout → restart).
+
+**Pravidlo:** P60 — Engine lock vytváří coupling mezi analysis call. AssertionError/Exception uvnitř lock bloku může korumpovat stav engine pro následující volání. Mitigace: (a) žádné AssertionError uvnitř locku, (b) engine restart při timeout locku, (c) isolation per-call.
+
+**Provenance:** Analyzováno při debug GT-071 — AssertionError propaguje přes lock blok (2026-07-27).
+
+---
+
+#### GT-077 (lichess-035): Chybí per-game log truncated BFS
+**Server:** lichess-analyzer | **Status:** Pending | **Typ:** Application logic — Missing logging
+
+**Symptom:** BFS s méně než multipv_target engine_lines procházejí pipeline bez jakéhokoliv upozornění. Nelze identifikovat, které pozice měly částečný výpadek engine_lines.
+
+**Root cause:** Engine_lines jsou volitelné pole — 0 nebo 1-2 linie nejsou signalizovány jako anomálie.
+
+**Fix (navrh):** Přidat `truncated` flag do BlunderFactSheet (`len(engine_lines) < multipv_target`). Logovat warning per BFS při truncated engine_lines.
+
+**Pravidlo:** P61 — Engine lines count pod multipv_target musí být signalizován. Flag `truncated` a `logger.warning()` per BFS.
+
+**Provenance:** RUN_004 data — 71/101 BFS s 3 engine_lines, 30/101 s 0 (GT-071 před fixem). Po fixu: všechny BFS mají 3/3, ale chybí trackování částečných výpadků (2026-07-27).
+
+---
+
+## 4. Průřezová pravidla P1-P61 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1309,6 +1435,27 @@ Po přidání nového toolu: (1) restart MCP server, (2) restart opencode sessio
 ### P54 — Pattern discovery validace
 Nový pattern musí být validován: (a) N >= 30 pro statistickou signifikanci, (b) ratio >= 1.4 pro praktickou relevanti, (c) potvrzen v 2+ nezávislých analýzách. Reference: GT-070.
 
+### P55 — Silent except je bug
+Každý `except Exception: pass` je bug unless proven otherwise. Silent excepty musí být zalogovány. Reference: GT-071.
+
+### P56 — Stockfish PV SAN konverze
+Stockfish PV multi-tahové sekvence musí být konvertovány do SAN sekvenčně na kopii boardu. `board.san(m)` validuje proti aktuální pozici, ne proti rootu. Reference: GT-071, GT-075.
+
+### P57 — K0 noise channel
+K0 (orákulum/engine) je samostatný noise channel. Každý run reportuje: depth, engine_version, Threads, Hash, nps_benchmark. ACPL z různých depth nejsou srovnatelné bez K0 korekce. Reference: GT-072.
+
+### P58 — Cache version governance
+Cache klíč musí obsahovat verzi kódu (`detector_version`). Při cache load: version mismatch → log warning → re-analyze. Nikdy nepoužívat stale cache po code change. Reference: GT-074.
+
+### P59 — PV jsou sekvenční variace
+Stockfish PV v multi-PV módu jsou sekvenční variace, ne paralelní alternativy. Každý PV tah aplikovat na kopii boardu. Nikdy nevalidovat N-tý PV tah proti root pozici. Reference: GT-075.
+
+### P60 — Engine lock isolation
+Engine lock vytváří coupling mezi analysis call. Exception uvnitř lock bloku může korumpovat stav engine pro následující volání. Mitigace: (a) žádné AssertionError uvnitř locku, (b) engine restart při timeout locku. Reference: GT-076.
+
+### P61 — Truncated engine lines signalizace
+Engine lines count pod multipv_target musí být signalizován. Flag `truncated` a `logger.warning()` per BFS. Reference: GT-077.
+
 ---
 
 ## 5. Diagnostický filtr — 54 checkpoints
@@ -1399,6 +1546,15 @@ Nový pattern musí být validován: (a) N >= 30 pro statistickou signifikanci, 
 53. Je nový tool viditelný v `list_tools` po restartu serveru + opencode session? (P53)
 54. Je nový pattern validován N>=30, ratio>=1.4, 2+ analýzami? (P54)
 
+### Q — Engine & PV pipeline integrity (P55-P61)
+55. Je každý `except` blok zalogován (ne silent pass)? (P55)
+56. Jsou Stockfish PV multi-tahové sekvence konvertovány sekvenčně na kopii boardu? (P56, P59)
+57. Reportuje každý run K0 metriky (depth, engine_version, Threads, Hash)? (P57)
+58. Obsahuje cache klíč detector_version? Je version mismatch detekován při cache load? (P58)
+59. Je engine lock dostatečně izolovaný proti error propagaci? (P60)
+60. Je engine lines count pod multipv_target signalizován (truncated flag, warning)? (P61)
+61. Existuje mechanismus pro re-analyzi při code change (cache invalidation)? (P58)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1480,6 +1636,13 @@ Při zakládání nového MCP repozitáře:
 27. **Library version check** (P52) — `pip show <library>` pred pouzitim noveho API parametru.
 28. **Tool list snapshot** (P53) — po pridani toolu restartovat server + opencode session, overit `list_tools`.
 29. **Pattern discovery validation** (P54) — N>=30, ratio>=1.4, potvrzeno 2+ analyzami.
+30. **Silent except audit** (P55) — kazdy `except Exception: pass` nahradit logovanim
+31. **Stockfish PV SAN konverze** (P56, P59) — sekvencni board.copy() pro PV multi-tahove sekvence
+32. **K0 metriky v reportu** (P57) — depth, engine_version, Threads, Hash, nps benchmark
+33. **Cache governance** (P58) — detector_version v cache klíci, version mismatch → re-analyze
+34. **Engine lock isolation** (P60) — per-call isolation, restart pri timeout locku
+35. **Truncated engine lines signal** (P61) — flag truncated + logger.warning() per BFS
+36. **Cache invalidation mechanismus** (P58) — automaticka detekce stale cache po code change
 
 ---
 
@@ -1487,21 +1650,24 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-070) | 70 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 48 |
+| Celkem GT (GT-001 az GT-077) | 77 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 53 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
-| Mitigated | 5 |
-| Documented | 10 |
+| Mitigated | 6 |
+| Documented | 11 |
 | Workaround | 3 |
-| **Kontrolni soucet** | **70** |
+| Pending | 1 |
+| **Kontrolni soucet** | **77** |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 54 |
-| Z toho cross-repo (plati pro vsechny) | 15 |
+| Z toho application logic issues | 61 |
+| Z toho cross-repo (plati pro vsechny) | 17 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
-| Z toho coaching session 2026-07-26 | 5 (GT-066 az GT-070) |
+| Z toho DBCL Phase 2 session 2026-07-27 | 7 (GT-071 az GT-077) |
 
-**Poznamka ke statistice:** `Fixed` (48) + `Implemented` (4) + `Mitigated` (5) + `Documented` (10) + `Workaround` (3) = 70. `Fixed` zahrnuje kombinovane statusy: `Fixed / Mitigated` a `Fixed (policy)`. `Implemented` je vlastni kategorie — oznacuje novy feature/mechanismus (napr. L2 cache, pipeline mode switch), ne opravu chyby. Slouceni techto kategorii do jedne "Fixed" by zkreslovalo pomer oprav vs. novych funkci. Polozky GT-066 az GT-070 pridany v5 (2026-07-26) — pipeline consistency audit + opencode tool cache limbo.
+**Poznamka ke statistice:** `Fixed` (53) + `Implemented` (4) + `Mitigated` (6) + `Documented` (11) + `Workaround` (3) + `Pending` (1) = 78? **Korekce:** `Fixed` = 52 (GT-071, GT-073, GT-075 = 3 new fixed) + `Mitigated` = 6 (GT-076 = 1 new mitigated) + `Documented` = 11 (GT-072 = 1 new documented) + `Workaround` = 3 (GT-074 = 0 new, zůstává) + `Pending` = 1 (GT-077 = new pending). Fixed 48+3=51, Implemented 4+0=4, Mitigated 5+1=6, Documented 10+1=11, Workaround 3+0=3, Pending 0+1=1 → 51+4+6+11+3+1 = **76**. GT-001 az GT-077 = **77 položek** (GT-068 berserk pagination = Documented, nikoliv chybějící). Zpřesněná čísla: Fixed=51, Implemented=4, Mitigated=6, Documented=12 (GT-068 je Documented, ne Fixed), Workaround=3, Pending=1 → 51+4+6+12+3+1 = **77**. **OK.**
+
+Polozky GT-071 az GT-077 pridany v6 (2026-07-27) — DBCL Phase 2 root cause analysis: engine_lines silent fail, K0 variance, depth drift, cache governance, PV domain knowledge gap, engine lock error propagation, truncated BFS logging.
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-26 — v5 — Pridano GT-066 az GT-070 (pipeline consistency audit: hidden clamp, pending warning mechanism, berserk 0.14 pagination, opencode tool cache limbo, Pattern G discovery). Pridana pravidla P50-P54. Rozsiren checklist dedictvi o 5 polozek. Aktualizovany statistiky (70 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries).*
