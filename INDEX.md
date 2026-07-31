@@ -120,6 +120,13 @@
 |---|--------|-------|-----|------|------|
 | KA01 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | KB (tento repo) | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka (V1 archivována) | 10/10 |
 
+### 05_mcp_jobs — MCP-Jobs analýzy a audity
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| MJ01 | `srovnani_architektur_mcp_vs_scrapers_2026-07-31.md` | 02_ANALÝZY/05_mcp_jobs/ | report | Architektonické srovnání MCP-Jobs vs legacy scrapers — výkon, průniky, doporučení | 9/10 |
+| MJ02 | `CROSS_AUDIT_HANDOFF_MCP-jobs_2026-07-31.md` | 02_ANALÝZY/05_mcp_jobs/ | handoff | LLM-ready handoff pro křížový cross-audit MCP-Jobs konkurenčními LLM — kontext, metriky, kód, audit prompt | 8/10 |
+
 ---
 
 ## 03_PROVOZ — Provozní dokumenty, emaily, kontrakty
@@ -304,6 +311,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `b2b`, `hodnota`, `cenotvorba` | `03_PROVOZ/02_business/` |
 | `audit`, `github`, `portfolio` | `02_ANALÝZY/01_portfolio_audit/` |
 | `analyza`, `kod`, `architektura`, `vcf` | `02_ANALÝZY/03_kodove_analyzy/` |
+| `mcp_jobs`, `pipeline`, `cross_audit`, `handoff` | `02_ANALÝZY/05_mcp_jobs/` |
 
 ---
 
@@ -311,9 +319,9 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~87 |
+| Celkem zmapovaných artefaktů | ~89 |
 | Z toho migrováno z B2B/KB | ~70 |
-| Z toho nově vytvořeno (iterační syntézou) | 18 |
+| Z toho nově vytvořeno (iterační syntézou) | 20 |
 | V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
 | RAG-ready (textové) | ~71 |
