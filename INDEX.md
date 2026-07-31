@@ -126,6 +126,7 @@
 |---|--------|-------|-----|------|------|
 | MJ01 | `srovnani_architektur_mcp_vs_scrapers_2026-07-31.md` | 02_ANALÝZY/05_mcp_jobs/ | report | Architektonické srovnání MCP-Jobs vs legacy scrapers — výkon, průniky, doporučení | 9/10 |
 | MJ02 | `CROSS_AUDIT_HANDOFF_MCP-jobs_2026-07-31.md` | 02_ANALÝZY/05_mcp_jobs/ | handoff | LLM-ready handoff pro křížový cross-audit MCP-Jobs konkurenčními LLM — kontext, metriky, kód, audit prompt | 8/10 |
+| MJ03 | `CROSS_AUDIT_MCP-jobs_v1_2026-07-31.md` | 02_ANALÝZY/05_mcp_jobs/ | audit | Výstupní report cross-auditu MCP-Jobs nezávislým LLM — C1/C2 CRITICAL, M1-M7 MAJOR, coverage 66 %, verifikované nálezy + TOP 5 priorit | 9/10 |
 
 ---
 
@@ -319,9 +320,9 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem zmapovaných artefaktů | ~89 |
+| Celkem zmapovaných artefaktů | ~90 |
 | Z toho migrováno z B2B/KB | ~70 |
-| Z toho nově vytvořeno (iterační syntézou) | 20 |
+| Z toho nově vytvořeno (iterační syntézou) | 21 |
 | V archivu | 6 |
 | Pouze lokálně (binary) | 6 |
 | RAG-ready (textové) | ~71 |
