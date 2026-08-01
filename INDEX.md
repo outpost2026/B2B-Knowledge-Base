@@ -77,10 +77,11 @@
 | C03 | `02_one-pager_CZ_HPP.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV CZ HPP | 9/10 |
 | C04 | `03_one-pager_EN_B2B.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV EN B2B | 9/10 |
 | C05 | `04_one-pager_EN_HPP.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV EN HPP | 9/10 |
-| C06 | `05_full-CV_CZ.md` | B2B/Claude_CV_artefacts/ | CV | Plné CV CZ | 8/10 |
-| C07 | `06_full-CV_EN.md` | B2B/Claude_CV_artefacts/ | CV | Plné CV EN | 8/10 |
+| C06 | `05_full-CV_CZ_v2.md` | 02_CV_a_profil/ (tento repo) | CV | Plné CV CZ — v2 s portfolio daty 08/2026 | 9/10 |
+| C07 | `06_full-CV_EN_v2.md` | 02_CV_a_profil/ (tento repo) | CV | Plné CV EN — v2 s portfolio daty 08/2026 | 9/10 |
 | C08 | `07_design-implementation-guide.md` | B2B/Claude_CV_artefacts/ | guide | Implementační guide pro CV design | 7/10 |
-| C09 | `one_pager_CV_v1.0.md` | B2B/CV/ | CV | Starší verze one-pageru | 5/10 |
+| C09 | `one_pager_CV_v2_CZ.md` | 02_CV_a_profil/ (tento repo) | CV | One-pager CZ v2 — portfolio data 08/2026 | 8/10 |
+| C10 | `one_pager_CV_v2_EN.md` | 02_CV_a_profil/ (tento repo) | CV | One-pager EN v2 — portfolio data 08/2026 | 8/10 |
 
 ### 03_aplikacni_proces — Jak aplikovat, cover letter templaty
 
@@ -303,6 +304,8 @@
 | X30 | `2026-07-20_semanticka_analyza_artefakty_v1-vs-mcp.md` | 05_EPISTEMIKA/ | Meta analýza artefaktů (F3) |
 | X31 | `GitHub_portfolio_dev_workflow.json` | 01_METODIKY/00_agentni_prace/ | Dev workflow (F3) |
 | X32 | Synteticky snapshoty ×6: synteticky/synthetic_report 07-09/15/16 (md+json) | 02_ANALÝZY/00_linkedin/ | Starší generace; kanon = 07-17 (F4) |
+| X33 | `05_full-CV_CZ.md` (předchozí generace) | 01_METODIKY/02_CV_a_profil/ | Superseded v2 s portfolio daty 08/2026 (P4) |
+| X34 | `06_full-CV_EN.md` (předchozí generace) | 01_METODIKY/02_CV_a_profil/ | Superseded v2 s portfolio daty 08/2026 (P4) |
 
 ---
 
