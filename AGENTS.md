@@ -96,6 +96,18 @@ Příklady:
 - **Editace README.md** bez explicitního požadavku
 - **Editace AGENTS.md** bez explicitního požadavku
 
+### 4.5 Strukturální prevence (repo-wide)
+
+Zdůvodnění a cílová architektura: `01_METODIKY/00_procesy/ARCHITEKTURA_KB_2026-08-01.md`
+
+| P | Pravidlo | Mechanismus |
+|---|----------|-------------|
+| **P1** | **Zákaz klonů** — zakázané kopie s příponami `_KB`, `_v1.1`, `_copy`; každý artefakt má jednu kanonickou lokaci | Před zápisem nového souboru vyhledej existující artefakt (kb_search / grep INDEX). Existuje-li → aktualizuj kanon, nevytvářej kopii. Výjimka: odkaz na kanon místo kopie obsahu |
+| **P2** | **Work-process artefakty** (dev notes, per-iterace audity, handoffy, diagnózy) se NEzapisují do public modulů | Report z pracovního procesu → `TEMP_TRIMMING/` (dočasné) nebo `_ARCHIVE/` (uzavřené). Do public modulu smí jen finální syntéza (1 na téma). Test: bude soubor smysluplný za 6 měsíců bez kontextu iterace? |
+| **P3** | **Prázdné soubory (0 B) se netrackují** | 0 B = okamžitý přesun do `_ARCHIVE/`; kontrola součástí verifikace |
+| **P4** | **Dated snapshoty** — v doménovém podadresáři zůstává jen poslední generace (datum YYYY-MM-DD v názvu) | Při vzniku nové generace přesuň předchozí do `_ARCHIVE/` (move, ne delete). Kanon = nejnovější datum |
+| **P5** | **Drift check** — konzistence `git ls-files` vs registrace v `INDEX.md` | Po každém commitnutém zásahu porovnej seznam trackovaných souborů s INDEX; rozdíl oprav (doplň registraci nebo přesuň do `_ARCHIVE/`) |
+
 ---
 
 ## 5. Po úkolu (povinný review)
