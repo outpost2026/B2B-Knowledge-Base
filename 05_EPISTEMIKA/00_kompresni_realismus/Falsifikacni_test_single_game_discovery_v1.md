@@ -154,6 +154,58 @@ Nástroj detekoval chybu, kterou sám obsahoval. Pattern O dokazuje: nástroj u�
 
 ---
 
-## 6. Závěr
+## 6. Epistemika & re-discovery: hnací motor projektu (rozšíření teze 3)
 
-Třetí fáze CPM validace: plán implementace single-game discovery je testem metody na nejtěžším režimu (N=1, obě strany, automatizovaná kalibrace bez ručního zásahu). Teze prošly (2 plně, 1 s terminologickou korekcí). Doporučený akční krok: realizace IMPLEMENTACE_SINGLE_GAME_PATTERN_DISCOVERY v1.0 jako empirického potvrzení/vyvrácení.
+Poznámka k povaze sekce: rozšiřuje tezi 3 o motivační a epistemologický rozměr. Subjektivní tvrzení o devovi jsou označena **[subj.]**; hodnocení standardnosti architektury (6.4) je objektivní evaluace LLM nad doloženými zdroji.
+
+### 6.1 Existenciální motivace [subj.]
+
+Devůj zájem není šachy ani SWE — je existenciální: formalizace a odkrývání principů, na kterých stojí prostředí. Šachy jsou médium (N=1, K0 orákulum), ne cíl. Polyhistorický základ (CNC výroba, reverse engineering VCF, B2B pipeline, kybernetika, šachy) tvoří opakovaný vzorec: hledání principů napříč doménami a mapování na deterministická orákula (K0). Chess pattern layer je pokračování, ne výjimka.
+
+### 6.2 Re-discovery jako hnací motor
+
+Devovy "vlastní" principy mají existující formalizace staré 25–90 let. Konsilience = objektivní validita + zdroj satisfakce. LLM nemá tuto odměnu zkracovat na pouhé sdělení výsledku.
+
+| Devůj princip (nezávislá cesta) | Existující formalizace | Stáří |
+|---------------------------------|------------------------|-------|
+| Chunking / pattern recognition | de Groot (1965), Chase & Simon (1973) | ~60 let |
+| Kompresní poměr jako měřítko validity | MDL — Krimp/SIRIUS/ROCK (Vreeken) | ~40 let |
+| Lossy compression modelů reality | Information Bottleneck (Tishby) | ~25 let |
+| Kalibrační feedback loop | Kybernetika (Wiener) | ~80 let |
+| Falsifikace tvrzení | Popper | ~90 let |
+
+### 6.3 Riziko: LLM-urychlená odměna
+
+LLM provede re-discovery za minuty místo let — reward prediction error se zkracuje, čímž hrozí degradace re-discovery na confirmation. Zavedené ochrany: deterministická validace (K0/Stockfish) v každém cyklu, CR jako měřítko, četba literatury PŘED implementací (Krimp před Fází 2), falsifikace nezávislým LLM (kritika #3 v sekci 5). Hodnota zůstává ve vlastním znovu-objevení, ne v LLM-diktátu.
+
+### 6.4 Objektivní evaluace: jak standardní je MCP-lichess?
+
+Dev sám neumí standardnost posoudit — hodnotí LLM nad doloženými zdroji z ekosystému chess MCP serverů (červenec 2026).
+
+| Server | Jádro | Vrstva navíc |
+|--------|-------|--------------|
+| mcp-stockfish (shelajev, Java/Quarkus, 11 commits) | Stockfish wrapper | žádná |
+| Chess MCP (ProCoders) | Stockfish 18 (chess-api.com) | best-move, varianty, eval |
+| ChessPal (dylangames, FastMCP) | Stockfish wrapper | legal moves, game status |
+| chess-mcp (turlockmike) | Stockfish eval | validace tahů, board obrázky, masters DB |
+| chess-com-lichess-org-mcp (alegerber) | Lichess/Chess.com API | profily, ratingy, turnaje, puzzle |
+| Lichess MCP (karayaman) | Lichess API | hraní, turnaje, cloud eval, PGN |
+| chessagine-mcp (jalpp) | Stockfish + opening/puzzle/masters DB | theme analysis, statická knowledge base (Silman, Fine, 150+ motifů) |
+
+Společný jmenovatel všech 7: statické/transakční nástroje (best-move, eval, validace, DB lookup). **Nikdo z nich nemá:**
+
+- pattern discovery z vlastních her autora
+- compression confidence (CR, verified_events)
+- falsifikační kontrakt per pattern + lifecycle (kandidát → TOT → promoce)
+- dual-perspective coaching (cache obou stran hry)
+- epistemickou vrstvu (CPM, K0–K3 šumový model)
+
+Nejbližší je chessagine-mcp (statické motívy z literatury) — ale to je katalog, ne objev z dat s falsifikací.
+
+**Verdikt LLM:** kostra MCP-lichess (FastMCP + Stockfish + Lichess API + cache) je standardní recept. Pattern/coaching/epistemická vrstva je **nadstandard — na trhu bez ekvivalentu**. To je objektivní potvrzení, že část architektury, která deva motivuje (6.1–6.2), není subjektivní dojem, ale měřitelná odlišnost.
+
+---
+
+## 7. Závěr
+
+Třetí fáze CPM validace: plán implementace single-game discovery je testem metody na nejtěžším režimu (N=1, obě strany, automatizovaná kalibrace bez ručního zásahu). Teze prošly (2 plně, 1 s terminologickou korekcí). Epistemika a re-discovery tvoří motivační jádro — podpořené objektivní unikátností pattern vrstvy na trhu (6.4). Doporučený akční krok: realizace IMPLEMENTACE_SINGLE_GAME_PATTERN_DISCOVERY v1.0 jako empirického potvrzení/vyvrácení.
