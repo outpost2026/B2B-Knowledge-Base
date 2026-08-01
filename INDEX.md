@@ -1,6 +1,6 @@
 # INDEX — Registr všech artefaktů B2B-Knowledge-Base
 
-**Verze:** 1.0 | **Datum:** 2026-06-25 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
+**Verze:** 2.0 | **Datum:** 2026-08-01 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
 
 ---
 
@@ -171,45 +171,48 @@
 
 ## 04_KNOWLEDGE_BASE — Doménová znalost
 
+> **Stav k 2026-08-01 (trimming F1-F3):** 25 → 10 souborů v modulu, 14 archivováno (viz _ARCHIVE X07-X20), 2 přesunuty mimo modul (CI → 01_METODIKY/05_testing, metodika Mikolov → 05_EPISTEMIKA/00_kompresni_realismus). Implementace dle TRIMMING_PLAN_04_KNOWLEDGE_BASE_2026-08-01.md (01_METODIKY/).
+
 ### 00_CNC_CAM — CNC zpracování, CAM software
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| NC01 | `Znalostní báze a produkční ontologie_ CNC zpracování PET feltu (v3.2).md` | KB/ + KB/technologie_plotr_moodpasta/ | ontologie | Kompletní ontologie CNC zpracování PET feltu | 9/10 |
-| NC02 | `KB_moduly_RAG_v1.0.md` | KB/ + KB/technologie_plotr_moodpasta/ | RAG | RAG-ready ontologie s fyzikálními pravidly | 9/10 |
-| NC03 | `KNOWLEDGE_CORPUS_VCUTWORKS_LIGHTBURN.md` | KB/technologie_plotr_moodpasta/ | corpus | Knowledge corpus VCutWorks + LightBurn | 8/10 |
-| NC04 | `DXF_PREDICTIVE_PARSER_METHODOLOGY.md` | KB/technologie_plotr_moodpasta/ | metodika | DXF prediktivní parser metodologie | 8/10 |
-| NC05 | `Dokumentace_Zpracovani_PET_Feltu_v1.0.2.md` | KB/ + KB/technologie_plotr_moodpasta/ | dokumentace | Zpracování PET feltu | 8/10 |
-| NC06 | `High‑SNR_knowhow_ML_methodology.json` | KB/technologie_plotr_moodpasta/ | metodika | ML metodologie pro CNC | 7/10 |
-| NC07 | `metodika_pro_vyvoj_nastroju_prumyslove_automatizace.json` | KB/technologie_plotr_moodpasta/ | metodika | Metodika vývoje nástrojů | 7/10 |
-| NC08 | `technicky_stav_vyvoje_operacni_jadro.md` | KB/technologie_plotr_moodpasta/ | stav | Technický stav operačního jádra | 6/10 |
-| NC09 | `DEFECT_CATALOG_V1.md` | KB/technologie_plotr_moodpasta/ | katalog | Katalog defektů CNC zpracování | 8/10 |
-| NC10 | `SEVERITY_OVERLAY_WARNINGS_DESIGN.md` | KB/technologie_plotr_moodpasta/ | design | Design varovných overlayů | 6/10 |
+| NC01 | `KNOWLEDGE_CORPUS_VCUTWORKS_LIGHTBURN.md` | KB/technologie_plotr_moodpasta/ | corpus | GT binárního formátu (offset mapy, 74B segmenty, paleta) | 9/10 |
+| NC02 | `ONTOLOGIE_PET_FELT_RAG_v4.0.md` | merge (F2, 2026-08-01) | ontologie | Kanonický registr PET felt domény — materiál, f-kódy, V-cut, RULE_*, dílna (supersedes 3 soubory) | 9/10 |
+| NC03 | `DEFECT_CATALOG_V1.md` | KB/technologie_plotr_moodpasta/ | katalog | Katalog defektů + paleta overlay V1-V13 (komprimováno F3: §9-10 odstraněny) | 7/10 |
+| NC04 | `High‑SNR_knowhow_ML_methodology.json` | KB/technologie_plotr_moodpasta/ | metodika | Deterministická pravidla DET_* — fyzikální constrainty | 8/10 |
 
 ### 01_MCP — MCP servery, postmortem
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| MCP01 | `sdilena_pitevni_kniha_mcp.md` | 04_KNOWLEDGE_BASE/01_MCP/ | postmortem | Cross-repo postmortem — 20 entries (001-020), 16 rules (P1-P16) | 10/10 |
-| MCP02 | `linkedin_mcp_pitevni_kniha_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | postmortem | Detailní postmortem linkedin-mcp-custom — 24 entries (001-020 fixed, 021-024 Session 6) s code snippets + rules | 9/10 |
-| MCP03 | `MCP_komplexni_analyza_a_strategie_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | analýza | Komplexní analýza MCP stacku a strategie | 9/10 |
+| MCP01 | `MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` | tento repo | postmortem | Jediný zdroj pravdy postmortemů (GT-001..042); superseded 4 pitevní knihy + 2 strategie | 9/10 |
+| MCP02 | `Hluboky_ponor_do_rezerv_Frontiery_vyvoje_MCP_serveru_v1.md` | tento repo | akční plán | Komprimovaný 3-týdenní plán rezerv MCP vývoje (F3; plná verze v git historii) | 5/10 |
 
 ### 01_reverse_engineering — RE case studies, binární formáty
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| RE01 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | KB/technologie_plotr_moodpasta/ | case study | Hlavní RE case study | 10/10 |
+| RE01 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | KB/technologie_plotr_moodpasta/ | case study | 29denní empirická kronika RE | 10/10 |
 | RE02 | `RE_Methodology.md` | KB/technologie_plotr_moodpasta/ | metodika | Obecná RE metodologie | 8/10 |
+| RE03 | `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` | B2B/ | ground truth | Ontologický GT vzniku parseru — replikace 4× (deklarace níže) | 8/10 |
 
-### 02_testing — Golden master, determinism testy
-
-*Připraveno pro budoucí artefakty — testovací metodologie a frameworky*
-
-### 03_technologie — Stack, nástroje, konfigurace
+### 02_chess — Pattern library
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| TC01 | `technologie_plotr_moodpasta/` (dir) | KB/ | dir | Kompletní adresář technologií plotru | 7/10 |
+| CH01 | `player_pattern_library_v1.json` | tento repo | kánon | 17 patternů pro lichess-analyzer (chess_pattern_v5 import) | 8/10 |
+
+### 02_testing — Golden master, determinism testy
+
+*Připraveno pro budoucí artefakty — testovací metodologie a frameworky (CI_GitHub_Actions_imerzni_edu_v1 přesunut do 01_METODIKY/05_testing/, F3)*
+
+### Replikace (cross-repo, deliberate — žádná akce)
+
+| Soubor | Výskyty | Status |
+|--------|---------|--------|
+| `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` (MD5 5252AF…) | 4×: KB + vcf_integrace + vcf_parser_b2b + web_integrace_systeq/docs | Runtime závislosti rep — deliberate replikace |
+| `VCF_Reverse_Engineering_Inference_Workflow_2026.md` (MD5 DC5F06…) | 2×: KB/01_METODIKY + Vcf-compiler/docs | Repo zrcadlí kanon |
 
 ---
 
@@ -262,6 +265,20 @@
 | X04 | `chronicles_json_dev_sprint_2025_2026_v1.1.json` | B2B/ | Dev sprint chronicle — historický záznam |
 | X05 | `KRONIKA PROFESNÍHO VÝVOJE AUTORA.txt` | B2B/ | Osobní kronika, nízká provozní hodnota |
 | X06 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | 02_ANALÝZY/03_kodove_analyzy/ | Superseded V2 — V2 obsahuje všech 11 V1 issue + 7 nových nálezů |
+| X07 | `Dokumentace_Zpracovani_PET_Feltu_v1.0.2.docx` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | Binární duplikát MD verze (546 KB), non-RAG (F1) |
+| X08 | `Dokumentace_Zpracovani_PET_Feltu_v1.0.2.md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | Merged do ONTOLOGIE_PET_FELT_RAG_v4.0 (F2) |
+| X09 | `Znalostní báze a produkční ontologie_ CNC zpracování PET feltu (v3.2).md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | Merged do ONTOLOGIE v4.0 — konfliktní registr barev nahrazen f-kódy (F2) |
+| X10 | `KB_moduly_RAG_v1.0.md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | Merged do ONTOLOGIE v4.0 (F2) |
+| X11 | `DXF_PREDICTIVE_PARSER_METHODOLOGY.md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | BLUEPRINT plán, části implementovány (F1) |
+| X12 | `SEVERITY_OVERLAY_WARNINGS_DESIGN.md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | PoC superseded paletou V1-V13 v DEFECT_CATALOG (F1) |
+| X13 | `technicky_stav_vyvoje_operacni_jadro.md` | 04_KNOWLEDGE_BASE/00_CNC_CAM/ | Transient snapshot 19.6.2026 (F1) |
+| X14 | `sdilena_pitevni_kniha_mcp.md` | 04_KNOWLEDGE_BASE/01_MCP/ | Superseded GT (F1) |
+| X15 | `linkedin_mcp_pitevni_kniha_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | Superseded GT (F1) |
+| X16 | `mcp_jobs_pitevni_kniha_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | Superseded GT (F1) |
+| X17 | `MCP_komplexni_analyza_a_strategie_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | Superseded GT (F1) |
+| X18 | `MCP_practical_workflow_guide_v1.md` | 04_KNOWLEDGE_BASE/01_MCP/ | Zastaralé tool názvy (F1) |
+| X19 | `player_patterns_Systeq_2026-07-18.json` | 04_KNOWLEDGE_BASE/02_chess/ | Ephemeral výstup match_patterns (F1) |
+| X20 | `player_patterns_Systeq_2026-07-19.json` | 04_KNOWLEDGE_BASE/02_chess/ | Ephemeral výstup match_patterns (F1) |
 
 ---
 
@@ -329,4 +346,4 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | Nové artefakty řádků | ~8 000 |
 
 ---
-*Poslední aktualizace: 2026-07-07*
+*Poslední aktualizace: 2026-08-01 (v2.0 — regenerace 04_KNOWLEDGE_BASE po trim F1-F3, _ARCHIVE X07-X20, deklarace replikací)*
