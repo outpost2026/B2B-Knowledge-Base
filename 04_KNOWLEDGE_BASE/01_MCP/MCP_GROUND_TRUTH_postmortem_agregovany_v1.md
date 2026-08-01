@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-07-26 | **Verze:** 5
+**Datum:** 2026-07-26 | **Verze:** 7
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -58,7 +58,7 @@
 
 ## 3. Katalog chyb (merged)
 
-Číslování GT-001 až GT-042. V závorce původní ID z originálního artefaktu.
+Číslování GT-001 až GT-078. V závorce původní ID z originálního artefaktu.
 
 ### 3.1 cnc-tools (mcp-local-server)
 
@@ -1219,6 +1219,24 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 
 ---
 
+#### GT-078 (lichess-036): ruff --fix smazal side-effect tool imports — F401 destruktivní autofix
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Tooling — Destructive autofix
+
+**Symptom:** `ruff check --fix` na `src/lichess_analyzer_mcp/server.py` smazal 18 `from lichess_analyzer_mcp.tools import X` importů (diff: -18/+2). Tool registrace přes `@app.tool()` dekorátor se zrušila — MCP server by startoval bez toolů. Pytest prošel (93/93), protože testy `server.py` neimportují. Detekováno až díky `git diff --stat` po lint verifikaci.
+
+**Root cause:** `server.py` používá záměrný pattern side-effect imports — import modulu kvůli registraci toolu při importu, ne kvůli použití jména. Ruff pravidlo F401 (unused import) detekuje nepoužité jméno a `--fix` ho **smaže**. Behaviorálně správné pro 99 % kódu, destruktivní pro registrační pattern. Baseline: 46 errorů na 3 souborech (z toho 18x F401), repo nikdy nespouštělo `--fix` na `server.py`.
+
+**Fix:**
+1. Všech 18 importů + nový `persist_report` obnoveno s `# noqa: F401` per line (explicitní deklarace side-effect záměru)
+2. Verifikace: registrační smoke check (`app._tool_manager._tools` = 18 toolů), pytest 93/93
+3. Commit `c92940f` obsahuje opravu včetně `# noqa: F401` od počátku u nového toolu
+
+**Pravidlo:** P62 — Ruff `--fix` je destruktivní operace. Side-effect importy (registrace přes `@app.tool()` dekorátor) MUSÍ mít `# noqa: F401` per line. Po každém `ruff --fix`: povinně číst `git diff` + spustit registrační smoke check — pytest destruktivní smazání registrace nezachytí.
+
+**Provenance:** source-read — `git diff` po `ruff check --fix` na server.py (diff -18/+2), obnova importů s `# noqa: F401`, smoke check 18 toolů, commit c92940f (2026-08-01).
+
+---
+
 ## 4. Průřezová pravidla P1-P61 (konsolidovaná)
 
 ### P1 — Paralelizace
@@ -1456,6 +1474,9 @@ Engine lock vytváří coupling mezi analysis call. Exception uvnitř lock bloku
 ### P61 — Truncated engine lines signalizace
 Engine lines count pod multipv_target musí být signalizován. Flag `truncated` a `logger.warning()` per BFS. Reference: GT-077.
 
+### P62 — Ruff --fix je destruktivní, side-effect importy s noqa
+Ruff `--fix` maže side-effect importy (F401 unused import) — u registračního patternu `@app.tool()` to ruší registrace toolů. Side-effect importy MUSÍ mít `# noqa: F401` per line. Po každém `ruff --fix`: povinně `git diff` + registrační smoke check (`app._tool_manager._tools` count). Pytest destruktivní smazání registrace nezachytí. Reference: GT-078.
+
 ---
 
 ## 5. Diagnostický filtr — 54 checkpoints
@@ -1643,6 +1664,7 @@ Při zakládání nového MCP repozitáře:
 34. **Engine lock isolation** (P60) — per-call isolation, restart pri timeout locku
 35. **Truncated engine lines signal** (P61) — flag truncated + logger.warning() per BFS
 36. **Cache invalidation mechanismus** (P58) — automaticka detekce stale cache po code change
+37. **Lint autofix guard** (P62) — side-effect importy s `# noqa: F401`, po `ruff --fix` vzdy `git diff` + registracni smoke check
 
 ---
 
@@ -1650,14 +1672,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-077) | 77 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 53 |
+| Celkem GT (GT-001 az GT-078) | 78 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 52 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 6 |
 | Documented | 11 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **77** |
+| **Kontrolni soucet** | **78** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 61 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -1668,6 +1690,8 @@ Při zakládání nového MCP repozitáře:
 
 Polozky GT-071 az GT-077 pridany v6 (2026-07-27) — DBCL Phase 2 root cause analysis: engine_lines silent fail, K0 variance, depth drift, cache governance, PV domain knowledge gap, engine lock error propagation, truncated BFS logging.
 
+Polozka GT-078 pridana v7 (2026-08-01) — ruff --fix destruktivni autofix: F401 smazal side-effect tool imports v server.py (lichess-analyzer). Fixed 51+1=52, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 52+4+6+12+3+1 = **78**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries).*
