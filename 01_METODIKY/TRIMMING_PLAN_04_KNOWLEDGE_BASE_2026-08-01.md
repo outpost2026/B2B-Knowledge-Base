@@ -207,3 +207,17 @@
 ---
 
 *Plán je živý dokument. Schválení autorem = gate pro spuštění Fáze 1. Verifikace auditu: MANIFEST_AUDIT_04_KNOWLEDGE_BASE.md v TEMP_TRIMMING.*
+
+---
+
+## 9. STAV IMPLEMENTACE (2026-08-01)
+
+| Fáze | Commit | Status |
+|---|---|---|
+| F1 — Archív superseded (11 souborů) | `031f820` | DONE |
+| F2 — Sémantický merge → ONTOLOGIE v4.0 | `7fef362` | DONE |
+| F3 — Re-kategorizace + komprese | `2c5e288` | DONE |
+| F4 — INDEX regenerace v2.0 | `2a179ca` | DONE |
+| F5 — Validace + KPI report | report: TEMP_TRIMMING/KPI_REPORT_04_KNOWLEDGE_BASE_2026-08-01.md | DONE |
+
+**Výsledek:** 25 → 12 souborů (10 v modulu + 2 přesunuty), 247 KB textu (−38 %), 0 KB binár, 0 konfliktů barev, 0 INDEX drift, 0 duplicitních clusterů. Pozn.: plán původně přesunut z 00_STRATEGIE (gitignored) do 01_METODIKY na vyžádání autora.
