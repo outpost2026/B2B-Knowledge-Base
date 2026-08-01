@@ -5,7 +5,7 @@ Prague | systeq.cz | linkedin.com/in/ondrejsousek | github.com/outpost2026 | +42
 
 ### Value Proposition
 
-Transitioning from 14 years of hands-on manufacturing, off-grid systems and CNC into software. I build deterministic, high-SNR pipelines that translate the physical reality of a workshop into LLM-friendly data structures. In 2026 I built 4 production MCP servers (40+ tools, 228 tests) in 17 days, and a portfolio of 18 repos / 690 commits.
+Transitioning from 14 years of hands-on manufacturing, off-grid systems and CNC into software. I build deterministic, high-SNR pipelines that translate the physical reality of a workshop into LLM-friendly data structures. In 2026 I built 4 production MCP servers (40+ tools, 446 tests), and a portfolio of 19 repos / 845 commits.
 
 ### Core Superpowers
 
@@ -31,11 +31,11 @@ Transitioning from 14 years of hands-on manufacturing, off-grid systems and CNC 
 
 - **lichess-analyzer-mcp** — 17 tools, Stockfish 18, 18 patterns (A–Q1), dual cache, ACPL MAE 3.9
 
-- **B2B-Knowledge-Base** — 196 commits, governance P1–P5, trim 86 → 56 files (−35%), 0 duplicates
+- **B2B-Knowledge-Base** — 197 commits, governance P1–P5, trim 86 → 56 files (−35%), 0 duplicates
 
 ### Background & Transfer
 
-14 years of manufacturing and off-grid systems → an intense 5-month sprint into production code (Feb–Jun 2026) averaging 4.5 commits/day. Unique ability to see problems from both physical and digital perspectives.
+14 years of manufacturing and off-grid systems → an intense 5-month sprint into production code (Feb–Jun 2026) averaging ~6.5 commits/day. Unique ability to see problems from both physical and digital perspectives.
 
 ### Working Philosophy
 

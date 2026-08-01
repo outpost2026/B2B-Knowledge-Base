@@ -5,7 +5,7 @@ Praha | systeq.cz | linkedin.com/in/ondrejsousek | github.com/outpost2026 | +420
 
 ### Value Proposition
 
-Přecházím z 14 let praktické zkušenosti s výrobou, off-grid systémy a CNC do softwaru. Buduji deterministické, high-SNR pipelines, které překládají fyzickou realitu dílny do LLM-přátelských datových struktur. V roce 2026 jsem postavil 4 produkční MCP servery (40+ nástrojů, 228 testů) za 17 dní a portfolio 18 repo / 690 commitů.
+Přecházím z 14 let praktické zkušenosti s výrobou, off-grid systémy a CNC do softwaru. Buduji deterministické, high-SNR pipelines, které překládají fyzickou realitu dílny do LLM-přátelských datových struktur. V roce 2026 jsem postavil 4 produkční MCP servery (40+ nástrojů, 446 testů) a portfolio 19 repo / 845 commitů.
 
 ### Core Superpowers
 
@@ -31,11 +31,11 @@ Přecházím z 14 let praktické zkušenosti s výrobou, off-grid systémy a CNC
 
 - **lichess-analyzer-mcp** — 17 nástrojů, Stockfish 18, 18 patternů (A–Q1), dual cache, ACPL MAE 3,9
 
-- **B2B-Knowledge-Base** — 196 commitů, governance P1–P5, trim 86 → 56 souborů (−35 %), 0 duplicit
+- **B2B-Knowledge-Base** — 197 commitů, governance P1–P5, trim 86 → 56 souborů (−35 %), 0 duplicit
 
 ### Background & Transfer
 
-14 let výroby a off-grid systémů → intenzivní 5měsíční sprint do produkčního kódu (únor–červen 2026) s průměrem 4,5 commitů/den. Unikátní schopnost vidět problémy z fyzické i digitální perspektivy.
+14 let výroby a off-grid systémů → intenzivní 5měsíční sprint do produkčního kódu (únor–červen 2026) s průměrem ~6,5 commitů/den. Unikátní schopnost vidět problémy z fyzické i digitální perspektivy.
 
 ### Working Philosophy
 
