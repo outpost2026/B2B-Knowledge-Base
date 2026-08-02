@@ -1286,6 +1286,32 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 
 ---
 
+#### GT-081 (lichess-038): Architektonický původ ruffu — CI gate, ne pre-commit hook; a sémantická eskalace pravidel
+**Server:** lichess-analyzer | **Status:** Documented | **Typ:** Tooling — Guardrail adoption architektura (adopce znalostí, ne vibecoding)
+
+**Symptom:** Dev při adopci znalostí (cílem skutečná architektonická adopce, ne vibecoding) položil otázku: *kdy a proč byl ruff do lichess-MCP zaveden?* Git historie dává jednoznačnou odpověď, která mění chápání role ruffu v projektu.
+
+**Zjištění (git source-read):**
+1. **Ruff config existoval od prvního commitu** (`4dd503a`, 2026-07-18, Phase 1 checkpoint): `[tool.ruff] line-length=100, target-version="py312"`, bez `select` → aktivní **defaultní sada** (F + E4/E7/E9). Rozhodnutí "rules existují dřív než kód" (from day one), ne zpětný retrofit.
+2. **Aktivace enforcementu 2026-07-20** (`1ca173e`): CI krok `uv run ruff check src/ tests/` v `.github/workflows/test.yml` — ruff se stal **CI gate** (běží na push do main + PR). Ne pre-commit hook.
+3. **Sémantická eskalace pravidel 2026-07-20** (`98f0546`): `select = ["F","E","W","I","N","UP","S"]` — z defaultu na: pyflakes (chyby), pycodestyle (styl), isort (řazení), pep8-naming (názvy), pyupgrade (zastaralé konstrukty), bandit (bezpečnost, mimo tests přes per-file-ignores). Eskalace: chyby → styl → pojmenování → bezpečnost.
+4. **Rozšíření CI 2026-07-25** (`e41ef52`): mypy type-check + pytest --cov — lint se stal součástí širší kontroly.
+5. **`.pre-commit-config.yaml` v lichess-MCP NIKDY neexistoval** (git history prázdná, soubor dnes neexistuje). Ruff funguje výhradně jako CI gate, ne lokální hook.
+
+**Root cause (proč toto architektonické schéma):** CI gate chrání **main v síti** (enforcement je centrální, běží na GitHubu, nezávisí na lokálním venv deva). Kontrast s linkedin-mcp-custom, kde ruff je pre-commit hook (lokální kontrola před každým commitem). Dvě instance téhož principu (guardrail), různé enforcement pointy. CI v lichess-MCP používá `--check` (read-only) — nikdy `--fix` v enforcement pointu; separace *kontroly* od *mutace* je přesně to, co GT-078 (P62) porušil ad-hoc auditním `--fix`.
+
+**Fix (architektonická adopce, dev závěr):**
+1. Ruff je **structura vrstva** (quality gate), ne ad-hoc nástroj — zaveden od kostry projektu.
+2. CI gate (`--check`) ≠ pre-commit hook (lokální mutace). Separace kontroly a mutace je klíčová — `--fix` patří do rukou člověka s `git diff` review, ne do automatizace (P62).
+3. Výběr pravidel = **sémantická eskalace** dle auditu: rozšířit `select` jako výstup auditu, ne samovolně.
+4. Devops vzor: ruff bez pre-commit hooku NEZNAMENÁ "ruff nepoužíván" — enforcement je v CI.
+
+**Pravidlo:** P62 (kontext rozšířen — viz sekce 4): ruff je CI gate (`--check`) v lichess-MCP; `--fix` je lidská operace s `git diff` review, ne součást automatizace.
+
+**Provenance:** source-read — `git log -S ruff` + `git show` na commity `4dd503a` (first ruff config), `1ca173e` (CI Ruff lint step), `98f0546` (select eskalace), `e41ef52` (mypy/coverage), `git log -- .pre-commit-config.yaml` (prázdná historie) (2026-08-02).
+
+---
+
 ## 4. Průřezová pravidla P1-P69 (konsolidovaná)
 
 ### P1 — Paralelizace
@@ -1524,7 +1550,7 @@ Engine lock vytváří coupling mezi analysis call. Exception uvnitř lock bloku
 Engine lines count pod multipv_target musí být signalizován. Flag `truncated` a `logger.warning()` per BFS. Reference: GT-077.
 
 ### P62 — Ruff --fix je destruktivní, side-effect importy s noqa
-Ruff `--fix` maže side-effect importy (F401 unused import) — u registračního patternu `@app.tool()` to ruší registrace toolů. Side-effect importy MUSÍ mít `# noqa: F401` per line. Po každém `ruff --fix`: povinně `git diff` + registrační smoke check (`app._tool_manager._tools` count). Pytest destruktivní smazání registrace nezachytí. Reference: GT-078.
+Ruff `--fix` maže side-effect importy (F401 unused import) — u registračního patternu `@app.tool()` to ruší registrace toolů. Side-effect importy MUSÍ mít `# noqa: F401` per line. Po každém `ruff --fix`: povinně `git diff` + registrační smoke check (`app._tool_manager._tools` count). Pytest destruktivní smazání registrace nezachytí. Doplnění (GT-081): ruff v automatizaci (CI) běží jako `--check` (read-only) — kontrola. `--fix` je **lidská** operace s `git diff` review — mutace. Separace kontroly od mutace je povinná; `--fix` nikdy do CI gate. Reference: GT-078, GT-081.
 
 ### P63 — getattr s defaultem maskuje neexistující atributy
 `getattr(obj, "neexistujici", default)` vrací default **bez jakékoli signalizace** — u LLM input pipeline to znamená 100 % garbage v promptu (detekováno na `opening_report`, `opponent_pool`: `opening_name`, `player_color`, `acpl`, `result`). Model pole MUSÍ být čtená přes reálné atributy (`a.game.opening`, `a.total_acpl`) — pak neexistující atribut vyhodí AttributeError při testech. Jestliže default je nutný: logovat warning při použití. Reference: GT-079.
@@ -1789,6 +1815,8 @@ Polozka GT-080 pridana v9 (2026-08-02) — ASCII-NOM nomenklatura (workspace-wid
 
 v9.1 (2026-08-02) — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py` (exit 0/1, GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST) — prosel 1386 trackovanych souboru / 19 rep, odhalil a opravil **31 broken referenci** (runtime path stringy, README/index/mapa reference, URL-encoded `%C3%9D`, `New_rules/` cesta) napric 7 repy (GCP, lichess, linkedin, mcp-local, dxf, Vcf-compiler, outpost2026_profile). Diagnosticky filtr rozsiren o checkpoint 69. Statistiky beze zmeny (80 entries).
 
+Polozka GT-081 pridana v9.2 (2026-08-02) — architektonicky puvod ruffu v lichess-MCP: CI gate (ne pre-commit hook), config od prvniho commitu `4dd503a`, enforcement `1ca173e`, semanticka eskalace pravidel `98f0546` (F/E/W/I/N/UP/S), mypy/coverage `e41ef52`; `.pre-commit-config.yaml` nikdy neexistoval. P62 rozsiren o separaci kontroly (`--check`) a mutace (`--fix`). Documented 12+1=13, Fixed 54, Implemented 4, Mitigated 6, Workaround 3, Pending 1 → 54+4+6+13+3+1 = **81**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries).*
