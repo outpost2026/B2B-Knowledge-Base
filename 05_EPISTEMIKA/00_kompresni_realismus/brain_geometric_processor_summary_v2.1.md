@@ -611,7 +611,7 @@ Autor vychází zejména z myšlenkového rámce Tomáše Mikolova, jeho prací 
 
 - **Sousek\_kompresni\_realismu\_v1.1.json** – Formalizace epistemického rámce kompresního realismu
 
-- **Od Kompresního Realismu k Biologické Neuro‑Architektuře.md** – Vývojová linie konceptu
+- **Od_Kompresniho_Realismu_k_Biologicke_Neuro-Architekture.md** – Vývojová linie konceptu
 
 - **EPISTEMICKE-PRAVIDLA-AGENTNI-PRACE.md** – Aplikační pravidla pro agentní práci
 

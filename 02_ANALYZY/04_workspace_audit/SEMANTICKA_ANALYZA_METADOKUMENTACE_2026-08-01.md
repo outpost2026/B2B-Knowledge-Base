@@ -17,8 +17,8 @@
 
 | Vrstva | Rozsah | Soubory | Obsah |
 |--------|--------|---------|-------|
-| **Public (git)** | 01_METODIKY (18), 02_ANALÝZY (31), 04_KNOWLEDGE_BASE (10), 05_EPISTEMIKA (21), root (4) | **86** | Metodiky, analýzy, doménová znalost |
-| **Lokální (gitignored)** | 00_STRATEGIE (29), 03_PROVOZ (19), _ARCHIVE (20), 02_ANALÝZY/01_portfolio_audit (5), *.docx/pdf (6) | **~79** | Strategie/GT, business/provoz, archiv, binárky |
+| **Public (git)** | 01_METODIKY (18), 02_ANALYZY (31), 04_KNOWLEDGE_BASE (10), 05_EPISTEMIKA (21), root (4) | **86** | Metodiky, analýzy, doménová znalost |
+| **Lokální (gitignored)** | 00_STRATEGIE (29), 03_PROVOZ (19), _ARCHIVE (20), 02_ANALYZY/01_portfolio_audit (5), *.docx/pdf (6) | **~79** | Strategie/GT, business/provoz, archiv, binárky |
 
 > Důsledek: inflace v lokální vrstvě nezatěžuje public repo, ale zatěžuje workspace; trimming pro trackované soubory = filesystem move + commit deletů (pattern z F1).
 
@@ -28,7 +28,7 @@
 |-------|---------|----------|---------------------------|
 | 00_STRATEGIE (lokální) | 29 | 421 KB | 8 (2×D pár, roadmap v1, 4× handoff, index_Github) |
 | 01_METODIKY (public) | 18 | 178 KB | 5 (4× CV stará generace, workflow json) |
-| 02_ANALÝZY (public+lok) | 42 | 1481 KB | ~20 (synteticky snapshoty, dev notes, audit řetězce, workspace audit) |
+| 02_ANALYZY (public+lok) | 42 | 1481 KB | ~20 (synteticky snapshoty, dev notes, audit řetězce, workspace audit) |
 | 03_PROVOZ (lokální) | 19 | 397 KB | 4 (exec v1, VCF handoff v1, transkript duál, emaily) |
 | 04_KNOWLEDGE_BASE (public) | 10 | 247 KB | 0 (již trim F1-F5) |
 | 05_EPISTEMIKA (public) | 21 | 239 KB | 6 (2×D manifest, OpenRouter v2, ontologie base, semanticka analyza, LLM_free_models 0B) |
@@ -85,7 +85,7 @@
 |---|-------|-------|--------|
 | 1 | 4 páry 100% duplicit (2 tracked v 05_EPISTEMIKA) | dedup | −4 soubory (1 tracked pár = −2) |
 | 2 | MCP-Jobs audit řetězec (7 per-iteračních reportů) | archiv, kanon 3 | −7 souborů |
-| 3 | Lichess-MCP dev artefakty v 02_ANALÝZY/02_chess (4) | archiv | −4 |
+| 3 | Lichess-MCP dev artefakty v 02_ANALYZY/02_chess (4) | archiv | −4 |
 | 4 | Staré CV generace (4) | archiv | −4 |
 | 5 | Synteticky snapshoty md+json (6 starších) | archiv, kanon poslední | −6 |
 | 6 | Workspace audit md (3) + semanticka_analyza (1) | archiv | −4 |

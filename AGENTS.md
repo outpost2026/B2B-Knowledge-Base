@@ -65,7 +65,7 @@ Agent smí vytvářet a modifikovat soubory **pouze v modulu, který odpovídá 
 |----------------|---------------|
 | strategie, plán, EROI | `00_STRATEGIE/` |
 | metodika, návod | `01_METODIKY/` |
-| analýza, report | `02_ANALÝZY/` |
+| analýza, report | `02_ANALYZY/` |
 | provozní dokument | `03_PROVOZ/` |
 | doménová znalost | `04_KNOWLEDGE_BASE/` |
 | epistemika, kognitivní | `05_EPISTEMIKA/` |

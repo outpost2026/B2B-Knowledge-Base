@@ -43,7 +43,7 @@ B2B-Knowledge-Base/
 │   ├── 03_aplikacni_proces/          ← jak aplikovat, cover letter templaty
 │   └── 04_skill_acquisition/         ← learning path pro gapy (TS, Azure, PLC)
 │
-├── 02_ANALÝZY/                       ← tržní analýzy, audity, reporty
+├── 02_ANALYZY/                       ← tržní analýzy, audity, reporty
 │   ├── 00_linkedin/                  ← LinkedIn analýzy, syntetické reporty
 │   ├── 01_portfolio_audit/           ← GitHub audit, skill match matice
 │   └── 02_konkurence_a_trh/          ← srovnání, tržní signály
@@ -78,7 +78,7 @@ Každý artefakt z původních zdrojových dirs (`B2B/` a `KB/`) je namapován d
 |-----------------|-------------|------------|
 | `B2B/Korekce_vektoru_rozvoje_OS.json` | `00_STRATEGIE/01_positioning/` | Akční kompresní framework — primární strategický dokument |
 | `B2B/CV/CV_Ondrej_Sousek_redesign.md` | `01_METODIKY/02_CV_a_profil/` | CV jako metodický artefakt |
-| `B2B/linkedin_analyzy/synteticky_report_analyza.md` | `02_ANALÝZY/00_linkedin/` | Tržní analýza |
+| `B2B/linkedin_analyzy/synteticky_report_analyza.md` | `02_ANALYZY/00_linkedin/` | Tržní analýza |
 | `B2B/linkedin_analyzy/eroi_chronologicky_plan_s_metodikou.md` | `00_STRATEGIE/01_positioning/` | EROI plán |
 | `B2B/**/*` | dle obsahu | Viz INDEX.md pro úplný mapping |
 | `KB/**/*` | `04_KNOWLEDGE_BASE/` a `05_EPISTEMIKA/` | Doménová znalost a kognitivní rámce |

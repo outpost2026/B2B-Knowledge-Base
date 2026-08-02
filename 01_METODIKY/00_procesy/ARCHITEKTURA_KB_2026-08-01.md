@@ -29,7 +29,7 @@ B2B-Knowledge-Base/
 │   ├── 01_eroi/                     EROI metodika (živá)
 │   └── 02_CV_a_profil/   kanon: 1× aktuální one-pager + 1× full CV + 1× guide — bez starých generací
 │
-├── 02_ANALÝZY/          [PUBLIC]
+├── 02_ANALYZY/          [PUBLIC]
 │   ├── 00_linkedin/                  analýzy + LIVE data (metadata_stacku.json, agregovany_report.md)
 │   ├── 02_chess/                     analýzy; dev artefakty → archiv (kanon vzorů = 04_KB/02_chess)
 │   ├── 04_workspace_audit/           repo audity
@@ -46,7 +46,7 @@ B2B-Knowledge-Base/
 │   └── 01_kalibracni_matice/
 │
 └── _ARCHIVE/            [PRIVATE]  JEDINÁ retenční zóna
-    ├── 00_STRATEGIE/ 01_METODIKY/ 02_ANALÝZY/ 04_KNOWLEDGE_BASE/ 05_EPISTEMIKA/
+    ├── 00_STRATEGIE/ 01_METODIKY/ 02_ANALYZY/ 04_KNOWLEDGE_BASE/ 05_EPISTEMIKA/
 ```
 
 ## 3. Mapování kanonických lokací (reference)
@@ -57,9 +57,9 @@ B2B-Knowledge-Base/
 | Sousek manifest (Hardened B2B v1.1) | `05_EPISTEMIKA/00_kompresni_realismus/Sousek_Manifest_kompresniho_realismu_v1.1.json` | `_ARCHIVE/05_EPISTEMIKA/` |
 | Ontologie komprese | `..._appendix.md` (final RAG) | base → `_ARCHIVE/05_EPISTEMIKA/` |
 | CV | 1× one-pager + 1× full + 1× guide | staré generace → `_ARCHIVE/01_METODIKY/` |
-| Chess vzory | `04_KNOWLEDGE_BASE/02_chess/player_pattern_library_v1.json` | dev artefakty → `_ARCHIVE/02_ANALÝZY/` |
-| MCP-Jobs | DE_NOVO_AUDIT + srovnani_architektur + PHASE09_HOTFIX | per-iterace → `_ARCHIVE/02_ANALÝZY/` |
-| Live data LinkedIn | `02_ANALÝZY/00_linkedin/` (metadata_stacku.json, agregovany_report.md) | nikdy (LIVE) |
+| Chess vzory | `04_KNOWLEDGE_BASE/02_chess/player_pattern_library_v1.json` | dev artefakty → `_ARCHIVE/02_ANALYZY/` |
+| MCP-Jobs | DE_NOVO_AUDIT + srovnani_architektur + PHASE09_HOTFIX | per-iterace → `_ARCHIVE/02_ANALYZY/` |
+| Live data LinkedIn | `02_ANALYZY/00_linkedin/` (metadata_stacku.json, agregovany_report.md) | nikdy (LIVE) |
 
 ## 4. Strukturální prevence (odkaz)
 

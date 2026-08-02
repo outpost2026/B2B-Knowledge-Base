@@ -187,7 +187,7 @@ Poskytuje: `search_jobs`, `get_job_details`, profily, firmy.
 🆕 Nové od poslední kontroly: 3
 ```
 
-**Cache:** Ukládá job_id do `linkedin_saved_cache.json` (v KB `02_ANALÝZY/00_linkedin/`).
+**Cache:** Ukládá job_id do `linkedin_saved_cache.json` (v KB `02_ANALYZY/00_linkedin/`).
 
 #### 3.2.3 Custom tool #2: `linkedin_analyze_saved` (nový, ~200 ř.)
 
@@ -384,7 +384,7 @@ LINKEDIN_ANALYZE_AUTO_WRITE=true
 
 V `mcp-local-server/config.py`:
 ```python
-LINKEDIN_CACHE_PATH = KB_ROOT / "02_ANALÝZY" / "00_linkedin" / "linkedin_saved_cache.json"
+LINKEDIN_CACHE_PATH = KB_ROOT / "02_ANALYZY" / "00_linkedin" / "linkedin_saved_cache.json"
 LINKEDIN_STATE_PATH = PROJECT_ROOT / "linkedin_state.json"
 ```
 
@@ -628,7 +628,7 @@ Pipeline generuje entry v existujícím formátu:
 | `LINKEDIN_EMAIL` | `.env` | ✅ |
 | `LINKEDIN_PASSWORD` | `.env` | ✅ |
 | `linkedin_state.json` | kořen projektu | ✅ |
-| `linkedin_saved_cache.json` | KB `02_ANALÝZY/00_linkedin/` | ❌ (verzovat) |
+| `linkedin_saved_cache.json` | KB `02_ANALYZY/00_linkedin/` | ❌ (verzovat) |
 
 ### 7.2 LinkedIn anti-bot
 
