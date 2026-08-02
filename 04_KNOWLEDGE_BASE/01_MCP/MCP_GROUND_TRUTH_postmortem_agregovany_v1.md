@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-07-26 | **Verze:** 7
+**Datum:** 2026-08-02 | **Verze:** 8
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1237,7 +1237,34 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 
 ---
 
-## 4. Průřezová pravidla P1-P61 (konsolidovaná)
+#### GT-079 (lichess-037): Data-correctness batch 1+2 — getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, tichá degradace ACPL
+**Server:** lichess-analyzer | **Status:** Fixed | **Typ:** Data integrity — LLM input correctness (6 merged bugů)
+
+**Symptom:** Dvě nezávislé vlny bugů v coaching pipeline (fix batche 2026-08-02):
+1. **B100:** `opening_report` četl `getattr(a, "opening_name", "Unknown")` — atribut na `GameAnalysis` neexistuje (správně `a.game.opening`) → Python tiše vrátil default → **100 % garbage** do `white_openings`/`worst_openings`/`best_openings` → LLM report postavený na garbage bez jakékoli detekce. Stejně: `player_color` (vždy "white"), `acpl` (vždy 0), `result` (vždy "*").
+2. **B98:** `opponent_pool` hardcodoval `opponent_color="black"`, `author=_load_cached_analysis(gid, depth, "white")` → u her, kde autor hrál černým, analyzoval **autorovy vlastní tahy jako "oponentovy"**; `n1_count` přes neexistující `player_color` = vždy 0; `n1_acpl`/`n2_acpl`/`blunder_rate` = hardcoded `"?"` placeholdery v promptu.
+3. **B121:** `kb/writer.py` `KB_ROOT = 3× ".."` → **repo root** (`lichess-analyzer-mcp/B2B-Knowledge-Base`, adresář neexistuje) → první `target="kb"` by vytvořil adresář uvnitř repa (zanesení repa). B119: filenames bez timestampu → same-day diagnóza tiše přepsala předchozí.
+4. **B31:** LLM cache klíč `{game_id}_llm.json` bez barvy → dual-cache (white+black) sdílí soubor; `content_tag` obsahuje color → mismatch → regenerace + **last-writer-wins přepíše opačnou perspektivu**.
+5. **B5:** timeout v `engine_client._run_engine_call` volal `_kill_engine()` (sdružený `_engine`), ale `evaluate_move` používá **lokální** engine → timeout zabíjel sdružený engine → kolaterální ztráta konkurující analýzy + zbytečný restart.
+6. **B16:** `except Exception: pass` + `cp_loss = 0` při selhání `evaluate_move` → chybný tah klasifikován "best" → **ACPL systematicky optimistický bez markeru**. (B113: `chess.Board(m.fen)` na starších cache s `fen=""` → ValueError → zhroucení celého `detect_all`.)
+
+**Root cause (společný vzor):** LLM vstupy (prompt) čtené přes neexistující atributy/getattr s defaultem — Python **neprovede žádnou signalizaci**, vrátí default. Data do LLM promptu bez markeru kvality = falešná autorita.
+
+**Fix:**
+1. `_game_opening_stats()` — reálná pole modelu (`a.game.opening/color/result`, `a.total_acpl`) + win_rate color-aware (`side` param).
+2. `_resolve_colors(white_name, black_name, username)` + `username` param → barvy z PGN headerů, obě strany přes `analyze_pgn`, n1/n2 + ACPL/blunder_rate z reálných polí; fallback autor=bílý s warning logem.
+3. `KB_ROOT` 4× `..` (do `_github/`) + `_KB_EXISTS` import-time check + `_ts()` s `_HHMMSS`.
+4. Klíč `{game_id}_{color}_llm.json`; color derivován ze stockfish cache v `get_all_game_summaries`; 0 legacy souborů → žádná migrace.
+5. `_run_engine_call(fn, timeout_s, engine=None)` — timeout kvitne **referenci, která volala**; `evaluate_move` předává lokální engine; dvojí `quit()` ošetřen try/except.
+6. `GameAnalysis.evaluation_errors` čítač (error dict i výjimka → +1, ne tichý cp_loss=0) + prompt marker `Eval errors: N (ACPL may be optimistic)`. B113: guard `and m.fen` (konzistentní s `_detect_n`).
+
+**Pravidla:** P63 — P68 (viz sekce 4). P41 aktualizováno (color v cache klíči).
+
+**Provenance:** source-read — CODE_REVIEW_2026-08-01.md, session plány `00_STRATEGIE/session_plan_fix_batch1/2_2026-08-02.md`, commity fc5fc69 + 552bc9d, testy 93→109→121 (2026-08-02).
+
+---
+
+## 4. Průřezová pravidla P1-P68 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1412,7 +1439,7 @@ Porovnání LLM výstupu: vzdy pouzít SNR framework (grounding 30%, confidence 
 Env var s dopadem na kvalitu musí logovat varování pri hodnotách pod doporuceným minimem. Příklad: `LLM_MAX_TOKENS=2000` → warning "recommended >=4000".
 
 ### P41 — Dvouúrovnová LLM cache (Level 2)
-Per-game LLM analyzu cacheovat do `{game_id}_llm.json`. Agregace pouzívá summaries z cache místo raw dat. Nová hra = 1 L2 call + 1 agregace, ne full re-run.
+Per-game LLM analyzu cacheovat do `{game_id}_llm.json`. Agregace pouzívá summaries z cache místo raw dat. Nová hra = 1 L2 call + 1 agregace, ne full re-run. **Aktualizace (v8):** u multi-perspektiva pipeline (dual-cache white+black) MUSÍ klíc obsahovat perspektivu — `{game_id}_{color}_llm.json`. Jinak oba pohledy sdílí soubor a last-writer-wins prepluje opacnou perspektivu. Reference: GT-079.
 
 ### P42 — Cascade resilience
 Timeout nebo error jednoho providera v cascade nesmí blokovat pipeline. Cascade je resilience pattern — dalsí provider v poradí prevezme.
@@ -1477,9 +1504,27 @@ Engine lines count pod multipv_target musí být signalizován. Flag `truncated`
 ### P62 — Ruff --fix je destruktivní, side-effect importy s noqa
 Ruff `--fix` maže side-effect importy (F401 unused import) — u registračního patternu `@app.tool()` to ruší registrace toolů. Side-effect importy MUSÍ mít `# noqa: F401` per line. Po každém `ruff --fix`: povinně `git diff` + registrační smoke check (`app._tool_manager._tools` count). Pytest destruktivní smazání registrace nezachytí. Reference: GT-078.
 
+### P63 — getattr s defaultem maskuje neexistující atributy
+`getattr(obj, "neexistujici", default)` vrací default **bez jakékoli signalizace** — u LLM input pipeline to znamená 100 % garbage v promptu (detekováno na `opening_report`, `opponent_pool`: `opening_name`, `player_color`, `acpl`, `result`). Model pole MUSÍ být čtená přes reálné atributy (`a.game.opening`, `a.total_acpl`) — pak neexistující atribut vyhodí AttributeError při testech. Jestliže default je nutný: logovat warning při použití. Reference: GT-079.
+
+### P64 — Contract evoluce na živých datech je additive
+Rozšíření povinného klíčového seznamu contract testu, který iteruje REÁLNÁ cache data, zlomí běh na starších souborech (149× cache bez nového klíče). Nový data klíč = (a) additive test `assert data.get(key, default)` MÍSTO rozšíření `PROMPT_TOP_LEVEL_KEYS`, (b) `.get(key, default)` v deserializaci — ne KeyError. Evoluce contractu nikdy nesmí vynutit migraci legacy dat. Reference: GT-079.
+
+### P65 — Timeout cleanup cílí referenci, která volala
+`evaluate_move` používá LOKÁLNÍ engine (vlastní instance), ale timeout handler kvitil sdružený `_engine` → kolaterální zabití konkurující analýzy + zbytečný restart. Cleanup funkce MUSÍ přijmout referenci (`_run_engine_call(fn, timeout_s, engine=None)`) a zabít právě ten objekt, který volání spustil. Reference: GT-079.
+
+### P66 — Fail-fast nad tichou substitucí
+Validace nemá akceptovat hodnotu, kterou implementace neumí, a nahradit ji substitucí — hlásí neimplementovaný vstup chybou (`source='chesscom' → error dict`). Tichá substituce = klidná špatná data. Výjimka: degradace s markerem (P67). Reference: GT-079.
+
+### P67 — Degradace dat potřebuje počitatelný marker
+`except Exception: pass` + `cp_loss = 0` při selhání evaluate_move klasifikovalo chybný tah jako "best" → ACPL systematicky optimistický bez indikace. Degradace MUSÍ být (a) spočítaná (`GameAnalysis.evaluation_errors` čítač, error dict i výjimka → +1), (b) vystavená do LLM promptu (`Eval errors: N (ACPL may be optimistic)`). Rozšíření P55 (log) o měřitelnou expozici. Reference: GT-079.
+
+### P68 — Legacy cache pole s defaultem má guard před parserem
+Starší cache soubory mají pole s prázdným/default defaultem (`m.fen=""`) → `chess.Board(fen="")` vyhodí ValueError a zhrotí celou detekci. Pole, které parser zpracovává, musí mít guard na prázdnou hodnotu (`and m.fen`), konzistentní napříč všemi detekčními funkcemi. Reference: GT-079.
+
 ---
 
-## 5. Diagnostický filtr — 54 checkpoints
+## 5. Diagnostický filtr — 67 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1576,6 +1621,14 @@ Ruff `--fix` maže side-effect importy (F401 unused import) — u registračníh
 60. Je engine lines count pod multipv_target signalizován (truncated flag, warning)? (P61)
 61. Existuje mechanismus pro re-analyzi při code change (cache invalidation)? (P58)
 
+### R — Data correctness & contract evolution (P63-P68)
+62. Jsou model pole čtená přes reálné atributy (`a.field`), ne `getattr(a, "x", default)`? (P63)
+63. Je nový data klíč přidán additive (`.get(key, default)` + additive test), ne rozšířením povinného seznamu testovaného na živých datech? (P64)
+64. Kvituje timeout/cleanup handler referenci, která volání spustila (lokální vs sdružený engine)? (P65)
+65. Hlásí validace neimplementovaný vstup chybou (fail-fast), ne tichou substitucí? (P66)
+66. Má degradace dat počitatelný marker (čítač + expozice v LLM promptu)? (P67)
+67. Má pole legacy cache s prázdným defaultem guard před parserem (chess.Board(fen=""))? (P68)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1644,7 +1697,7 @@ Při zakládání nového MCP repozitáře:
 14. **LLM max_tokens** (P31) — `max_tokens >= 4000` pro coaching pipeline
 15. **Cascade log exposure** (P32) — per-provider status, tokens, cost v kazdém reportu
 16. **API key management** (P39) — `.env` + `auth.json` + `.gitignore` pro vsechny providery
-17. **Per-game LLM cache** (P41) — `{game_id}_llm.json` pro inkrementální agregaci
+17. **Per-game LLM cache** (P41) — `{game_id}_{color}_llm.json` (perspektiva v klíči u dual-cache pipeline)
 18. **Cascade resilience** (P42) — timeout jednoho providera neblokuje pipeline
 19. **Contract testing** (P44) — Consumer-Driven Contract mezi Stockfish → prompt builder → LLM
 20. **API key health check** (P45) — `verify_api_keys()` při startupu, detekuje 401/402/429
@@ -1665,6 +1718,12 @@ Při zakládání nového MCP repozitáře:
 35. **Truncated engine lines signal** (P61) — flag truncated + logger.warning() per BFS
 36. **Cache invalidation mechanismus** (P58) — automaticka detekce stale cache po code change
 37. **Lint autofix guard** (P62) — side-effect importy s `# noqa: F401`, po `ruff --fix` vzdy `git diff` + registracni smoke check
+38. **Model field access** (P63) — data do LLM promptu pres realne atributy modelu, ne `getattr` s defaultem; default = warning
+39. **Additive contract evolution** (P64) — novy klic pres `.get(key, default)` + additive test, nikdy rozsireni povinneho seznamu na zivych datech
+40. **Cleanup target reference** (P65) — timeout/cleanup handler kviti referenci, ktera volala (parametr, ne sdruzeny global)
+41. **Fail-fast validation** (P66) — neimplementovany vstup = error dict, ne ticha substituce
+42. **Degradation marker** (P67) — pocitatelny citac degradace + expozice v LLM promptu
+43. **Legacy field guard** (P68) — pole cache s prazdnym defaultem guard pred parserem (konzistentni s detekcnimi funkcemi)
 
 ---
 
@@ -1672,19 +1731,20 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-078) | 78 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 52 |
+| Celkem GT (GT-001 az GT-079) | 79 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 53 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 6 |
-| Documented | 11 |
+| Documented | 12 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **78** |
+| **Kontrolni soucet** | **79** |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 61 |
+| Z toho application logic issues | 62 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
 | Z toho DBCL Phase 2 session 2026-07-27 | 7 (GT-071 az GT-077) |
+| Z toho data-correctness fix batch 2026-08-02 | 1 (GT-079) |
 
 **Poznamka ke statistice:** `Fixed` (53) + `Implemented` (4) + `Mitigated` (6) + `Documented` (11) + `Workaround` (3) + `Pending` (1) = 78? **Korekce:** `Fixed` = 52 (GT-071, GT-073, GT-075 = 3 new fixed) + `Mitigated` = 6 (GT-076 = 1 new mitigated) + `Documented` = 11 (GT-072 = 1 new documented) + `Workaround` = 3 (GT-074 = 0 new, zůstává) + `Pending` = 1 (GT-077 = new pending). Fixed 48+3=51, Implemented 4+0=4, Mitigated 5+1=6, Documented 10+1=11, Workaround 3+0=3, Pending 0+1=1 → 51+4+6+11+3+1 = **76**. GT-001 az GT-077 = **77 položek** (GT-068 berserk pagination = Documented, nikoliv chybějící). Zpřesněná čísla: Fixed=51, Implemented=4, Mitigated=6, Documented=12 (GT-068 je Documented, ne Fixed), Workaround=3, Pending=1 → 51+4+6+12+3+1 = **77**. **OK.**
 
@@ -1692,6 +1752,8 @@ Polozky GT-071 az GT-077 pridany v6 (2026-07-27) — DBCL Phase 2 root cause ana
 
 Polozka GT-078 pridana v7 (2026-08-01) — ruff --fix destruktivni autofix: F401 smazal side-effect tool imports v server.py (lichess-analyzer). Fixed 51+1=52, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 52+4+6+12+3+1 = **78**. OK.
 
+Polozka GT-079 pridana v8 (2026-08-02) — data-correctness fix batch 1+2 (lichess-analyzer): getattr garbage (B100), hardcoded perspektiva (B98), KB cesta (B121/B119), cache kolize barev (B31), timeout kill reference (B5), ticha degradace ACPL (B16), legacy fen guard (B113). Pravidla P63-P68, aktualizace P41 (color v cache klici). Rozsiren diagnosticky filtr o R sekci (checkpointy 62-67). Checklist dedicnosti rozsiren o polozky 38-43. Fixed 52+1=53, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 53+4+6+12+3+1 = **79**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries).*
