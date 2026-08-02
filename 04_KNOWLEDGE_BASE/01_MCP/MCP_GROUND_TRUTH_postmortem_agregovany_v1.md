@@ -1278,10 +1278,11 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 4. **`.gitignore` fix** v KB: `02_ANALÝZY/01_portfolio_audit/`→`02_ANALYZY/01_portfolio_audit/` (rename rozbil ignore pravidlo); unstage přes `git reset -q HEAD -- <path>`.
 5. **Content reference update** (7 souborů v KB): cesty v README/INDEX/AGENTS/architektura/sémantická analýza + odkaz na `Od_Kompresniho_Realismu_k_Biologicke_Neuro-Architekture.md` (brain_geometric_processor_summary:614).
 6. **Guard skript** `.scripts/ascii_filenames_check.ps1` — exit 0/1, `git ls-files | ne-ASCII regex` přes všechny repo; v11 verificováno 19/19 OK.
+7. **Kontraktní validátor referencí** `.scripts/context_refs_check.py` — exit 0/1, kontroluje, že žádný trackovaný soubor neobsahuje staré cesty/názvy po renames (GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST pro legitimní výskyty jako historická mirror/pipeline data a GT citace). Po v2 prošel přes 1386 trackovaných souborů / 19 rep a odhalil **31 broken referencí** (runtime path stringy v Python kódu, README/index/mapa reference, URL-encoded `%C3%9D` odkazy, `New_rules/` cesta), opraveno a re-validováno na 0 (2026-08-02).
 
 **Pravidla:** P69 (viz sekce 4). P41 (cache klíč) nesouvisí.
 
-**Provenance:** source-read — renames commit KB `533a9c6`, dxf `0bff7b7`, GCP `fdcf1df`, kazuistiky `a613eb2`, lichess `19c735b`, vcf `79591d5`; guard `.scripts/ascii_filenames_check.ps1` exit 0 na 19 repo (2026-08-02).
+**Provenance:** source-read — renames commit KB `533a9c6`, dxf `0bff7b7`, GCP `fdcf1df`, kazuistiky `a613eb2`, lichess `19c735b`, vcf `79591d5`; guard `.scripts/ascii_filenames_check.ps1` exit 0 na 19 repo (2026-08-02). Broken ref fixes: GCP `d9ea2b1`, lichess `9e41386`, linkedin-mcp-custom `210be0b`, mcp-local-server `9ab5820`, dxf `de87a32`, Vcf-compiler `0a8844d`, outpost2026_profile `cce09b3`; kontraktní validátor `.scripts/context_refs_check.py` exit 0 (0 broken refs, 2026-08-02).
 
 ---
 
@@ -1548,7 +1549,7 @@ Názvy souborů a adresářů povolují POUZE `[A-Za-z0-9._-]` — žádná diak
 
 ---
 
-## 5. Diagnostický filtr — 67 checkpoints
+## 5. Diagnostický filtr — 69 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1655,6 +1656,7 @@ Názvy souborů a adresářů povolují POUZE `[A-Za-z0-9._-]` — žádná diak
 
 ### S — Filename nomenklatura (P69, ASCII-NOM)
 68. Jsou všechny trackované názvy souborů/adresářů ASCII `[A-Za-z0-9._-]` (žádná diakritika, mezery, U+2011)? (P69) — ověř `.scripts/ascii_filenames_check.ps1`, exit 0
+69. Neobsahuje žádný trackovaný soubor staré cesty/názvy po renames (broken reference)? — ověř `.scripts/context_refs_check.py`, exit 0 (kontrakt: GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST)
 
 ---
 
@@ -1785,6 +1787,8 @@ Polozka GT-079 pridana v8 (2026-08-02) — data-correctness fix batch 1+2 (liche
 
 Polozka GT-080 pridana v9 (2026-08-02) — ASCII-NOM nomenklatura (workspace-wide): mojibake v git objektech (cp1250 vs UTF-8), ne-ASCII nazvy (diakritika, mezery, U+2011) prejmenovany na ASCII `[A-Za-z0-9._-]` napric 6 repy (20 souboru, obsah nedotcen). Pravidlo P69. Diagnosticky filtr rozsiren o S sekci (checkpoint 68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1` (exit 0/1). Fixed 53+1=54, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 54+4+6+12+3+1 = **80**. OK.
 
+v9.1 (2026-08-02) — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py` (exit 0/1, GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST) — prosel 1386 trackovanych souboru / 19 rep, odhalil a opravil **31 broken referenci** (runtime path stringy, README/index/mapa reference, URL-encoded `%C3%9D`, `New_rules/` cesta) napric 7 repy (GCP, lichess, linkedin, mcp-local, dxf, Vcf-compiler, outpost2026_profile). Diagnosticky filtr rozsiren o checkpoint 69. Statistiky beze zmeny (80 entries).
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames).*
