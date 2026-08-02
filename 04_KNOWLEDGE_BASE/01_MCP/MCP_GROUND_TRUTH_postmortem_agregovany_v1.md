@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-02 | **Verze:** 8
+**Datum:** 2026-08-02 | **Verze:** 9
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1264,7 +1264,28 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 
 ---
 
-## 4. Průřezová pravidla P1-P68 (konsolidovaná)
+#### GT-080 (workspace-wide): Ne-ASCII názvy souborů — mojibake v git objektech + encoding dluh napříč 6 repy
+**Server:** workspace (cross-repo) | **Status:** Fixed | **Typ:** Encoding — filename nomenklatura (konvence ASCII-NOM)
+
+**Symptom:** GitHub GUI zobrazoval `02_ANAL�ZY` v remote tree i po pushi; dev hlásil podezření na strukturální inkonsistenci remote vs local. Diagnostika odhalila: **žádná strukturální inkonsistence** (remote tree = lokální tree, stejný SHA, 61=61 souborů), ale **mojibake bytes v git objektech**: git index obsahoval `E2 94 9C C5 81` (="┌Ł") místo UTF-8 `C3 9D` (Ý). Filesystem měl správné U+00DD — PowerShell cp1250 vrstva to maskovala. Celkem **20 trackovaných ne-ASCII názvů v 6 repech**: B2B-Knowledge-Base (14: 11× `02_ANALÝZY/`, 2× `High‑SNR` s U+2011 non-breaking hyphen, 1× `Od Kompresního Realismu k Biologické Neuro-Architektuře.md`), dxf_integrace (1), GCP (1), kazuistiky_llm_sprint (2), lichess-analyzer-mcp (1), vcf_integrace (1). Doplňkově `00_STRATEGIE/` a `03_PROVOZ/` chybí v GUI = gitignored (`.gitignore:47,49`, design, ne chyba).
+
+**Root cause:** Encoding dluh — ne-ASCII názvy (diakritika, mezery, U+2011 non-breaking hyphen) zapsané v minulosti. Git ukládá path jako raw bytes v cp1250 (OS filesystem) → na remote UTF-8/GitHub zobrazeno jako mojibake. U+2011 je zvlášť zákeřný — vizuálně identický s ASCII `-`, ale jiné codepoint → rozbíjí copy-paste, grep a RAG lookup. Konvence "obsah UTF-8, názvy ASCII" eliminuje zdroj na úrovni vzniku (dev teze: cyklický encoding dluh — každá ne-ASCII cesta je budoucí bug).
+
+**Fix:**
+1. **Konvence ASCII-NOM (schválena devem, GO):** názvy souborů/adresářů jen `[A-Za-z0-9._-]`; obsah zůstává UTF-8 s diakritikou. Odstraňuje zdroj, ne jen symptom.
+2. **Transliterace** (bezpečná vůči cp1250): `String.Normalize(FormD)` + odstranění NonSpacingMark, mezera→`_`, U+2011→`-`, ostatní ne-ASCII→`_`, kolaps `__+`→`_`, trim, `_+\.`→`.`.
+3. **Rename přes filesystem objekty** (Get-ChildItem, ne hardcode diakritiky) + `git mv` per repo; obsah nedotčen (100% R v diffu).
+4. **`.gitignore` fix** v KB: `02_ANALÝZY/01_portfolio_audit/`→`02_ANALYZY/01_portfolio_audit/` (rename rozbil ignore pravidlo); unstage přes `git reset -q HEAD -- <path>`.
+5. **Content reference update** (7 souborů v KB): cesty v README/INDEX/AGENTS/architektura/sémantická analýza + odkaz na `Od_Kompresniho_Realismu_k_Biologicke_Neuro-Architekture.md` (brain_geometric_processor_summary:614).
+6. **Guard skript** `.scripts/ascii_filenames_check.ps1` — exit 0/1, `git ls-files | ne-ASCII regex` přes všechny repo; v11 verificováno 19/19 OK.
+
+**Pravidla:** P69 (viz sekce 4). P41 (cache klíč) nesouvisí.
+
+**Provenance:** source-read — renames commit KB `533a9c6`, dxf `0bff7b7`, GCP `fdcf1df`, kazuistiky `a613eb2`, lichess `19c735b`, vcf `79591d5`; guard `.scripts/ascii_filenames_check.ps1` exit 0 na 19 repo (2026-08-02).
+
+---
+
+## 4. Průřezová pravidla P1-P69 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1522,6 +1543,9 @@ Validace nemá akceptovat hodnotu, kterou implementace neumí, a nahradit ji sub
 ### P68 — Legacy cache pole s defaultem má guard před parserem
 Starší cache soubory mají pole s prázdným/default defaultem (`m.fen=""`) → `chess.Board(fen="")` vyhodí ValueError a zhrotí celou detekci. Pole, které parser zpracovává, musí mít guard na prázdnou hodnotu (`and m.fen`), konzistentní napříč všemi detekčními funkcemi. Reference: GT-079.
 
+### P69 — Názvy souborů/adresářů jen ASCII (konvence ASCII-NOM)
+Názvy souborů a adresářů povolují POUZE `[A-Za-z0-9._-]` — žádná diakritika, mezery, ani non-breaking hyphen (U+2011). Obsah souborů zůstává UTF-8 s diakritikou (konvence platí pro názvy, ne obsah). Důvod: ne-ASCII názvy (a) generují mojibake v git objektech (cp1250 vs UTF-8 — GT-080), (b) U+2011 je vizuálně identický s `-` ale jiný codepoint → rozbíjí copy-paste/grep/RAG, (c) cyklický encoding dluh. Transliterace: `Normalize(FormD)` + drop NonSpacingMark, mezera→`_`, U+2011→`-`, ostatní ne-ASCII→`_`. Ověření: `.scripts/ascii_filenames_check.ps1` (exit 0 = OK). Reference: GT-080.
+
 ---
 
 ## 5. Diagnostický filtr — 67 checkpoints
@@ -1629,6 +1653,9 @@ Starší cache soubory mají pole s prázdným/default defaultem (`m.fen=""`) �
 66. Má degradace dat počitatelný marker (čítač + expozice v LLM promptu)? (P67)
 67. Má pole legacy cache s prázdným defaultem guard před parserem (chess.Board(fen=""))? (P68)
 
+### S — Filename nomenklatura (P69, ASCII-NOM)
+68. Jsou všechny trackované názvy souborů/adresářů ASCII `[A-Za-z0-9._-]` (žádná diakritika, mezery, U+2011)? (P69) — ověř `.scripts/ascii_filenames_check.ps1`, exit 0
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1724,6 +1751,7 @@ Při zakládání nového MCP repozitáře:
 41. **Fail-fast validation** (P66) — neimplementovany vstup = error dict, ne ticha substituce
 42. **Degradation marker** (P67) — pocitatelny citac degradace + expozice v LLM promptu
 43. **Legacy field guard** (P68) — pole cache s prazdnym defaultem guard pred parserem (konzistentni s detekcnimi funkcemi)
+44. **ASCII filenames** (P69) — vsechny nazvy souboru/adresaru ASCII `[A-Za-z0-9._-]`; overeni `.scripts/ascii_filenames_check.ps1` (exit 0)
 
 ---
 
@@ -1731,20 +1759,21 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-079) | 79 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 53 |
+| Celkem GT (GT-001 az GT-080) | 80 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 54 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 6 |
 | Documented | 12 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **79** |
+| **Kontrolni soucet** | **80** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 62 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
 | Z toho DBCL Phase 2 session 2026-07-27 | 7 (GT-071 az GT-077) |
 | Z toho data-correctness fix batch 2026-08-02 | 1 (GT-079) |
+| Z toho ASCII-NOM nomenklatura 2026-08-02 | 1 (GT-080) |
 
 **Poznamka ke statistice:** `Fixed` (53) + `Implemented` (4) + `Mitigated` (6) + `Documented` (11) + `Workaround` (3) + `Pending` (1) = 78? **Korekce:** `Fixed` = 52 (GT-071, GT-073, GT-075 = 3 new fixed) + `Mitigated` = 6 (GT-076 = 1 new mitigated) + `Documented` = 11 (GT-072 = 1 new documented) + `Workaround` = 3 (GT-074 = 0 new, zůstává) + `Pending` = 1 (GT-077 = new pending). Fixed 48+3=51, Implemented 4+0=4, Mitigated 5+1=6, Documented 10+1=11, Workaround 3+0=3, Pending 0+1=1 → 51+4+6+11+3+1 = **76**. GT-001 az GT-077 = **77 položek** (GT-068 berserk pagination = Documented, nikoliv chybějící). Zpřesněná čísla: Fixed=51, Implemented=4, Mitigated=6, Documented=12 (GT-068 je Documented, ne Fixed), Workaround=3, Pending=1 → 51+4+6+12+3+1 = **77**. **OK.**
 
@@ -1754,6 +1783,8 @@ Polozka GT-078 pridana v7 (2026-08-01) — ruff --fix destruktivni autofix: F401
 
 Polozka GT-079 pridana v8 (2026-08-02) — data-correctness fix batch 1+2 (lichess-analyzer): getattr garbage (B100), hardcoded perspektiva (B98), KB cesta (B121/B119), cache kolize barev (B31), timeout kill reference (B5), ticha degradace ACPL (B16), legacy fen guard (B113). Pravidla P63-P68, aktualizace P41 (color v cache klici). Rozsiren diagnosticky filtr o R sekci (checkpointy 62-67). Checklist dedicnosti rozsiren o polozky 38-43. Fixed 52+1=53, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 53+4+6+12+3+1 = **79**. OK.
 
+Polozka GT-080 pridana v9 (2026-08-02) — ASCII-NOM nomenklatura (workspace-wide): mojibake v git objektech (cp1250 vs UTF-8), ne-ASCII nazvy (diakritika, mezery, U+2011) prejmenovany na ASCII `[A-Za-z0-9._-]` napric 6 repy (20 souboru, obsah nedotcen). Pravidlo P69. Diagnosticky filtr rozsiren o S sekci (checkpoint 68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1` (exit 0/1). Fixed 53+1=54, Implemented 4, Mitigated 6, Documented 12, Workaround 3, Pending 1 → 54+4+6+12+3+1 = **80**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries).*
