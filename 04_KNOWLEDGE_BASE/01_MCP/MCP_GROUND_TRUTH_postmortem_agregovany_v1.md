@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-02 | **Verze:** 9
+**Datum:** 2026-08-06 | **Verze:** 10
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1312,7 +1312,84 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 
 ---
 
-## 4. Průřezová pravidla P1-P69 (konsolidovaná)
+#### GT-082 (mcp-jobs-009): Cross-LLM audit → EROI sprint workflow — implementační pipeline z review findings
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Methodology — Development process
+
+**Symptom:** Cross-LLM review (Claude Sonnet 5, 7.2/10) identifikoval 8 nalezení (1 critical, 3 high, 4 medium). Bez strukturovaného workflow by se findings ztratily v ad-hoc implementaci.
+
+**Root cause:** Cross-LLM audit (GT-062, P47) kryje samotný review proces (v1 twin + v2 code review), ale NEkryje implementační pipeline která následuje: jak převést review findings do prioritizovaných sprintů s měřitelným ověřením.
+
+**Fix (3-fázová implementační pipeline):**
+1. **Fáze 1 — Sémantická analýza:** Cross-LLM findings → EROI scoring (domain 35%, tech 25%, role 20%, growth 10%, formal 5%, location 5%) → seřazení dle priority
+2. **Fáze 2 — Sprint plánování:** EROI >7.0 = Quick Win (Sprint 1), EROI 5.0-7.0 = Core Fix (Sprint 2), EROI <5.0 = Backlog. Každý sprint = 1-3 files, maximálně 30 minut.
+3. **Fáze 3 — Fresh run validace:** Po každém sprintu = `python -X utf8 scripts/run_pipeline.py` s oběma konfiguracemi (AI_NATIVE + LEGACY_MANUAL). Metriky: čas, matched jobs, identical results. regression = rollback.
+
+**Výsledek:** 3 sprints (5+2+1 items), 1.61x speedup (58.5s→36.3s), 131/131 testů, 0 regressions.
+
+**Pravidlo:** P70 — Cross-LLM audit je nutný, ale POST-review implementace potřebuje vlastní workflow: EROI scoring → sprint plánování → fresh run validace. Bez toho se findingsStanou "nice to have" místo "shipped".
+
+**Provenance:** session-read — cross-LLM review Claude Sonnet 5 (2026-08-06), EROI scoring, 3 sprint implementations, fresh run validation (AI_NATIVE 36.3s, LEGACY_MANUAL 38.6s).
+
+---
+
+#### GT-083 (mcp-jobs-010): 3-fázová pipeline architektura — collect → parallel fetch → filter
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Architecture — Pipeline design pattern
+
+**Symptom:** Detail fetch byl sekvenční — každý URL se stahoval jeden po druhém. Při 46 matched ads s potřebou detailu = ~30s jen na fetch.
+
+**Root cause:** Původní `run()` měl 2 fáze: (1) scrape all portals, (2) filter query. Detail fetch probíhal uvnitř filter fáze, sekvenčně pro každý ad. Chyběla separace "collect URLs" od "fetch details" od "filter results".
+
+**Fix (3-fázová architektura v `pipeline.py:77-128`):**
+1. **Fáze 1 — Collect unikátních URL** (`pipeline.py:81-92`: `urls_needing_detail: set[str]`): Iterace přes všechny query, sběr URL kde `ad.description` je prázdný a `matches_ad()` = true. Set zajišťuje deduplikaci (stejný ad může projít více query).
+2. **Fáze 2 — Parallel detail fetch** (`pipeline.py:94-97`: `_fetch_details_parallel()`): `ThreadPoolExecutor(max_workers=4)` s per-portal throttle (0.5s delay). Neúspěch se zapisuje jako `_FAILED` sentinel (GT-085), ne None.
+3. **Fáze 3 — Filter nad naplněnou cache** (`pipeline.py:99-126`): Každý ad dostane `ad.description = cached` pokud cache obsahuje úspěch. `_FAILED` se přeskočí (ad zůstane bez detailu, ale filtrování proběhne na základě title/location/salary).
+
+**Výsledek:** 58.5s→36.3s (1.61x speedup), identické výsledky (46 matched ads).
+
+**Pravidlo:** P71 — Scraping pipeline s detail fetch = 3 fáze: (1) collect unikátních URL přes všechny query, (2) parallel fetch s per-portal throttle, (3) filter nad naplněnou cache. Sekvenční detail fetch = bottleneck, který eskaluje lineárně s počtem matched ads.
+
+**Provenance:** source-read — `pipeline.py:77-128` (3-fázová architektura), `pipeline.py:130-200` (`_fetch_details_parallel`), fresh run metriky (2026-08-06).
+
+---
+
+#### GT-084 (mcp-jobs-011): Domain allowlist pro URL validaci — SSRF protection pattern
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Security — URL validation
+
+**Symptom:** Cross-LLM review identifikoval SSRF vulnerability: category URL v configu mohla obsahovat libovolnou doménu (včetně `127.0.0.1`, `metadata.google.internal`, atd.). Pipeline by ji bez validace stáhla.
+
+**Root cause:** `SearchPipeline._scrape_all()` předávala `cat.url` přímo do `scraper.scrape_category()` bez kontroly domény. Config je JSON soubor — uživatel/LLM může do `categories[].url` vložit cokoliv.
+
+**Fix (`pipeline.py:236-244`, `config.py:58-66`):**
+1. **`PipelineSettings.url_allowlist`** (`config.py:64-66`): `list[str]` s defaultem `["bazos.cz", "jobs.cz", "prace.cz"]`. Prazdný seznam = bez validace (pro testy).
+2. **`_validate_url()` static method** (`pipeline.py:236-244`): `urlparse(url).hostname` → porovnání s allowlist. Podporuje subdomény (`host.endswith("." + d)`).
+3. **Guard v `_scrape_all()`** (`pipeline.py:256-262`): `if not self._validate_url(cat.url, allowed)` → `logger.error("BLOCKED: ...")` + `continue` (přeskočí kategorii, nespadne).
+4. **Test compatibility** (`test_pipeline.py`): Testy používají `url_allowlist=[]` pro bypass validace.
+
+**Pravidlo:** P72 — Scrape pipeline s externími URL MUSÍ mít domain allowlist. Prazdná allowlist = bypass (pro testy), ne chyba. Validace = `urlparse().hostname` + `endswith("." + d)` pro subdomény. Blocked URL = log error + skip, ne exception.
+
+**Provenance:** source-read — cross-LLM review finding SEC-001 (Claude Sonnet 5, 2026-08-06), implementation `pipeline.py:236-244`, `config.py:58-66`, test update `test_pipeline.py`.
+
+---
+
+#### GT-085 (mcp-jobs-012): Cache failure sentinel (_FAILED pattern) — odlíšení "nezkoušeno" od "selhalo"
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Reliability — Cache state management
+
+**Symptom:** Při selhání detail fetchu se do cache zapsalo `None` — stejná hodnota jako "ještě nezkoušeno". Při opětovném spuštění se stejný URL stahoval znovu (a znovu selhal), protože cache nepoznala rozdíl mezi "nezkoušeno" a "selhalo".
+
+**Root cause:** `detail_cache[url] = None` bylo použito pro oba stavy: (1) URL ještě nebylo zpracováno, (2) detail fetch selhal. Cache neměla mechanismus pro rozlišení těchto stavů → opětovné fetch pokusy pro permanentně selhané URL.
+
+**Fix (`pipeline.py:19`, `pipeline.py:140-200`):**
+1. **Sentinel:** `_FAILED = object()` — unikátní object, liší se od `None` i od prázdného stringu.
+2. **Zápis při selhání:** `detail_cache[url] = detail if detail else _FAILED` (`pipeline.py:181, 196, 200`).
+3. **Čtení v filter fázi:** `if cached is not _FAILED and cached:` (`pipeline.py:114`) — `_FAILED` se přeskočí (ad zůstane bez detailu), `None` se také přeskočí (ještě nezkoušeno), pouze platný string se aplikuje.
+
+**Pravidlo:** P73 — Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkoušeno (`None`/absence klíče), (2) úspěch (hodnota), (3) selhalo (sentinel `_FAILED`). Bez sentinelu = opětovné fetch pokusy pro permanentně selhané URL.
+
+**Provenance:** source-read — `pipeline.py:19` (sentinel definition), `pipeline.py:114` (cache read), `pipeline.py:181,196,200` (cache write), cross-LLM review finding BUG-001 (Claude Sonnet 5, 2026-08-06).
+
+---
+
+## 4. Průřezová pravidla P1-P73 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1573,9 +1650,21 @@ Starší cache soubory mají pole s prázdným/default defaultem (`m.fen=""`) �
 ### P69 — Názvy souborů/adresářů jen ASCII (konvence ASCII-NOM)
 Názvy souborů a adresářů povolují POUZE `[A-Za-z0-9._-]` — žádná diakritika, mezery, ani non-breaking hyphen (U+2011). Obsah souborů zůstává UTF-8 s diakritikou (konvence platí pro názvy, ne obsah). Důvod: ne-ASCII názvy (a) generují mojibake v git objektech (cp1250 vs UTF-8 — GT-080), (b) U+2011 je vizuálně identický s `-` ale jiný codepoint → rozbíjí copy-paste/grep/RAG, (c) cyklický encoding dluh. Transliterace: `Normalize(FormD)` + drop NonSpacingMark, mezera→`_`, U+2011→`-`, ostatní ne-ASCII→`_`. Ověření: `.scripts/ascii_filenames_check.ps1` (exit 0 = OK). Reference: GT-080.
 
+### P70 — Cross-LLM audit je nutný, ale implementace potřebuje vlastní workflow
+Cross-LLM review (P47) kryje samotný review proces (v1 twin + v2 code review). POST-review implementace potřebuje: (1) EROI scoring findings (domain 35%, tech 25%, role 20%, growth 10%, formal 5%, location 5%), (2) sprint plánování dle EROI (>7.0 = Quick Win, 5.0-7.0 = Core Fix, <5.0 = Backlog), (3) fresh run validace po každém sprintu (metriky: čas, matched jobs, identical results). Bez toho se findings stanou "nice to have" místo "shipped". Reference: GT-082.
+
+### P71 — Scraping pipeline s detail fetch = 3 fáze
+(1) Collect unikátních URL přes všechny query (set pro dedup), (2) parallel fetch s per-portal throttle (ThreadPoolExecutor, max_workers=4), (3) filter nad naplněnou cache. Sekvenční detail fetch = bottleneck, který eskaluje lineárně s počtem matched ads. Reference: GT-083.
+
+### P72 — Scrape pipeline s externími URL = domain allowlist
+Pipeline s externími URL MUSÍ mít domain allowlist v configu. Prazdná allowlist = bypass (pro testy), ne chyba. Validace = `urlparse().hostname` + `endswith("." + d)` pro subdomény. Blocked URL = log error + skip, ne exception. Reference: GT-084.
+
+### P73 — Cache failure sentinel: 3 stavy (nezkoušeno / úspěch / selhalo)
+Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkoušeno (`None`/absence klíče), (2) úspěch (hodnota), (3) selhalo (sentinel `_FAILED = object()`). Bez sentinelu = opětovné fetch pokusy pro permanentně selhané URL. Reference: GT-085.
+
 ---
 
-## 5. Diagnostický filtr — 69 checkpoints
+## 5. Diagnostický filtr — 73 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
