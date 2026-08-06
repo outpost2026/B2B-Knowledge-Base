@@ -1,0 +1,148 @@
+{
+  "handoff_type": "Korekce Vektorů — Akční Kompresní Framework",
+  "version": "2.0",
+  "date": "2026-08-06",
+  "author": "outpost2026",
+  "purpose": "Komprimovaný akční plán pro optimalizaci trajektorie Industrial Automation Engineer / System Integration",
+  "core_axiom": "Maximální EROI při minimální entropii — prioritizovat akce s nejvyšším dopadem na LinkedIn precision a konverzi",
+
+  "global_thresholds": {
+    "precision_target": "35-45%",
+    "applications_per_month": "8-12",
+    "follow_lead_conversion_target": "40-55%",
+    "time_horizon": "4 měsíce"
+  },
+
+  "korekce_vektory": [
+    {
+      "faze": "IMMEDIATE",
+      "horizon": "0-3 týdny",
+      "priority": "CRITICAL",
+      "eroi": "VELMI VYSOKÝ",
+      "items": [
+        {
+          "action": "LinkedIn Profile Optimization",
+          "description": "Headline + Skills (18-25) + About keywords + Featured GitHub",
+          "specific_tasks": [
+            "Nový headline: 'Industrial Automation Engineer | System Integration • CNC/CAM • Python • Reverse Engineering'",
+            "Přidat skills: Reverse Engineering, Test Automation, Golden Master Testing, PLC Testing, Docker, GitHub Actions, Data Pipeline, ETL, CAM Software, IoT (ESP32), System Integration",
+            "Propojit GitHub repozitáře do Featured sekce",
+            "Zapnout Open to Work s industrial filtry"
+          ],
+          "time_investment": "8-12 hodin",
+          "expected_impact": "Nárůst precision o 40-70%",
+          "success_metric": "Precision > 32% do 14 dnů"
+        },
+        {
+          "action": "Aplikace na Top Follow Leads",
+          "description": "Desoutter #003, Siemens #007, Thermo Fisher #014",
+          "specific_tasks": ["Tailored CV + krátký cover note + LinkedIn zpráva"],
+          "time_investment": "6-8 hodin",
+          "expected_impact": "Minimálně 1-2 pohovory",
+          "success_metric": "Odesláno + follow-up plán"
+        },
+        {
+          "action": "TypeScript + Playwright Quickstart",
+          "description": "Odemčení Rockwell-like rolí",
+          "specific_tasks": ["Udemy kurz + malý praktický projekt (scraper/test suite)"],
+          "time_investment": "15-25 hodin",
+          "expected_impact": "Odstranění kritického skill gapu",
+          "success_metric": "Funkční PoC do 3 týdnů"
+        }
+      ]
+    },
+    {
+      "faze": "SHORT_TERM",
+      "horizon": "3-6 týdnů",
+      "priority": "HIGH",
+      "eroi": "VYSOKÝ",
+      "items": [
+        {
+          "action": "GitHub Actions + Docker Multi-stage",
+          "description": "Profesionalizace repozitářů — HOTOVO (deklarováno v README 2026-08)",
+          "specific_tasks": ["CI/CD deklarován: Actions, CodeQL, Dependabot"],
+          "time_investment": "0 hodin (hotovo)",
+          "expected_impact": "Profesionalizace potvrzena",
+          "success_metric": "Green pipeline na main — DOKONČENO",
+          "status": "DONE"
+        },
+        {
+          "action": "MCP Ekosystém jako Diferenciace",
+          "description": "3 veřejné MCP servery = unikátní skill na trhu",
+          "specific_tasks": [
+            "linkedin-mcp-custom (403 commits, EROI scoring)",
+            "MCP-Jobs (CZ job portály: jobs.cz, prace.cz, bazos.cz)",
+            "lichess-mcp-analyzer (Chess analytics, Stockfish)"
+          ],
+          "time_investment": "0 hodin (hotovo)",
+          "expected_impact": "Diferenciace na B2B trhu, emerging trend",
+          "success_metric": "3 veřejné servery na GitHubu — DOKONČENO",
+          "status": "DONE"
+        },
+        {
+          "action": "AZ-900 Azure Fundamentals",
+          "description": "Pokrytí Azure poptávky (4× výskyt)",
+          "specific_tasks": ["Oficiální kurz + certifikace"],
+          "time_investment": "10-15 hodin",
+          "expected_impact": "Zvýšení fit u Rockwell a hybridních rolí",
+          "success_metric": "Certifikát + zmínka v profilu"
+        }
+      ]
+    },
+    {
+      "faze": "MEDIUM_TERM",
+      "horizon": "6-16 týdnů",
+      "priority": "MEDIUM",
+      "eroi": "STŘEDNÍ-VYSOKÝ",
+      "items": [
+        {
+          "action": "PLC Basics & Industrial Protocols",
+          "description": "Posílení core industrial match",
+          "specific_tasks": ["TIA Portal / Modbus PoC + dokumentace"],
+          "time_investment": "40-60 hodin",
+          "expected_impact": "Silnější pozice u Siemens/Rockwell",
+          "success_metric": "Funkční PoC + README"
+        },
+        {
+          "action": "Anonymizace & Publikace RE Metodiky",
+          "description": "Zvýšení viditelnosti portfolia",
+          "specific_tasks": ["Vytvořit veřejnou verzi Pair Diff + Golden Master metodiky"],
+          "time_investment": "15-25 hodin",
+          "expected_impact": "Silnější důkaz expertizy",
+          "success_metric": "Nové public repo s 50+ stars potenciálem"
+        },
+        {
+          "action": "První Placený Kontrakt",
+          "description": "Cashflow + reference",
+          "specific_tasks": ["Toloka #024 nebo podobný B2B freelance"],
+          "time_investment": "Variabilní",
+          "expected_impact": "Reálná týmová zkušenost + revenue",
+          "success_metric": "Uzavřený kontrakt"
+        }
+      ]
+    }
+  ],
+
+  "monitoring_framework": {
+    "cadence": "každé 2 týdny",
+    "metrics": [
+      "LinkedIn Precision (relevantní nabídky / celkem)",
+      "Počet kvalitních aplikací",
+      "Response rate + pohovory",
+      "Fit skóre top 5 leadů",
+      "Nové GitHub commity & aktivity"
+    ],
+    "review_trigger": "Precision < 30% nebo 0 odpovědí za 3 týdny"
+  },
+
+  "risks_and_mitigation": {
+    "risk_1": "Příliš pomalé tempo po initial burstu",
+    "mitigation": "Pevný týdenní time-box 12-15 hodin na korekce",
+    "risk_2": "Over-documentation vs. exekuce",
+    "mitigation": "80/20 pravidlo — max 30% času na docs",
+    "risk_3": "LinkedIn algoritmus drift",
+    "mitigation": "Pravidelná kalibrace preferences + aktivní aplikace"
+  },
+
+  "final_teze": "Trajektorie je viabilní. Nejsilnější pákou je LinkedIn optimalizace + MCP diferenciace (3 servery hotové). TypeScript gap je stále kritický — priorita #1 pro odemčení rolí. CI/CD hotovo, MCP hotovo = zaměř se na LinkedIn + TypeScript."
+}
