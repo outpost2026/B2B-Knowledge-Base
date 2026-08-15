@@ -136,12 +136,12 @@
 
 > PA01/PA04/PA05 v1 generace archivovány v `02_ANALYZY/01_portfolio_audit/_ARCHIVE/` (superseded v2).
 
-### 02_konkurence_a_trh — Tržní srovnání
+### 06_konkurence_a_trh — Tržní srovnání
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 
-> Prázdná (SKILL_GAPS → 04_skill_acquisition, web GT-pravidel → 00_STRATEGIE/03_web_GT_pravidla, 2026-08-15).
+> Prázdná (SKILL_GAPS → 04_skill_acquisition, web GT-pravidel → 00_STRATEGIE/03_web_GT_pravidla, 2026-08-15). Do složky patří tržní výzkumy (např. market_research_stack_conversion — viz Bod 3).
 
 ### 04_chess — Chess analýzy, lichess-analyzer pipeline
 
@@ -414,7 +414,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `audit`, `github`, `portfolio` | `02_ANALYZY/01_portfolio_audit/` |
 | `analyza`, `kod`, `architektura`, `vcf` | `02_ANALYZY/03_kodove_analyzy/` |
 | `mcp_jobs`, `pipeline`, `cross_audit`, `handoff` | `02_ANALYZY/05_mcp_jobs/` |
-| `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `01_METODIKY/04_skill_acquisition/` + `02_ANALYZY/02_konkurence_a_trh/` |
+| `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `01_METODIKY/04_skill_acquisition/` + `02_ANALYZY/06_konkurence_a_trh/` |
 | `gt_pravidla`, `web`, `produkt`, `epistemika` | `00_STRATEGIE/03_web_GT_pravidla/` |
 | `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
 | `cv_automation`, `yolo11`, `small_models` | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` |
