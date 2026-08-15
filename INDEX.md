@@ -37,6 +37,14 @@
 | **K03** | **`vcf_optimizer_analytic_engine.md`** | **02_karierni_targety/** | **strategie** | **Vector 1 — pre-production analytický engine (material yield, time/cost, defect prediction) (441 ř.)** | **10/10** |
 | **K04** | **`vcf_compiler_architektura_deepdive.md`** | **02_karierni_targety/** | **analýza** | **Vector 2 — byte-level writer architektura, dependencies, ACI kalibrace, EROI (473 ř.)** | **10/10** |
 
+### 03_web_GT_pravidla — Web produktizace GT-pravidel
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| WGP01 | `Strategicke_Vyhodnoceni_Projektu_Web_pro_GT-Pravidla.md` | 00_STRATEGIE/03_web_GT_pravidla/ | strategie | Strategický fit a ROI webu GT-pravidel (P>0.95) | 8/10 |
+| WGP02 | `Navrh_Technicke_Architektury_Web_pro_GT-Pravidla.md` | 00_STRATEGIE/03_web_GT_pravidla/ | návrh | Technická architektura webu GT-pravidel (SSG, MeiliSearch, FastAPI) | 8/10 |
+| WGP03 | `Mechanizmy_Transformace_Dat_Markdown_na_Strukturovana_Data.md` | 00_STRATEGIE/03_web_GT_pravidla/ | návrh | MD → AST → JSON transformace pro indexaci GT-pravidel | 7/10 |
+
 ---
 
 ## 01_METODIKY — Opakovatelné postupy a metodické kostry
@@ -128,15 +136,12 @@
 
 > PA01/PA04/PA05 v1 generace archivovány v `02_ANALYZY/01_portfolio_audit/_ARCHIVE/` (superseded v2).
 
-### 02_konkurence_a_trh — Tržní srovnání, web GT-pravidel projekt
+### 02_konkurence_a_trh — Tržní srovnání
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| KT02 | `Strategicke_Vyhodnoceni_Projektu_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | strategie | Strategický fit a ROI webu GT-pravidel (P>0.95) | 8/10 |
-| KT03 | `Navrh_Technicke_Architektury_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | Technická architektura webu GT-pravidel (SSG, MeiliSearch, FastAPI) | 8/10 |
-| KT04 | `Mechanizmy_Transformace_Dat_Markdown_na_Strukturovana_Data.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | MD → AST → JSON transformace pro indexaci GT-pravidel | 7/10 |
 
-> SKILL_GAPS v1/v2 přesunuty do 01_METODIKY/04_skill_acquisition (kanon řetězce, 2026-08-15).
+> Prázdná (SKILL_GAPS → 04_skill_acquisition, web GT-pravidel → 00_STRATEGIE/03_web_GT_pravidla, 2026-08-15).
 
 ### 04_chess — Chess analýzy, lichess-analyzer pipeline
 
@@ -410,6 +415,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `analyza`, `kod`, `architektura`, `vcf` | `02_ANALYZY/03_kodove_analyzy/` |
 | `mcp_jobs`, `pipeline`, `cross_audit`, `handoff` | `02_ANALYZY/05_mcp_jobs/` |
 | `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `01_METODIKY/04_skill_acquisition/` + `02_ANALYZY/02_konkurence_a_trh/` |
+| `gt_pravidla`, `web`, `produkt`, `epistemika` | `00_STRATEGIE/03_web_GT_pravidla/` |
 | `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
 | `cv_automation`, `yolo11`, `small_models` | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
