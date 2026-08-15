@@ -97,6 +97,9 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | SKA01 | `ADOPCNI_METODOLOGIE_2026_v1.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Optimální stack metod 60/20/10/10 (PBL, Feynman→Glossary, SRS, Concept Mapping) + aplikace na 6 gapů | 9/10 |
+| SKA02 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | 01_METODIKY/04_skill_acquisition/ | analýza | 6 skill gapů Q3+ 2026 — TS/Next.js, PostgreSQL, DevOps, AZ-900, PLC, K8s (kanon řetězce) | 9/10 |
+
+> SKA03 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2, archivováno v `_ARCHIVE/01_METODIKY/04_skill_acquisition/`.
 
 ---
 
@@ -125,16 +128,15 @@
 
 > PA01/PA04/PA05 v1 generace archivovány v `02_ANALYZY/01_portfolio_audit/_ARCHIVE/` (superseded v2).
 
-### 02_konkurence_a_trh — Skill gapy, tržní srovnání
+### 02_konkurence_a_trh — Tržní srovnání, web GT-pravidel projekt
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| KT01 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | 02_ANALYZY/02_konkurence_a_trh/ | analýza | 6 skill gapů Q3+ 2026 — TS/Next.js, PostgreSQL, DevOps, AZ-900, PLC, K8s (v2 supersedes v1) | 9/10 |
 | KT02 | `Strategicke_Vyhodnoceni_Projektu_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | strategie | Strategický fit a ROI webu GT-pravidel (P>0.95) | 8/10 |
 | KT03 | `Navrh_Technicke_Architektury_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | Technická architektura webu GT-pravidel (SSG, MeiliSearch, FastAPI) | 8/10 |
 | KT04 | `Mechanizmy_Transformace_Dat_Markdown_na_Strukturovana_Data.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | MD → AST → JSON transformace pro indexaci GT-pravidel | 7/10 |
 
-> KT05 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2 (ponechán jako historie, viz _ARCHIVE při příštím trimu).
+> SKILL_GAPS v1/v2 přesunuty do 01_METODIKY/04_skill_acquisition (kanon řetězce, 2026-08-15).
 
 ### 04_chess — Chess analýzy, lichess-analyzer pipeline
 
@@ -166,6 +168,7 @@
 |---|--------|-------|-----|------|------|
 | WA01 | `SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Sémantická analýza metadokumentace | 9/10 |
 | WA02 | `KORELACE_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Korelace struktury KB s obsahem — duplicity registrace, kolize čísel, rozptýlenost témat | 9/10 |
+| WA03 | `DE_NOVO_SEMANTICKY_AUDIT_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | De novo audit struktury — mis-files ×14, kolize ×4, skill acquisition řetězec, návrh přesunů | 9/10 |
 
 ### 05_mcp_jobs — MCP-Jobs analýzy a audity
 
@@ -379,7 +382,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N22** | **`SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **1. 8. 2026** | **9/10** |
 | **N23** | **`KORELACE_STRUKTURY_KB_2026-08-15.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **15. 8. 2026** | **9/10** |
 | **N24** | **`ADOPCNI_METODOLOGIE_2026_v1.md`** | **`01_METODIKY/04_skill_acquisition/`** | **metodika** | **15. 8. 2026** | **9/10** |
-| **N25** | **`SKILL_GAPS_ROZBOR_Q3_2026_v2.md`** | **`02_ANALYZY/02_konkurence_a_trh/`** | **analýza** | **15. 8. 2026** | **9/10** |
+| **N25** | **`SKILL_GAPS_ROZBOR_Q3_2026_v2.md`** | **`01_METODIKY/04_skill_acquisition/`** | **analýza** | **15. 8. 2026** | **9/10** |
 | **N26** | Chess analýzy ×11 (lichess-analyzer pipeline) | `02_ANALYZY/02_chess/` | analýza | 2.–3. 8. 2026 | 7-9/10 |
 | **N27** | CV automatizace ×2 (YOLO11, small models) | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` | analýza | 8/2026 | 7-8/10 |
 
@@ -406,7 +409,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `audit`, `github`, `portfolio` | `02_ANALYZY/01_portfolio_audit/` |
 | `analyza`, `kod`, `architektura`, `vcf` | `02_ANALYZY/03_kodove_analyzy/` |
 | `mcp_jobs`, `pipeline`, `cross_audit`, `handoff` | `02_ANALYZY/05_mcp_jobs/` |
-| `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `02_ANALYZY/02_konkurence_a_trh/` + `01_METODIKY/04_skill_acquisition/` |
+| `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `01_METODIKY/04_skill_acquisition/` + `02_ANALYZY/02_konkurence_a_trh/` |
 | `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
 | `cv_automation`, `yolo11`, `small_models` | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
