@@ -107,9 +107,8 @@
 |---|--------|-------|-----|------|------|
 | SKA01 | `ADOPCNI_METODOLOGIE_2026_v1.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Optimální stack metod 60/20/10/10 (PBL, Feynman→Glossary, SRS, Concept Mapping) + aplikace na 6 gapů | 9/10 |
 | SKA02 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | 01_METODIKY/04_skill_acquisition/ | analýza | 6 skill gapů Q3+ 2026 — TS/Next.js, PostgreSQL, DevOps, AZ-900, PLC, K8s (kanon řetězce) | 9/10 |
-| SKA04 | `COMPRESSION_PATTERN_METHOD_v1.0.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Kompresní pattern metoda — deterministická tvorba + kalibrace patternů (LLM + pipeline) | 8/10 |
 
-> SKA03 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2, archivováno v `_ARCHIVE/01_METODIKY/04_skill_acquisition/`.
+> SKA03 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2, archivováno v `_ARCHIVE/01_METODIKY/04_skill_acquisition/`. SKA04 `COMPRESSION_PATTERN_METHOD_v1.0.md` — přesunut do 05_EPISTEMIKA/00_kompresni_realismus (E17), 2026-08-15.
 
 ---
 
@@ -303,7 +302,9 @@
 | E13 | `Kognitivni_neuro-architektura_Mozek_jako_geometricky_procesor.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | Mozek jako geometrický procesor | 8/10 |
 | E14 | `Kompresni_modelovani_v_praxi_synteza_v1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | syntéza | Kompresní modelování v praxi | 7/10 |
 | E15 | `metodika_pro_vyvoj_nastroju_prumyslove_automatizace.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | Metodika vývoje nástrojů průmyslové automatizace | 8/10 |
-| E16 | `Falsifikacni_test_single_game_discovery_v1.md` | 01_METODIKY/05_testing/ | metodika | Falsifikační test single-game discovery — K0-K3 šumový model, pattern lifecycle | 8/10 |
+| E17 | `COMPRESSION_PATTERN_METHOD_v1.0.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | CPM — operační implementace KR: tvorba + kalibrace patternů (LLM + deterministická pipeline) | 8/10 |
+
+> E16 `Falsifikacni_test_single_game_discovery_v1.md` přesunut do 01_METODIKY/05_testing (MT05), 2026-08-15.
 
 ### 01_kalibracni_matice — LLM routing, model analysis
 
@@ -440,4 +441,4 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 ---
 
-*Poslední aktualizace: 2026-08-15 (v2.3 — přesuny mis-files Q3: CI_CD→05_testing, Free_LLM→kalibrace, Falsifikacni→05_testing, CV→07_CV_automatizace, CPM→skill_acquisition, SYSTEQ_performance+roadmap→portfolio_audit; registrace MT04/MT05/SKA04/KM08/PA07/PA08/CVA; odstraněny duplicity A04/A06, zastaralé sekce 02_testing/03_CV_AUTOMATION; statistika 90 souborů)*
+*Poslední aktualizace: 2026-08-15 (v2.3 — přesuny mis-files Q3: CI_CD→05_testing, Free_LLM→kalibrace, Falsifikacni→05_testing, CV→07_CV_automatizace, SYSTEQ_performance+roadmap→portfolio_audit; registrace MT04/MT05/KM08/PA07/PA08/CVA; v2.3a — CPM→05_EPISTEMIKA/00_kompresni_realismus (E17, operační implementace KR), E16→MT05; odstraněny duplicity A04/A06/E16, zastaralé sekce 02_testing/03_CV_AUTOMATION; statistika 90 souborů)*
