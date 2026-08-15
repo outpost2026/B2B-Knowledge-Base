@@ -29,6 +29,11 @@
 12. [Observability & Resilience](#12-observability--resilience) — observability, metrics, percentily, feature flags, resilience
 13. [ML/CV pojmy (částečně)](#13-mlcv-pojmy-castecne) — inference, latency, epoch, dataset
 14. [Ruff — principy bez black boxu (příloha)](#14-ruff--principy-bez-black-boxu-priloha)
+15. [Frontend & Next.js](#15-frontend--nextjs) — React, App Router, API routes, SSR/ISR/CSR, Tailwind, Vercel
+16. [Monorepo & Workspaces](#16-monorepo--workspaces) — monorepo, npm workspaces
+17. [Databáze & SQL](#17-databaze--sql) — PostgreSQL, SQL, tabulka, klíče, indexy, JSONB, migrace
+18. [DevOps & Deployment](#18-devops--deployment) — DevOps, Docker, porty, monitoring, healthchecks, CI/CD
+19. [Cloud & PaaS](#19-cloud--paas) — PaaS, serverless, provider-agnostic
 
 ---
 
@@ -687,9 +692,299 @@ def test_contract():
 
 ---
 
+## 15. Frontend & Next.js
+
+> **Kontext vzniku:** SKILL_GAPS_ROZBOR_Q3_2026_v2 — imerzní analýza `outprep` (Next.js monorepo standalone web app) pro aspiraci portu MCP serveru na standalone produkt. Autor zná Streamlit (dashboard = stránky); Next.js = stejný koncept s plným backendem a TS.
+
+### 15.1 Next.js
+
+**CO:** **React framework** od Vercelu. React = knihovna pro UI komponenty. Next.js = framework, který přidává souborové routování, API routes (backend ve stejném projektu), server-side rendering a serverless deployment.
+
+**PROČ:** Next.js = nejpopulárnější React framework, default pro nové projekty. Pro standalone produkt (GUI na systeq.cz) je volba č.1.
+
+**JAK (analogie):** Next.js = "Streamlit pro produkční web, ale s plným backendem a TS".
+
+**EFEKT (EROI):** Frontend gap rozšiřuje TS: už to není jen jazyk pro testy — je to jazyk celého standalone frontendu.
+
+### 15.2 React
+
+**CO:** Knihovna pro **UI komponenty** — znovupoužitelné stavební bloky rozhraní. Komponenta = funkce/JSX vracející HTML.
+
+**JAK (analogie):** Komponenty ≈ Streamlit stránky, ale s jiným modelem (deklarativní, stavová).
+
+**EFEKT (EROI):** React = základní kámen frontendu; Next.js na něm staví.
+
+### 15.3 App Router / API routes
+
+**CO:**
+- **App Router** = souborové routování: složka v `src/app/` = URL cesta. `src/app/page.tsx` → `/`, `src/app/api/.../route.ts` → HTTP endpoint.
+- **API routes** = backend ve stejném projektu (`GET /api/jobs` → JSON). Route = HTTP endpoint.
+
+**JAK (analogie):** File-based routing = složka je URL. API route = endpoint, jako bys psal Flask/FastAPI handler.
+
+**EFEKT (EROI):** Autor nezná web backend. App Router + API routes = web backend v jednom projektu, bez separátního serveru.
+
+### 15.4 Server Components / Client Components
+
+**CO:** Rozdělení kódu podle toho, kde běží:
+- **Server Component** — kód běží na serveru (přístup k DB, bez JS v prohlížeči)
+- **Client Component** — kód běží v prohlížeči (interaktivita, state)
+
+**EFEKT (EROI):** Klíčové pochopení Next.js — ne vše běží v prohlížeči; část logiky běží serverově (bezpečnější, rychlejší).
+
+### 15.5 SSR / ISR / CSR
+
+**CO:** Způsoby renderování stránek:
+- **SSR (Server-Side Rendering)** — HTML generováno na serveru při requestu
+- **ISR (Incremental Static Regeneration)** — statické stránky s periodickou regenerací
+- **CSR (Client-Side Rendering)** — HTML generováno v prohlížeči z JS
+
+**EFEKT (EROI):** Volba renderování = kompromis výkon vs čerstvost vs interaktivita. Základní frontend ontologie.
+
+### 15.6 Tailwind CSS
+
+**CO:** Utility-first CSS framework. Místo psaní CSS tříd v souborech píšeš utility třídy přímo do HTML (`flex`, `p-4`, `text-lg`).
+
+**JAK (analogie):** "Analogie: bez Bootstrap" — Tailwind = utility (stavební bloky), Bootstrap = hotové komponenty.
+
+**EFEKT (EROI):** Styling bez psaní CSS od nuly. Autor má HTML+CSS renderer (Calibri/A4) — Tailwind je podobný koncept, pro web.
+
+### 15.7 Vercel
+
+**CO:** Hosting platforma pro Next.js (serverless). Nativní deployment bez správy serveru.
+
+**JAK (analogie):** Vercel ≈ Cloud Run (serverless, autor zná), ale specializovaný na Next.js.
+
+**EFEKT (EROI):** Deployment standalone produktu = push do gitu → live. (Viz též 19.1 PaaS.)
+
+### 15.8 NDJSON streaming
+
+**CO:** Newline-Delimited JSON — **postupné posílání dat po řádcích**, každý řádek je samostatný JSON objekt. Alternativa k poslání celého JSON pole najednou.
+
+**JAK (analogie):** Místo "pošlu 1000 řádků najednou, pak počkáš" → "pošlu řádek po řádku, jak je generuji". Uživatel vidí data dřív.
+
+**EFEKT (EROI):** Streaming = postupné doručování dat. Užitečné pro long-running generování (reporty, hromadné výstupy).
+
+---
+
+## 16. Monorepo & Workspaces
+
+> **Kontext vzniku:** outprep — oddělení zodpovědnosti (web ≠ ETL) se sdílenou instalací závislostí. Autor zná multi-repo (každý MCP zvlášť); workspaces = nový koncept.
+
+### 16.1 Monorepo
+
+**CO:** Jedno git repo s **více balíčky**. Místo 3 repozitářů (web, engine, ETL) máš 1 repo se strukturou:
+```
+outprep/
+  src/                    # Next.js web
+  packages/engine/        # @outprep/engine — core logika (TS lib)
+  packages/fide-pipeline/ # @outprep/fide-pipeline — ETL/CLI
+  packages/harness/       # CLI pro accuracy testy
+```
+
+**PROČ:** Oddělení zodpovědnosti, sdílená instalace závislostí, samostatná testovatelnost. Změna v core → vidíš dopad na všechny balíčky v jednom PR.
+
+**JAK (analogie pro autora):** oddělit `run_etl.py` (ETL) od web UI v samostatných balíčcích, sdílet `core` logiku (matcher, report renderer).
+
+**EFEKT (EROI):** Monorepo = organizace projektů. Opak autorovy praxe (každý MCP = vlastní repo).
+
+### 16.2 npm workspaces
+
+**CO:** Mechanismus npm pro monorepo — jedno `node_modules` na úrovni rootu, sdílené napříč balíčky. `npm install` na rootu nainstaluje závislosti všech `packages/*`.
+
+**PROČ:** Sdílené závislosti bez duplicit, lokální propojení balíčků (`@outprep/engine` je importovatelný z webu bez publish).
+
+**EFEKT (EROI):** Workspaces = "jedna instalace, mnoho balíčků". Základ monorepo workflow.
+
+---
+
+## 17. Databáze & SQL
+
+> **Kontext vzniku:** SKILL_GAPS v2 — nový gap (PostgreSQL). Klíčový insight: autor ukládá výstupy do `output/*.json,.md` souborů. **Soubory nejsou databáze.** Pro historii, dedup, vztahy a dotazování potřebuje DB.
+
+### 17.1 PostgreSQL / relační databáze
+
+**CO:** **Relační databáze** (open-source) — data v tabulkách, dotazování SQL. Standard pro produkční aplikace. Zvládá i **JSONB** (flexibilní data bez strict schématu) → hybrid relační + NoSQL.
+
+**PROČ:** Soubory (`output/*.json`) nemají historii, vztahy, dedup, dotazování. PostgreSQL nabízí: "co bylo minulý týden?", JOIN tabulek, UNIQUE index (nativní dedup), řádky s metadaty.
+
+**JAK (porovnání soubory vs DB):**
+
+| Soubory | PostgreSQL |
+|---------|-----------|
+| Žádná historie s dotazováním | Dotazy: "co bylo minulý týden?" |
+| Žádné vztahy (inzerát ↔ query) | JOIN tabulek |
+| Dedup ručně (correlation_cache) | UNIQUE index (nativní) |
+| Soubory se hromadí | Řádky s metadaty, mazání podle relevance |
+
+**EFEKT (EROI):** Produkční perzistence standalone produktu. SQL = univerzální dovednost (platí pro všechny DB).
+
+### 17.2 Tabulka / řádky / sloupce
+
+**CO:** **Tabulka** = struktura dat (sloupce = typy, řádky = data). Jeden řádek = jeden záznam (např. jeden inzerát).
+
+**JAK (analogie):** Tabulka ≈ Excel sheet. Sloupec = typ (TEXT, INTEGER, DATE), řádek = řádek dat.
+
+**EFEKT (EROI):** Základní ontologie relačních dat — pochopení tabulky je 50 % SQL.
+
+### 17.3 PRIMARY KEY / SERIAL / FOREIGN KEY
+
+**CO:**
+- **PRIMARY KEY** — jedinečný identifikátor řádku (`id INTEGER PRIMARY KEY`)
+- **SERIAL** — auto-increment ID (Postgres automaticky zvyšuje číslo)
+- **FOREIGN KEY / REFERENCES** — vztah mezi tabulkami (odkaz na řádek jiné tabulky)
+
+**JAK (analogie):** PRIMARY KEY = rodné číslo řádku. SERIAL = automatické číslování (autoincrement). FOREIGN KEY = "tento inzerát patří do query č. 5" — odkaz na cizí tabulku.
+
+**EFEKT (EROI):** Klíče = identifikace (PK) a vztahy (FK). Bez nich nejsou vztahy mezi daty.
+
+### 17.4 INDEX / UNIQUE INDEX
+
+**CO:**
+- **INDEX** — datová struktura pro zrychlení dotazů (vyhledávání bez procházení všech řádků)
+- **UNIQUE INDEX** — index + omezení: hodnota se nesmí opakovat → **nativní dedup**
+
+**JAK (analogie):** INDEX = rejstřík v knize (najdeš stránku bez čtení celé knihy). UNIQUE INDEX = "tato hodnota už existuje → chyba" — automatický dedup.
+
+**EFEKT (EROI):** UNIQUE INDEX na URL = nativní dedup inzerátů, nahrazuje ruční correlation_cache. Klíčový insight pro MCP-jobs.
+
+### 17.5 JSONB
+
+**CO:** JSON sloupec v Postgres — uloží celý JSON objekt jako data, **dotazovatelný**. Flexibilní data bez strict schématu.
+
+**JAK (analogie):** V tabulce máš i sloupec, kam můžeš uložit "cokoliv ve formátu JSON" (celý profil, metadata) a pak se v něm dotazovat.
+
+**EFEKT (EROI):** JSONB = hybrid relační + NoSQL — flexibilita JSONu s výhodami databáze. (`profile_json JSONB` — celý objekt.)
+
+### 17.6 Migrace
+
+**CO:** Evoluce schématu databáze — změny struktury tabulek v čase. `CREATE TABLE IF NOT EXISTS` (idempotentní), `ALTER TABLE` (přidání/změna sloupce).
+
+**PROČ:** Databáze se vyvíjí s aplikací. Migrace = **verzované, opakovatelné změny schématu** — ne ruční ALTER v produkci.
+
+**EFEKT (EROI):** Migrace = "git pro schéma". Idempotentní (viz 8.1) = bezpečně opakovatelná.
+
+### 17.7 TOAST
+
+**CO:** Komprese velkých polí v Postgres (The Oversized-Attribute Storage Technique). Velké hodnoty (např. PGN texty) se automaticky kompresují a ukládají mimo hlavní tabulku.
+
+**EFEKT (EROI):** Proč Postgres zvládne velké texty bez zpomalení tabulky. Interní detail, ale vysvětluje výkon.
+
+---
+
+## 18. DevOps & Deployment
+
+> **Kontext vzniku:** SKILL_GAPS v2 — nový gap (DevOps). Klíčový insight: MCP-jobs spouští ručně z IDE. **Produkční ELT běží sám** — denně v noci scrapne, zpracuje, uloží. Ráno otevře web a vidí výsledky.
+
+### 18.1 DevOps
+
+**CO:** **Propojení vývoje (Dev) a provozu (Ops).** Konkrétně: scheduling (automatizace ELT), monitoring (vědět, že pipeline běží), deployment (nasazení), CI/CD (automatický build+test na push), konfigurace mimo kód (.env, porty).
+
+**PROČ:** Ruční spouštění z IDE ≠ produkční pipeline. Produkční ELT běží sám — esence automatizace.
+
+**EFEKT (EROI):** DevOps = vrstva, která dělá produkt "produkčním". Autor ji nemá → nový gap.
+
+### 18.2 Scheduler / Cron
+
+**CO:** Automatický plánovač úloh. **Cron** = formát `minuta hodina den měsíc den_tydne` (`0 6 * * 1` = pondělí 6:00). **Vercel Cron** = serverless cron v `vercel.json`. (Detaily Cron viz 9.5.)
+
+**PROČ:** ELT musí běžet sám, ne ručně z IDE. Cron = plánovač v OS/cloud.
+
+**EFEKT (EROI):** Scheduler = "kdy se co má spustit". Základ automatizace ELT.
+
+### 18.3 Monitoring / healthchecks.io
+
+**CO:** **Monitoring** = sledování stavu systému. **healthchecks.io** = dead-man's-switch monitoring: služba pingne healthchecks.io, pokud běží. Pokud ping nedorazí (spadla) → **alarm (email)**.
+
+**JAK (analogie):** Dead-man's-switch = "zvonek, který bije, dokud držíš tlačítko. Přestaneš mačkat → zazvoní alarm." Cron mlčí = nevíš, jestli běží. healthchecks.io pošle email.
+
+**EFEKT (EROI):** Vědět o selhání **dřív než uživatel**. `fetch(process.env.HEALTHCHECKS_TWIC_URL)` po úspěšném běhu.
+
+### 18.4 Docker / image / container / docker-compose
+
+**CO:**
+- **Docker** = zabalená aplikace + závislosti (kód, runtime, knihovny, konfigurace)
+- **Image** = šablona (statický balíček)
+- **Container** = běžící instance image
+- **docker-compose** = více služeb v jednom souboru (`postgres + web + etl` jedním příkazem)
+
+**JAK (analogie):** Image = ISO instalačka, Container = nainstalovaný běžící program. Compose = "spusť celý stack" (postgres:16, porty 5432:5432).
+
+**EFEKT (EROI):** Reprodukovatelnost — stejné prostředí všude (lokal, server, cloud). Autor zná Docker→Cloud Run; compose multi-service = nové.
+
+### 18.5 Porty / loopback
+
+**CO:**
+- **Port** = číslo, na kterém služba poslouchá (80/443 HTTP, 5432 Postgres, 3000 Next dev)
+- **Loopback (localhost)** = síť jen lokálního počítače (127.0.0.1)
+
+**JAK (analogie):** Port = dveře do služby (čísla domů v síti). Loopback = komunikace uvnitř vlastního počítače.
+
+**EFEKT (EROI):** Základ síťové ontologie. `5432:5432` v docker-compose = mapování portu host → kontejner.
+
+### 18.6 GitHub Actions / CI/CD pipeline
+
+**CO:** CI/CD platforma na GitHubu — `.github/workflows/*.yml`. Na push spustí build+test (lint, pytest). (Základ CI/CD viz 9.1-9.2.)
+
+**PROČ:** Autor nemá CI. Build+test na push = chytí regrese dřív, než se rozbije produkce.
+
+**EFEKT (EROI):** CI = automatický build+test na každý push. GitHub Actions = nativní implementace.
+
+### 18.7 husky / lint-staged
+
+**CO:** Git hooks (před commit):
+- **husky** — spouští skripty při git událostech (pre-commit)
+- **lint-staged** — spustí lint/formát jen na **staged soubory** (rychlé, ne na celý repo)
+
+**JAK (analogie):** Pre-commit hook = kontrola před odchodem z domu (zámek, světla). lint-staged = kontroluje jen věci v kufru, ne celý dům.
+
+**EFEKT (EROI):** Lokální guardrail (viz 8.3) — chytí chyby před commitem, ne v CI. Levná prevence drahých chyb.
+
+---
+
+## 19. Cloud & PaaS
+
+> **Kontext vzniku:** SKILL_GAPS v2 — AZ-900 rozšířeno o PaaS kontext. Insight: autor už používá PaaS koncepty (Vercel, Neon, Docker) **bez vědomí, že to jsou PaaS**. AZ-900 dá názvosloví a framework.
+
+### 19.1 PaaS (Platform as a Service)
+
+**CO:** Platforma, která hostuje aplikaci **bez správy infrastruktury** (bez VM, OS, updatů). Nahraj kód → běží.
+
+**JAK (analogie):** PaaS = pronájem hotové kuchyně (spotřebiče, voda, plyn jsou zařízené). Ty jen vaříš (nahraješ kód). Ops (správa kuchyně) řeší platforma.
+
+**Příklady (autorovy zkušenosti):** Cloud Run, Vercel, App Service. Analogie: Vercel ≈ App Service (Azure PaaS), Neon ≈ Azure Database for PostgreSQL.
+
+**EFEKT (EROI):** Pochopíš, že to, co už používáš (Vercel, Neon, Cloud Run), má název: PaaS. AZ-900 = názvosloví + framework. Přechod na Azure = přejmenování terminologie.
+
+### 19.2 Serverless
+
+**CO:** Běží na cloudu **bez správy serveru** — platíš jen za skutečné běhy (scale to zero). (Detaily viz 12.4/9.9.)
+
+**JAK (analogie):** Serverless = elektřina — platíš za spotřebu, ne za elektrárnu. Vercel, Neon, Cloud Functions.
+
+**EFEKT (EROI):** Serverless je podmnožina PaaS modelu. Autor ho už používá (Cloud Run) — termín jen pojmenovává praxi.
+
+### 19.3 Provider-agnostic
+
+**CO:** Návrh, který **funguje s jakýmkoli hostem** bez změny kódu. Příklad: `DATABASE_URL` env proměnná — připojení k lokálnímu Dockeru i Neon/Supabase/Railway je stejné.
+
+**JAK (analogie):** Provider-agnostic = nabíječka USB-C — funguje s každým adaptérem, ne jen jedním značkovým.
+
+**EFEKT (EROI):** Konfigurace mimo kód (.env) = přenositelnost mezi providery. Protiklad lock-inu (vázanosti na jednoho providera).
+
+### 19.4 Environment variables (.env)
+
+**CO:** Konfigurace **mimo kód** — hodnoty v `.env` souboru (nikdy v gitu). `DATABASE_URL=postgres://user:pass@localhost:5432/db`.
+
+**PROČ:** Kód je stejný pro všechny prostředí (lokální, produkce); liší se jen konfigurace. Secret (heslo, API klíč) patří do .env, ne do kódu.
+
+**EFEKT (EROI):** Autor už zná (AGENTS.md security) — potvrzeno. Základ konfigurace produkčních aplikací.
+
+---
+
 ## Metadata
 
-- **Tags:** `#swe`, `#glossary`, `#terminologie`, `#ontologie`, `#edu`, `#concurrency`, `#testing`, `#web-scraping`, `#python`, `#cicd`, `#design-patterns`, `#llm`, `#observability`, `#ml`
+- **Tags:** `#swe`, `#glossary`, `#terminologie`, `#ontologie`, `#edu`, `#concurrency`, `#testing`, `#web-scraping`, `#python`, `#cicd`, `#design-patterns`, `#llm`, `#observability`, `#ml`, `#frontend`, `#nextjs`, `#monorepo`, `#databaze`, `#sql`, `#devops`, `#docker`, `#paas`, `#cloud`
 - **EROI:** 9/10 (živý edukační artefakt; náklad = údržba, benefit = trvalá adopce terminologie → překonání unknown unknowns)
 - **Živý dokument:** průběžně doplňovat nové termíny z dev workflow.
 
