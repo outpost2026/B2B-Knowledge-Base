@@ -1,6 +1,6 @@
 # INDEX — Registr všech artefaktů B2B-Knowledge-Base
 
-**Verze:** 2.1 | **Datum:** 2026-08-01 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
+**Verze:** 2.2 | **Datum:** 2026-08-15 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
 
 ---
 
@@ -16,15 +16,15 @@
 | S04 | `Mikolov_Sousek_prunik.md` | B2B/ + KB/ | analýza | Průnik Mikolov vs. Sousek | 7/10 |
 | S05 | `Operational Corpus_Systemic Competency Report.json` | B2B/ | report | Kompetenční profil autora | 6/10 |
 | S06 | `Manifest_Od_black_box_k_transparentni_intelektualni_vyrobe.txt` | B2B/ | manifest | Vize transparentní znalostní výroby | 7/10 |
-| S07 | `Epistemicky_kotvici_ramec_a_operacni_modus.md` | B2B/ | framework | Meta-handoff pro prevenci entropie | 9/10 |
-| S08 | `GROUND_TRUTH_aktualni_stav_2026-06-25.md` | KB (tento repo) | ground truth | Deterministický snapshot: profil, skills, Moodpasta kontext, portfolio, zadání | 10/10 |
+| S07 | `Epistemicky_kotvici_ramec_a_operacni_modus.md` | 05_EPISTEMIKA/02_agentni_pravidla/ | framework | Meta-handoff pro prevenci entropie | 9/10 |
+| S08 | `GROUND_TRUTH_aktualni_stav_2026-08-06.md` | 00_STRATEGIE/00_manifesty/ | ground truth | Deterministický snapshot: profil, skills, Moodpasta kontext, portfolio, zadání (v2 — 06-25 archivováno) | 10/10 |
 
 ### 01_positioning — EROI plány, korekce vektorů
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| P01 | `Korekce_vektoru_rozvoje_OS.json` | B2B/CV/ | akční plán | Komprimovaný akční plán na 4 měsíce | 10/10 |
-| P02 | `eroi_chronologicky_plan_s_metodikou.md` | B2B/linkedin_analyzy/ | plán | EROI ranking + chronologický Gantt | 9/10 |
+| P01 | `Korekce_vektoru_rozvoje_OS.json` | 00_STRATEGIE/01_positioning/ | akční plán | Komprimovaný akční plán na 4 měsíce | 10/10 |
+| P02 | `eroi_chronologicky_plan_s_metodikou.md` | 00_STRATEGIE/01_positioning/ | plán | EROI ranking + chronologický Gantt | 9/10 |
 | P03 | `Strategicko-informacni_vzorec_interakce_s_realitou.docx` | B2B/ | strategie | Interakční vzorec (pouze lokálně) | 5/10 |
 | P04 | `Systeq_basic_intel.md` | B2B/ | intel | Základní přehled o SYSTEQ | 6/10 |
 
@@ -45,12 +45,10 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| A01 | `EPISTEMICKE-PRAVIDLA-AGENTNI-PRACE.md` | KB/ | protokol | Bezpečnostní pravidla po incidentu z 16.06. | 10/10 |
-| A02 | `HANDOFF_COMPACT.md` | KB/ | handoff | Komprimovaný handoff pro LLM synchronizaci | 9/10 |
-| A03 | `kalibracni_matice.json` | KB/ | kalibrace | Kognitivní, epistemická a vývojová kalibrační matice | 9/10 |
-| A04 | `CI_CD_INTEGRACE_PROTOKOL.md` | KB/ | protokol | CI/CD integrační protokol | 6/10 |
-| A05 | `GitHub_portfolio_dev_workflow.json` | KB/ | workflow | Dev workflow pro GitHub portfolio | 7/10 |
+| A04 | `CI_CD_INTEGRACE_PROTOKOL.md` | 01_METODIKY/00_agentni_prace/ | protokol | CI/CD integrační protokol | 6/10 |
 | A06 | `Free_LLM_openrouter.txt` | 01_METODIKY/00_agentni_prace/ | katalog | Free LLM modely na OpenRouter | 6/10 |
+
+> A01-A03 přesunuty do 05_EPISTEMIKA (G01, G02, M01 — kanon lokace); A05 archivován (X31).
 
 ### 05_testing — Testování, CI/CD
 
@@ -58,6 +56,7 @@
 |---|--------|-------|-----|------|------|
 | MT01 | `CI_GitHub_Actions_imerzni_edu_v1.md` | 01_METODIKY/05_testing/ | edu | Imerzní edukace GH Actions CI (přesunuto z 04_KB, F3) | 7/10 |
 | MT02 | `contract_testing_ontologie_v1.md` | 01_METODIKY/05_testing/ | ontologie | Contract testing ontologie | 7/10 |
+| MT03 | `TRIMMING_PLAN_04_KNOWLEDGE_BASE_2026-08-01.md` | 01_METODIKY/ | plán | F1-F5 sémantický trim 04_KB — 25 → 10 souborů, 14 archivováno (DONE) | 9/10 |
 
 ### 06_SWE_glossary — Živá učebnice SWE terminologie
 
@@ -69,25 +68,25 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| R01 | `RE_Methodology.md` | KB/technologie_plotr_moodpasta/ | metodika | Obecná RE metodika | 8/10 |
-| R02 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | KB/technologie_plotr_moodpasta/ | case study | 29denní RE case study | 10/10 |
-| R03 | `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` | B2B/ | ground truth | Původ VCF parseru | 9/10 |
-| R04 | `VCF_Reverse_Engineering_Inference_Workflow_2026.md` | B2B-KB (tento repo) | návrh | Kompletní návrh VcfWriter, .rd→.vcf mapping, LLM inference workflow, 1276 ř. | 10/10 |
+| R04 | `VCF_Reverse_Engineering_Inference_Workflow_2026.md` | 01_METODIKY/01_reverse_engineering/ | návrh | Kompletní návrh VcfWriter, .rd→.vcf mapping, LLM inference workflow, 1276 ř. | 10/10 |
+
+> R01-R03 (RE_Methodology, RE_CASE_STUDY, GROUND_TRUTH_VCF_PARSER_ORIGIN) — kanon lokace je 04_KNOWLEDGE_BASE/01_reverse_engineering (RE01-RE03).
 
 ### 02_CV_a_profil — CV templaty, LinkedIn optimalizace
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| C01 | `CV_Ondrej_Sousek_redesign.md` | B2B/CV/ | CV | Redesigované CV — positioningové | 10/10 |
-| C02 | `01_one-pager_CZ_B2B.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV CZ B2B | 9/10 |
-| C03 | `02_one-pager_CZ_HPP.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV CZ HPP | 9/10 |
-| C04 | `03_one-pager_EN_B2B.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV EN B2B | 9/10 |
-| C05 | `04_one-pager_EN_HPP.md` | B2B/Claude_CV_artefacts/ | CV | Jednostránkové CV EN HPP | 9/10 |
-| C06 | `05_full-CV_CZ_v2.md` | 02_CV_a_profil/ (tento repo) | CV | Plné CV CZ — v2 s portfolio daty 08/2026 | 9/10 |
-| C07 | `06_full-CV_EN_v2.md` | 02_CV_a_profil/ (tento repo) | CV | Plné CV EN — v2 s portfolio daty 08/2026 | 9/10 |
-| C08 | `07_design-implementation-guide.md` | B2B/Claude_CV_artefacts/ | guide | Implementační guide pro CV design | 7/10 |
-| C09 | `one_pager_CV_v2_CZ.md` | 02_CV_a_profil/ (tento repo) | CV | One-pager CZ v2 — portfolio data 08/2026 | 8/10 |
-| C10 | `one_pager_CV_v2_EN.md` | 02_CV_a_profil/ (tento repo) | CV | One-pager EN v2 — portfolio data 08/2026 | 8/10 |
+| C02 | `01_one-pager_CZ_B2B.md` | 01_METODIKY/02_CV_a_profil/ | CV | Jednostránkové CV CZ B2B | 9/10 |
+| C03 | `02_one-pager_CZ_HPP.md` | 01_METODIKY/02_CV_a_profil/ | CV | Jednostránkové CV CZ HPP | 9/10 |
+| C04 | `03_one-pager_EN_B2B.md` | 01_METODIKY/02_CV_a_profil/ | CV | Jednostránkové CV EN B2B | 9/10 |
+| C05 | `04_one-pager_EN_HPP.md` | 01_METODIKY/02_CV_a_profil/ | CV | Jednostránkové CV EN HPP | 9/10 |
+| C06 | `05_full-CV_CZ_v2.md` | 01_METODIKY/02_CV_a_profil/ | CV | Plné CV CZ — v2 s portfolio daty 08/2026 | 9/10 |
+| C07 | `06_full-CV_EN_v2.md` | 01_METODIKY/02_CV_a_profil/ | CV | Plné CV EN — v2 s portfolio daty 08/2026 | 9/10 |
+| C08 | `07_design-implementation-guide.md` | 01_METODIKY/02_CV_a_profil/ | guide | Implementační guide pro CV design | 7/10 |
+| C09 | `one_pager_CV_v2_CZ.md` | 01_METODIKY/02_CV_a_profil/ | CV | One-pager CZ v2 — portfolio data 08/2026 | 8/10 |
+| C10 | `one_pager_CV_v2_EN.md` | 01_METODIKY/02_CV_a_profil/ | CV | One-pager EN v2 — portfolio data 08/2026 | 8/10 |
+
+> C01 (CV_Ondrej_Sousek_redesign) archivován (X25 — superseded číslovanou sadou 01-07).
 
 ### 03_aplikacni_proces — Jak aplikovat, cover letter templaty
 
@@ -107,10 +106,9 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| L01 | `synteticky_report_analyza.md` | B2B/linkedin_analyzy/ | report | Syntéza 24 nabídek — precision, SNR, CV gapy | 10/10 |
-| L02 | `agregovany_report.md` | B2B/linkedin_analyzy/ | report | Detail jednotlivých nabídek s EROI hodnocením | 10/10 |
-| L03 | `metadata_stacku.json` | B2B/linkedin_analyzy/ | data | Strojově čitelná agregace tech stacku | 9/10 |
-| L04 | `eroi_chronologicky_plan_s_metodikou.md` | B2B/linkedin_analyzy/ | plán | EROI ranking + 8 metodických koster | 9/10 |
+| L01 | `synteticky_report_analyza.md` | 02_ANALYZY/00_linkedin/ | report | Syntéza 24 nabídek — precision, SNR, CV gapy | 10/10 |
+| L02 | `agregovany_report.md` | 02_ANALYZY/00_linkedin/ | report | Detail jednotlivých nabídek s EROI hodnocením | 10/10 |
+| L03 | `metadata_stacku.json` | 02_ANALYZY/00_linkedin/ | data | Strojově čitelná agregace tech stacku | 9/10 |
 | **L05** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **02_ANALYZY/00_linkedin/** | **architektura** | **MCP pipeline pro automatizaci analýzy LinkedIn nabídek — 2 varianty, EROI engine, napojení na existující artefakty** | **9/10** |
 | L07 | `linkedin_mcp_roadmap_v2.md` | 02_ANALYZY/00_linkedin/ | roadmapa | V2 multi-user architektura, kalibrační plán | 8/10 |
 | L08 | `synteticky_report_2026-07-17.md` | 02_ANALYZY/00_linkedin/ | report | Kanonická generace syntetického reportu (v4+) | 9/10 |
@@ -120,21 +118,54 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| PA01 | `portfolio_audit_a_match.md` | B2B/linkedin_analyzy/ | audit | GitHub audit + skill match matice | 9/10 |
-| PA02 | `outpost2026_github_analyza.docx` | B2B/ | analýza | GitHub profil analýza (pouze lokálně) | 5/10 |
-| PA03 | `reame.md_git_analyza.txt` | B2B/ | raw data | Surová data z GitHub scrapu | 4/10 |
-| PA04 | `R&D_evoluce_portfolia_03_2026-07_2026.md` | 02_ANALYZY/01_portfolio_audit/ | report | Komplexní R&D evoluce — 5 fází, 12 rep, ~494 commitů (427 ř.) | 10/10 |
-| PA05 | `github_portfolio_analysis.md` | 02_ANALYZY/01_portfolio_audit/ | audit | Hloubková analýza GitHub portfolia — kvantitativní, osobnostní profil, P relevance, tržní fit | 9/10 |
+| PA01 | `portfolio_audit_a_match_v2.md` | 02_ANALYZY/01_portfolio_audit/ | audit | GitHub audit + skill match matice (v2; v1 archivováno) | 9/10 |
+| PA04 | `R&D_evoluce_portfolia_03_2026-07_2026_v2.md` | 02_ANALYZY/01_portfolio_audit/ | report | Komplexní R&D evoluce — 6 fází, 14 rep, ~600 commitů (v2; v1 archivováno) | 10/10 |
+| PA05 | `github_portfolio_analysis_v2.md` | 02_ANALYZY/01_portfolio_audit/ | audit | Hloubková analýza GitHub portfolia (v2; v1 archivováno) | 9/10 |
+| PA06 | `github_portfolio_digital_twin.json` | 02_ANALYZY/01_portfolio_audit/ | data | Digitální dvojče portfolia — strojově čitelný snapshot | 8/10 |
 
-### 02_konkurence_a_trh
+> PA01/PA04/PA05 v1 generace archivovány v `02_ANALYZY/01_portfolio_audit/_ARCHIVE/` (superseded v2).
 
-*Připraveno pro budoucí artefakty*
+### 02_konkurence_a_trh — Skill gapy, tržní srovnání
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| KT01 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | 02_ANALYZY/02_konkurence_a_trh/ | analýza | 6 skill gapů Q3+ 2026 — TS/Next.js, PostgreSQL, DevOps, AZ-900, PLC, K8s (v2 supersedes v1) | 9/10 |
+| KT02 | `Strategicke_Vyhodnoceni_Projektu_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | strategie | Strategický fit a ROI webu GT-pravidel (P>0.95) | 8/10 |
+| KT03 | `Navrh_Technicke_Architektury_Web_pro_GT-Pravidla.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | Technická architektura webu GT-pravidel (SSG, MeiliSearch, FastAPI) | 8/10 |
+| KT04 | `Mechanizmy_Transformace_Dat_Markdown_na_Strukturovana_Data.md` | 02_ANALYZY/02_konkurence_a_trh/ | návrh | MD → AST → JSON transformace pro indexaci GT-pravidel | 7/10 |
+
+> KT05 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2 (ponechán jako historie, viz _ARCHIVE při příštím trimu).
+
+### 04_chess — Chess analýzy, lichess-analyzer pipeline
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| CH02 | `chess_mcp_strategy_v1.md` | 02_ANALYZY/02_chess/ | strategie | Strategic plan lichess-analyzer — 17 tools, FSRS SRS engine Phase 5 | 9/10 |
+| CH03 | `ANALYZA_OPONENTA_anonymni_101_her_2026-08-02.md` | 02_ANALYZY/02_chess/ | analýza | Opponent pool 101 her — anonymní | 8/10 |
+| CH04 | `COMPARISON_CpEDieiZ_before_after_D2D3D4_2026-08-03.md` | 02_ANALYZY/02_chess/ | analýza | Srovnání před/po pipeline opravách | 7/10 |
+| CH05 | `DEEP_DIVE_lichess_Qh4_halucinace_2026-08-03.md` | 02_ANALYZY/02_chess/ | analýza | Deep dive Qh4 halucinace | 7/10 |
+| CH06 | `DEGRADACE_HALLUCINACE_lichess_2026-08-03.md` | 02_ANALYZY/02_chess/ | analýza | Degradace/halucinace lichess analýzy | 8/10 |
+| CH07 | `HALUCINACE_BASE_MODEL_lichess_single_game_2026-08-03.md` | 02_ANALYZY/02_chess/ | analýza | Halucinace base modelu single game | 7/10 |
+| CH08 | `OPRAVA_ANALYZE_POSITION_multipv_2026-08-03.md` | 02_ANALYZY/02_chess/ | report | Oprava analyze_position multipv | 8/10 |
+| CH09 | `PLAN_OPRAVY_pipeline_determinismus_2026-08-03.md` | 02_ANALYZY/02_chess/ | plán | Plán oprav determinismu pipeline | 8/10 |
+| CH10 | `RETENEZEC_PRICIN_pipeline_nedeterminismus_2026-08-03.md` | 02_ANALYZY/02_chess/ | analýza | Retenční analýza příčin nedeterminismu | 8/10 |
+| CH11 | `SUMMARY_D2_D3_D4_opravy_2026-08-03.md` | 02_ANALYZY/02_chess/ | report | Souhrn D2-D4 oprav | 7/10 |
+| CH12 | `SUMMARY_oprava_pipeline_iterace_2026-08-03.md` | 02_ANALYZY/02_chess/ | report | Souhrn pipeline iterace | 7/10 |
+
+> CH01 `player_pattern_library_v1.json` — kanon v 04_KNOWLEDGE_BASE/02_chess/.
 
 ### 03_kodove_analyzy — Architektonické analýzy a audity kódu
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| KA01 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | KB (tento repo) | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka (V1 archivována) | 10/10 |
+| KA01 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | 02_ANALYZY/03_kodove_analyzy/ | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka (V1 archivována) | 10/10 |
+
+### 04_workspace_audit — Meta analýzy workspace
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| WA01 | `SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Sémantická analýza metadokumentace | 9/10 |
+| WA02 | `KORELACE_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Korelace struktury KB s obsahem — duplicity registrace, kolize čísel, rozptýlenost témat | 9/10 |
 
 ### 05_mcp_jobs — MCP-Jobs analýzy a audity
 
@@ -209,19 +240,26 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| RE01 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | KB/technologie_plotr_moodpasta/ | case study | 29denní empirická kronika RE | 10/10 |
-| RE02 | `RE_Methodology.md` | KB/technologie_plotr_moodpasta/ | metodika | Obecná RE metodologie | 8/10 |
-| RE03 | `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` | B2B/ | ground truth | Ontologický GT vzniku parseru — replikace 4× (deklarace níže) | 8/10 |
+| RE01 | `RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md` | 04_KNOWLEDGE_BASE/01_reverse_engineering/ | case study | 29denní empirická kronika RE | 10/10 |
+| RE02 | `RE_Methodology.md` | 04_KNOWLEDGE_BASE/01_reverse_engineering/ | metodika | Obecná RE metodologie | 8/10 |
+| RE03 | `GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json` | 04_KNOWLEDGE_BASE/01_reverse_engineering/ | ground truth | Ontologický GT vzniku parseru — replikace 4× (deklarace níže) | 8/10 |
 
 ### 02_chess — Pattern library
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| CH01 | `player_pattern_library_v1.json` | tento repo | kánon | 17 patternů pro lichess-analyzer (chess_pattern_v5 import) | 8/10 |
+| CH01 | `player_pattern_library_v1.json` | 04_KNOWLEDGE_BASE/02_chess/ | kánon | 17 patternů pro lichess-analyzer (chess_pattern_v5 import) | 8/10 |
 
 ### 02_testing — Golden master, determinism testy
 
 *Připraveno pro budoucí artefakty — testovací metodologie a frameworky (CI_GitHub_Actions_imerzni_edu_v1 přesunut do 01_METODIKY/05_testing/, F3)*
+
+### 03_CV_AUTOMATION — CV automatizace (YOLO11, small models)
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| CVA01 | `CV_YOLO11_ADOPTION_ASSESSMENT_v1.md` | 04_KNOWLEDGE_BASE/03_CV_AUTOMATION/ | analýza | YOLO11 adopční assessment pro CV automatizaci | 8/10 |
+| CVA02 | `SMALL_MODELS_CV_ASPIRACNI_PROJEKTY_v1.md` | 04_KNOWLEDGE_BASE/03_CV_AUTOMATION/ | plán | Aspirační projekty small models CV | 7/10 |
 
 ### Replikace (cross-repo, deliberate — žádná akce)
 
@@ -239,32 +277,33 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | E01 | `Sousek_Manifest_kompresniho_realismu.json` | KB/ + B2B/ | manifest | Hlavní manifest kompresního realismu | 9/10 |
-| E02 | `Sousek_Manifest_kompresniho_realismu_v1.1.json` | KB/ | manifest | Aktualizovaná verze manifestu | 9/10 |
+| E02 | `Sousek_Manifest_kompresniho_realismu_v1.1.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | manifest | Aktualizovaná verze manifestu | 9/10 |
 | E03 | `Mikolov_Manifest.md` | KB/ | manifest | Tomas Mikolov — komprese reality | 8/10 |
 | E04 | `Mikolov_Sousek_prunik.md` | KB/ | analýza | Průnik myšlení Mikolov × Sousek | 8/10 |
 | E05 | `ontologie_kompresnich_modelu_reality.md` | KB/ | ontologie | Ontologie modelů reality | 8/10 |
-| E06 | `ontologie_kompresnich_modelu_reality_appendix.md` | KB/ | appendix | Dodatek k ontologii | 7/10 |
-| E07 | `Od_Kompresniho_Realismu_k_Biologicke_Neuro-Architekture.md` | KB/ | esej | Přechod KR k neuro-architektuře | 7/10 |
+| E06 | `ontologie_kompresnich_modelu_reality_appendix.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | appendix | Dodatek k ontologii | 7/10 |
+| E07 | `Od_Kompresniho_Realismu_k_Biologicke_Neuro-Architekture.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | Přechod KR k neuro-architektuře | 7/10 |
 | E08 | `Kognitivní neuro-architektura_ Mozek jako geometrický procesor.txt` | KB/ | esej | Mozek jako geometrický procesor | 8/10 |
-| E09 | `Brain as a Geometric Processor - Appendix v1.1 (Thermodynamic Upgrade).md` | KB/ | appendix | Termodynamický upgrade GP | 7/10 |
-| E10 | `brain_geometric_processor_summary_v2.1.md` | KB/ | summary | Shrnutí GP teorie | 8/10 |
-| E11 | `emergentni_prostor_esej.json` | KB/ | esej | Emergentní prostor | 6/10 |
-| E12 | `Tomas_Mikolov_High-SNR_knowhow_komprese_reality.md` | KB/ | esej | High-SNR know-how komprese | 8/10 |
+| E09 | `Brain as a Geometric Processor - Appendix v1.1 (Thermodynamic Upgrade).md` | 05_EPISTEMIKA/00_kompresni_realismus/ | appendix | Termodynamický upgrade GP | 7/10 |
+| E10 | `brain_geometric_processor_summary_v2.1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | summary | Shrnutí GP teorie | 8/10 |
+| E11 | `emergentni_prostor_esej.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | Emergentní prostor | 6/10 |
+| E12 | `Tomas_Mikolov_High-SNR_knowhow_komprese_reality.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | High-SNR know-how komprese | 8/10 |
 | E13 | `Kognitivni_neuro-architektura_Mozek_jako_geometricky_procesor.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | Mozek jako geometrický procesor | 8/10 |
 | E14 | `Kompresni_modelovani_v_praxi_synteza_v1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | syntéza | Kompresní modelování v praxi | 7/10 |
 | E15 | `metodika_pro_vyvoj_nastroju_prumyslove_automatizace.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | Metodika vývoje nástrojů průmyslové automatizace | 8/10 |
+| E16 | `Falsifikacni_test_single_game_discovery_v1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | Falsifikační test single-game discovery — K0-K3 šumový model, pattern lifecycle | 8/10 |
 
 ### 01_kalibracni_matice — LLM routing, model analysis
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| M01 | `kalibracni_matice.json` | KB/ | kalibrace | Hlavní kalibrační matice v3.0 | 9/10 |
-| M02 | `LLM_routing.txt` | KB/ | routing | LLM routing podle domény | 8/10 |
-| M03 | `LLM free models.txt` | KB/ | seznam | Seznam free LLM modelů | 6/10 |
-| M04 | `OpenRouter_Model_Analysis_v2.md` | KB/ | analýza | Analýza OpenRouter modelů v2 | 7/10 |
-| M05 | `OpenRouter_Model_Analysis_v3.md` | KB/ | analýza | Analýza OpenRouter modelů v3 | 7/10 |
-| M06 | `LLM_free_models.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | seznam | Seznam free LLM modelů (repo kopie) | 6/10 |
-| M07 | `LLM_routing.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | routing | LLM routing podle domény (repo kopie) | 8/10 |
+| KM01 | `kalibracni_matice.json` | 05_EPISTEMIKA/01_kalibracni_matice/ | kalibrace | Hlavní kalibrační matice v3.0 | 9/10 |
+| KM02 | `LLM_routing.txt` | KB/ | routing | LLM routing podle domény | 8/10 |
+| KM03 | `LLM free models.txt` | KB/ | seznam | Seznam free LLM modelů | 6/10 |
+| KM04 | `OpenRouter_Model_Analysis_v2.md` | KB/ | analýza | Analýza OpenRouter modelů v2 | 7/10 |
+| KM05 | `OpenRouter_Model_Analysis_v3.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | analýza | Analýza OpenRouter modelů v3 | 7/10 |
+| KM06 | `LLM_free_models.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | seznam | Seznam free LLM modelů (repo kopie) | 6/10 |
+| KM07 | `LLM_routing.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | routing | LLM routing podle domény (repo kopie) | 8/10 |
 
 ### 02_agentni_pravidla — Bezpečnostní protokoly, guardrails
 
@@ -323,23 +362,30 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | # | Soubor | Lokace | Typ | Vznik | EROI |
 |---|--------|--------|-----|-------|------|
-| N01 | `GROUND_TRUTH_aktualni_stav_2026-06-25.md` | `00_STRATEGIE/00_manifesty/` | ground truth | 25. 6. 2026 | 10/10 |
+| N01 | `GROUND_TRUTH_aktualni_stav_2026-06-25.md` | `00_STRATEGIE/00_manifesty/_ARCHIVE/` | ground truth | 25. 6. 2026 | — |
 | N02 | `VCF_Reverse_Engineering_Inference_Workflow_2026.md` | `01_METODIKY/01_reverse_engineering/` | návrh | 26. 6. 2026 | 10/10 |
 | N04 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | `02_ANALYZY/03_kodove_analyzy/` | analýza | 25. 6. 2026 | 10/10 |
 | N05 | `appendix_moodpasta.md` | `03_PROVOZ/00_komunikace/` | analýza | 25. 6. 2026 | 9/10 |
 | N07 | `technicke_zadani_Moodpasta.md` | `03_PROVOZ/01_projekty/` | GT zadání | 24. 6. 2026 | 10/10 |
 | N08 | `cenova_metodika_moodpasta.md` | `03_PROVOZ/02_business/` | metodika | 25. 6. 2026 | 10/10 |
 | N09 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | `_ARCHIVE/` | archive | 25. 6. 2026 | — |
-| **N10** | **`R&D_evoluce_portfolia_03_2026-07_2026.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **report** | **3. 7. 2026** | **10/10** |
+| **N10** | **`R&D_evoluce_portfolia_03_2026-07_2026_v2.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **report** | **3. 7. 2026 (v2 15. 8.)** | **10/10** |
 | **N11** | **`vcf_optimizer_analytic_engine.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **strategie** | **3. 7. 2026** | **10/10** |
 | **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **analýza** | **3. 7. 2026** | **10/10** |
 | **N13** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **`02_ANALYZY/00_linkedin/`** | **architektura** | **5. 7. 2026** | **9/10** |
-| **N14** | **`github_portfolio_analysis.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **audit** | **7. 7. 2026** | **9/10** |
+| **N14** | **`github_portfolio_analysis_v2.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **audit** | **7. 7. 2026 (v2 15. 8.)** | **9/10** |
 | **N20** | **`linkedin_mcp_roadmap_v2.md`** | **`02_ANALYZY/00_linkedin/`** | **roadmapa** | **8. 7. 2026** | **8/10** |
 | **N21** | **`ARCHITEKTURA_KB_2026-08-01.md`** | **`01_METODIKY/00_procesy/`** | **governance** | **1. 8. 2026** | **10/10** |
 | **N22** | **`SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **1. 8. 2026** | **9/10** |
+| **N23** | **`KORELACE_STRUKTURY_KB_2026-08-15.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **15. 8. 2026** | **9/10** |
+| **N24** | **`ADOPCNI_METODOLOGIE_2026_v1.md`** | **`01_METODIKY/04_skill_acquisition/`** | **metodika** | **15. 8. 2026** | **9/10** |
+| **N25** | **`SKILL_GAPS_ROZBOR_Q3_2026_v2.md`** | **`02_ANALYZY/02_konkurence_a_trh/`** | **analýza** | **15. 8. 2026** | **9/10** |
+| **N26** | Chess analýzy ×11 (lichess-analyzer pipeline) | `02_ANALYZY/02_chess/` | analýza | 2.–3. 8. 2026 | 7-9/10 |
+| **N27** | CV automatizace ×2 (YOLO11, small models) | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` | analýza | 8/2026 | 7-8/10 |
 
-**Celkem v tabulce:** 15 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | ~8 000+ řádků | vytvořeno 24. 6.–8. 7. 2026 + 2 nové (1. 8. 2026)
+> N01 superseded S08 (GROUND_TRUTH_aktualni_stav_2026-08-06.md — kanon). N10/N14 → v2 generace (v1 v _ARCHIVE).
+
+**Celkem v tabulce:** 22 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | vytvořeno 24. 6.–15. 8. 2026
 
 ---
 
@@ -360,6 +406,10 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `audit`, `github`, `portfolio` | `02_ANALYZY/01_portfolio_audit/` |
 | `analyza`, `kod`, `architektura`, `vcf` | `02_ANALYZY/03_kodove_analyzy/` |
 | `mcp_jobs`, `pipeline`, `cross_audit`, `handoff` | `02_ANALYZY/05_mcp_jobs/` |
+| `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `02_ANALYZY/02_konkurence_a_trh/` + `01_METODIKY/04_skill_acquisition/` |
+| `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
+| `cv_automation`, `yolo11`, `small_models` | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` |
+| `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
 
 ---
 
@@ -367,13 +417,13 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trackovaných souborů (repo, po trimu F1-F5) | 56 (bylo 86) |
-| Duplicitní páry | 0 (byly 4) |
+| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026) | 92 |
+| Duplicitní páry | 0 |
 | Souborů v _ARCHIVE | ~64 |
-| Celkem zmapovaných artefaktů (celý workspace) | ~90 |
-| RAG-ready (tracked textové) | ~50 |
+| Celkem zmapovaných artefaktů (celý workspace) | ~110 |
+| RAG-ready (tracked textové) | ~70 |
 | Nové artefakty řádků | ~8 000 |
 
 ---
 
-*Poslední aktualizace: 2026-08-01 (v2.1 — trim F2-F5 repo-wide: dedup 4 páry, superseded 12, transient 23, snapshoty 6; _ARCHIVE X21-X32; pravidla P1-P5 v AGENTS.md §4.5)*
+*Poslední aktualizace: 2026-08-15 (v2.2 — oprava registru: dedup A01-A03/R01-R03/L04/S08/N01, doplnění chybějících registrací chess ×11, CV_AUTOMATION ×2, konkurence_a_trh ×5, workspace_audit; oprava lokací na reálné cesty; statistika 92 souborů)*
