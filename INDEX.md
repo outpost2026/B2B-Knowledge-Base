@@ -59,6 +59,12 @@
 | MT01 | `CI_GitHub_Actions_imerzni_edu_v1.md` | 01_METODIKY/05_testing/ | edu | Imerzní edukace GH Actions CI (přesunuto z 04_KB, F3) | 7/10 |
 | MT02 | `contract_testing_ontologie_v1.md` | 01_METODIKY/05_testing/ | ontologie | Contract testing ontologie | 7/10 |
 
+### 06_SWE_glossary — Živá učebnice SWE terminologie
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| SG01 | `SWE_GLOSSARY_zive_v1.md` | 01_METODIKY/06_SWE_glossary/ | edu | Živá učebnice SWE terminologie (concurrency, caching, tooling, testing, web scraping, matching, text, koncepty) | 9/10 |
+
 ### 01_reverse_engineering — RE metodologie
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
