@@ -323,6 +323,12 @@
 | G02 | `HANDOFF_COMPACT.md` | KB/ | handoff | Handoff pro agentní synchronizaci | 9/10 |
 | G03 | `AGENTS.md` (tento repo) | — | protokol | Pravidla pro agentní přístup k této KB | 10/10 |
 
+### 03_kognitivni_ontologie_nastroju — hranice nástrojové gramotnosti
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| E18 | `IT_gramotnost_hranice_SQL_databazi_2026-08-15.md` | 05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/ | esej | Hranice IT gramotnosti vs SQL/DB — dvě vrstvy (query vs ops), ontologický šok, transfer | 8/10 |
+
 ---
 
 ## _ARCHIVE — Low-SNR / superseded artefakty
@@ -421,6 +427,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
 | `cv_automation`, `yolo11`, `small_models` | `02_ANALYZY/07_CV_automatizace/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
+| `sql`, `databaze`, `gramotnost`, `ontologie` | `05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/` |
 
 ---
 
