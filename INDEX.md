@@ -184,6 +184,7 @@
 | WA01 | `SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Sémantická analýza metadokumentace | 9/10 |
 | WA02 | `KORELACE_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Korelace struktury KB s obsahem — duplicity registrace, kolize čísel, rozptýlenost témat | 9/10 |
 | WA03 | `DE_NOVO_SEMANTICKY_AUDIT_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | De novo audit struktury — mis-files ×14, kolize ×4, skill acquisition řetězec, návrh přesunů | 9/10 |
+| WA04 | `SQL_KANDIDATI_IMERZE_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Cross-repo audit SQL kandidátů pro imerzní adopci — 4 silní + 4 střední, posloupnost scrapers→linkedin→lichess | 8/10 |
 
 ### 05_mcp_jobs — MCP-Jobs analýzy a audity
 
@@ -398,10 +399,11 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N25** | **`SKILL_GAPS_ROZBOR_Q3_2026_v2.md`** | **`01_METODIKY/04_skill_acquisition/`** | **analýza** | **15. 8. 2026** | **9/10** |
 | **N26** | Chess analýzy ×11 (lichess-analyzer pipeline) | `02_ANALYZY/02_chess/` | analýza | 2.–3. 8. 2026 | 7-9/10 |
 | **N27** | CV automatizace ×2 (YOLO11, small models) | `02_ANALYZY/07_CV_automatizace/` | analýza | 8/2026 | 7-8/10 |
+| **N28** | **`SQL_KANDIDATI_IMERZE_2026-08-15.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **15. 8. 2026** | **8/10** |
 
 > N01 superseded S08 (GROUND_TRUTH_aktualni_stav_2026-08-06.md — kanon). N10/N14 → v2 generace (v1 v _ARCHIVE).
 
-**Celkem v tabulce:** 22 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | vytvořeno 24. 6.–15. 8. 2026
+**Celkem v tabulce:** 23 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | vytvořeno 24. 6.–15. 8. 2026
 
 ---
 
@@ -428,6 +430,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `cv_automation`, `yolo11`, `small_models` | `02_ANALYZY/07_CV_automatizace/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
 | `sql`, `databaze`, `gramotnost`, `ontologie` | `05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/` |
+| `sql`, `imerze`, `adopce`, `kandidati` | `02_ANALYZY/04_workspace_audit/` |
 
 ---
 
