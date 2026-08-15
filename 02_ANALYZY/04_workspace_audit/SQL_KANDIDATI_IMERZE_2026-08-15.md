@@ -5,7 +5,7 @@
 **Návaznost:** SKILL_GAPS_ROZBOR_Q3_2026_v2.md (gap ❷ PostgreSQL), ADOPCNI_METODOLOGIE_2026_v1.md, sql_ontologie_mechanismy_2026-08-15.md (MCP-Jobs), IT_gramotnost_hranice_SQL_databazi_2026-08-15.md (E18), eroi_chronologicky_plan_s_metodikou.md, CONTEXT_REPOS.md (master dir struktura)
 
 > **V2 (2026-08-15):** De novo deep-dive master diru (59 401 souborů, 2,59 GB) + rešerše trhu (9 analogických nástrojů). Revize: KROK 0 (master dir index) přechází z PostgreSQL na **SQLite + FTS5** — konvergence trhu, simple > complicated.
-> **V3 (2026-08-15):** Sekce 12 — analýza live index souborů (INDEX.md + CONTEXT_REPOS.md) vs SQL DB. Verdikt: MD zůstává kanon, SQLite = materialized view (2 parser tabulky v KROK 0).
+> **V3 (2026-08-15):** Sekce 12 — analýza live index souborů (INDEX.md + CONTEXT_REPOS.md) vs SQL DB. Verdikt: MD zůstává kanon, SQLite = materialized view (2 parser tabulky v KROK 0). Sekce 13 — MCP-Jobs Postgres vs SQLite (ověřeno: 26 ads, 7,9 MB); verdikt: Postgres zůstává jako učební investice (gap ❷), SQLite pro KROK 0.
 
 ---
 
@@ -264,3 +264,59 @@ Dotaz č. 8: SELECT name, origin FROM repos WHERE is_foreign = 1   -- cizí klon
 **Lekce z opravy V3:** `origin`/`is_foreign` sloupec je plnící skript získá z `git remote get-url origin` (ne ručně) — eliminuje reprodukci subagentní chyby "velké repo = cizí klon".
 
 Práh zastavení zůstává: 1 session, žádný server/UI/embeddings.
+
+---
+
+## 13. MCP-Jobs: PostgreSQL vs SQLite (V3)
+
+Analýza vhodnosti robustního Postgres vs jednoduššího SQLite pro repozitář MCP-Jobs.
+
+### 13.1 Fakta (ověřeno dotazem na live DB, ne odhad)
+
+| Metrika | Hodnota |
+|---------|---------|
+| `ads` řádků | **26** |
+| `pipeline_runs` | **3** |
+| Velikost celé DB | **7,9 MB** (převážně systémová režie) |
+| Schéma | 2 tabulky, `UNIQUE(url)`, 3 indexy, 1× JSONB (metadata pipeline_runs) |
+| Provoz | Docker kontejner `mcp-jobs-postgres`, port 5432, volume, healthcheck OK |
+| Zátěž | 1 scrape běh denně (cron), ~10–30 inzerátů/běh |
+
+Datový objem je triviální (26 řádků) — **intuice o nadměrnosti Postgresu je kvantitativně správná.**
+
+### 13.2 Porovnání
+
+| Kritérium | PostgreSQL (současnost) | SQLite |
+|-----------|------------------------|--------|
+| Režie provozu | Docker, port, volume, credentials | 0 — jeden `.db` soubor |
+| Instalace | docker pull + run + healthcheck | `sqlite3` v stdlib, 0 setup |
+| Backup | pg_dump / volume | kopie 1 souboru |
+| SQL standard | Plný: JSONB, TIMESTAMPTZ, window functions, ON CONFLICT | Podmnožina: JSON text, bez window functions (historicky), FTS5 ano |
+| Dedup | `ON CONFLICT (url) DO NOTHING` | `INSERT OR IGNORE` / `ON CONFLICT DO NOTHING` |
+| JSONB | nativní, indexovatelné | JSON1 slabší dotazování |
+| Dovednostní cíl | **gap ❷ PostgreSQL (EROI 8.5/10)** + ADASTRA požadavek | Není v cílech; učí SQL, ne Postgres-specifické |
+| Nadměrnost pro 26 řádků | Vysoká | Nulová |
+| Škálovatelnost | Miliony řádků, concurrent, remote | Stovky MB, single-writer |
+
+### 13.3 Verdikt
+
+**Inženýrsky (objem/provoz):** SQLite vyhrává — 26 řádků v Docker-Postgres = kanon na vrabce.
+**Z hlediska autorova účelu (imerzní adopce SQL pro Big Data roli):** Postgres vyhrává — a to je legitimní kritérium, ne scope creep.
+
+| Argument pro ponechání Postgres | Váha |
+|----------------------------------|:----:|
+| Gap ❷ je definován jako "PostgreSQL" (ne "SQL obecně") — SQLite by gap naplnil jen částečně | Vysoká |
+| ADASTRA požaduje RDBMS v Big Data kontextu — Postgres tržně relevantnější | Střední |
+| JSONB + TIMESTAMPTZ + ON CONFLICT = přesně produkční ETL nástroje, které SQLite nemá/oslabuje | Střední |
+| Přechod SQLite→Postgres později = migrační náklad; dnes je nejlevnější čas na přechod (0 dat) | Střední |
+
+### 13.4 Rozdělené rozhodnutí
+
+| Vrstva | Doporučení | Důvod |
+|--------|------------|-------|
+| **MCP-Jobs produkční DB** | **Ponechat PostgreSQL** | Primární učební cíl (gap ❷) na reálném artefaktu; náklad = 1 Docker kontejner (již běží); objemová nadměrnost irelevantní u 7,9 MB |
+| **KROK 0 master dir index** | **SQLite + FTS5** | Jiný use case — read-heavy index, žádný server, konvergence trhu 9/9 |
+
+**Čisté odůvodnění:** Postgres v MCP-Jobs není "správné inženýrské řešení pro 26 řádků" — je to **vědomá učební investice na produkčním artefaktu**. SQLite by ušetřil režii, ale zaplatil bys ji na dovednostním cíli. Obě DB koexistují, každá pro jiný účel — dělba rolí, ne duplicita.
+
+**Kdy přejít na SQLite:** kdyby MCP-Jobs zůstal čistě lokální jednorázový nástroj a gap ❷ se přesunul jinam (KROK 0/1/2).
