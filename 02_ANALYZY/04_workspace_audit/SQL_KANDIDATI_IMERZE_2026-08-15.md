@@ -92,7 +92,9 @@ De novo analýza celého `_github\` (2 subagenti + ověření klíčových struk
 
 | Fakta | Hodnota |
 |-------|---------|
-| Velikost | **59 401 souborů, 2,59 GB** (dominují cizí klony: outprep 950 MB, lichess 437 MB, linkedin 247 MB, GCP 172 MB) |
+| Velikost | **59 401 souborů, 2,59 GB** — velikostní špičky: outprep 950 MB, lichess-analyzer 437 MB, linkedin-mcp 247 MB, GCP 172 MB |
+| Vlastnictví rep (git remote) | **Autorovy repa (origin `outpost2026/*`):** lichess-analyzer, linkedin-mcp-custom, MCP-Jobs, vcf_parser_b2b, outpost_security_perimeter aj. **Cizí klony (origin jiný org):** `outprep` (dscape/outprep) a uvnitř `GCP/` subrepo `cloud-run-mcp` (GoogleCloudPlatform) + `gcloud-mcp` (googleapis, gitignorované). `GCP` samotný a `scrapers` = lokální repa bez remote |
+| Co tvoří velikost autorových rep | lichess-analyzer 437 MB = **stockfish binárka 326 MB + .venv 104 MB + data 3 MB** (ne klon); linkedin-mcp 247 MB = **.venv 222 MB + .mypy_cache 22 MB** (ne klon) |
 | Vrstvy | master root + `.ci/.session/.scripts/.opencode` → 19 sub-rep (gitlinky) → non-git artefakty (KB 61 souborů, B2B 56, VCF_files_moodpasta 35× .VCF, github_mirror 3 generace snapshotů) |
 | Master git repo | lokální, `main`, bez remote; `.git/` 147,9 MB; **working tree není clean** (6× MACHA_PRAHA_* untracked + 4 gitlinky) |
 | `mcp_audit.log` | 6 631 řádků — smíšený formát (plain + JSONL), 2 331× ListTools, 1 588× CallTool |
@@ -100,6 +102,8 @@ De novo analýza celého `_github\` (2 subagenti + ověření klíčových struk
 | SQL soubory | žádné `*.sqlite`; 3 skutečná schémata (MCP-Jobs schema.sql, outprep schema.sql + migrace); 16× SQLite = jen `.mypy_cache` |
 
 ### 7.1 Klíčové zjištění: neexistuje žádný index
+
+> **Oprava V3 (ověřeno gitem, ne odhadem):** Původní tvrzení "dominují cizí klony" bylo **fakticky chybné** — pocházelo z nekritického převzetí závěru subagenta. Ověření `git remote -v` ukázalo: lichess-analyzer i linkedin-mcp-custom mají origin `outpost2026/*` (autorovy repa) a jejich velikost tvoří lokální artefakty (stockfish binárka, .venv), ne klony. **Jediný skutečný cizí klon v rootu = `outprep`** (dscape/outprep), plus 2 gitignorované subrepo uvnitř `GCP/`. Autorova paměť ("jediný klon = outprep") byla správná s upřesněním: GCP obsahuje 2 cizí subrepo (cloud-run-mcp, gcloud-mcp).
 
 | Součást | Jak funguje dnes | Důsledek |
 |---------|------------------|----------|
