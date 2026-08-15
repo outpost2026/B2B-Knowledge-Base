@@ -54,10 +54,8 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| A04 | `CI_CD_INTEGRACE_PROTOKOL.md` | 01_METODIKY/00_agentni_prace/ | protokol | CI/CD integrační protokol | 6/10 |
-| A06 | `Free_LLM_openrouter.txt` | 01_METODIKY/00_agentni_prace/ | katalog | Free LLM modely na OpenRouter | 6/10 |
 
-> A01-A03 přesunuty do 05_EPISTEMIKA (G01, G02, M01 — kanon lokace); A05 archivován (X31).
+> A01-A03 přesunuty do 05_EPISTEMIKA (G01, G02, M01 — kanon lokace); A04 → MT04 (05_testing), A06 → KM08 (kalibrace), A05 archivován (X31).
 
 ### 05_testing — Testování, CI/CD
 
@@ -66,6 +64,8 @@
 | MT01 | `CI_GitHub_Actions_imerzni_edu_v1.md` | 01_METODIKY/05_testing/ | edu | Imerzní edukace GH Actions CI (přesunuto z 04_KB, F3) | 7/10 |
 | MT02 | `contract_testing_ontologie_v1.md` | 01_METODIKY/05_testing/ | ontologie | Contract testing ontologie | 7/10 |
 | MT03 | `TRIMMING_PLAN_04_KNOWLEDGE_BASE_2026-08-01.md` | 01_METODIKY/ | plán | F1-F5 sémantický trim 04_KB — 25 → 10 souborů, 14 archivováno (DONE) | 9/10 |
+| MT04 | `CI_CD_INTEGRACE_PROTOKOL.md` | 01_METODIKY/05_testing/ | protokol | CI/CD integrační protokol (přesunuto z 00_agentni_prace, Q3) | 6/10 |
+| MT05 | `Falsifikacni_test_single_game_discovery_v1.md` | 01_METODIKY/05_testing/ | metodika | Falsifikační test single-game discovery — K0-K3 šumový model, pattern lifecycle (přesunuto z 05_EPISTEMIKA, Q3) | 8/10 |
 
 ### 06_SWE_glossary — Živá učebnice SWE terminologie
 
@@ -107,6 +107,7 @@
 |---|--------|-------|-----|------|------|
 | SKA01 | `ADOPCNI_METODOLOGIE_2026_v1.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Optimální stack metod 60/20/10/10 (PBL, Feynman→Glossary, SRS, Concept Mapping) + aplikace na 6 gapů | 9/10 |
 | SKA02 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | 01_METODIKY/04_skill_acquisition/ | analýza | 6 skill gapů Q3+ 2026 — TS/Next.js, PostgreSQL, DevOps, AZ-900, PLC, K8s (kanon řetězce) | 9/10 |
+| SKA04 | `COMPRESSION_PATTERN_METHOD_v1.0.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Kompresní pattern metoda — deterministická tvorba + kalibrace patternů (LLM + pipeline) | 8/10 |
 
 > SKA03 `SKILL_GAPS_ROZBOR_Q3_2026_v1.md` — superseded v2, archivováno v `_ARCHIVE/01_METODIKY/04_skill_acquisition/`.
 
@@ -134,6 +135,8 @@
 | PA04 | `R&D_evoluce_portfolia_03_2026-07_2026_v2.md` | 02_ANALYZY/01_portfolio_audit/ | report | Komplexní R&D evoluce — 6 fází, 14 rep, ~600 commitů (v2; v1 archivováno) | 10/10 |
 | PA05 | `github_portfolio_analysis_v2.md` | 02_ANALYZY/01_portfolio_audit/ | audit | Hloubková analýza GitHub portfolia (v2; v1 archivováno) | 9/10 |
 | PA06 | `github_portfolio_digital_twin.json` | 02_ANALYZY/01_portfolio_audit/ | data | Digitální dvojče portfolia — strojově čitelný snapshot | 8/10 |
+| PA07 | `SYSTEQ_performance_analyza_v1.md` | 02_ANALYZY/01_portfolio_audit/ | analýza | SYSTEQ performance analýza (přesunuto z 01_positioning, Q3) | 8/10 |
+| PA08 | `roadmap_github_v2.md` | 02_ANALYZY/01_portfolio_audit/ | plán | GitHub roadmap v2 (přesunuto z 00_STRATEGIE, Q3) | 8/10 |
 
 > PA01/PA04/PA05 v1 generace archivovány v `02_ANALYZY/01_portfolio_audit/_ARCHIVE/` (superseded v2).
 
@@ -144,6 +147,13 @@
 | KT06 | `market_research_stack_conversion.md` | 02_ANALYZY/06_konkurence_a_trh/ | analýza | Konvertovatelnost stacku na české výrobní SME (VCF parser, KB, Streamlit, GCP) | 8/10 |
 
 > Přesunuto z 00_STRATEGIE/02_karierni_targety (Bod 3, 2026-08-15).
+
+### 07_CV_automatizace — CV automatizace (YOLO11, small models)
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| CVA01 | `CV_YOLO11_ADOPTION_ASSESSMENT_v1.md` | 02_ANALYZY/07_CV_automatizace/ | analýza | YOLO11 adopční assessment pro CV automatizaci | 8/10 |
+| CVA02 | `SMALL_MODELS_CV_ASPIRACNI_PROJEKTY_v1.md` | 02_ANALYZY/07_CV_automatizace/ | plán | Aspirační projekty small models CV | 7/10 |
 
 ### 04_chess — Chess analýzy, lichess-analyzer pipeline
 
@@ -263,17 +273,6 @@
 |---|--------|-------|-----|------|------|
 | CH01 | `player_pattern_library_v1.json` | 04_KNOWLEDGE_BASE/02_chess/ | kánon | 17 patternů pro lichess-analyzer (chess_pattern_v5 import) | 8/10 |
 
-### 02_testing — Golden master, determinism testy
-
-*Připraveno pro budoucí artefakty — testovací metodologie a frameworky (CI_GitHub_Actions_imerzni_edu_v1 přesunut do 01_METODIKY/05_testing/, F3)*
-
-### 03_CV_AUTOMATION — CV automatizace (YOLO11, small models)
-
-| # | Soubor | Zdroj | Typ | Účel | EROI |
-|---|--------|-------|-----|------|------|
-| CVA01 | `CV_YOLO11_ADOPTION_ASSESSMENT_v1.md` | 04_KNOWLEDGE_BASE/03_CV_AUTOMATION/ | analýza | YOLO11 adopční assessment pro CV automatizaci | 8/10 |
-| CVA02 | `SMALL_MODELS_CV_ASPIRACNI_PROJEKTY_v1.md` | 04_KNOWLEDGE_BASE/03_CV_AUTOMATION/ | plán | Aspirační projekty small models CV | 7/10 |
-
 ### Replikace (cross-repo, deliberate — žádná akce)
 
 | Soubor | Výskyty | Status |
@@ -304,7 +303,7 @@
 | E13 | `Kognitivni_neuro-architektura_Mozek_jako_geometricky_procesor.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | esej | Mozek jako geometrický procesor | 8/10 |
 | E14 | `Kompresni_modelovani_v_praxi_synteza_v1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | syntéza | Kompresní modelování v praxi | 7/10 |
 | E15 | `metodika_pro_vyvoj_nastroju_prumyslove_automatizace.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | Metodika vývoje nástrojů průmyslové automatizace | 8/10 |
-| E16 | `Falsifikacni_test_single_game_discovery_v1.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | metodika | Falsifikační test single-game discovery — K0-K3 šumový model, pattern lifecycle | 8/10 |
+| E16 | `Falsifikacni_test_single_game_discovery_v1.md` | 01_METODIKY/05_testing/ | metodika | Falsifikační test single-game discovery — K0-K3 šumový model, pattern lifecycle | 8/10 |
 
 ### 01_kalibracni_matice — LLM routing, model analysis
 
@@ -317,6 +316,7 @@
 | KM05 | `OpenRouter_Model_Analysis_v3.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | analýza | Analýza OpenRouter modelů v3 | 7/10 |
 | KM06 | `LLM_free_models.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | seznam | Seznam free LLM modelů (repo kopie) | 6/10 |
 | KM07 | `LLM_routing.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | routing | LLM routing podle domény (repo kopie) | 8/10 |
+| KM08 | `Free_LLM_openrouter.txt` | 05_EPISTEMIKA/01_kalibracni_matice/ | katalog | Free LLM modely na OpenRouter (přesunuto z 00_agentni_prace, Q3) | 6/10 |
 
 ### 02_agentni_pravidla — Bezpečnostní protokoly, guardrails
 
@@ -394,7 +394,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N24** | **`ADOPCNI_METODOLOGIE_2026_v1.md`** | **`01_METODIKY/04_skill_acquisition/`** | **metodika** | **15. 8. 2026** | **9/10** |
 | **N25** | **`SKILL_GAPS_ROZBOR_Q3_2026_v2.md`** | **`01_METODIKY/04_skill_acquisition/`** | **analýza** | **15. 8. 2026** | **9/10** |
 | **N26** | Chess analýzy ×11 (lichess-analyzer pipeline) | `02_ANALYZY/02_chess/` | analýza | 2.–3. 8. 2026 | 7-9/10 |
-| **N27** | CV automatizace ×2 (YOLO11, small models) | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` | analýza | 8/2026 | 7-8/10 |
+| **N27** | CV automatizace ×2 (YOLO11, small models) | `02_ANALYZY/07_CV_automatizace/` | analýza | 8/2026 | 7-8/10 |
 
 > N01 superseded S08 (GROUND_TRUTH_aktualni_stav_2026-08-06.md — kanon). N10/N14 → v2 generace (v1 v _ARCHIVE).
 
@@ -422,7 +422,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `skill`, `gap`, `konkurence`, `trh`, `acquisition` | `01_METODIKY/04_skill_acquisition/` + `02_ANALYZY/06_konkurence_a_trh/` |
 | `gt_pravidla`, `web`, `produkt`, `epistemika` | `00_STRATEGIE/03_web_GT_pravidla/` |
 | `chess`, `lichess`, `stockfish`, `pattern`, `fsrs`, `srs` | `02_ANALYZY/02_chess/` + `04_KNOWLEDGE_BASE/02_chess/` |
-| `cv_automation`, `yolo11`, `small_models` | `04_KNOWLEDGE_BASE/03_CV_AUTOMATION/` |
+| `cv_automation`, `yolo11`, `small_models` | `02_ANALYZY/07_CV_automatizace/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
 
 ---
@@ -431,13 +431,13 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026) | 92 |
+| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026) | 90 |
 | Duplicitní páry | 0 |
-| Souborů v _ARCHIVE | ~64 |
+| Souborů v _ARCHIVE (tracked) | 7 |
 | Celkem zmapovaných artefaktů (celý workspace) | ~110 |
 | RAG-ready (tracked textové) | ~70 |
 | Nové artefakty řádků | ~8 000 |
 
 ---
 
-*Poslední aktualizace: 2026-08-15 (v2.2 — oprava registru: dedup A01-A03/R01-R03/L04/S08/N01, doplnění chybějících registrací chess ×11, CV_AUTOMATION ×2, konkurence_a_trh ×5, workspace_audit; oprava lokací na reálné cesty; statistika 92 souborů)*
+*Poslední aktualizace: 2026-08-15 (v2.3 — přesuny mis-files Q3: CI_CD→05_testing, Free_LLM→kalibrace, Falsifikacni→05_testing, CV→07_CV_automatizace, CPM→skill_acquisition, SYSTEQ_performance+roadmap→portfolio_audit; registrace MT04/MT05/SKA04/KM08/PA07/PA08/CVA; odstraněny duplicity A04/A06, zastaralé sekce 02_testing/03_CV_AUTOMATION; statistika 90 souborů)*
