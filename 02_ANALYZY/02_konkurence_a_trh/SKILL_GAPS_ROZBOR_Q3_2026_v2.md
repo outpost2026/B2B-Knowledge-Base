@@ -538,6 +538,21 @@ TÝDEN 13+: Kubernetes (40+ h, VOLITELNÉ)
 
 **Milník (nový v v2):** na konci týdne 6 by měl autor umět **standalone MCP-jobs produkt v minimální verzi**: DB + cron + monitoring + web dashboard. To je deliverable, který lze posoudit.
 
+### Metodologická vrstva (nová v2.1 — viz ADOPCNI_METODOLOGIE_2026_v1)
+
+**Formalizovaná metodika adopce:** optimální stack metod 60/20/10/10 — PBL (60 %), Feynman→SWE_GLOSSARY (20 %), Spaced Repetition/SRS (10 %), Concept Mapping (10 %). Kanon: `01_METODIKY/04_skill_acquisition/ADOPCNI_METODOLOGIE_2026_v1.md`.
+
+| Gap | Primární metoda | Doplňková | Proč |
+|-----|-----------------|-----------|------|
+| ❶ TS+Next.js | PBL (PoC dashboard) | Feynman→Glossary | Nejvyšší EROI — učit tvorbou reálného artefaktu |
+| ❷ PostgreSQL | PBL (schema.sql + reálný run) | Concept Mapping | DB = vztahy → koncept mapy přirozené |
+| ❸ DevOps | PBL (cron + CI + monitoring) | Feynman→Glossary | Automatizace = praxe |
+| ❹ AZ-900 | SRS (cvičné testy + flashcards) | PBL (1 Azure PoC) | Certifikace = paměťová zkouška → SRS ideální |
+| ❺ PLC | PBL (TIA Portal + Modbus PoC) | Concept Mapping | Průmyslová doména = fyzikální vztahy |
+| ❻ K8s | PBL (minikube + MCP deployment) | Concept Mapping | Orchestrace = vztahy komponent |
+
+**Sekvenční pravidlo:** PBL → zaznamenej nové termíny do glossary (Feynman) → generuj flashcards → SRS. Čtvrtletně reviduj koncept mapy napříč gapy.
+
 ---
 
 ## Slovník pojmů — nové termíny z v2 (odkazy na SWE_GLOSSARY)

@@ -95,7 +95,9 @@
 
 ### 04_skill_acquisition — Learning path pro gapy
 
-*Připraveno pro budoucí artefakty — TypeScript, Azure, PLC learning path*
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| SKA01 | `ADOPCNI_METODOLOGIE_2026_v1.md` | 01_METODIKY/04_skill_acquisition/ | metodika | Optimální stack metod 60/20/10/10 (PBL, Feynman→Glossary, SRS, Concept Mapping) + aplikace na 6 gapů | 9/10 |
 
 ---
 

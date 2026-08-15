@@ -995,3 +995,16 @@ outprep/
 3. Pokud není, doplň novou sekci s šablonou: **CO / PROČ / JAK (analogie) / EFEKT (EROI)**.
 4. Zvýrazni termín boldem a uveď kontext, ve kterém ses s ním setkal.
 5. Pokud je v artefaktu vysvětlení, zachovej jádro a rozšiř.
+
+### Rozšířená šablona (v2.1 — zjištění z ADOPCNI_METODOLOGIE_2026_v1)
+
+Kromě základní struktury CO/PROČ/JAK/EFEKT doplň u každého nového termínu:
+
+| Položka | Pravidlo |
+|---------|----------|
+| **Kdy použít / Kdy NE** | Architektonické rozhodování — terminologie bez rozhodovacího prahu je pasivní znalost |
+| **Protiklad / záměna** | "Singleton ≠ statická třída", "Mock ≠ fake", "Cache invalidation ≠ eviction" — nejčastější chyby vznikají záměnou |
+| **Odkaz na kód** | Konkrétní místo v repozitářích, kde se termín reálně používá (např. `engine_client.py:205`) |
+| **Koncept mapa** | 1-řádkový vztah k okolním pojmům (např. `race condition → lock → mutex → deadlock → timeout`) — viz Concept Mapping v adopční metodice |
+
+**SRS provázání:** každý nový termín je zdrojem pro 1-2 Anki flashcards (opakování v intervalech 1→3→7→14 dní). Termíny bez reálného kontextu se do glossary NEzapisují (kvalita > kvantita, anti-akumulace).
