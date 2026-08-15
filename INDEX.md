@@ -10,8 +10,8 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| S01 | `Sousek_Manifest_kompresniho_realismu.md` | B2B/ | manifest | Základní filozofický rámec autora | 8/10 |
-| S02 | `Sousek_Manifest_kompresniho_realismu_B2B_Edition.md` | B2B/ | manifest | B2B adaptace manifestu | 8/10 |
+| S01 | `Sousek_Manifest_kompresniho_realismu.json` | B2B/ + KB/ | manifest | Základní filozofický rámec autora | 8/10 |
+| S02 | `Sousek_Manifest_kompresniho_realismu_B2B_Edition.json` | B2B/ | manifest | B2B adaptace manifestu | 8/10 |
 | S03 | `Mikolov_Manifest.md` | B2B/ + KB/ | manifest | Komprese reality dle Mikolova | 7/10 |
 | S04 | `Mikolov_Sousek_prunik.md` | B2B/ + KB/ | analýza | Průnik Mikolov vs. Sousek | 7/10 |
 | S05 | `Operational Corpus_Systemic Competency Report.json` | B2B/ | report | Kompetenční profil autora | 6/10 |
@@ -97,10 +97,6 @@
 
 > C01 (CV_Ondrej_Sousek_redesign) archivován (X25 — superseded číslovanou sadou 01-07).
 
-### 03_aplikacni_proces — Jak aplikovat, cover letter templaty
-
-*Připraveno pro budoucí artefakty — template pro cover letters, follow-up strategie*
-
 ### 04_skill_acquisition — Learning path pro gapy
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
@@ -118,7 +114,7 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| L01 | `synteticky_report_analyza.md` | 02_ANALYZY/00_linkedin/ | report | Syntéza 24 nabídek — precision, SNR, CV gapy | 10/10 |
+| L01 | `synteticky_report_2026-07-17.md` | 02_ANALYZY/00_linkedin/ | report | Syntéza 24 nabídek — precision, SNR, CV gapy | 10/10 |
 | L02 | `agregovany_report.md` | 02_ANALYZY/00_linkedin/ | report | Detail jednotlivých nabídek s EROI hodnocením | 10/10 |
 | L03 | `metadata_stacku.json` | 02_ANALYZY/00_linkedin/ | data | Strojově čitelná agregace tech stacku | 9/10 |
 | **L05** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **02_ANALYZY/00_linkedin/** | **architektura** | **MCP pipeline pro automatizaci analýzy LinkedIn nabídek — 2 varianty, EROI engine, napojení na existující artefakty** | **9/10** |
@@ -356,7 +352,7 @@
 | X21 | `OpenRouter_Model_Analysis_v2.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | Superseded v3 (F2) |
 | X22 | `Sousek_Manifest_kompresniho_realismu_KB.json` | 05_EPISTEMIKA/00_kompresni_realismus/ | Superseded v1.1 Hardened B2B (F2) |
 | X23 | `ontologie_kompresnich_modelu_reality.md` | 05_EPISTEMIKA/00_kompresni_realismus/ | Superseded appendix — final RAG verze (F2) |
-| X24 | `synteticky_report_analyza.md` (repo kopie) | 02_ANALYZY/00_linkedin/ | Superseded snapshoty v4+ (F2); B2B/ kopie zůstává |
+| X24 | `synteticky_report_analyza.md` (B2B originál) | B2B/linkedin_analyzy/ | B2B originál zůstává; repo generace = `synteticky_report_2026-07-17.md` (L01) |
 | X25 | CV ×4: `CV_Ondrej_Sousek_B2B_onepager(.en).md`, `CV_Ondrej_Sousek_redesign.md`, `Sousek_CV_portfolio_cs.md` | 01_METODIKY/02_CV_a_profil/ | Superseded číslovanou sadou 01-07 (F2) |
 | X26 | Chess ×4: `chess_diagnosis_07-18/07-19`, `chess_self_analysis_baseline_04`, `aspirational_patterns_from_47games` | 02_ANALYZY/02_chess/ | Transient dev artefakty; kanon = player_pattern_library_v1 (F3) |
 | X27 | MCP-Jobs řetězec ×7: CROSS_AUDIT_HANDOFF, CROSS_AUDIT_v1, FIX_BALIK, dif_analyza, evaluace, semanticka_analyza, srovnani_er | 02_ANALYZY/05_mcp_jobs/ | Per-iterace; kanon = DE_NOVO + srovnani_architektur + PHASE09 (F3) |
@@ -389,7 +385,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N13** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **`02_ANALYZY/00_linkedin/`** | **architektura** | **5. 7. 2026** | **9/10** |
 | **N14** | **`github_portfolio_analysis_v2.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **audit** | **7. 7. 2026 (v2 15. 8.)** | **9/10** |
 | **N20** | **`linkedin_mcp_roadmap_v2.md`** | **`02_ANALYZY/00_linkedin/`** | **roadmapa** | **8. 7. 2026** | **8/10** |
-| **N21** | **`ARCHITEKTURA_KB_2026-08-01.md`** | **`01_METODIKY/00_procesy/`** | **governance** | **1. 8. 2026** | **10/10** |
+| **N21** | **`ARCHITEKTURA_KB_2026-08-01.md`** | **`_ARCHIVE/01_METODIKY/00_procesy/`** | **governance** | **1. 8. 2026** | **10/10 (archivováno 15. 8. — redundantní, nahrazena de novo auditem)** |
 | **N22** | **`SEMANTICKA_ANALYZA_METADOKUMENTACE_2026-08-01.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **1. 8. 2026** | **9/10** |
 | **N23** | **`KORELACE_STRUKTURY_KB_2026-08-15.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **15. 8. 2026** | **9/10** |
 | **N24** | **`ADOPCNI_METODOLOGIE_2026_v1.md`** | **`01_METODIKY/04_skill_acquisition/`** | **metodika** | **15. 8. 2026** | **9/10** |
@@ -441,4 +437,4 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 ---
 
-*Poslední aktualizace: 2026-08-15 (v2.3 — přesuny mis-files Q3: CI_CD→05_testing, Free_LLM→kalibrace, Falsifikacni→05_testing, CV→07_CV_automatizace, SYSTEQ_performance+roadmap→portfolio_audit; registrace MT04/MT05/KM08/PA07/PA08/CVA; v2.3a — CPM→05_EPISTEMIKA/00_kompresni_realismus (E17, operační implementace KR), E16→MT05; odstraněny duplicity A04/A06/E16, zastaralé sekce 02_testing/03_CV_AUTOMATION; statistika 90 souborů)*
+*Poslední aktualizace: 2026-08-15 (v2.3b — homogenita INDEX vs fyzická struktura: S01/S02 přípona .md→.json, L01 drift názvu synteticky_report→2026-07-17, X24 oprava, sekce 03_aplikacni_proces smazána, N21 ARCHITEKTURA_KB archivována; P5 OK)*
