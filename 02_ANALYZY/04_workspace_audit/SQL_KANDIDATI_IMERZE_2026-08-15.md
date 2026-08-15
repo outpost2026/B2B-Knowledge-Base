@@ -5,6 +5,7 @@
 **Návaznost:** SKILL_GAPS_ROZBOR_Q3_2026_v2.md (gap ❷ PostgreSQL), ADOPCNI_METODOLOGIE_2026_v1.md, sql_ontologie_mechanismy_2026-08-15.md (MCP-Jobs), IT_gramotnost_hranice_SQL_databazi_2026-08-15.md (E18), eroi_chronologicky_plan_s_metodikou.md, CONTEXT_REPOS.md (master dir struktura)
 
 > **V2 (2026-08-15):** De novo deep-dive master diru (59 401 souborů, 2,59 GB) + rešerše trhu (9 analogických nástrojů). Revize: KROK 0 (master dir index) přechází z PostgreSQL na **SQLite + FTS5** — konvergence trhu, simple > complicated.
+> **V3 (2026-08-15):** Sekce 12 — analýza live index souborů (INDEX.md + CONTEXT_REPOS.md) vs SQL DB. Verdikt: MD zůstává kanon, SQLite = materialized view (2 parser tabulky v KROK 0).
 
 ---
 
@@ -192,3 +193,61 @@ CREATE TABLE repos (name TEXT PRIMARY KEY, last_commit TEXT, commit_count INTEGE
 | JOIN v praxi (lichess) | Funkční join hra→pattern v produkčním dotazu |
 | A/B demonstrace (linkedin) | Ruční upsert nahrazen ON CONFLICT se stejným chováním |
 | Glossary termíny z SQL imerze | 5+ nových kontextovaných termínů (JOIN, index, transaction, FK, ON CONFLICT, FTS5, BM25) |
+
+---
+
+## 12. Live index soubory vs SQL DB — rozhodnutí (V3)
+
+Analýza dvou ručně editovaných live indexačních souborů workspace a jejich vztahu k SQL rodině.
+
+### 12.1 Přehled obou souborů
+
+| Atribut | `B2B-Knowledge-Base/INDEX.md` | `CONTEXT_REPOS.md` (root `_github\`) |
+|---------|-------------------------------|-------------------------------------|
+| Role | Registr artefaktů KB (jediný INDEX.md ve workspace) | **Master indexační soubor stavu/statusu master diru** (19 repů, 25 sekcí) |
+| Velikost | 450 řádků, v2.2 | 825 řádků |
+| Obsah | 6 modulových tabulek `\| # \| Soubor \| Zdroj \| Typ \| Účel \| EROI \|`, tag lookup (20 řádků), statistiky, maintenance log | Per-repo sekce (verze, status, stack, commity, testy), vztahy mezi repy, CI/CD, non-git adresáře, `.ai_state` kontext, **bezpečnostní pravidla (ř. 37–92)**, poznámky k workflow |
+| Konzumenti | 3 MCP nástroje: `kb_overview`, `kb_by_module`, `kb_read_doc` (řádkový lookup `_lookup_metadata`, split na `\|`) | Povinný kontext pro agenty dle AGENTS.md (čtení, ne parsování nástroji) |
+| Struktura vs narativ | ~70 % strukturované tabulky, ~30 % narativ (maintenance log) | ~60 % strukturované fakta, ~40 % narativ (bezpečnost, workflow poznámky, hodnocení adopce) |
+| Drift kontrola | P5 drift check (`git ls-files` vs registrace) | Žádný automatický check — aktualizace per session |
+
+### 12.2 Argumenty contra nahrazení (oba soubory)
+
+| # | Argument | INDEX.md | CONTEXT_REPOS.md |
+|---|----------|:--------:|:----------------:|
+| 1 | **Objem triviální** — 110 artefaktů / 19 repů; SQL indexy se vyplatí až při 10 000+ záznamech | ✔ | ✔ |
+| 2 | **Lidská čitelnost** — high-SNR profil, anti-blackbox; MD = transparentní vrstva, DB = černá skříň s klientem | ✔ | ✔ |
+| 3 | **Git audit trail** — `git diff` na MD = čitelné řádky; SQL dump diff = binární šum | ✔ | ✔ |
+| 4 | **Bezpečnostní obsah** — CONTEXT_REPOS nese bezpečnostní pravidla (ř. 37–92), která musí být čitelná bez nástrojů | — | ✔ (kritické) |
+| 5 | **MCP regrese** — 3 nástroje + 67/67 testů parsují INDEX.md | ✔ | (nekonsumován nástroji) |
+| 6 | **P1/P5 mechanismy** — zákaz klonů a drift check staví na git trackování MD | ✔ | ✔ |
+
+### 12.3 Argumenty pro (nadstavba, ne náhrada)
+
+| # | Argument | Síla |
+|---|----------|:----:|
+| 1 | **Strukturální dotazy nad CONTEXT_REPOS** — "které repo je AKTIVNÍ vs LEGACY", "kolik repů má >100 commitů", "EROI distribuce per modul" = `SELECT ... GROUP BY` místo očního prohlížení 825 řádků | Střední |
+| 2 | **Vynucení integrity** — UNIQUE (anti-klon, P1), CHECK (EROI enum) strojově | Střední |
+| 3 | **Join obou zdrojů** — artefakt ↔ repo (kb_read_doc metadata + repo status v jedné query) | Nízká |
+
+### 12.4 Verdikt (simple > complicated, hSNR)
+
+| Varianta | Verdikt | EROI |
+|---|---|---|
+| Nahradit INDEX.md / CONTEXT_REPOS.md SQL DB | **NE** — ztráta čitelnosti, bezpečnostní pravidla v MD, audit trail, MCP regrese, overkill na objem | Záporné |
+| **Nadstavba: MD = kanon, SQLite = materialized view** | **ANO, omezeně** — 2 parser tabulky v KROK 0: `artifacts` (z INDEX.md) + `repos_status` (z CONTEXT_REPOS.md sekcí) | 7/10 |
+| DB = kanon, MD = generovaný export | **NE teď** — narušuje live workflow; zvážit až při 10× objemu nebo opakovaném driftu | 4/10 |
+
+**Pravidlo:** Tok dat **MD → DB, nikdy DB → MD**. Ruční soubory zůstávají jediným zdrojem pravdy — autorova editace, git historie, MCP nástroje beze změny. SQLite+FTS5 je čistě odvozená dotazovací vrstva. **CONTEXT_REPOS.md je mimo SQL nadstavbu z hlediska obsahu** (bezpečnost + workflow narativ), ale jeho **strukturované hlavičky sekcí** (status, verze) jsou vstupem pro `repos_status` tabulku.
+
+### 12.5 Dopad na KROK 0 (rozšíření)
+
+```
+KROK 0 schéma se rozšiřuje o:
+  artifacts(id, module, file, type, purpose, eroi, tags)   ← parser INDEX.md tabulek
+  repos_status(name, version, status, stack, last_commit)   ← parser CONTEXT_REPOS.md sekcí
+Dotaz č. 6: SELECT module, count(*), avg(eroi) FROM artifacts GROUP BY module
+Dotaz č. 7: SELECT name, status FROM repos_status WHERE status LIKE '%AKTIVN%'
+```
+
+Práh zastavení zůstává: 1 session, žádný server/UI/embeddings.
