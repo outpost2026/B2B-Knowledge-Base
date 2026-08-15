@@ -18,11 +18,17 @@
 1. [Concurrency & Threading](#1-concurrency--threading) — serializace, race condition, zombie thread, ThreadPoolExecutor, lock/acquire, deadlock
 2. [Caching & Data](#2-caching--data) — cache invalidation, TTL, atomický zápis, lazy loading
 3. [Python Ekosystém & Tooling](#3-python-ekosystem--tooling) — uv, pyproject.toml, ruff, grep, statický vs runtime
-4. [Testing](#4-testing) — mock, MagicMock, unit test, dead code
+4. [Testing](#4-testing) — mock, MagicMock, unit test, dead code, test pyramida, contract testing (CDC), schema testy
 5. [Web Scraping & HTML](#5-web-scraping--html) — DOM, CSS selector, hashed CSS module, lazy fetch
 6. [Data Processing & Matching](#6-data-processing--matching) — dedup, fuzzy matching
 7. [Text & Unicode](#7-text--unicode) — hyphen, non-breaking hyphen, escapy
 8. [Core Concepts](#8-core-concepts) — idempotence, synchronní vs asynchronní, guardrail
+9. [CI/CD & Verzování](#9-cicd--verzovani) — CI, CD, pipeline, matrix, fail-fast, Dependabot, CodeQL, semver
+10. [Design Patterns](#10-design-patterns) — Singleton, Mutex
+11. [LLM & Nondeterminismus](#11-llm--nondeterminismus) — determinismus, halucinace, konfabulace
+12. [Observability & Resilience](#12-observability--resilience) — observability, metrics, percentily, feature flags, resilience
+13. [ML/CV pojmy (částečně)](#13-mlcv-pojmy-castecne) — inference, latency, epoch, dataset
+14. [Ruff — principy bez black boxu (příloha)](#14-ruff--principy-bez-black-boxu-priloha)
 
 ---
 
@@ -255,6 +261,57 @@ line-length = 100
 
 **EFEKT (EROI):** Dead code je "šum" — zvyšuje kognitivní zátěž a dává falešný pocit bezpečí. Pravidelná údržba odstraňuje.
 
+### 4.3 Test pyramida
+
+**CO:** Hierarchie testů podle rozsahu + rychlosti + počtu:
+```
+Unit Tests          ← testují jednu funkci/třídu izolovaně (nejvíce, nejrychlejší)
+  ↓
+Contract Tests      ← testují rozhraní mezi dvěma moduly
+  ↓
+Integration Tests   ← testují více modulů dohromady (s reálnými závislostmi)
+  ↓
+E2E Tests           ← testují celý systém od UI/API po databázi (nejméně, nejpomalejší)
+```
+
+**PROČ:** Čím širší test, tím dražší a pomalejší. Pyramida říká: **většina testů má být na spodku (unit)** — rychlé, izolované. Málo E2E — pomalé a křehké.
+
+**JAK (analogie):** Pyramida stavíš stabilní základnou. Když máš 80 % E2E testů, je to "inverted pyramid" = křehké, pomalé, drahé.
+
+**EFEKT (EROI):** Pochopíš, KAM který test patří. To je ontologie testování — klíčová pro rozhodování, co testovat a jak.
+
+### 4.4 Contract testing / CDC (Consumer-Driven Contract)
+
+**CO:** Test, který ověřuje **rozhraní mezi dvěma moduly** — dodržuje producer smlouvu, kterou od něj consumer očekává? **CDC (Consumer-Driven Contract)** = consumer definuje kontrakt, producer se mu přizpůsobí.
+
+**PROČ:** V modulární architektuře si moduly předávají data (JSON). Typický bug: producer změní klíč z `ply` na `move_number` → consumer čte `ply` → dostává `None` → nikdo nekřičí (žádná type error) → LLM dostane `move ?` místo `move 27`. **Tento bug není odhalitelný unit testy** — oba moduly procházejí své testy izolovaně. Problém je v rozhraní mezi nimi.
+
+**JAK:**
+```python
+# Consumer definuje kontrakt — test píše ten, kdo data čte
+def test_contract():
+    data = json.load(open("cache.json"))
+    for key in PROMPT_KEYS:   # {"ply", "move_san", "centipawn_loss", "phase"}
+        assert key in data["blunders"][0]
+```
+
+**Pravidlo:** Consumer definuje kontrakt. Test žije u consumeru. Pokud se změní klíče v modelu → contract test selže dřív, než se bug dostane do LLM.
+
+**EFEKT (EROI):** Chytá chyby rozhraní, které unit testy nevidí. U MCP pipeline (JSON na disku, producer+consumer v jednom repu) stačí lightweight varianta — nepotřebuješ Pact server ani schema registry.
+
+### 4.5 Schema testy / placeholder detection / noise-floor detection
+
+**CO:** Tři konkrétní typy contract testů pro data → LLM vrstvu:
+- **Schema test** — ověří, že JSON obsahuje klíče, které consumer čte.
+- **Placeholder detection** — ověří, že prompt neobsahuje neznámé hodnoty (např. `?`). Detekuje bugy, které schema test neodhalí (klíč existuje, ale je null).
+- **Noise-floor detection** — kontroluje sémantickou konzistenci (např. `assert accuracy > 0` — accuracy nemůže být 0 u reálné hry).
+
+**PROČ:** Schema test ověří strukturu, placeholder sémantiku promptu, noise-floor přípustnost hodnot. Tři úrovně = kompletní ochrana.
+
+**JAK (analogie):** Schema test = "dokument má kapitoly". Placeholder = "kapitoly nejsou prázdné". Noise-floor = "kapitoly dávají smysl" (není tam 0 tam, kde 0 být nemá).
+
+**EFEKT (EROI):** Vrstvená validace dat pro LLM vrstvu — nejen že data existují, ale že dávají smysl. Klíčové proti tichému šíření chyb do promptu.
+
 ---
 
 ## 5. Web Scraping & HTML
@@ -391,7 +448,234 @@ line-length = 100
 
 ---
 
-## 9. Ruff — principy bez black boxu (detailní příloha)
+## 9. CI/CD & Verzování
+
+> **Kontext vzniku:** Imerzní edukace CI (CI_GitHub_Actions_imerzni_edu_v1.md) — dev implementoval CI až po 4 měsících R&D. Tato sekce vytěžuje zavedenou terminologii.
+
+### 9.1 CI (Continuous Integration)
+
+**CO:** Automatické otestování každé změny. Push na GitHub → spustí se čistý server → naklonuje kód → nainstaluje závislosti → spustí testy → výsledek green/red.
+
+**PROČ:** Tvůj mozek má limit ~7 věcí v krátkodobé paměti. Děláš-li 5 změn v různých repozitářích, nemůžeš si pamatovat, jestli každá nerozbila něco. CI je tvůj **externí mozek** — do 2 minut víš, že je něco rozbité, dokud máš kontext v hlavě.
+
+**JAK (analogie):** CI = automatický hlídač, který po každé změně otestuje celý systém. Ne "jak se píše kód", ale "jestli pořád funguje".
+
+**EFEKT (EROI):** CI dává smysl až ve fázi stabilizace — když máš funkční produkt a přidáváš featury. V R&D fázi je test outdated za 20 minut. Milestone: kdy začneš rozbíjet věci, aniž bys to věděl.
+
+### 9.2 CD (Continuous Deployment)
+
+**CO:** Automatické nasazení po testech. CI = otestovat. CD = nasadit.
+
+**PROČ:** U tebe zatím CD není — zatím jen CI. Rozdíl pochopíš jako: CI odpovídá na "funguje to?", CD na "je to nasazené?".
+
+**EFEKT (EROI):** Konceptuální rozlišení CI vs CD — pipeline je řetězec: push → test → deploy.
+
+### 9.3 Pipeline
+
+**CO:** Celý řetězec automatizovaných kroků: push → test → deploy. Každý krok = jeden job/stage.
+
+**EFEKT (EROI):** Pipeline je abstrakce "co se stane s kódem od commitu po produkci".
+
+### 9.4 Matrix
+
+**CO:** Testování na více konfiguracích paralelně (Python 3.10/3.11/3.12, více OS). `strategy: matrix: python-version: ["3.10", "3.11", "3.12"]`.
+
+**PROČ:** Tvůj dev stroj má 3.12, zákazník může mít 3.10. Klasická chyba: `f-string`, `match-case`, `walrus operator` — každá Python verze přidává novinky. Na tvém stroji funguje, u zákazníka padá.
+
+**JAK:** `fail-fast: false` = pokud 3.10 spadne, 3.11 a 3.12 běží dál. Bez toho by CI zabil všechny testy při první chybě.
+
+**⚠️ Lekce z produkce:** Matrix verze musí být **podmnožina** deklarovaného rozsahu (`python_requires = >=3.11`), ne nadmnožina. Přidání 3.10 k `>=3.11` failne hned u pip install, ne u testů.
+
+**EFEKT (EROI):** +2 řádky YAML (2 minuty) → chytí version-specific bug dřív, než se dostane k zákazníkovi.
+
+### 9.5 Cron / Nightly cron
+
+**CO:** Časovač — `cron: "0 6 * * *"` = každý den v 6:00 UTC. Nightly = noční automatický run i bez pushnutí.
+
+**PROČ (solo dev):** Neděláš commity každý den; Dependabot aktualizuje balíčky sám (může něco rozbít); GitHub může mít výpadek. Nightly je "ranní kontrola" — přijdeš k PC, vidíš green/red.
+
+**EFEKT (EROI):** +3 řádky (2 minuty) → chytí problémy, které by jinak zůstaly skryté týdny.
+
+### 9.6 Fail-fast
+
+**CO:** Princip: pokud jedna varianta selže, okamžitě zastav/zabij ostatní. (V matrixu: `fail-fast: true` = zabít vše při první chybě.)
+
+**PROČ:** Rychlá signalizace chyby. Ale v matrixu se často chce `fail-fast: false` — aby ses dozvěděl, jestli ostatní verze procházejí.
+
+**EFEKT (EROI):** Fail-fast je design filozofie: selhat brzy a hlasitě, ne tiše pokračovat do neznáma.
+
+### 9.7 Dependabot
+
+**CO:** GitHub robot na automatickou aktualizaci závislostí. Týdně zkontroluje nové verze (pytest, ezdxf, numpy...) a vytvoří PR s aktualizací.
+
+**PROČ:** Solo dev nemá kapacitu ručně sledovat aktualizace. Stará verze = bezpečnostní díra + chybí featury. Nová verze = může rozbít kód. Dependabot pošle PR, CI se spustí na PR a ukáže green/red → víš, zda je nová verze kompatibilní.
+
+**EFEKT (EROI):** Automatická údržba = méně chyb, víc času na RE. Dependabot = součást CI (nejen testy, ale i údržba deps).
+
+### 9.8 CodeQL
+
+**CO:** GitHub security scanner — automaticky prohledá kód na bezpečnostní chyby: SQL injection, OS command injection (subprocess bez sanitizace), credential leak (heslo v kódu), nezabezpečené importy.
+
+**PROČ:** **B2B důvěryhodnost** — zákazník se zeptá "a co security scanning?". CodeQL je průmyslový standard (Microsoft, Google). V RE kódu snadno necháš cestu k serveru nebo API klíč — CodeQL to chytí dřív, než to pushneš do public repa.
+
+**⚠️ Lekce z produkce:** CodeQL v4 vyžaduje `actions: read` permission v top-level bloku. Debug pattern: `##[error]Resource not accessible by integration` = chybí `actions: read`.
+
+**EFEKT (EROI):** 10 minut YAML → ochrana před únikem credentialů + B2B prodejní argument.
+
+### 9.9 Další CI terminologie (zkráceně)
+
+| Pojem | Význam |
+|-------|--------|
+| **PAT** | Personal Access Token — bezpečnostní klíč pro GitHub API |
+| **Workflow dispatch** | Ruční spuštění workflow z UI |
+| **Repository dispatch** | Spuštění workflow z jiného repa |
+| **Runner** | Server, který CI spouští (ubuntu-latest); self-hosted = vlastní server |
+| **Green/Red** | Testy prošly / selhaly |
+| **SLSA / Attestations** | Kryptografický důkaz původu artifactu |
+
+### 9.10 Semver (semantic versioning, major/minor/patch)
+
+**CO:** Standard verzování: `major.minor.patch` (např. `1.2.3`). **Major** (1→2) = breaking changes. **Minor** = nová featura, zpětně kompatibilní. **Patch** = oprava bugu.
+
+**PROČ:** "numpy 1→2 = breaking" — major bump může rozbít kód. Rozlišení major/minor určuje riziko aktualizace.
+
+**EFEKT (EROI):** Neuděláš chybu a nerozbiješ zákazníkovi kód. `>=1.4.4` v requirements = "používám verzi od 1.4.4 výše".
+
+---
+
+## 10. Design Patterns
+
+> **Kontext vzniku:** RETENEZEC_PRICIN_pipeline_nedeterminismus (ontologie pro junior dev) — analýza lichess pipeline, kde nedeterminismus engine vedl k chybným výsledkům.
+
+### 10.1 Singleton
+
+**CO:** Design pattern — **jedna instance na celou aplikaci**. Ať kdekoli požádáš o objekt, dostaneš stejnou instanci.
+
+**PROČ (v kontextu lichess):** Engine (Stockfish) je drahý zdroj — vytvořit nový proces per call = prázdná Transposition Table = **fyzický nedeterminismus** (stejný FEN dá různý výsledek, spread 533-1149 cp). Singleton = sdílená instance engine napříč aplikací.
+
+**JAK (analogie):** Jeden sdílený klíč od toalety, ne kopie pro každého. Všichni používají tentýž objekt.
+
+**EFEKT (EROI):** Singleton zajišťuje **sdílení stavu** (TT, cache). Ale pozor — sdílený stav bez synchronizace = race condition. Proto Singleton + Mutex jdou ruku v ruce.
+
+### 10.2 Mutex (lock)
+
+**CO:** Synchronizační prvek — umožňuje přístup k prostředku jen jednomu vláknu v daný okamžik. (Synonymum: lock. Detaily viz sekce 1.5 acquire.)
+
+**PROČ (v kontextu lichess):** `_analysis_lock = threading.Lock()` serializuje přístup k engine — žádné dvě vlákna nesmí volat engine současně (UCI by se corruptnul).
+
+**EFEKT (EROI):** Mutex je odpověď na otázku "co když dvě vlákna chtějí stejný zdroj?". Základní stavební kámen thread-safe aplikací.
+
+---
+
+## 11. LLM & Nondeterminismus
+
+> **Kontext vzniku:** RETENEZEC — proč pipeline dávala různé výsledky pro stejný vstup. Klíčové rozlišení pro každého, kdo pracuje s LLM + deterministickými nástroji.
+
+### 11.1 Determinismus vs nedeterminismus
+
+**CO:**
+- **Determinismus:** stejný vstup = stejný výstup.
+- **Nedeterminismus:** stejný vstup může dát rozdílný výstup.
+
+**PROČ v tvém kontextu:** Stockfish je fyzicky deterministický (daná TT + threads + depth = stejný výsledek). Ale když se per call vytvoří **nový proces** s prázdnou TT, každý call běží "z nuly" → nedeterministický výstup (spread 533-1149 cp). LLM je naopak **inherentně nedeterministický** (sampling).
+
+**JAK (analogie):** Deterministický = pekárna, která vždy upeče přesně stejný chléb z přesně stejné mouky. Nedeterministický = chléb se mění podle nálady pekaře.
+
+**EFEKT (EROI):** Když tvůj pipeline mísí deterministické a nedeterministické komponenty, musíš rozumět, KDE nedeterminismus vzniká — jinak dostaneš nedetekovatelné chyby (viz 11.2).
+
+### 11.2 Halucinace (LLM)
+
+**CO:** Model generuje informace, které nejsou podložené daty. "Visici dama" je čistá halucinace — není podložena daty.
+
+**PROČ:** LLM je pravděpodobnostní model — generuje text, ne fakta. Pokud vstup (prompt/data) neobsahuje odpověď, model si ji **vymyslí** sebevědomě.
+
+**EFEKT (EROI):** Halucinace je vlastnost, ne bug. Pochopení = návrh pipeline, který nedůvěřuje LLM výstupu bez ověření (contract testy, noise-floor, deterministická orákula).
+
+### 11.3 Konfabulace
+
+**CO:** Aktivní vymýšlení informací na základě rozporových dat. Odlišná od halucinace: konfabulace nastává, když jsou data **rozporuplná** a model si "domyslí" koherentní příběh.
+
+**JAK:** Halucinace = chybějící data → vymyšlení. Konfabulace = rozporová data → "slepení" příběhu, který dává smysl.
+
+**EFEKT (EROI):** Rozlišení halucinace vs konfabulace = diagnostická přesnost. Podle typu chyby zvolíš jinou opravu (chybějící data vs rozporová data).
+
+---
+
+## 12. Observability & Resilience
+
+> **Kontext vzniku:** Hluboký ponor do rezerv vývoje MCP serveru — 6 gapů (resilience, security, observability, feature flags, terminologie, internals).
+
+### 12.1 Observability (pozorovatelnost)
+
+**CO:** Schopnost systému **odhalit, co se děje uvnitř** z vnějšku — přes logy, metriky, trace. "Chyby ano, zdraví ne" = klasický gap: víš, že server spadl, ale neproč.
+
+**PROČ:** Bez observability jsi slepý — řešíš symptomy, ne příčiny. S metrics endpointem by 100 % error rate odhalil okamžitě.
+
+**EFEKT (EROI):** Observability = "řídicí panel" systému. Investice do ní se vrací při každém bugu.
+
+### 12.2 Metrics / percentily (p50/p95/p99)
+
+**CO:** Číselné ukazatele výkonu systému. **Percentily** = "kolik % požadavků bylo rychlejších než hodnota". p50 = medián (polovina požadavků). p95 = 95 % požadavků. p99 = 99 %.
+
+**PROČ:** Průměr lže (pár pomalých requestů ho zkazí). p99 ukáže **nejhorší typické zpoždění** — "uživatel v nejhorších 1 % případů čeká X ms".
+
+**JAK (analogie):** p50 = typický zákazník, p99 = nejméně trpělivý zákazník. Optimalizuješ-li jen medián, necháš pomalé 1 % trpět.
+
+**EFEKT (EROI):** `mcp_requests_total`, `mcp_latency_seconds` (prometheus) — měřit per tool. Latency z MCP = klíčová (MCP timeout 60s je nepřítel).
+
+### 12.3 Resilience (odolnost)
+
+**CO:** Schopnost systému **přežít a zotavit se** z poruch. Auto-restart (winsw jako Windows Service, `onFailure=restart`) + health check.
+
+**PROČ:** "Server padá v noci" — nikdo to nevidí. Resilience = systém se sám restartuje a notifikuje.
+
+**EFEKT (EROI):** Spadlý server = největší nepřítel služby. Auto-restart + notifikace = 2 hodiny práce, trvalá ochrana.
+
+### 12.4 Feature flags
+
+**CO:** Přepínače funkcí — aktivace/deaktivace featury **bez release** (přes env var `ENABLED_PROVIDERS`).
+
+**PROČ:** "Pomalý feedback loop" — každá změna vyžaduje release. Feature flag = zapneš/vypneš funkci v produkci za sekundu, bez nasazení.
+
+**EFEKT (EROI):** Test izolovaně → aktivace bez release. A/B testy, canary releases, rychlý rollback.
+
+### 12.5 Structured logging
+
+**CO:** Logování ve **strukturovaném formátu** (JSON), ne volný text. Každá chyba má definované pole (timestamp, level, tool, message).
+
+**PROČ:** Volný text nelze strojově filtrovat. Structured log = greppovatelný, agregovatelný, analyzovatelný.
+
+**EFEKT (EROI):** Tiché selhání + volné logy = neviditelná chyba. Structured logging = každá chyba má stopy.
+
+---
+
+## 13. ML/CV pojmy (částečně)
+
+> **Kontext vzniku:** YOLO11_GARDEN_MONITOR_GLOSSARY — glossary pro CV začátečníka. Zahrnuty jen genericky použitelné pojmy; YOLO/CV specifické detaily jsou doménový balast.
+
+### 13.1 Inference
+
+**CO:** Okamžik, kdy model zpracuje jeden vstup (obrázek/text) a vrátí predikci. "AI model zpracuje jeden obrázek a řekne 'toto je rostlina'."
+
+**PROČ:** Inference je "běh modelu" — na rozdíl od tréninku. Trénink = učení z dat. Inference = použití naučeného.
+
+**EFEKT (EROI):** Pojem se používá napříč ML i LLM. Rozumíš rozdílu trénink vs inference.
+
+### 13.2 Latency
+
+**CO:** Zpoždění — jak dlouho trvá jedna operace. 16 ms = rychlé, 500 ms = pomalé. (Viz též 12.2 — p50/p95/p99 latency.)
+
+**EFEKT (EROI):** Latency je měřitelná metrika kvality — zvlášť kritická u MCP (timeout 60s).
+
+### 13.3 Epoch / Dataset
+
+**CO:** **Epoch** = jedno kompletní pročtení celého datasetu během tréninku. 50 epoch = model viděl každý obrázek 50×. **Dataset** = datová sada (vstupy + odpovědi).
+
+**EFEKT (EROI):** Základní ML terminologie — pojmy, na které narazíš u každého ML projektu.
+
+---
+
+## 14. Ruff — principy bez black boxu (detailní příloha)
 
 > Vzhledem k tomu, že ruff byl v artefaktu vysvětlen podrobně, zachovávám zde jádro pro rychlý referenční přehled.
 
@@ -405,7 +689,7 @@ line-length = 100
 
 ## Metadata
 
-- **Tags:** `#swe`, `#glossary`, `#terminologie`, `#ontologie`, `#edu`, `#concurrency`, `#testing`, `#web-scraping`, `#python`
+- **Tags:** `#swe`, `#glossary`, `#terminologie`, `#ontologie`, `#edu`, `#concurrency`, `#testing`, `#web-scraping`, `#python`, `#cicd`, `#design-patterns`, `#llm`, `#observability`, `#ml`
 - **EROI:** 9/10 (živý edukační artefakt; náklad = údržba, benefit = trvalá adopce terminologie → překonání unknown unknowns)
 - **Živý dokument:** průběžně doplňovat nové termíny z dev workflow.
 
