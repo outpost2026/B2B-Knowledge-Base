@@ -2,7 +2,7 @@
 **Datum:** 2026-08-15 | **Autor:** outpost2026
 **Účel:** Kanonická formalizace adopční metodologie pro rozvoj SWE/IT kompetencí — vychází z kritické analýzy SWE_GLOSSARY a transfer-learning matice SKILL_GAPS. Živý dokument.
 **Typ:** metodika | **Doména:** skill acquisition, kognitivní věda, SWE edukace | **EROI:** 9/10
-**Návaznost:** SWE_GLOSSARY_zive_v1.md, SKILL_GAPS_ROZBOR_Q3_2026_v2.md, Epistemicky_kotvici_ramec_a_operacni_modus.md
+**Návaznost:** SWE_GLOSSARY_zive_v1.md, SKILL_GAPS_ROZBOR_Q3_2026_v2.md, Epistemicky_kotvici_ramec_a_operacni_modus.md, eroi_chronologicky_plan_s_metodikou.md, brain_geometric_processor_summary_v2.1.md, chess_mcp_strategy_v1.md
 
 ---
 
@@ -22,14 +22,14 @@ Tato metodika definuje **jak** se má terminologie + dovednosti adopotovat v é�
 |:-----:|--------|------|----------------|
 | **60 %** | Project-Based Learning (PBL) | Primární — získávání dovedností řešením reálných problémů | Dewey, Kolb (experiential learning); autor má 600+ commitů, 14+ repů — praxe = hlavní zdroj |
 | **20 %** | Feynman Technique → SWE_GLOSSARY | Doplňková — vysvětli vlastními slovy, zapiš do glossary | Feynman; struktura CO/PROČ/JAK/EFEKT = aplikace Feynman |
-| **10 %** | Spaced Repetition (SRS/Anki) | Udržovací — prevence zapomínání terminologie | Ebbinghaus křivka zapomínání (70 % ztráta za 24 h bez opakování); Leitner systém |
+| **10 %** | Spaced Repetition (SRS) | Udržovací — prevence zapomínání terminologie | Ebbinghaus křivka zapomínání (70 % ztráta za 24 h); autorova vlastní epistemická báze: "krásné zapomínání" a sémantická eroze (brain_geometric_processor); implementace: FSRS engine (py-fsrs, viz chess_mcp_strategy_v1 Phase 5) |
 | **10 %** | Concept Mapping | Vizualizace — mapy vztahů mezi pojmy | Novak (concept maps) — retence +20-30 % oproti pasivnímu čtení |
 
 ### 2.1 Proč právě tento poměr
 
 1. **PBL dominuje (60 %)** — dovednosti se NEučí z dokumentů, ale z řešení problémů. LLM zrychluje implementaci, ale architektonické myšlení vzniká jen z vlastní zkušenosti. Autorův kontext (VCF parser, MCP servery) to potvrzuje: nejhlubší porozumění vzniklo při debugování reálných bugů (race condition, zombie thread).
 2. **Feynman → Glossary (20 %)** — glossary je Feynman aplikace: "vysvětli race condition jako bys vysvětloval neprogramátorovi". Psaní vlastními slovy vynucuje pochopení. Bez zápisu do glossary je porozumění prchavé.
-3. **SRS (10 %)** — terminologie se zapomíná. Ebbinghaus: bez opakování 70 % ztráta za 24 h. SRS s optimálními intervaly (1→3→7→14 dní) udrží 90 %+ s minimem času. LLM generuje flashcards z glossary.
+3. **SRS (10 %)** — terminologie se zapomíná. Ebbinghaus: bez opakování 70 % ztráta za 24 h. SRS s optimálními intervaly (1→3→7→14 dní) udrží 90 %+ s minimem času. LLM generuje flashcards z glossary. **Epistemická báze (autorova vlastní):** brain_geometric_processor — mozek je krajina vektorů; dráhy, které nejsou pravidelně aktivovány, slábnou (sémantická eroze, retroaktivní interference). TOT stav (na jazyku) = plochý gradient v cílovém bodě — "znám pojem, ale nevybavím si ho". SRS = pravidelná reaktivace drah (konsolidace, replay) = investice do údržby krajiny. **Implementace:** FSRS engine (py-fsrs) je plánovaný v chess_mcp_strategy_v1 (Phase 5) — stejný engine se použije pro glossary flashcards (1 balíček, 2 domény: šachy + SWE terminologie).
 4. **Concept Mapping (10 %)** — glossary popisuje termíny izolovaně. Mapa vztahů (race condition → lock → mutex → deadlock → timeout) zvyšuje retenci a ukazuje ontologii.
 
 ---
@@ -40,7 +40,8 @@ Tato metodika definuje **jak** se má terminologie + dovednosti adopotovat v é�
 |--------|--------|-----------|
 | "Nevím, co nevím" (unknown unknowns) | PBL + koncept mapy | Narazíš na problém → objevíš existenci pojmu → zmapuješ vztahy |
 | "Znám termín, nechápu logiku" | Feynman → Glossary | Psaní vlastními slovy odhalí mezery v porozumění |
-| "Chápal jsem včera, zapomněl dnes" | SRS | Opakování v optimálních intervalech |
+| "Chápal jsem včera, zapomněl dnes" | SRS | Opakování v optimálních intervalech; mozek = krajina vektorů (brain_geometric_processor) — neaktivované dráhy slábnou (sémantická eroze) |
+| "Na jazyku, ale nevybavím" (TOT stav) | SRS | Plochý gradient v cílovém bodě krajiny — reaktivace vytvoří strmý atraktor (viz brain_geometric_processor) |
 | "Umím pojmy, neumím rozhodovat" | PBL (architektonické rozhodování) | Reálné trade-offy (Singleton vs statická třída) se učí jen praxí |
 | "Slyším pojem v komunikaci, nerozumím" | Glossary jako referenční index | Rychlé dohledání v živém dokumentu |
 
@@ -75,6 +76,9 @@ Tato metodika definuje **jak** se má terminologie + dovednosti adopotovat v é�
 | `SWE_GLOSSARY_zive_v1.md` | Feynman výstup (20 %) + referenční index + SRS zdroj |
 | `SKILL_GAPS_ROZBOR_Q3_2026_v2.md` | Cílový rozbor gapů + trajektorie (CO učit) |
 | `Epistemicky_kotvici_ramec_a_operacni_modus.md` | Kognitivní mantinely (komprese vs akumulace, anti-rabbit-hole) |
+| `eroi_chronologicky_plan_s_metodikou.md` | Metodické kostry per gap (KROK 1-3: základy → nástroj → PoC) — implementační detail PBL |
+| `brain_geometric_processor_summary_v2.1.md` | Epistemická báze SRS (sémantická eroze, TOT, reaktivace drah) |
+| `chess_mcp_strategy_v1.md` | FSRS engine (py-fsrs, Phase 5) — infrastruktura SRS, sdílená mezi šachy a glossary |
 | `MCP_GROUND_TRUTH_postmortem` | Zdroje reálných případů (termíny z GT → glossary s kontextem) |
 
 **Guardrail (z Epistemického rámce):** Složitost je parazit. Adopční metodika nesmí sklouznout do "akumulace termínů" — glossary roste jen o termíny z REÁLNÉHO kontextu, ne o akademický balast. Kvalita > kvantita.
@@ -86,7 +90,7 @@ Tato metodika definuje **jak** se má terminologie + dovednosti adopotovat v é�
 | Metrika | Cílová hodnota | Měření |
 |---------|----------------|--------|
 | Glossary: poměr kontextovaných termínů | >80 % (každý termín má reálný kontext) | Audit sekcí |
-| SRS: denní opakování | 10 min/den, 5 dní/týden | Anki stats |
+| SRS: denní opakování | 10 min/den, 5 dní/týden | FSRS engine stats (py-fsrs — chess_mcp Phase 5, sdílený balíček) |
 | PBL: PoC artefakt per gap | 1 reálný artefakt per gap do 90 dní | GitHub audit |
 | Transfer: rychlost adopce nové domény | První funkční artefakt < 14 dní od startu gapu | Session logy |
 | B2B signál: rozhovor v SWE terminologii | Schopnost mluvit 10 min o gapu bez "ehm" | Sebehodnocení / mock interview |
@@ -131,7 +135,7 @@ Průběžně: SWE_GLOSSARY roste živě; každý měsíc 1 revize koncept map na
 
 1. **Praxe > dokumentace.** Termín adoptuješ, když ho POUŽIJEŠ, ne když ho přečteš.
 2. **Vysvětli vlastními slovy.** Pokud nemůžeš vysvětlit jednoduše, nerozumíš (Feynman).
-3. **Opakuj, nebo zapomeň.** Bez SRS je 70 % terminologie pryč do 24 h.
+3. **Opakuj, nebo zapomeň.** Bez SRS je 70 % terminologie pryč do 24 h (Ebbinghaus) — neaktivované dráhy v krajině slábnou (sémantická eroze, brain_geometric_processor). SRS = údržba krajiny. Implementace: FSRS engine (py-fsrs).
 4. **Mapuj vztahy.** Izolovaný termín je mrtvý termín; ontologie = vztahy.
 5. **Anti-blackbox.** Každý LLM výstup projít a pochopit — nikdy nezkopírovat naslepo.
 6. **Kvalita > kvantita.** 30 kontextovaných termínů > 300 načtených definic.

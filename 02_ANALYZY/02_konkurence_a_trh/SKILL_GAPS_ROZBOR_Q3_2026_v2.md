@@ -551,7 +551,7 @@ TÝDEN 13+: Kubernetes (40+ h, VOLITELNÉ)
 | ❺ PLC | PBL (TIA Portal + Modbus PoC) | Concept Mapping | Průmyslová doména = fyzikální vztahy |
 | ❻ K8s | PBL (minikube + MCP deployment) | Concept Mapping | Orchestrace = vztahy komponent |
 
-**Sekvenční pravidlo:** PBL → zaznamenej nové termíny do glossary (Feynman) → generuj flashcards → SRS. Čtvrtletně reviduj koncept mapy napříč gapy.
+**Sekvenční pravidlo:** PBL → zaznamenej nové termíny do glossary (Feynman) → generuj flashcards → SRS (FSRS engine, py-fsrs — viz chess_mcp_strategy_v1 Phase 5). Čtvrtletně reviduj koncept mapy napříč gapy.
 
 ---
 

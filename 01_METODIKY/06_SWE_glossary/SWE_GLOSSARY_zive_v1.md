@@ -1007,4 +1007,4 @@ Kromě základní struktury CO/PROČ/JAK/EFEKT doplň u každého nového termí
 | **Odkaz na kód** | Konkrétní místo v repozitářích, kde se termín reálně používá (např. `engine_client.py:205`) |
 | **Koncept mapa** | 1-řádkový vztah k okolním pojmům (např. `race condition → lock → mutex → deadlock → timeout`) — viz Concept Mapping v adopční metodice |
 
-**SRS provázání:** každý nový termín je zdrojem pro 1-2 Anki flashcards (opakování v intervalech 1→3→7→14 dní). Termíny bez reálného kontextu se do glossary NEzapisují (kvalita > kvantita, anti-akumulace).
+**SRS provázání:** každý nový termín je zdrojem pro 1-2 flashcards v **FSRS engine** (py-fsrs — viz chess_mcp_strategy_v1 Phase 5, sdílený balíček šachy+SWE) s opakovacími intervaly 1→3→7→14 dní. Termíny bez reálného kontextu se do glossary NEzapisují (kvalita > kvantita, anti-akumulace).
