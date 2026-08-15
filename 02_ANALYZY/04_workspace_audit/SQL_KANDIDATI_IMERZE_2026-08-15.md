@@ -157,7 +157,13 @@ CREATE TABLE files (
   UNIQUE(repo, path)
 );
 CREATE VIRTUAL TABLE files_fts USING fts5(path, content);
-CREATE TABLE repos (name TEXT PRIMARY KEY, last_commit TEXT, commit_count INTEGER, remote TEXT);
+CREATE TABLE repos (
+  name TEXT PRIMARY KEY,
+  last_commit TEXT, commit_count INTEGER,
+  origin TEXT,                    -- git remote -v (outpost2026/* = vlastní, jiný org = cizí klon)
+  owner TEXT,                     -- odvozeno z origin: 'outpost2026' / 'dscape' / lokální (NULL)
+  is_foreign INTEGER DEFAULT 0    -- 1 = cizí klon (origin != outpost2026/*)
+);
 ```
 
 **Plnící skript (~100 řádků Pythonu):** `git ls-files` + `git log --all` + file stat per repo → INSERT + FTS5 index.
@@ -168,7 +174,7 @@ CREATE TABLE repos (name TEXT PRIMARY KEY, last_commit TEXT, commit_count INTEGE
 - Fulltext cesty: `files_fts MATCH 'vcf'` (místo LIKE '%vcf%')
 - Commit velocity per repo: `GROUP BY repo, strftime('%Y-%m', ...)`
 
-**Guardrails:** DB soubor do `.gitignore` (derivát, ne zdroj); respektovat autorovo `EXCLUDE_EXTENSIONS` rozhodnutí (neindexovat cizí binární obsah); `.git` diry skip.
+**Guardrails:** DB soubor do `.gitignore` (derivát, ne zdroj); respektovat autorovo `EXCLUDE_EXTENSIONS` rozhodnutí (neindexovat cizí binární obsah); `.git` diry skip; `origin` sloupec plněn z `git remote`, nikdy ručně.
 
 ---
 
@@ -252,6 +258,9 @@ KROK 0 schéma se rozšiřuje o:
   repos_status(name, version, status, stack, last_commit)   ← parser CONTEXT_REPOS.md sekcí
 Dotaz č. 6: SELECT module, count(*), avg(eroi) FROM artifacts GROUP BY module
 Dotaz č. 7: SELECT name, status FROM repos_status WHERE status LIKE '%AKTIVN%'
+Dotaz č. 8: SELECT name, origin FROM repos WHERE is_foreign = 1   -- cizí klony (ověřeno, ne odhad)
 ```
+
+**Lekce z opravy V3:** `origin`/`is_foreign` sloupec je plnící skript získá z `git remote get-url origin` (ne ručně) — eliminuje reprodukci subagentní chyby "velké repo = cizí klon".
 
 Práh zastavení zůstává: 1 session, žádný server/UI/embeddings.
