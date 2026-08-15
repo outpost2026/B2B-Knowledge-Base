@@ -34,8 +34,9 @@
 |---|--------|-------|-----|------|------|
 | K01 | `agregovany_report.md` | B2B/linkedin_analyzy/ | report | Detailní analýza 14+ LinkedIn nabídek | 9/10 |
 | K02 | `synteticky_report_analyza.md` | B2B/linkedin_analyzy/ | report | Syntéza tržních signálů | 9/10 |
-| **K03** | **`vcf_optimizer_analytic_engine.md`** | **02_karierni_targety/** | **strategie** | **Vector 1 — pre-production analytický engine (material yield, time/cost, defect prediction) (441 ř.)** | **10/10** |
-| **K04** | **`vcf_compiler_architektura_deepdive.md`** | **02_karierni_targety/** | **analýza** | **Vector 2 — byte-level writer architektura, dependencies, ACI kalibrace, EROI (473 ř.)** | **10/10** |
+| K05 | `waterjet_intelligence_layer_poc.md` | 00_STRATEGIE/02_karierni_targety/ | strategie | WIL — produktový PoC (BATNA, budoucí modul) | 7/10 |
+
+> K03/K04 (VCF analýzy) přesunuty do 02_ANALYZY/03_kodove_analyzy; market_research → 06_konkurence_a_trh (Bod 3, 2026-08-15).
 
 ### 03_web_GT_pravidla — Web produktizace GT-pravidel
 
@@ -140,8 +141,9 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
+| KT06 | `market_research_stack_conversion.md` | 02_ANALYZY/06_konkurence_a_trh/ | analýza | Konvertovatelnost stacku na české výrobní SME (VCF parser, KB, Streamlit, GCP) | 8/10 |
 
-> Prázdná (SKILL_GAPS → 04_skill_acquisition, web GT-pravidel → 00_STRATEGIE/03_web_GT_pravidla, 2026-08-15). Do složky patří tržní výzkumy (např. market_research_stack_conversion — viz Bod 3).
+> Přesunuto z 00_STRATEGIE/02_karierni_targety (Bod 3, 2026-08-15).
 
 ### 04_chess — Chess analýzy, lichess-analyzer pipeline
 
@@ -166,6 +168,9 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | KA01 | `SYSTEQ_VCF_STACK_ANATOMY_V2.md` | 02_ANALYZY/03_kodove_analyzy/ | analýza | V2 nezávislá de novo oponentura VCF stacku — 18 issues, cílená architektura, 3-fázový refaktoring, upsell tabulka (V1 archivována) | 10/10 |
+| KA02 | `vcf_optimizer_analytic_engine.md` | 02_ANALYZY/03_kodove_analyzy/ | strategie | Vector 1 — pre-production analytický engine (material yield, time/cost, defect prediction) (441 ř.) | 10/10 |
+| KA03 | `vcf_compiler_architektura_deepdive.md` | 02_ANALYZY/03_kodove_analyzy/ | analýza | Vector 2 — byte-level writer architektura, dependencies, ACI kalibrace, EROI (473 ř.) | 10/10 |
+| KA04 | `VCF_compiler_dopad_analyza_v2.md` | 02_ANALYZY/03_kodove_analyzy/ | analýza | Dopad VCF kompilátoru na B2B vyjednávání — cenová politika, exkluzivita, pozice | 8/10 |
 
 ### 04_workspace_audit — Meta analýzy workspace
 
@@ -378,8 +383,8 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | N08 | `cenova_metodika_moodpasta.md` | `03_PROVOZ/02_business/` | metodika | 25. 6. 2026 | 10/10 |
 | N09 | `SYSTEQ_VCF_STACK_ANATOMY_V1.md` | `_ARCHIVE/` | archive | 25. 6. 2026 | — |
 | **N10** | **`R&D_evoluce_portfolia_03_2026-07_2026_v2.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **report** | **3. 7. 2026 (v2 15. 8.)** | **10/10** |
-| **N11** | **`vcf_optimizer_analytic_engine.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **strategie** | **3. 7. 2026** | **10/10** |
-| **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`00_STRATEGIE/02_karierni_targety/`** | **analýza** | **3. 7. 2026** | **10/10** |
+| **N11** | **`vcf_optimizer_analytic_engine.md`** | **`02_ANALYZY/03_kodove_analyzy/`** | **strategie** | **3. 7. 2026** | **10/10** |
+| **N12** | **`vcf_compiler_architektura_deepdive.md`** | **`02_ANALYZY/03_kodove_analyzy/`** | **analýza** | **3. 7. 2026** | **10/10** |
 | **N13** | **`linkedin_mcp_pipeline_architektura_v1.md`** | **`02_ANALYZY/00_linkedin/`** | **architektura** | **5. 7. 2026** | **9/10** |
 | **N14** | **`github_portfolio_analysis_v2.md`** | **`02_ANALYZY/01_portfolio_audit/`** | **audit** | **7. 7. 2026 (v2 15. 8.)** | **9/10** |
 | **N20** | **`linkedin_mcp_roadmap_v2.md`** | **`02_ANALYZY/00_linkedin/`** | **roadmapa** | **8. 7. 2026** | **8/10** |
