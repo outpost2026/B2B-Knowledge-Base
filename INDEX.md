@@ -27,6 +27,7 @@
 | P02 | `eroi_chronologicky_plan_s_metodikou.md` | 00_STRATEGIE/01_positioning/ | plán | EROI ranking + chronologický Gantt | 9/10 |
 | P03 | `Strategicko-informacni_vzorec_interakce_s_realitou.docx` | B2B/ | strategie | Interakční vzorec (pouze lokálně) | 5/10 |
 | P04 | `Systeq_basic_intel.md` | B2B/ | intel | Základní přehled o SYSTEQ | 6/10 |
+| P05 | `SQL_ADOPCE_PLAN_2026-08-16.md` | 00_STRATEGIE/01_positioning/ | plán | Plán adopce SQL na míru — sekvence S1–S6, CZ zdroje, B.1/B.2 schváleno | 9/10 |
 
 ### 02_karierni_targety — Follow leade, role fit
 
