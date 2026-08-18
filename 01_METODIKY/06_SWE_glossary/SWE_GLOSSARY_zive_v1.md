@@ -31,7 +31,7 @@
 14. [Ruff — principy bez black boxu (příloha)](#14-ruff--principy-bez-black-boxu-priloha)
 15. [Frontend & Next.js](#15-frontend--nextjs) — React, App Router, API routes, SSR/ISR/CSR, Tailwind, Vercel
 16. [Monorepo & Workspaces](#16-monorepo--workspaces) — monorepo, npm workspaces
-17. [Databáze & SQL](#17-databaze--sql) — PostgreSQL, SQL, tabulka, klíče, indexy, JSONB, migrace
+17. [Databáze & SQL](#17-databaze--sql) — PostgreSQL, SQL, tabulka, klíče, indexy, JSONB, migrace, TOAST, MVCC, snapshot isolation, VACUUM, WAL, EXPLAIN ANALYZE, NULL
 18. [DevOps & Deployment](#18-devops--deployment) — DevOps, Docker, porty, monitoring, healthchecks, CI/CD
 19. [Cloud & PaaS](#19-cloud--paas) — PaaS, serverless, provider-agnostic
 
@@ -869,6 +869,66 @@ outprep/
 **CO:** Komprese velkých polí v Postgres (The Oversized-Attribute Storage Technique). Velké hodnoty (např. PGN texty) se automaticky kompresují a ukládají mimo hlavní tabulku.
 
 **EFEKT (EROI):** Proč Postgres zvládne velké texty bez zpomalení tabulky. Interní detail, ale vysvětluje výkon.
+
+### 17.8 MVCC (Multi-Version Concurrency Control)
+
+**CO:** Mechanismus Postgresu pro souběžnost — každá transakce vidí konzistentní **snapshot** dat z okamžiku svého startu, ne živý stav. Čtenáři neblokují zapisovatele (a naopak).
+
+**PROČ:** Bez MVCC by se souběžné transakce vzájemně blokovaly (čtení vidí poloviční změny). S MVCC vidí každá transakce svou verzi — proto po zápisu v jiné transakci musíš znovu číst.
+
+**JAK:** Každý UPDATE/DELETE vytvoří novou verzi řádku, stará zůstává pro otevřené transakce. Až je nikdo nečte, stává se **mrtvým řádkem** (viz 17.10 VACUUM).
+
+**EFEKT (EROI):** Vysvětluje, proč "co vidíš, nemusí být aktuální stav" — a proč je read-after-write jediná jistota. Koncept dedup z MCP-Jobs (DELETE po ověření COUNT) staví právě na tom.
+
+### 17.9 Snapshot isolation / isolation levels
+
+**CO:** **Isolation level** = míra, do jaké se transakce navzájem vidí. Default PostgreSQL = **READ COMMITTED** (každý dotaz vidí poslední committed data). Vyšší: REPEATABLE READ, SERIALIZABLE.
+
+**PROČ:** Transakce je izolovaná — `BEGIN` otevře transakci, ale ostatní ji nevidí, dokud nenastane `COMMIT`. Proto `ROLLBACK` vrátí "vše" a ostatní transakce o tvé práci nevědí.
+
+**JAK (analogie):** Každá transakce má vlastní kopii světa. Když ji zrušíš (ROLLBACK), kopii zahodíš — svět nikdo neviděl.
+
+**EFEKT (EROI):** Pochopení, proč cvičný dedup (BEGIN → DELETE → ROLLBACK) nerozbije produkční data: nikdo jiný tvou smazávací transakci neviděl.
+
+### 17.10 VACUUM / bloat
+
+**CO:** Úklid **mrtvých řádků**, které MVCC zanechává po UPDATE/DELETE. `VACUUM` je uvolní pro opětovné použití; `VACUUM FULL` i fyzicky zmenší soubory.
+
+**PROČ:** MVCC (17.8) nikdy nepřepisuje řádky — jen přidává nové verze. Smazaná data tedy **fyzicky zůstávají** na disku, dokud nepřijde VACUUM.
+
+**JAK (analogie):** VACUUM = sběr starých novin. Smazal jsi řádek, ale "papír" (disk) je pořád plný — VACUUM ho uvolní.
+
+**EFEKT (EROI):** **Deletuješ, ale disk se hned neuvolní.** Postgres VACUUMuje automaticky (autovacuum), ale velké dávkové mazání může potřebovat ruční zásah.
+
+### 17.11 WAL (Write-Ahead Log)
+
+**CO:** Log všech změn zapsaný **před** samotnou změnou dat. Durability z ACID (1.4) je postavená na WAL.
+
+**PROČ:** Když stroj spadne uprostřed zápisu, Postgres přehraje WAL a obnoví konzistentní stav. Bez WAL by byl pád = poškozená data.
+
+**JAK (analogie):** Před úpravou dokumentu si zapíšeš do poznámkového bloku, co změníš. Když se počítač vypne, poznámky ti umožní dokončit/obnovit.
+
+**EFEKT (EROI):** Vysvětluje, proč `COMMIT` znamená "data přežijí pád" — zápis do WAL je dokončen před potvrzením. Stará se o to DB sama, ty to jen tušíš pod pojmem trvanlivost.
+
+### 17.12 EXPLAIN ANALYZE
+
+**CO:** Skutečné provedení dotazu s **plánem** (jak DB dotaz provede) a **měřenými časy** (jak dlouho to trvalo). Nejvýkonnější epistemický nástroj SQL.
+
+**PROČ:** Tvoje představa o běhu dotazu je teorie. Plán (EXPLAIN) je návrh, ANALYZE ho skutečně provede — plán a realita se liší.
+
+**JAK:** `EXPLAIN ANALYZE SELECT profile, COUNT(*) FROM ads GROUP BY profile;` — výstup ukáže, kde se tráví čas (seq scan vs index scan, počty řádků).
+
+**EFEKT (EROI):** Jediný způsob, jak **ověřit** (ne odhadovat) výkon. Povinné při jakýchkoli pochybnostech o pomalém dotazu.
+
+### 17.13 NULL / trojhodnotová logika
+
+**CO:** **NULL ≠ 0, ≠ prázdný řetězec.** NULL = "hodnota není známa". SQL proto pracuje se **třemi** logickými hodnotami: TRUE / FALSE / UNKNOWN.
+
+**PROČ:** Porovnání s NULL je vždy UNKNOWN — `x != 5` pro NULL-x vrací NULL (ne TRUE). To je nejčastější zdroj špatných SQL závěrů u začátečníků.
+
+**JAK:** `WHERE x IS NULL` / `IS NOT NULL` / `COALESCE(x, 0)` pro náhradu defaultem. Nikdy `= NULL` (to vrací UNKNOWN = nikdy neprojde filtrem).
+
+**EFEKT (EROI):** Pochopení NULL je podmínka korektních COUNT, JOIN a WHERE. Příklad: `matched` NULL u orphan runu → `WHERE matched IS NULL` najde nezpracované záznamy.
 
 ---
 

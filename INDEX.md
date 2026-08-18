@@ -1,6 +1,6 @@
 # INDEX — Registr všech artefaktů B2B-Knowledge-Base
 
-**Verze:** 2.2 | **Datum:** 2026-08-15 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
+**Verze:** 2.3 | **Datum:** 2026-08-18 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
 
 ---
 
@@ -330,6 +330,7 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | E18 | `IT_gramotnost_hranice_SQL_databazi_2026-08-15.md` | 05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/ | esej | Hranice IT gramotnosti vs SQL/DB — dvě vrstvy (query vs ops), ontologický šok, transfer | 8/10 |
+| E19 | `POSTGRESQL_ontologie_epistemika_2026-08-18.md` | 05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/ | esej | Fundamentální ontologie + epistemické pasti PostgreSQL (NULL, MVCC, EXPLAIN ANALYZE, unknown unknowns) | 8/10 |
 
 ---
 
