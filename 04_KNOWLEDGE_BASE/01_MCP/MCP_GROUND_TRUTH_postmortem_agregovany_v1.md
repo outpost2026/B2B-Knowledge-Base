@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-06 | **Verze:** 10
+**Datum:** 2026-08-06 | **Verze:** 11
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1344,13 +1344,66 @@ Fix:      board.copy() -> f3g5 push -> g6e5 push -> g5e6 OK
 2. **Zápis při selhání:** `detail_cache[url] = detail if detail else _FAILED` (`pipeline.py:181, 196, 200`).
 3. **Čtení v filter fázi:** `if cached is not _FAILED and cached:` (`pipeline.py:114`) — `_FAILED` se přeskočí (ad zůstane bez detailu), `None` se také přeskočí (ještě nezkoušeno), pouze platný string se aplikuje.
 
-**Pravidlo:** P73 — Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkoušeno (`None`/absence klíče), (2) úspěch (hodnota), (3) selhalo (sentinel `_FAILED`). Bez sentinelu = opětovné fetch pokusy pro permanentně selhané URL.
+**Pravidlo:** P71 — Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkoušeno (`None`/absence klíče), (2) úspěch (hodnota), (3) selhalo (sentinel `_FAILED`). Bez sentinelu = opětovné fetch pokusy pro permanentně selhané URL.
 
 **Provenance:** source-read — `pipeline.py:19` (sentinel definition), `pipeline.py:114` (cache read), `pipeline.py:181,196,200` (cache write), cross-LLM review finding BUG-001 (Claude Sonnet 5, 2026-08-06).
 
 ---
 
-## 4. Průřezová pravidla P1-P71 (konsolidovaná)
+#### GT-086 (mcp-jobs-013): Ruff default rule set drift — nepřítomnost lint configu
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Tooling — Dependency/lint determinismus
+
+**Symptom:** GitHub Actions CI (2026-08-15) failoval na kroku `ruff check src/ scripts/healthcheck.py` s "Found 70 errors" — bez jakékoli změny kódu. Lokálně reprodukováno: `ruff check` = 70 chyb.
+
+**Root cause (řetězec):**
+1. `pyproject.toml` deps: `ruff>=0.6` **bez horní hranice** → CI nainstaloval nejnovější ruff (0.16.3).
+2. Projekt neměl **žádný** `[tool.ruff]` config → aktivní **defaultní pravidla**, která se mění s verzí ruff.
+3. ruff 0.16 přidal nová default pravidla (UP045, BLE001, DTZ005, RUF012, PIE810, FURB136) → 70 chyb bez změny kódu. Rule set driftoval s dependency version.
+
+**Fix (`pyproject.toml`):**
+```toml
+[tool.ruff]
+target-version = "py311"
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "W", "I", "UP", "RUF", "PIE", "FURB", "DTZ"]
+ignore = ["BLE001"]
+```
+- `E4/E7/E9/F` = stabilní ruff default napříč verzemi (core lint).
+- `UP/RUF/PIE/FURB/DTZ` = moderní pravidla, která codebase splňuje.
+- `E501` (line-length) záměrně mimo — SQL/CSS řetězce jsou záměrně >88 znaků (design trade-off).
+- `BLE001` v ignore = zdokumentovaná výjimka (intencionální graceful degradation, komplement GT-081 který pokrývá případ "config od day one").
+- Současně opraveno v kódu: RUF012 (`ClassVar`), DTZ005/007/011 (`datetime.now(UTC)`), PIE810 (startswith tuple), RUF003 (en-dash).
+
+**Pravidlo:** P72 — Lint rule set je součást dependency kontraktu. Bez explicitního `select` driftuje s verzí nástroje → CI fail bez změny kódu. Deterministický `select` = single source of truth pro lint konfiguraci. Komplement GT-081 (případ config od day one); tento GT dokumentuje opačnou hranu (config chybí).
+
+**Provenance:** source-read — `pyproject.toml` (deps + nový config), `.github/workflows/ci.yml` (ruff step), ruff 0.16.3 reprodukce 70 chyb, `ruff check --fix` diff review (2026-08-18).
+
+---
+
+#### GT-087 (mcp-jobs-014): MCP timeout -32001 — sync pipeline + client timeout sémantika; fix async submit+poll
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Architecture — Async job pattern
+
+**Symptom:** `search_from_config` volané přes MCP (opencode) → `MCP error -32001: Request timed out`. CLI běh fungoval (34.5s / 10 matched). Server "neodpovídá".
+
+**Root cause (2 originální fakta):**
+1. **Sync pipeline v toolu** (`server.py:117 _run_pipeline` → `SearchPipeline.run()`): scrape + detail fetch = 34-45s reálné latence. MCP JSON-RPC nad stdio má client-side timeout; při běhu > client timeout klient ukončí request (`-32001`).
+2. **opencode `timeout: 180000` v `opencode.jsonc` platí JEN pro fetching tools (ListTools), NE pro tool calls** — konfigurovaný timeout nechrání calls. Prokázáno: server přes správný MCP klient (`mcp` stdio_client) vrací za 33.9s OK → server fungoval, timeout byl na straně klienta.
+
+**Fix (`server.py`) — P13 async submit+poll pattern:**
+1. `ThreadPoolExecutor(max_workers=2)` + `_JOB_STORE` (dict, `_JOB_LOCK` threading.Lock) — job běží na pozadí.
+2. `search_from_config` / `search_from_yaml` / `search_jobs_v2` → vrátí okamžitě `{job_id, status, message}` (~0.02s).
+3. Nový tool `search_status(job_id)` → `{job_id, status: pending/running/done/error, elapsed_s, result}`.
+4. Fast-path validace (config not found / YAML parse error / unknown portal) zůstává sync — okamžitý error bez jobu.
+
+**Verifikace:** E2E probe — submit 0.02s, poll done po 42.2s, kompletní výsledek v `result`. Tool registrace: 6 toolů (health_check, list_portals, search_from_config, search_from_yaml, search_jobs_v2, **search_status**).
+
+**Pravidlo:** P13 (rozšířeno) — long-running MCP tool musí být async; submit+poll (job_id + status poll) je 4. varianta fixu, a jediná, která drží **produkční deliverable bez CLI** (na rozdíl od per-job tool / CLI bypass / time-budget z GT-013). Současně: client timeout config (např. opencode `timeout`) se vztahuje na ListTools, ne tool calls — předpoklad, že konfigurovaný timeout chrání calls, je chybný.
+
+**Provenance:** source-read — `server.py` (job runner, search_status), E2E probe přes `mcp` stdio_client (33.9s server OK), E2E probe submit 0.02s / done 42.2s, opencode.jsonc timeout config, CI/CLI run logy (2026-08-18).
+
+---
+
+## 4. Průřezová pravidla P1-P72 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1400,7 +1453,10 @@ Kazdý CLI nástroj na Windows musí mít `.bat` wrapper v repo root:
 ### P13 — Long-running batch operations
 MCP tool, který iteruje N>10 I/O operací, musí být buď:
 1. Asynchronní s progress streamingem (MCP `ctx.info()`), nebo
-2. Nahrazen CLI entry pointem, který obchází MCP transport timeout
+2. Nahrazen CLI entry pointem, který obchází MCP transport timeout, nebo
+3. **Async submit+poll pattern** (GT-087): tool vrátí okamžitě `{job_id}`, práce běží v `ThreadPoolExecutor` na pozadí, klient polluje `search_status(job_id)` → `{status, elapsed_s, result}`. Jediná varianta, která drží produkční deliverable **bez CLI**.
+
+Současně: client timeout config (např. opencode `timeout` v `opencode.jsonc`) se vztahuje na **ListTools (fetching tools), NE na tool calls** — konfigurovaný timeout nechrání long-running calls; řešení je P13 pattern, ne zvětšení timeoutu (GT-087).
 
 ### P14 — Windows path quoting
 - Vzdy `pathlib.Path` (nikdy string concatenation)
@@ -1617,6 +1673,9 @@ Názvy souborů a adresářů povolují POUZE `[A-Za-z0-9._-]` — žádná diak
 ### P71 — Cache failure sentinel: 3 stavy (nezkoušeno / úspěch / selhalo)
 Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkoušeno (`None`/absence klíče), (2) úspěch (hodnota), (3) selhalo (sentinel `_FAILED = object()`). Bez sentinelu = opětovné fetch pokusy pro permanentně selhané URL. Reference: GT-085.
 
+### P72 — Lint rule set je součást dependency kontraktu
+Bez explicitního `[tool.ruff.lint] select` driftuje rule set s verzí nástroje (ruff>=0.6 bez horní hranice → nová default pravidla → CI fail bez změny kódu). Deterministický `select` (stabilní E4/E7/E9/F + explicitně vybraná moderní pravidla) = single source of truth; intencionální výjimky (BLE001 graceful degradation, E501 design trade-off) se dokumentují v `ignore`, ne v kódu. Komplement GT-081. Reference: GT-086.
+
 ---
 
 ## 5. Diagnostický filtr — 71 checkpoints
@@ -1728,6 +1787,11 @@ Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkou�
 68. Jsou všechny trackované názvy souborů/adresářů ASCII `[A-Za-z0-9._-]` (žádná diakritika, mezery, U+2011)? (P69) — ověř `.scripts/ascii_filenames_check.ps1`, exit 0
 69. Neobsahuje žádný trackovaný soubor staré cesty/názvy po renames (broken reference)? — ověř `.scripts/context_refs_check.py`, exit 0 (kontrakt: GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST)
 
+### T — Lint determinismus & long-running tools (P72, P13)
+
+70. Je lint rule set deterministický — explicitní `[tool.ruff.lint] select`, NE defaultní sada driftující s verzí nástroje? Intencionální výjimky (graceful degradation, line-length) dokumentované v `ignore`, ne v kódu? (P72)
+71. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1824,6 +1888,8 @@ Při zakládání nového MCP repozitáře:
 42. **Degradation marker** (P67) — pocitatelny citac degradace + expozice v LLM promptu
 43. **Legacy field guard** (P68) — pole cache s prazdnym defaultem guard pred parserem (konzistentni s detekcnimi funkcemi)
 44. **ASCII filenames** (P69) — vsechny nazvy souboru/adresaru ASCII `[A-Za-z0-9._-]`; overeni `.scripts/ascii_filenames_check.ps1` (exit 0)
+45. **Lint determinismus** (P72) — explicitni `[tool.ruff.lint] select` (stabilni E4/E7/E9/F + explicitni moderni pravidla); intencionalni vyjimky (BLE001, E501) v `ignore` s komentarem; horni hranice na ruff v deps
+46. **Async submit+poll** (P13) — long-running tool vrati okamzite `{job_id}`, prace v ThreadPoolExecutor, `search_status(job_id)` poll; client timeout config (opencode `timeout`) chrani ListTools, ne calls
 
 ---
 
@@ -1831,14 +1897,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-080) | 80 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 54 |
+| Celkem GT (GT-001 az GT-087) | 85 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 56 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 6 |
-| Documented | 12 |
+| Documented | 15 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **80** |
+| **Kontrolni soucet** | **85** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 62 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -1861,6 +1927,10 @@ v9.1 (2026-08-02) — GT-080 rozsireni: kontraktni validator referenci `.scripts
 
 Polozka GT-081 pridana v9.2 (2026-08-02) — architektonicky puvod ruffu v lichess-MCP: CI gate (ne pre-commit hook), config od prvniho commitu `4dd503a`, enforcement `1ca173e`, semanticka eskalace pravidel `98f0546` (F/E/W/I/N/UP/S), mypy/coverage `e41ef52`; `.pre-commit-config.yaml` nikdy neexistoval. P62 rozsiren o separaci kontroly (`--check`) a mutace (`--fix`). Documented 12+1=13, Fixed 54, Implemented 4, Mitigated 6, Workaround 3, Pending 1 → 54+4+6+13+3+1 = **81**. OK.
 
+Polozky GT-083 (mcp-jobs-010, Documented) a GT-085 (mcp-jobs-012, Documented) pridany v10 (2026-08-06, 3-fazova pipeline + cache failure sentinel). Documented 13+2=15 → 54+4+6+15+3+1 = **83**. OK.
+
+Polozky GT-086 (mcp-jobs-013, Fixed) a GT-087 (mcp-jobs-014, Fixed) pridany v11 (2026-08-18) — ruff default rule set drift (P72, komplement GT-081) + MCP timeout sync pipeline/client timeout sementika + async submit+poll (P13 rozsireno). Pravidlo P72. Diagnosticky filtr rozsiren o T sekci (checkpointy 70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71 (duplicita s pravidlem v sekci 4). Fixed 54+2=56 → 56+4+6+15+3+1 = **85**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries).*
