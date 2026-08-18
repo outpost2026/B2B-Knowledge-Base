@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-06 | **Verze:** 11
+**Datum:** 2026-08-06 | **Verze:** 12
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1403,7 +1403,25 @@ ignore = ["BLE001"]
 
 ---
 
-## 4. Průřezová pravidla P1-P72 (konsolidovaná)
+#### GT-088 (mcp-jobs-015): Test fixture TRUNCATE proti sdílené dev DB — destruktivní test izolace
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Testing — Test isolation & destructive operations
+
+**Symptom:** Po spuštění `pytest tests/test_db.py` s nastavenou `DATABASE_URL` zmizela veškerá data z PostgreSQL (ads 70 → 3 řádky, pipeline_runs 5 → 2). Historické ETL běhy 1-3 (2026-08-15) a dnešní 4-5 byly vymazány z DB.
+
+**Root cause:**
+1. `tests/test_db.py:33-39` — fixture `conn()` volá `connect()` a provádí `TRUNCATE ads, pipeline_runs RESTART IDENTITY CASCADE` před každým testem.
+2. `pytestmark` skip guard (`test_db.py:27-30`) kontroluje pouze `os.environ["DATABASE_URL"]` — testy se připojí na **stejnou DB jako produkce/dev** (žádná separátní test DB).
+3. Produkční pipeline (`db.py:upsert_ads`) dělá jen `INSERT ... ON CONFLICT (url) DO UPDATE` — nikdy TRUNCATE/DELETE. Destrukce pochází výhradně z testovacího kódu, ne z produkční vrstvy.
+
+**Fix (doporučený, neaplikován):** Test fixture musí používat **separátní test DB** (např. `mcpjobs_test`) nebo transakci s rollbackem. `TRUNCATE` je povolen POUZE na data, která testy samy vytvořily (princip izolace testů). Požadavek: nikdy destruktivní operace testů proti produkční/dev DB se sdílenou `DATABASE_URL`.
+
+**Pravidlo:** P73 — Testy NESMÍ destruktivně zasahovat do dat, která sama nevytvořily. `TRUNCATE`/`DROP`/`DELETE` v test fixture je povolen jen proti izolované test DB (dedikovaná databáze/schéma/transakce s rollbackem). Společná `DATABASE_URL` pro testy a produkci/dev = kritická chyba (vysoká pravděpodobnost destrukce). Paralelní file-based výstup (output/*.json) je jediná záchrana ztracených dat — DB je primární store, soubory jsou export.
+
+**Provenance:** source-read — `tests/test_db.py:27-39` (skip guard + TRUNCATE fixture), `db.py:upsert_ads` (INSERT only), psql SELECT stav po smazání (pipeline_runs 5→2, ads 70→3), output/etl_*.json neporušené (2026-08-18).
+
+---
+
+## 4. Průřezová pravidla P1-P73 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1676,9 +1694,12 @@ Cache pro výsledky s možným selháním MUSÍ rozlišovat 3 stavy: (1) nezkou�
 ### P72 — Lint rule set je součást dependency kontraktu
 Bez explicitního `[tool.ruff.lint] select` driftuje rule set s verzí nástroje (ruff>=0.6 bez horní hranice → nová default pravidla → CI fail bez změny kódu). Deterministický `select` (stabilní E4/E7/E9/F + explicitně vybraná moderní pravidla) = single source of truth; intencionální výjimky (BLE001 graceful degradation, E501 design trade-off) se dokumentují v `ignore`, ne v kódu. Komplement GT-081. Reference: GT-086.
 
+### P73 — Test izolace: žádné destruktivní operace proti sdílené DB
+Testy NESMÍ destruktivně zasahovat do dat, která sama nevytvořily. `TRUNCATE`/`DROP`/`DELETE` v test fixture je povolen POUZE proti izolované test DB (dedikovaná databáze/schéma/transakce s rollbackem). Společná `DATABASE_URL` pro testy a produkci/dev = kritická chyba (vysoká pravděpodobnost destrukce). Reference: GT-088.
+
 ---
 
-## 5. Diagnostický filtr — 71 checkpoints
+## 5. Diagnostický filtr — 72 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1791,6 +1812,7 @@ Bez explicitního `[tool.ruff.lint] select` driftuje rule set s verzí nástroje
 
 70. Je lint rule set deterministický — explicitní `[tool.ruff.lint] select`, NE defaultní sada driftující s verzí nástroje? Intencionální výjimky (graceful degradation, line-length) dokumentované v `ignore`, ne v kódu? (P72)
 71. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
+72. Používají integrační testy izolovanou test DB (dedikovaná databáze/schéma/transakce s rollbackem), ne sdílenou produkční/dev DB? Neobsahuje žádný test fixture destruktivní `TRUNCATE`/`DROP`/`DELETE` proti datům, která test nevytvořil? (P73)
 
 ---
 
@@ -1890,6 +1912,7 @@ Při zakládání nového MCP repozitáře:
 44. **ASCII filenames** (P69) — vsechny nazvy souboru/adresaru ASCII `[A-Za-z0-9._-]`; overeni `.scripts/ascii_filenames_check.ps1` (exit 0)
 45. **Lint determinismus** (P72) — explicitni `[tool.ruff.lint] select` (stabilni E4/E7/E9/F + explicitni moderni pravidla); intencionalni vyjimky (BLE001, E501) v `ignore` s komentarem; horni hranice na ruff v deps
 46. **Async submit+poll** (P13) — long-running tool vrati okamzite `{job_id}`, prace v ThreadPoolExecutor, `search_status(job_id)` poll; client timeout config (opencode `timeout`) chrani ListTools, ne calls
+47. **Test izolace** (P73) — integracni testy proti dedikovane test DB (databaze/schema/transakce s rollbackem), nikdy TRUNCATE/DROP/DELETE proti sdilene produkci/dev DB; sdilena DATABASE_URL testu a produkce = kriticka chyba
 
 ---
 
@@ -1897,14 +1920,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-087) | 85 |
+| Celkem GT (GT-001 az GT-088) | 86 |
 | Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 56 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
 | Mitigated | 6 |
-| Documented | 15 |
+| Documented | 16 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **85** |
+| **Kontrolni soucet** | **86** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 62 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -1931,6 +1954,8 @@ Polozky GT-083 (mcp-jobs-010, Documented) a GT-085 (mcp-jobs-012, Documented) pr
 
 Polozky GT-086 (mcp-jobs-013, Fixed) a GT-087 (mcp-jobs-014, Fixed) pridany v11 (2026-08-18) — ruff default rule set drift (P72, komplement GT-081) + MCP timeout sync pipeline/client timeout sementika + async submit+poll (P13 rozsireno). Pravidlo P72. Diagnosticky filtr rozsiren o T sekci (checkpointy 70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71 (duplicita s pravidlem v sekci 4). Fixed 54+2=56 → 56+4+6+15+3+1 = **85**. OK.
 
+Polozka GT-088 (mcp-jobs-015, Documented) pridana v12 (2026-08-18) — test fixture TRUNCATE proti sdilene dev DB (test_db.py:37, sdilena DATABASE_URL) → vymazana historicka data (ads 70→3, runs 5→2). Pravidlo P73 (test izolace: zadne destruktivni operace proti sdilene DB). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Documented 15+1=16 → 56+4+6+16+3+1 = **86**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries).*
