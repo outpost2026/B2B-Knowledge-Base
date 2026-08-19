@@ -1421,6 +1421,26 @@ ignore = ["BLE001"]
 
 ---
 
+#### GT-089 (mcp-jobs-016): MCP timeout -32001 — stderr pipe full přes logging.lastResort (implicitní StreamHandler); fix FileHandler
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Transport — stderr hygiene (P25, komplement GT-010)
+
+**Symptom:** I po aplikaci submit+poll (GT-087) timeouť `MCP error -32001` i RYCHLÉ tooly (`search_status`, `health_check`) při plném config runu přes MCP STDIO. Předchozí ad-hoc searchy (pages=1) i CLI runs (stderr→konzole) fungovaly — rozdíl byl v objemu logů.
+
+**Root cause (nový mechanismus, ne duplicita GT-010/GT-087):**
+1. Server neměl ŽÁDNÝ logging config → root logger aktivoval `logging.lastResort` — **implicitní `StreamHandler(stderr)`**, nikoli explicitně přidaný handler (GT-010 řešil explicitní `StreamHandler` v audit.py).
+2. Full run (4 portály × kategorie × stránky + detail fetches) generuje stovky `logger.warning`/`logger.error` (dedup drops, M4 layout varování, scrape/detail chyby) → naplní sdílenou STDIO pipe (4-64 KB) → writer blokuje → event loop freeze → **i `search_status`/`health_check` timeoutují**.
+3. GT-087 submit+poll NECHÁNÍ před stderr deadlockem — job běží na pozadí ve vlákně, ale event loop hlavního vlákna je zmražený plnou pipe.
+
+**Fix (`cli.py`):** `_setup_logging()` → `logging.basicConfig(filename=data/mcp-jobs.log, level=INFO, encoding="utf-8", force=True)` — FileHandler only, nic na stderr. Startup stderr printy omezeny na 1 krátký řádek (P17).
+
+**Verifikace:** E2E — před fixem poll timeout -32001 opakovaně; po fixu oba config runs (AI_NATIVE + LEGACY_MANUAL) přes MCP STDIO: done 61.0-61.3s bez timeoutu, kompletní outputy (HTML 14-42 KB), `data/mcp-jobs.log` vzniká. 155 testů PASS, ruff 0.
+
+**Pravidlo:** P25 (rozšířeno) — zákaz stderr platí i pro IMPLICITNÍ cesty: `logging.lastResort` (root logger bez konfigurace), `print(file=sys.stderr)`. V MCP STDIO serveru MUSÍ být root logger konfigurován na FileHandler od prvního startu (`logging.basicConfig(filename=..., force=True)`). Diagnostický rozlišovač: submit+poll je aplikován A PŘESTO poll timeoutuje → server frozen (stderr pipe, GT-089/GT-010), ne běh jobu (GT-087).
+
+**Provenance:** source-read — `cli.py`/`server.py` (žádný logging config → lastResort), `pipeline.py` (dedup/scrape warning volume), GT-010/GT-087 korelace; E2E: poll -32001 před fixem (2026-08-19 17:15-17:20), done 61s po fixu (oba config runs, 17:55-17:56), `data/mcp-jobs.log` 145 B po startu.
+
+---
+
 ## 4. Průřezová pravidla P1-P73 (konsolidovaná)
 
 ### P1 — Paralelizace
@@ -1476,6 +1496,8 @@ MCP tool, který iteruje N>10 I/O operací, musí být buď:
 
 Současně: client timeout config (např. opencode `timeout` v `opencode.jsonc`) se vztahuje na **ListTools (fetching tools), NE na tool calls** — konfigurovaný timeout nechrání long-running calls; řešení je P13 pattern, ne zvětšení timeoutu (GT-087).
 
+**Varování (GT-089):** submit+poll NEchrání před stderr deadlockem — pokud timeouting `search_status`/`health_check` (ne jen submit), je server frozen (stderr pipe full, lastResort/StreamHandler), ne job běžící; root logger MUSÍ být na FileHandler (P25).
+
 ### P14 — Windows path quoting
 - Vzdy `pathlib.Path` (nikdy string concatenation)
 - Pri predání cesty subprocessu: `str(resolved_path)` + explicitní quoting
@@ -1523,6 +1545,7 @@ Tri úrovne ochrany: (1) shell-level env var, (2) process-level `-X utf8`, (3) c
 - Nikdy StreamHandler(sys.stderr) v MCP serveru
 - Logovat jen do FileHandler nebo rotating file
 - Audit log = file-based, ne stderr-based
+- Rozšířeno (GT-089): zákaz platí i pro IMPLICITNÍ cesty na stderr — `logging.lastResort` (root logger bez konfigurace = implicitní StreamHandler stderr) a `print(file=sys.stderr)`. Root logger MUSÍ být konfigurován na FileHandler od prvního startu: `logging.basicConfig(filename=..., level=..., force=True)`. Startup stderr printy max. 1 krátký řádek (P17).
 
 ### P26 — asyncio subprocess
 - Vsechna I/O v MCP tools pres `asyncio.create_subprocess_exec()`
@@ -1750,69 +1773,70 @@ Testy NESMÍ destruktivně zasahovat do dat, která sama nevytvořily. `TRUNCATE
 28. Je StreamHandler(sys.stderr) odstraněn? (P25)
 29. Jsou vsechny print/log výstupy směrovány do souboru? (P25)
 30. Je audit log file-based, ne stderr-based? (P25)
+31. Je root logger konfigurován na FileHandler od startu (žádný logging.lastResort / implicitní StreamHandler stderr)? (P25, GT-089)
 
 ### K — async subprocess
-31. Jsou vsechna subprocess volání async? (P26)
-32. Mají git operace `stdin=DEVNULL`? (P26)
-33. Je timeout ≤15s + `asyncio.wait_for`? (P26)
-34. Jsou `cwd` a env parametry explicitní? (P26)
+32. Jsou vsechna subprocess volání async? (P26)
+33. Mají git operace `stdin=DEVNULL`? (P26)
+34. Je timeout ≤15s + `asyncio.wait_for`? (P26)
+35. Jsou `cwd` a env parametry explicitní? (P26)
 
 ### L — Test pyramida
-35. Existuje MCP integration test (tool → framework, bez STDIO)? (P27)
-36. Existuje MCP E2E test (pres reálný STDIO)? (P27)
-37. Bězí smoke test (`git_status` <5s) po kazdé zmene? (P27)
-38. Jsou transport-level anomálie pokryty testy? (P27)
+36. Existuje MCP integration test (tool → framework, bez STDIO)? (P27)
+37. Existuje MCP E2E test (pres reálný STDIO)? (P27)
+38. Bězí smoke test (`git_status` <5s) po kazdé zmene? (P27)
+39. Jsou transport-level anomálie pokryty testy? (P27)
 
 ### M — Diagnostika / monitorování
-39. Je `git log -5` promptnejsi nez `-20`?
-40. Existuje `ping()` tool pro ověření, ze server zije?
-41. Je MCP client timeout konfigurovatelný per-tool?
-42. Je v logu timestamp + duration pro kazdý subprocess call?
-43. Lze rozlišit "server mrtev" od "tool zpracovává"?
+40. Je `git log -5` promptnejsi nez `-20`?
+41. Existuje `ping()` tool pro ověření, ze server zije?
+42. Je MCP client timeout konfigurovatelný per-tool?
+43. Je v logu timestamp + duration pro kazdý subprocess call?
+44. Lze rozlišit "server mrtev" od "tool zpracovává"? (GT-089: timeouting poll = server frozen, ne běh jobu)
 
 ### N — Encoding & Console (rozsířeno)
-44. Je PYTHONIOENCODING=utf-8? (P18, P23)
-45. Má server `sys.stdout.reconfigure('utf-8')`? (P18)
-46. Jsou emoji a Unicode supplementary zakázány v kódu? (P28)
-47. Vrací tool ceské znaky bez chyby? (P23)
+45. Je PYTHONIOENCODING=utf-8? (P18, P23)
+46. Má server `sys.stdout.reconfigure('utf-8')`? (P18)
+47. Jsou emoji a Unicode supplementary zakázány v kódu? (P28)
+48. Vrací tool ceské znaky bez chyby? (P23)
 
 ### O — Server initialization (P29)
-48. Je main() sync `def main(): app.run()`? Nikdy `async` + `asyncio.run()` (P29)
-49. Ma `.pth` soubor po `pip install -e .` project root + `src/`, ne jen `src/`? (P29)
+49. Je main() sync `def main(): app.run()`? Nikdy `async` + `asyncio.run()` (P29)
+50. Ma `.pth` soubor po `pip install -e .` project root + `src/`, ne jen `src/`? (P29)
 
 ### P — Pipeline consistency & cache governance (P50-P54)
-50. Je parametr clamp explicitně signalizován warningem při ořezu? (P50)
-51. Kontroluje tool před zpracováním pending count a varuje uživatele? (P51)
-52. Je verze knihovny ověřena před použitím nového API parametru? (P52)
-53. Je nový tool viditelný v `list_tools` po restartu serveru + opencode session? (P53)
-54. Je nový pattern validován N>=30, ratio>=1.4, 2+ analýzami? (P54)
+51. Je parametr clamp explicitně signalizován warningem při ořezu? (P50)
+52. Kontroluje tool před zpracováním pending count a varuje uživatele? (P51)
+53. Je verze knihovny ověřena před použitím nového API parametru? (P52)
+54. Je nový tool viditelný v `list_tools` po restartu serveru + opencode session? (P53)
+55. Je nový pattern validován N>=30, ratio>=1.4, 2+ analýzami? (P54)
 
 ### Q — Engine & PV pipeline integrity (P55-P61)
-55. Je každý `except` blok zalogován (ne silent pass)? (P55)
-56. Jsou Stockfish PV multi-tahové sekvence konvertovány sekvenčně na kopii boardu? (P56, P59)
-57. Reportuje každý run K0 metriky (depth, engine_version, Threads, Hash)? (P57)
-58. Obsahuje cache klíč detector_version? Je version mismatch detekován při cache load? (P58)
-59. Je engine lock dostatečně izolovaný proti error propagaci? (P60)
-60. Je engine lines count pod multipv_target signalizován (truncated flag, warning)? (P61)
-61. Existuje mechanismus pro re-analyzi při code change (cache invalidation)? (P58)
+56. Je každý `except` blok zalogován (ne silent pass)? (P55)
+57. Jsou Stockfish PV multi-tahové sekvence konvertovány sekvenčně na kopii boardu? (P56, P59)
+58. Reportuje každý run K0 metriky (depth, engine_version, Threads, Hash)? (P57)
+59. Obsahuje cache klíč detector_version? Je version mismatch detekován při cache load? (P58)
+60. Je engine lock dostatečně izolovaný proti error propagaci? (P60)
+61. Je engine lines count pod multipv_target signalizován (truncated flag, warning)? (P61)
+62. Existuje mechanismus pro re-analyzi při code change (cache invalidation)? (P58)
 
 ### R — Data correctness & contract evolution (P63-P68)
-62. Jsou model pole čtená přes reálné atributy (`a.field`), ne `getattr(a, "x", default)`? (P63)
-63. Je nový data klíč přidán additive (`.get(key, default)` + additive test), ne rozšířením povinného seznamu testovaného na živých datech? (P64)
-64. Kvituje timeout/cleanup handler referenci, která volání spustila (lokální vs sdružený engine)? (P65)
-65. Hlásí validace neimplementovaný vstup chybou (fail-fast), ne tichou substitucí? (P66)
-66. Má degradace dat počitatelný marker (čítač + expozice v LLM promptu)? (P67)
-67. Má pole legacy cache s prázdným defaultem guard před parserem (chess.Board(fen=""))? (P68)
+63. Jsou model pole čtená přes reálné atributy (`a.field`), ne `getattr(a, "x", default)`? (P63)
+64. Je nový data klíč přidán additive (`.get(key, default)` + additive test), ne rozšířením povinného seznamu testovaného na živých datech? (P64)
+65. Kvituje timeout/cleanup handler referenci, která volání spustila (lokální vs sdružený engine)? (P65)
+66. Hlásí validace neimplementovaný vstup chybou (fail-fast), ne tichou substitucí? (P66)
+67. Má degradace dat počitatelný marker (čítač + expozice v LLM promptu)? (P67)
+68. Má pole legacy cache s prázdným defaultem guard před parserem (chess.Board(fen=""))? (P68)
 
 ### S — Filename nomenklatura (P69, ASCII-NOM)
-68. Jsou všechny trackované názvy souborů/adresářů ASCII `[A-Za-z0-9._-]` (žádná diakritika, mezery, U+2011)? (P69) — ověř `.scripts/ascii_filenames_check.ps1`, exit 0
-69. Neobsahuje žádný trackovaný soubor staré cesty/názvy po renames (broken reference)? — ověř `.scripts/context_refs_check.py`, exit 0 (kontrakt: GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST)
+69. Jsou všechny trackované názvy souborů/adresářů ASCII `[A-Za-z0-9._-]` (žádná diakritika, mezery, U+2011)? (P69) — ověř `.scripts/ascii_filenames_check.ps1`, exit 0
+70. Neobsahuje žádný trackovaný soubor staré cesty/názvy po renames (broken reference)? — ověř `.scripts/context_refs_check.py`, exit 0 (kontrakt: GLOBAL_FORBIDDEN + REPO_FORBIDDEN rename mapa + F1_ALLOWLIST)
 
 ### T — Lint determinismus & long-running tools (P72, P13)
 
-70. Je lint rule set deterministický — explicitní `[tool.ruff.lint] select`, NE defaultní sada driftující s verzí nástroje? Intencionální výjimky (graceful degradation, line-length) dokumentované v `ignore`, ne v kódu? (P72)
-71. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
-72. Používají integrační testy izolovanou test DB (dedikovaná databáze/schéma/transakce s rollbackem), ne sdílenou produkční/dev DB? Neobsahuje žádný test fixture destruktivní `TRUNCATE`/`DROP`/`DELETE` proti datům, která test nevytvořil? (P73)
+71. Je lint rule set deterministický — explicitní `[tool.ruff.lint] select`, NE defaultní sada driftující s verzí nástroje? Intencionální výjimky (graceful degradation, line-length) dokumentované v `ignore`, ne v kódu? (P72)
+72. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
+73. Používají integrační testy izolovanou test DB (dedikovaná databáze/schéma/transakce s rollbackem), ne sdílenou produkční/dev DB? Neobsahuje žádný test fixture destruktivní `TRUNCATE`/`DROP`/`DELETE` proti datům, která test nevytvořil? (P73)
 
 ---
 
@@ -1955,6 +1979,8 @@ Polozky GT-083 (mcp-jobs-010, Documented) a GT-085 (mcp-jobs-012, Documented) pr
 Polozky GT-086 (mcp-jobs-013, Fixed) a GT-087 (mcp-jobs-014, Fixed) pridany v11 (2026-08-18) — ruff default rule set drift (P72, komplement GT-081) + MCP timeout sync pipeline/client timeout sementika + async submit+poll (P13 rozsireno). Pravidlo P72. Diagnosticky filtr rozsiren o T sekci (checkpointy 70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71 (duplicita s pravidlem v sekci 4). Fixed 54+2=56 → 56+4+6+15+3+1 = **85**. OK.
 
 Polozka GT-088 (mcp-jobs-015, Documented) pridana v12 (2026-08-18) — test fixture TRUNCATE proti sdilene dev DB (test_db.py:37, sdilena DATABASE_URL) → vymazana historicka data (ads 70→3, runs 5→2). Pravidlo P73 (test izolace: zadne destruktivni operace proti sdilene DB). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Documented 15+1=16 → 56+4+6+16+3+1 = **86**. OK.
+
+Polozka GT-089 (mcp-jobs-016, Fixed) pridana v13 (2026-08-19) — MCP timeout -32001 pres logging.lastResort (implicitni StreamHandler stderr): zadny logging config → root logger lastResort → dedup/scrape warningy zaplni sdilene STDIO pipe (4-64 KB) → event loop freeze → i search_status/health_check timeoutuji (submit+poll GT-087 neresi). Fix: logging.basicConfig(filename=..., force=True) FileHandler. Pravidlo P25 rozsireno (implicitni stderr cesty). Diagnosticky filtr rozsiren o checkpoint 31 (J) + posun K-T (32-73), checkpoint 44 (rozlisovac timeouting poll = frozen server). Fixed 56+1=57 → 57+4+6+16+3+1 = **87**. OK.
 
 ---
 
