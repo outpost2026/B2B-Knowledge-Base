@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-06 | **Verze:** 14
+**Datum:** 2026-08-06 | **Verze:** 15
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1501,7 +1501,22 @@ ignore = ["BLE001"]
 
 ---
 
-## 4. Průřezová pravidla P1-P76 (konsolidovaná)
+#### GT-094 (mcp-jobs-021): Falešný ERROR "container selector returned 0 cards" na end-of-list stránkách
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Scraping — false-positive detekce layout change
+
+**Symptom:** Ruční CLI běh zalogoval `ERROR profesia: container selector returned 0 cards — likely broken (page layout change)`. Dev hlásil podezření na layout change.
+
+**Root cause:** Config `pages: 10`, ale profesia Praha má jen ~157 inzerátů = **8 stránek** (20×7+17). Stránky 9-10 existují (200 OK, normální title "Nabídka práce Praha Strana 9", paginace "123456...→") ale mají **0 karet legitimně** — jsou za koncem seznamu (end-of-list). `parse_listings` logoval ERROR pro libovolnou stránku s 0 kartami → false-positive. Layout change NENÍ — selektor `li.list-row` funguje (live ověřeno 10 stránek, stránky 1-8 = 20/20/20/20/20/20/20/17 karet).
+
+**Fix:** `parse_listings` dostal `page: int = 1` parametr (base.py abstraktní signatura + všech 6 providerů). Page 1 + 0 karet = **ERROR** (reálný layout change / blok), page > 1 + 0 karet = **INFO** "end of listing reached, stopping" (očekávaný konec seznamu). `scrape_all` předává aktuální page. `new == 0` break zůstává jako vrstva 2. Live ověření: `scrape_all(max_pages=10)` → 157 ads, 9 requestů, 0 failed, stránka 9 loguje INFO.
+
+**Pravidlo:** P77 — 0 karet na stránce N>1 = end-of-list (INFO), ne layout change (ERROR). ERROR jen pro page 1. End-of-list je normální stav při config `pages` > reálný počet stránek.
+
+**Provenance:** source-read — `providers/profesia.py:85-156` (parse_listings), `base.py:136-138` (abstrakt); live verifikace: 10 stránek Praha (stránky 1-8 karty, 9-10 end-of-list), query URL 40 ads, `scrape_all` 157 ads 0 failed; testy +2 (INFO ne ERROR, break na end-of-list), 189 PASS, ruff 0.
+
+---
+
+## 4. Průřezová pravidla P1-P77 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1789,9 +1804,12 @@ Stejný inzerát je cross-publikovaný napříč portály (LMC network: jobs.cz+
 ### P76 — Anti-bot/consent-page detekce je kombinace hlaviček, ne samotný UA
 Bot-detekce (Seznam.cz) reaguje na kombinaci `User-Agent` + `Accept` hlavičky — default HttpClient s UA Chrome/120 + Accept deterministicky vrací consent page (5/5 reprodukce). Fix = per-portal header varianta (UA Chrome/126 BEZ Accept) aplikovaná v `__init__` providera, respektující mockeri. Default HttpClient NEJEDNÁ jako univerzální řešení pro všechny portály. Deterministickou blokaci vždy ověř live testem (5/5), ne předpokladem. Reference: GT-092.
 
+### P77 — 0 karet na stránce N>1 = end-of-list (INFO), ne layout change (ERROR)
+`parse_listings` logoval ERROR "container selector returned 0 cards — likely broken" pro libovolnou stránku. False-positive: config `pages` (10) > reálný počet stránek (profesia Praha = 8) → trailing stránky existují s 200 OK a normálním title, ale 0 karet = za koncem seznamu. Rozlišení podle page kontextu: **page 1 + 0 karet = ERROR** (reálný layout change/blok), **page > 1 + 0 karet = INFO** "end of listing reached, stopping". `parse_listings` přijímá `page` parametr (default 1, abstraktní signatura v base.py), `scrape_all` předává aktuální stránku. Není to chyba v datech — je to normální ukončení paginace. Reference: GT-094.
+
 ---
 
-## 5. Diagnostický filtr — 72 checkpoints
+## 5. Diagnostický filtr — 77 checkpoints
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1907,11 +1925,12 @@ Bot-detekce (Seznam.cz) reaguje na kombinaci `User-Agent` + `Accept` hlavičky �
 72. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
 73. Používají integrační testy izolovanou test DB (dedikovaná databáze/schéma/transakce s rollbackem), ne sdílenou produkční/dev DB? Neobsahuje žádný test fixture destruktivní `TRUNCATE`/`DROP`/`DELETE` proti datům, která test nevytvořil? (P73)
 
-### U — Dedup & anti-bot integrita scrapingu (P74-P76)
+### U — Dedup & anti-bot integrita scrapingu (P74-P77)
 
 74. Jsou tracking/session parametry (`searchId`, `rps`, `search_id`, `utm_*`) odstraněny z URL v centrálním bodě (`Ad.__post_init__`), ne per-provider? Kanonický URL je stabilní napříč běhy (UNIQUE dedup funguje)? (P74)
 75. Je cross-portal dedup DB-level (fuzzy sloupce + index) se sdíleným normalizovaným klíčem (NFKD diakritika, en/em-dash→hyphen) mezi pipeline a DB? Má deterministickou prioritu vítěze (bohatost dat, tie-break first-seen)? Používá batched lookup (1 round-trip), ne per-ad SELECT? (P75)
 76. Je deterministická anti-bot/consent-page blokace ověřena live testem (5/5 reprodukce) a fixnuta per-portal header variantou (UA+Accept kombinace), ne univerzálním UA? (P76)
+77. Loguje stránka s 0 kartami ERROR jen pro page 1 (layout change), a pro page > 1 INFO (end-of-list)? Přijímá `parse_listings` page kontext a `scrape_all` ho předává? (P77)
 
 ---
 
@@ -2015,6 +2034,7 @@ Při zakládání nového MCP repozitáře:
 48. **URL canonicalizace** (P74) — tracking/session parametry (searchId, rps, search_id, utm_*) odstraneny v centralnim bode Ad.__post_init__; kanonicky URL = dedup klic, per-provider cleanup zakazan (drift)
 49. **DB-level cross-portal dedup** (P75) — sdileny normalizovany fuzzy klic (NFKD + dash→hyphen) mezi pipeline a DB, fuzzy sloupce + index, batched lookup, priorita vitez dle bohatosti dat (description>salary>company>location), tie-break first-seen
 50. **Anti-bot per-portal headers** (P76) — deterministicka anti-bot/consent blokace (UA+Accept kombinace) overena live testem (5/5), fix per-portal header variantou v __init__ providera
+51. **End-of-list vs layout change** (P77) — 0 karet na strance page>1 = INFO end-of-list (config `pages` > realny pocet stranek), ERROR jen pro page 1. `parse_listings` prijima `page` kontext (default 1), `scrape_all` ho predava. Reference: GT-094.
 
 ---
 
@@ -2022,16 +2042,16 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-093) | 91 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 59 |
+| Celkem GT (GT-001 az GT-094) | 92 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 60 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 5 |
 | Mitigated | 6 |
 | Documented | 17 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **91** |
+| **Kontrolni soucet** | **92** |
 | Z toho environment/CI issues | 11 |
-| Z toho application logic issues | 62 |
+| Z toho application logic issues | 63 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
 | Z toho cross-LLM audit (2026-07-24) | 5 (GT-061 az GT-065) |
 | Z toho DBCL Phase 2 session 2026-07-27 | 7 (GT-071 az GT-077) |
@@ -2064,4 +2084,4 @@ Polozky GT-090 az GT-093 pridany v14 (2026-08-20) — dedup audit + provider ite
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries). — 2026-08-20 — v15 — Pridan GT-094 (mcp-jobs-021: false-positive ERROR "0 cards" na end-of-list strankach, P77). Diagnosticky filtr rozsiren o checkpoint 77. Checklist dedicnosti rozsiren o polozku 51. Aktualizovany statistiky (92 entries).*
