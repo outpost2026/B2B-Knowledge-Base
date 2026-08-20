@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-06 | **Verze:** 12
+**Datum:** 2026-08-06 | **Verze:** 14
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1441,7 +1441,67 @@ ignore = ["BLE001"]
 
 ---
 
-## 4. Průřezová pravidla P1-P73 (konsolidovaná)
+#### GT-090 (mcp-jobs-017): URL tracking parametry (searchId/rps) rozbíjejí UNIQUE(url) dedup
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Data correctness — dedup logika (DB)
+
+**Symptom:** Live DB měla 167 řádků, ale po odstranění tracking parametrů jen **135 unikátních** — **52 duplicitních řádků / 20 skupin** stejného inzerátu uloženého víckrát. UNIQUE constraint (`ads.url`) duplicity nechytil.
+
+**Root cause:** jobs.cz vkládá do listing linků `?searchId=<UUID>`, prace.cz `?rps=2077` — **session/tracking parametry, které se mění každý běh**. Stejný inzerát (stejné rpd/nabidka ID) má tak při každém běhu jiný raw URL → `ON CONFLICT (url)` ho vždy insertuje znovu. Profesia měla vlastní `_clean_detail_url()` (search_id strip, profesia.py:40-49), jobs.cz a prace.cz **neměly žádné čištění** → nekonzistentní ochrana napříč providery.
+
+**Fix:** Centrální `normalize_url()` v `utils.py` (strip `searchId`, `search_id`, `rps`, `utm_*`; preserve ostatní query paramy) aplikovaná v `Ad.__post_init__` (models.py:25-31) — **kanonický URL vzniká u zdroje dat, ne u providera**. Dedup klíč (pipeline `_dedup` i DB UNIQUE) je vždy stabilní napříč běhy. Live DB vyčištěna: 167 → 135 (82 canonicalizováno, 32 duplicity smazány).
+
+**Pravidlo:** P74 — Session/tracking parametry v URL NESMÍ být součástí dedup klíče. Stripping patří do centrálního bodu (`Ad.__post_init__`), ne do per-provider kódu (profesia měla vlastní, jobs/pracecz žádný → drift).
+
+**Provenance:** source-read — `utils.py:normalize_url`, `models.py:__post_init__` (Ad), `providers/jobs.py` (žádný strip searchId), `providers/pracecz.py:83` (raw URL s ?rps=), `providers/profesia.py:40-49` (jediný s _clean_detail_url); live DB audit (2026-08-20): 167 rows, canonical=135, dup groups=20/52 rows.
+
+---
+
+#### GT-091 (mcp-jobs-018): Cross-portal fuzzy dedup — bohatší data vyhrávají, tie-break first-seen
+**Server:** MCP-Jobs | **Status:** Implemented | **Typ:** Data correctness — dedup logika (DB)
+
+**Symptom:** 9 cross-portal skupin stejného inzerátu v live DB: **jobs.cz+prace.cz** (LMC network, sdílí inzerci), **jenprace+profesia** (ManpowerGroup). Pipeline `_dedup` chytil jen exaktní shody in-memory (title+company+location raw), ale (a) selhával na variantách `Praha-Uhříněves` vs `Praha – Uhříněves` (en-dash U+2013 vs hyphen U+002D), (b) **nepersistoval se do DB** — napříč běhy se duplicity hromadily.
+
+**Root cause:** (1) Fuzzy klíč nebyl normalizovaný (diakritika, en/em-dash, whitespace drift mezi portály); (2) dedup existoval jen in-memory v pipeline, DB-level fuzzy dedup neexistoval; (3) pipeline `_dedup` a DB používaly RŮZNÉ klíče → divergence.
+
+**Fix:** Sdílený `fuzzy_key()` v `utils.py` (lowercase → NFKD strip diakritiky → en/em-dash→hyphen → kolaps whitespace) používaný pipeline `_dedup` I `upsert_ads`. DB schema: sloupce `fuzzy_title/company/location` + index. `upsert_ads` batched fuzzy lookup (1 round-trip: `unnest(%s::text[])` — **žádné per-ad SELECT**, pipeline zůstává network-bound dominantní). Priorita konfliktu: **bohatší data vyhrávají** (description 8 > salary 4 > company 2 > location 1), tie-break = first-seen (existující radka si podrží URL+portal, bez churn). Live DB: 135 → 125 řádků, 0 duplicit.
+
+**Pravidlo:** P75 — Cross-portal dedup vyžaduje (a) sdílený normalizovaný fuzzy klíč (NFKD + dash → hyphen) mezi pipeline a DB, (b) DB-level enforcement (in-memory nestačí napříč běhy), (c) deterministickou prioritu vítěze (bohatost dat, ne portál ranking), (d) batched lookup pro zachování lehkosti.
+
+**Provenance:** source-read — `utils.py:fuzzy_key/_fuzzy_norm`, `pipeline.py:_dedup` (unifikace), `db.py:upsert_ads` (batched SELECT + richness priorita), `data/schema.sql` (fuzzy sloupce + index); live DB audit (2026-08-20): 9 cross-portal skupin → 0, migrace delete 10 (9 cross-portal + 1 test artifact).
+
+---
+
+#### GT-092 (mcp-jobs-019): Seznam.cz bot-detekce — UA Chrome/120 + Accept → deterministický consent page
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Provider integrace — anti-bot (hSNR)
+
+**Symptom:** Volnamista scraper vracel 0 ads — listing i detail vracely **consent/bot-detekci stránku** místo obsahu. 5/5 live runů deterministicky reprodukovatelné (ne intermittent).
+
+**Root cause:** Default `HttpClient` posílá `User-Agent: Chrome/120` **+ `Accept` hlavičku**. Seznam.cz bot-detekce deterministicky reaguje na tuto kombinaci → vrací consent page. Nešlo o rate-limit ani captcha — čistě headrová fingerprint detekce.
+
+**Fix:** Provider `VolnamistaScraper` má vlastní `_SEZNAM_HEADERS` = **UA Chrome/126 BEZ `Accept` hlavičky**, aplikovaný v `__init__` (volnamista.py:41-56) — přepíše pipeline-injektovaný HttpClient, mockeri v testech respektováni. Platí pro listing i detail.
+
+**Pravidlo:** P76 — Anti-bot/consent-page detekce je kombinace hlaviček (UA + Accept), ne samotný UA. Deterministickou blokaci ověř live testem (5/5 reprodukce) a fix per-portal header variantou v `__init__` providera; default HttpClient NEJEDNA jako univerzální řešení pro všechny portály.
+
+**Provenance:** source-read — `providers/volnamista.py:31-56` (Seznam headers + __init__ override), `http.py` (default UA/Accept); live verifikace (2026-08-19): 5/5 consent page s default UA, 0/5 po UA Chrome/126 bez Accept.
+
+---
+
+#### GT-093 (mcp-jobs-020): MCP test-ordering pollution — sdílený globální store
+**Server:** MCP-Jobs | **Status:** Documented | **Typ:** Testování — order-dependent flake
+
+**Symptom:** `tests/test_server.py::test_store_results_empty_list` projde izolovaně, ale failuje v plné sadě (187 testů) — `_query_store` obsahuje 2 záznamy místo 1.
+
+**Root cause:** MCP server používá modulový globální `_query_store` (dict). Testy v sekci L2 resources ho sdílejí bez per-test resetu — pořadí běhu (pytest collection order) určuje, zda store obsahuje předchozí záznamy. Není to deterministický bug — jen test isolation gap.
+
+**Fix (mitigace, ne rozřešení):** Testy by měly resetovat `_query_store` v fixture (teardown), ne spoléhat na collection order. Plná oprava = per-test izolace globálního stavu (odložena — pre-existing, neblokuje).
+
+**Pravidlo:** Rozšíření P73 (test izolace) — izolace se týká i IN-PROCESS globálního stavu (modulové dict, cache), nejen DB. Order-dependent test = symptom sdíleného mutable stavu bez resetu v fixture.
+
+**Provenance:** source-read — `tests/test_server.py:241-246` (test_store_results_empty_list), `server.py` (_query_store modulový global); verifikace: izolovaný běh PASS (1.38s), plná sada FAIL (2 entries) — order-dependent, reproducibly.
+
+---
+
+## 4. Průřezová pravidla P1-P76 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1720,6 +1780,15 @@ Bez explicitního `[tool.ruff.lint] select` driftuje rule set s verzí nástroje
 ### P73 — Test izolace: žádné destruktivní operace proti sdílené DB
 Testy NESMÍ destruktivně zasahovat do dat, která sama nevytvořily. `TRUNCATE`/`DROP`/`DELETE` v test fixture je povolen POUZE proti izolované test DB (dedikovaná databáze/schéma/transakce s rollbackem). Společná `DATABASE_URL` pro testy a produkci/dev = kritická chyba (vysoká pravděpodobnost destrukce). Reference: GT-088.
 
+### P74 — Tracking/session parametry NESMÍ být součástí dedup klíče
+Scrape URL často obsahují session/tracking parametry, které se mění každý běh: jobs.cz `searchId=<UUID>`, prace.cz `rps=<int>`, profesia `search_id`, `utm_*`. UNIQUE(url) pak nechytí duplicity stejného inzerátu (52 duplicit / 20 skupin v live DB). Stripping patří do **centrálního bodu** (`Ad.__post_init__` / `normalize_url`), ne do per-provider kódu — per-provider řešení drifuje (profesia měla `_clean_detail_url`, jobs/pracecz žádný). Zachovat ostatní query parametry (`page`, sort), odstranit jen tracking. Reference: GT-090.
+
+### P75 — Cross-portal dedup: sdílený fuzzy klíč + DB enforcement + deterministická priorita
+Stejný inzerát je cross-publikovaný napříč portály (LMC network: jobs.cz+prace.cz, ManpowerGroup: jenprace+profesia). In-memory dedup nestačí napříč běhy. Vyžaduje: (a) **sdílený normalizovaný fuzzy klíč** (lowercase → NFKD strip diakritiky → en/em-dash→hyphen → kolaps whitespace) mezi pipeline `_dedup` i DB `upsert_ads` — jinak divergence; (b) **DB-level enforcement** (fuzzy sloupce + index, batched lookup `unnest(%s::text[])` = 1 round-trip, ne per-ad SELECT); (c) **deterministickou prioritu vítěze** — bohatost dat (description > salary > company > location), tie-break first-seen (existující radka si podrží URL+portal, bez churn), nikoli hardcoded portál ranking. Reference: GT-091.
+
+### P76 — Anti-bot/consent-page detekce je kombinace hlaviček, ne samotný UA
+Bot-detekce (Seznam.cz) reaguje na kombinaci `User-Agent` + `Accept` hlavičky — default HttpClient s UA Chrome/120 + Accept deterministicky vrací consent page (5/5 reprodukce). Fix = per-portal header varianta (UA Chrome/126 BEZ Accept) aplikovaná v `__init__` providera, respektující mockeri. Default HttpClient NEJEDNÁ jako univerzální řešení pro všechny portály. Deterministickou blokaci vždy ověř live testem (5/5), ne předpokladem. Reference: GT-092.
+
 ---
 
 ## 5. Diagnostický filtr — 72 checkpoints
@@ -1838,6 +1907,12 @@ Testy NESMÍ destruktivně zasahovat do dat, která sama nevytvořily. `TRUNCATE
 72. Je long-running tool (>10s) async — submit+poll (okamžitý `job_id` + status poll), nebo má explicitní progress streaming / CLI bypass? Client timeout config (např. opencode `timeout`) se nevztahuje na tool calls, jen na ListTools — timeout calls řeší pattern, ne zvětšení timeoutu. (P13)
 73. Používají integrační testy izolovanou test DB (dedikovaná databáze/schéma/transakce s rollbackem), ne sdílenou produkční/dev DB? Neobsahuje žádný test fixture destruktivní `TRUNCATE`/`DROP`/`DELETE` proti datům, která test nevytvořil? (P73)
 
+### U — Dedup & anti-bot integrita scrapingu (P74-P76)
+
+74. Jsou tracking/session parametry (`searchId`, `rps`, `search_id`, `utm_*`) odstraněny z URL v centrálním bodě (`Ad.__post_init__`), ne per-provider? Kanonický URL je stabilní napříč běhy (UNIQUE dedup funguje)? (P74)
+75. Je cross-portal dedup DB-level (fuzzy sloupce + index) se sdíleným normalizovaným klíčem (NFKD diakritika, en/em-dash→hyphen) mezi pipeline a DB? Má deterministickou prioritu vítěze (bohatost dat, tie-break first-seen)? Používá batched lookup (1 round-trip), ne per-ad SELECT? (P75)
+76. Je deterministická anti-bot/consent-page blokace ověřena live testem (5/5 reprodukce) a fixnuta per-portal header variantou (UA+Accept kombinace), ne univerzálním UA? (P76)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1937,6 +2012,9 @@ Při zakládání nového MCP repozitáře:
 45. **Lint determinismus** (P72) — explicitni `[tool.ruff.lint] select` (stabilni E4/E7/E9/F + explicitni moderni pravidla); intencionalni vyjimky (BLE001, E501) v `ignore` s komentarem; horni hranice na ruff v deps
 46. **Async submit+poll** (P13) — long-running tool vrati okamzite `{job_id}`, prace v ThreadPoolExecutor, `search_status(job_id)` poll; client timeout config (opencode `timeout`) chrani ListTools, ne calls
 47. **Test izolace** (P73) — integracni testy proti dedikovane test DB (databaze/schema/transakce s rollbackem), nikdy TRUNCATE/DROP/DELETE proti sdilene produkci/dev DB; sdilena DATABASE_URL testu a produkce = kriticka chyba
+48. **URL canonicalizace** (P74) — tracking/session parametry (searchId, rps, search_id, utm_*) odstraneny v centralnim bode Ad.__post_init__; kanonicky URL = dedup klic, per-provider cleanup zakazan (drift)
+49. **DB-level cross-portal dedup** (P75) — sdileny normalizovany fuzzy klic (NFKD + dash→hyphen) mezi pipeline a DB, fuzzy sloupce + index, batched lookup, priorita vitez dle bohatosti dat (description>salary>company>location), tie-break first-seen
+50. **Anti-bot per-portal headers** (P76) — deterministicka anti-bot/consent blokace (UA+Accept kombinace) overena live testem (5/5), fix per-portal header variantou v __init__ providera
 
 ---
 
@@ -1944,14 +2022,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-088) | 86 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 56 |
-| Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 4 |
+| Celkem GT (GT-001 az GT-093) | 91 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 59 |
+| Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 5 |
 | Mitigated | 6 |
-| Documented | 16 |
+| Documented | 17 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **86** |
+| **Kontrolni soucet** | **91** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 62 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -1982,6 +2060,8 @@ Polozka GT-088 (mcp-jobs-015, Documented) pridana v12 (2026-08-18) — test fixt
 
 Polozka GT-089 (mcp-jobs-016, Fixed) pridana v13 (2026-08-19) — MCP timeout -32001 pres logging.lastResort (implicitni StreamHandler stderr): zadny logging config → root logger lastResort → dedup/scrape warningy zaplni sdilene STDIO pipe (4-64 KB) → event loop freeze → i search_status/health_check timeoutuji (submit+poll GT-087 neresi). Fix: logging.basicConfig(filename=..., force=True) FileHandler. Pravidlo P25 rozsireno (implicitni stderr cesty). Diagnosticky filtr rozsiren o checkpoint 31 (J) + posun K-T (32-73), checkpoint 44 (rozlisovac timeouting poll = frozen server). Fixed 56+1=57 → 57+4+6+16+3+1 = **87**. OK.
 
+Polozky GT-090 az GT-093 pridany v14 (2026-08-20) — dedup audit + provider iterace #5/#6 (profesia, volnamista): GT-090 (mcp-jobs-017, Fixed) URL tracking parametry searchId/rps rozbijeji UNIQUE(url) dedup — centralni normalize_url v Ad.__post_init__; GT-091 (mcp-jobs-018, Implemented) cross-portal fuzzy dedup (LMC network, ManpowerGroup) — sdileny fuzzy klice NFKD+dash→hyphen, DB-level enforcement, priorita bohatost dat, batched lookup; GT-092 (mcp-jobs-019, Fixed) Seznam.cz bot-detekce — UA Chrome/120 + Accept → deterministicky consent page (5/5), fix UA Chrome/126 bez Accept; GT-093 (mcp-jobs-020, Documented) test-ordering pollution — sdileny modulovy global _query_store, order-dependent flake. Pravidla P74-P76. Diagnosticky filtr rozsiren o U sekci (checkpointy 74-76). Checklist dedicnosti rozsiren o polozky 48-50. Fixed 57+2=59, Implemented 4+1=5, Documented 16+1=17 → 59+5+6+17+3+1 = **91**. OK.
+
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries).*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries).*
