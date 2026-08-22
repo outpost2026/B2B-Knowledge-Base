@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-22 | **Verze:** 17
+**Datum:** 2026-08-22 | **Verze:** 18
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp, GCP infrastructure (pitevni_kniha_v8)
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -59,7 +59,7 @@
 
 ## 3. Katalog chyb (merged)
 
-Číslování GT-001 až GT-078. V závorce původní ID z originálního artefaktu.
+Číslování GT-001 až GT-098. V závorce původní ID z originálního artefaktu.
 
 ### 3.1 cnc-tools (mcp-local-server)
 
@@ -1547,6 +1547,36 @@ ignore = ["BLE001"]
 
 ---
 
+#### GT-097 (mcp-jobs-024): Circular import po modular refactoru
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Architecture — circular import
+
+**Symptom:** `ImportError: cannot import name 'render_ads_tab' from 'dashboard.tabs.ads'` pri spusteni `streamlit run dashboard.py`. Traceback: `dashboard/app.py` importuje `dashboard.tabs.ads`, ktery importuje `dashboard.app` — cyklus.
+
+**Root cause:** `tabs/ads.py` importoval `run_query` primo z `app.py`. Ale `app.py` importuje `tabs/ars.py` = circular import. Python nedokonci inicializaci modulu = ImportError.
+
+**Fix:** Predavani zavislosti jako parametru misto importu: `render_ads_tab(conn, run_query, where_sql, where_params)` — `run_query` je argument, ne import. Moduly se nikdy navzajem neimportuji.
+
+**Pravidlo:** P82 — Pri modular refactoru: zadne vzajemne importy mezi moduly. Zavislosti se predavaji jako parametry (dependency injection). Vzor: `tabs/*.py` importuje `metrics`, `filters`, `components`, nikdy `app.py`.
+
+**Provenance:** source-read — `dashboard/tabs/ads.py:14-18` (puvodni import z app.py), `dashboard/app.py:112-113` (circular import path), `dashboard/tabs/ads.py:14-19` (fix: parametr `run_query`).
+
+---
+
+#### GT-098 (mcp-jobs-025): Contract testy chybely pri refactoru — artifact je mel v backlogu
+**Server:** MCP-Jobs | **Status:** Implemented | **Typ:** Process — missing test layer
+
+**Symptom:** Po 5 krocich refactoru (filters, metrics, package split, bulk status) chybelo testovani integrity modulu. LLM implementoval dle artifactu, ktery mel contract testy v Section 6 "Later/backlog".
+
+**Root cause:** Artifact definoval 5 kroku refactoru. Contract testy byly v "Later" sekci. LLM je implementoval az na zaklade vyjadri deva "jsou contract testy dostatecne?". Bez explicitniho pozadavku by zustaly v backlogu = krehka architektura bez ochrany.
+
+**Fix:** Vytvoreno `tests/test_dashboard_contract.py` — 9 hSNR testu: (1) purity: metrics/styling nesmi importovat streamlit, (2) interface: signatury funkci, (3) layers: smery importu (zadne reverse dependencies).
+
+**Pravidlo:** P83 — Pri refactoru na balicky: contract testy SOUCASTI kroku 4 (package split), ne backlog. Povinne testy: (a) purity (zakazane importy), (b) interface (signatury), (c) layers (smery importu). Bez techto testu je modularni architektura krehka.
+
+**Provenance:** source-read — `tests/test_dashboard_contract.py:1-141` (9 testu), `01_METODIKY/05_testing/contract_testing_ontologie_v1.md` (existujici metodika), artifact Section 6 "Later" (chybna priorita).
+
+---
+
 ### 3.7 GCP Infrastructure & Serverless (z pitevní knihy v8)
 
 Číslování: GT-GCP-001 až GT-GCP-005. Samostatná řada (nepřekrývá se s GT-001..GT-094). Přeneseno z `GCP/pitevni_kniha_v8.md` — sémantická analýza + reevaluace (2026-08-21) potvrdila 5 entry s neinferovatelným hSNR datem. Zbylých ~30 záznamů z pitevní knihy je inferovatelných z tréninkových dat LLM nebo příliš specifických pro Bazoš scraping.
@@ -1673,7 +1703,7 @@ echo "$USER ALL=(root) NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/shutdown
 
 ---
 
-## 4. Průřezová pravidla P1-P77 + P-GCP-01..05 (konsolidovaná)
+## 4. Průřezová pravidla P1-P83 + P-GCP-01..05 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -2207,6 +2237,8 @@ Při zakládání nového MCP repozitáře:
 56. **Hard Reset protokol** (P-GCP-05) — při zacyklení >30 minut: smazat poškozený soubor, vložit ověřený blok, smazat data, začít z nuly. Source: GT-GCP-005.
 57. **Unicode-aware regex** (P80) — při parsování textových dat s regionálními formáty: otestovat regex proti reálným datům VCETNE Unicode variací (en-dash U+2013, non-breaking space U+00A0, různé quote znaky). Nikdy nepředpokládat ASCII-only vstup v multilingual scraping pipeline. En-dash a hyphen-minus vypadají identicky — vizuální kontrola nepomůže, nutný DB audit. Source: GT-095.
 58. **Cross-portal dedup: title+company, ne URL** (P81) — cross-portal analytika: nikdy nepoužívat URL jako dedup klíč napříč portály (každý portál má unikátní URL schéma). Používat title+company (nebo fuzzy_title+fuzzy_company) jako dedup signál. URL-based dedup funguje jen uvnitř jednoho portálu. Source: GT-096.
+59. **Modular dependency injection** (P82) — při refactoru na balíčky: žádné vzájemné importy mezi moduly. Závislosti se předávají jako parametry. Vzor: `tabs/*.py` importuje `metrics`, `filters`, `components`, nikdy `app.py`. Source: GT-097.
+60. **Contract tests mandatory při splitu** (P83) — při refactoru na balíčky: contract testy součástí kroku 4 (package split), ne backlog. Povinné: purity (zakázané importy), interface (signatury), layers (směry importů). Source: GT-098.
 
 ---
 
@@ -2214,9 +2246,9 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-096 + GT-GCP-001 az GT-GCP-005) | 99 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 66 |
-| Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 5 |
+| Celkem GT (GT-001 az GT-098 + GT-GCP-001 az GT-GCP-005) | 101 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 67 |
+| Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 6 |
 | Mitigated | 6 |
 | Documented | 18 |
 | Workaround | 3 |
