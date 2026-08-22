@@ -1,8 +1,8 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-06 | **Verze:** 15
+**Datum:** 2026-08-22 | **Verze:** 17
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
-**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp
+**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp, GCP infrastructure (pitevni_kniha_v8)
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
 **Skill:** Pred editaci loadni `skill({name: "kb-workflow"})` → sekce Postmortem Workflow obsahuje pravidla pro konzistentni zapis GT/P a prevenci konfabulace.
 
@@ -18,6 +18,7 @@
 | `pitevni_kniha_mcp_v1.md` (cnc-tools) | Entry 001-014, Diagnostický filtr, P24-P28 | Cross-referenční mapa (nyní redundantní) |
 | `MCP_komplexni_analyza_a_strategie_v1.md` | §9 Secret exposure, EROI framework, §10-11 akční plány | §1 Fenomén MCP, §4 Rešerše, §6 Use case, §7 Predikce |
 | `MCP_practical_workflow_guide_v1.md` | §7 Falsifikace, §8 Rozhodovací framework | §2 Filosofie, §3 Scénáře (není postmortem) |
+| `GCP/pitevni_kniha_v8.md` | GT-GCP-001..005 (5 entries, GCP infra: 5vrstvá auth, cron context, immutable infra, statelessness, Hard Reset) | Zbytek (~30 záznamů): inferovatelné z obecných SE principů nebo příliš specifické (Bazoš scraping, Telegram API, localhost problems) |
 
 ---
 
@@ -1516,7 +1517,163 @@ ignore = ["BLE001"]
 
 ---
 
-## 4. Průřezová pravidla P1-P77 (konsolidovaná)
+#### GT-095 (mcp-jobs-022): Unicode en-dash v salary regex — ticha data korekce
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Data correctness — regex Unicode mismatch
+
+**Symptom:** Dashboard salary analysis ukazoval pracecz hodnoty 45, 43, 42 (tisice Kc) misto realnych 47915, 46625, 44500. Min/max/avg byly systematiky posunute dolu. Zadna chybova hlaska — data vypadala platne, jen byla spatna.
+
+**Root cause:** Salary sloupec obsahuje formaty jako `Plat:65 000 – 80 000 Kc/mesic` s en-dash (U+2013), ne ASCII hyphen-minus (U+002D). Puvodni regex `\s*-\s*` matchoval jen ASCII pomlcku → `SUBSTRING(salary FROM '(\d[\d\s]*)')` extrahoval jen prvni cislo (65) a druhe (80) zahazoval. Vysledek: vsechny range hodnoty byly jen lower bound, avg byl systematiky podhodnoceny. En-dash a hyphen-minus vypadaji v bezne fontu identicky — vizualni kontrola kodu ani outputu problem neodhalila.
+
+**Fix:** Nahrani `SUBSTRING + ASCII dash` za `REGEXP_SPLIT_TO_ARRAY(salary, '[-\u2013]')` — split podle obou znaku, `REGEXP_REPLACE(parts[N], '[^0-9]', '', 'g')` pro extrakci cisel. CTE `salary_parsed`: prvni part = lower bound, druhy part = upper bound, avg = (lower+upper)/2. Live overeni: pracecz `udrzbar` 28 ads, avg 47915 Kc (predtim 42).
+
+**Pravidlo:** P80 — Pri parsovani textovych dat s regionalnimi formaty: otestovat regex proti realnym datum VCETNE Unicode variaci (en-dash, non-breaking space, ruzne quote znaky). Nikdy nepredpokladat ASCII-only vstup v multilingual scraping pipeline.
+
+**Provenance:** source-read — `dashboard.py:584-597` (puvodni regex), `dashboard.py:584-600` (CTE fix); DB audit: 61 unikatnich formatu, en-dash pritomen v 35/61; live overeni: pracecz avg 42->47915, jenprace avg 38600->43207.
+
+---
+
+#### GT-096 (mcp-jobs-023): Cross-portal overlap metrik — URL-based dedup byl misleading
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Analytics correctness — misleading metric
+
+**Symptom:** Dashboard "Cross-Query Overlap" sekce hlasila 0 inzeratu matchujicich vice query. User intuitivne citil, ze to neni mozne — stejne firmy inzeruji na vice portalech.
+
+**Root cause:** Metrik pouzival `GROUP BY url` — ale `url` ma UNIQUE constraint v DB, takze kazdy inzerat ma unikatni URL i kdyz je to stejny job na jinem portalu. Napr. "Serizovac" od Jobik Czech s.r.o. existuje na jenprace (`/nabidka/qj33yp/serizovac`) i pracecz (`/nabidka/f26c2cc6-.../serizovac`) — ale kazdy ma jine URL. URL-based dedup = vzdy 0. Realita: 4 duplicity napric portaly (title+company match).
+
+**Fix:** Prepsani dotazu na `GROUP BY title, company HAVING COUNT(DISTINCT portal) > 1` — nahradi `GROUP BY url, title, company HAVING COUNT(DISTINCT query_name) > 1`. Metrik prejmenovan z "Cross-Query Overlap" na "Cross-Portal Overlap (same job on multiple portals)". DB audit overil 4 realne duplicity: Jobik Czech (jenprace+pracecz), PRATO (jenprace+pracecz), Grafton (jenprace+pracecz), ManpowerGroup (jenprace+pracecz).
+
+**Pravidlo:** P81 — Cross-portal analytika: nikdy nepouzivat URL jako dedup klic napric portaly (kazdy portal ma unikatni URL schema). Pouzivat title+company (nebo fuzzy_title+fuzzy_company) jako dedup signal. URL-based dedup funguje jen uvnitr jednoho portalu.
+
+**Provenance:** source-read — `dashboard.py:545-559` (puvodni dotaz GROUP BY url), `dashboard.py:545-576` (fix GROUP BY title+company); DB audit: 4 radky; live overeni: dashboard zobrazuje 4 cross-portal duplicity.
+
+---
+
+### 3.7 GCP Infrastructure & Serverless (z pitevní knihy v8)
+
+Číslování: GT-GCP-001 až GT-GCP-005. Samostatná řada (nepřekrývá se s GT-001..GT-094). Přeneseno z `GCP/pitevni_kniha_v8.md` — sémantická analýza + reevaluace (2026-08-21) potvrdila 5 entry s neinferovatelným hSNR datem. Zbylých ~30 záznamů z pitevní knihy je inferovatelných z tréninkových dat LLM nebo příliš specifických pro Bazoš scraping.
+
+#### GT-GCP-001 (GCP-009..015): 5vrstvý GCP autentizační stack
+**Doména:** GCP Infrastructure | **Status:** Fixed
+**Typ:** Authentication — Multi-layer identity conflict
+
+**Symptom:** Opakovaná `403 Insufficient Permission` / `403 Scopes Error` / `Service Accounts do not have storage quota` přestože kód obsahuje správné SCOPES a složka v Drive je sdílena. Developer debuguje postupně jednu vrstvu po druhé a nikdy nevidí celek.
+
+**Root cause:** GCP autentizace je 5vrstvá, ne 2vrstvá:
+1. **IAM role** — kdo jsem (softwarová vrstva)
+2. **Access Scopes** — kam smím (infrastrukturní vrstva, ve výchozím=uzamčeno)
+3. **Metadata Server** — generuje tokeny (identity tier)
+4. **Workspace vs. Cloud** — Google odděluje `auth/drive` ≠ `cloud-platform`
+5. **Service Account quota** — SA na osobním účtu = 0 bajtů
+
+Interakce mezi vrstvami nejsou popsány v jednom dokumentu. GCP dokumentace je roztroušená přes IAM, Compute Engine, Workspace a Service Account docs.
+
+**Fix:** Při 403 v GCP ověřit všech 5 vrstev před debugováním:
+1. `gcloud iam roles describe` — ověřit roli
+2. VM → Edit → Access Scopes → "Allow full access to all Cloud APIs"
+3. `curl -H "Metadata-Flavor: Google"` — ověřit identitu
+4. `Credentials.from_service_account_file()` pro Workspace (ne `google.auth.default()`)
+5. Pro osobní účty: SA nepoužívat, přejít na Telegram Bot API
+
+**Pravidlo:** P-GCP-01 — Při 403 v GCP: ověřit všech 5 autentizačních vrstev. Nejčastější příčina: Access Scopes (vrstva 2) nebo Workspace/Cloud mismatch (vrstva 4).
+
+**Provenance:** source-read (pitevni_kniha_v8.md:009-015, 7 záznamů konsolidovaných do jednoho entry)
+
+---
+
+#### GT-GCP-002 (GCP-019..023): Cron Context na GCP VM — absolutní cesty, TTY, sudoers
+**Doména:** GCP Infrastructure | **Status:** Fixed
+**Typ:** Orchestration — Cron environment isolation
+
+**Symptom:** Skript funguje přes SSH, ale přes Crontab: `ModuleNotFoundError`, `sudo: a terminal is required`, `shutdown: command not found`. VM se nevypne.
+
+**Root cause:** Crontab na GCP VM běží v naprostém vakuum:
+- Žádný `$PATH` — systémové příkazy nenalezeny
+- Žádný TTY — `sudo` zablokován
+- Žádné `$VIRTUAL_ENV` — `python` = systémová instalace
+- `/sbin/shutdown` — v Crontu není v PATH, nutná absolutní cesta
+- GCP default region — Cloud Shell default = `us-central1`, funkce = `europe-west1`
+
+**Fix:**
+```bash
+# Crontab:
+/home/user/venv/bin/python /home/user/project/main.py
+# Auto-shutdown ve skriptu:
+/sub/sbin/shutdown -h now
+# sudoers.d NOPASSWD pro shutdown:
+echo "$USER ALL=(root) NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/shutdown
+```
+
+**Pravidlo:** P-GCP-02 — Crontab ≠ SSH. Absolutní cesty ke všemu: Python interpret, systémové binárky, pracovní adresář. `sudo` jen s `NOPASSWD` v `sudoers.d`.
+
+**Provenance:** source-read (pitevni_kniha_v8.md:019-023, 5 záznamů konsolidovaných)
+
+---
+
+#### GT-GCP-003 (GCP-032,036): Immutable Infrastructure — save ≠ deploy
+**Doména:** GCP Infrastructure | **Status:** Fixed
+**Typ:** Serverless — Deployment model
+
+**Symptom:** Uložení souboru v Cloud Shellu se neprojeví v běhu funkce. Snaha "opravit běžící skript" selhává.
+
+**Root cause:** Cloud Function = neměnný kontejnerový "otisk" (Image):
+- `Ctrl+S` = změna lokální kopie na disku konzole
+- Běžící kontejner = izolovaný "otisk" z doby deploye
+- Žádný hotfix za běhu — každá změna = destrukce starého + vytvoření nového
+- `--source .` bere soubory z aktuálního adresáře konzole, ne z Bucketu
+
+**Fix:** Pracovní cyklus: **Upravit → Ctrl+S → gcloud deploy**. Žádný krok nelze vynechat. Před deployem: `cat main.py` pro ověření obsahu.
+
+**Pravidlo:** P-GCP-03 — Serverless = Immutable. Uložení souboru ≠ nasazení. Oprava za běhu = nemožná.
+
+**Provenance:** source-read (pitevni_kniha_v8.md:032, 036)
+
+---
+
+#### GT-GCP-004 (GCP-024,025,044): Serverless Statelessness na GCP — /tmp/ jako RAM
+**Doména:** GCP Infrastructure | **Status:** Fixed
+**Typ:** Serverless — State management (GCP-specific)
+
+**Symptom:** Skript těží stejné inzeráty dokola. `OSError: [Errno 30] Read-only file system: 'master.md'`.
+
+**Root cause:** GCP Cloud Functions specifika:
+- Včetně `/tmp/` se po doběhu smaže CELÝ souborový systém
+- `/tmp/` je RAM-mapped (ne disk) — rychlý, ale efemérní
+- Relativní cesty → zápis do read-only root filesystemu
+- `master.md` z minulé minutě = neexistující soubor
+
+**Fix:**
+```python
+# START: download_from_gcs("master.md", "/tmp/master.md")
+# WORK:  zapisovat do /tmp/
+# END:   upload_to_gcs("/tmp/master.md", "master.md")
+```
+
+**Pravidlo:** P-GCP-04 — GCP Cloud Functions: `/tmp/` = RAM, po doběhu smaže vše. Jediná trvalá paměť = GCS Bucket. Každý start = download, každý konec = upload.
+
+**Provenance:** source-read (pitevni_kniha_v8.md:024, 025, 044)
+
+---
+
+#### GT-GCP-005 (GCP-037): Kognitivní přehlcení — Hard Reset protokol
+**Doména:** Cross-cutting | **Status:** Documented
+**Typ:** Meta — Cognitive ergonomics
+
+**Symptom:** Ztráta přehledu o stavu kódu. Kupí se chyby z nepozornosti. Pocit bezmoci nad systémem. Developer neví, co je experiment a co funguje.
+
+**Root cause:** Pracovní paměť člověka má limit. Po ~2 hodinách inkrementálních změn bez kontextového resetu se kognitivní zátěž stává nefaktorovatelnou. Debugovací session → kaskáda drobných změn → ztráta orientace.
+
+**Fix:** "Tlustá čára" (Hard Reset):
+1. Smazat poškozený soubor
+2. Vložit 100% ověřený blok kódu
+3. Smazat data v Bucketu
+4. Začít z bodu nula
+
+**Pravidlo:** P-GCP-05 — Při zacyklení v chybách >30 minut: Hard Reset. Reset není prohra, je to optimalizace času.
+
+**Provenance:** source-read (pitevni_kniha_v8.md:037)
+
+---
+
+## 4. Průřezová pravidla P1-P77 + P-GCP-01..05 (konsolidovaná)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1932,6 +2089,14 @@ Bot-detekce (Seznam.cz) reaguje na kombinaci `User-Agent` + `Accept` hlavičky �
 76. Je deterministická anti-bot/consent-page blokace ověřena live testem (5/5 reprodukce) a fixnuta per-portal header variantou (UA+Accept kombinace), ne univerzálním UA? (P76)
 77. Loguje stránka s 0 kartami ERROR jen pro page 1 (layout change), a pro page > 1 INFO (end-of-list)? Přijímá `parse_listings` page kontext a `scrape_all` ho předává? (P77)
 
+### V — GCP Infrastructure & Serverless (P-GCP-01..05)
+
+78. Při 403 v GCP: ověřeno všech 5 autentizačních vrstev (IAM role, Access Scopes, Metadata Server, Workspace/Cloud, SA quota)? Nejčastější příčina: Access Scopes nebo Workspace/Cloud mismatch. (P-GCP-01)
+79. Crontab na GCP VM: absolutní cesty ke všemu (Python, binárky, adresáře)? sudo s NOPASSWD v sudoers.d? GCP region = správný (ne default)? (P-GCP-02)
+80. Serverless immutable: každá změna = `gcloud deploy`, ne hotfix za běhu? `Ctrl+S` = změna lokální kopie, ne deploy. (P-GCP-03)
+81. GCP Cloud Functions: `/tmp/` = RAM, po doběhu smaže vše. Start = download z GCS, konec = upload. Žádná trvalá paměť v kontejneru. (P-GCP-04)
+82. Při zacyklení v chybách >30 minut: proveden Hard Reset (smazat poškozený soubor → ověřený blok → smazat data → začít z nuly)? Reset = optimalizace, ne prohra. (P-GCP-05)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -2035,6 +2200,13 @@ Při zakládání nového MCP repozitáře:
 49. **DB-level cross-portal dedup** (P75) — sdileny normalizovany fuzzy klic (NFKD + dash→hyphen) mezi pipeline a DB, fuzzy sloupce + index, batched lookup, priorita vitez dle bohatosti dat (description>salary>company>location), tie-break first-seen
 50. **Anti-bot per-portal headers** (P76) — deterministicka anti-bot/consent blokace (UA+Accept kombinace) overena live testem (5/5), fix per-portal header variantou v __init__ providera
 51. **End-of-list vs layout change** (P77) — 0 karet na strance page>1 = INFO end-of-list (config `pages` > realny pocet stranek), ERROR jen pro page 1. `parse_listings` prijima `page` kontext (default 1), `scrape_all` ho predava. Reference: GT-094.
+52. **GCP 5vrstvá autentizace** (P-GCP-01) — při 403 v GCP ověřit 5 vrstev: IAM role, Access Scopes, Metadata Server, Workspace/Cloud, SA quota. Nejčastější: Access Scopes nebo Workspace/Cloud mismatch. Source: GT-GCP-001.
+53. **Cron ≠ SSH** (P-GCP-02) — crontab na GCP VM = absolutní cesty, sudo s NOPASSWD v sudoers.d, GCP region explicitní (ne default). Source: GT-GCP-002.
+54. **Serverless immutable** (P-GCP-03) — Cloud Function = neměnný kontejnerový otisk. Ctrl+S = lokální kopie. Oprava = gcloud deploy. Source: GT-GCP-003.
+55. **GCS je jediná trvalá paměť** (P-GCP-04) — Cloud Functions /tmp/ = RAM, po doběhu smaže vše. Start = download z GCS, konec = upload. Source: GT-GCP-004.
+56. **Hard Reset protokol** (P-GCP-05) — při zacyklení >30 minut: smazat poškozený soubor, vložit ověřený blok, smazat data, začít z nuly. Source: GT-GCP-005.
+57. **Unicode-aware regex** (P80) — při parsování textových dat s regionálními formáty: otestovat regex proti reálným datům VCETNE Unicode variací (en-dash U+2013, non-breaking space U+00A0, různé quote znaky). Nikdy nepředpokládat ASCII-only vstup v multilingual scraping pipeline. En-dash a hyphen-minus vypadají identicky — vizuální kontrola nepomůže, nutný DB audit. Source: GT-095.
+58. **Cross-portal dedup: title+company, ne URL** (P81) — cross-portal analytika: nikdy nepoužívat URL jako dedup klíč napříč portály (každý portál má unikátní URL schéma). Používat title+company (nebo fuzzy_title+fuzzy_company) jako dedup signál. URL-based dedup funguje jen uvnitř jednoho portálu. Source: GT-096.
 
 ---
 
@@ -2042,14 +2214,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-094) | 92 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 60 |
+| Celkem GT (GT-001 az GT-096 + GT-GCP-001 az GT-GCP-005) | 99 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 66 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 5 |
 | Mitigated | 6 |
-| Documented | 17 |
+| Documented | 18 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **92** |
+| **Kontrolni soucet** | **99** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 63 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -2057,6 +2229,7 @@ Při zakládání nového MCP repozitáře:
 | Z toho DBCL Phase 2 session 2026-07-27 | 7 (GT-071 az GT-077) |
 | Z toho data-correctness fix batch 2026-08-02 | 1 (GT-079) |
 | Z toho ASCII-NOM nomenklatura 2026-08-02 | 1 (GT-080) |
+| Z toho GCP infrastructure (pitevni kniha v8) | 5 (GT-GCP-001 az GT-GCP-005) |
 
 **Poznamka ke statistice:** `Fixed` (53) + `Implemented` (4) + `Mitigated` (6) + `Documented` (11) + `Workaround` (3) + `Pending` (1) = 78? **Korekce:** `Fixed` = 52 (GT-071, GT-073, GT-075 = 3 new fixed) + `Mitigated` = 6 (GT-076 = 1 new mitigated) + `Documented` = 11 (GT-072 = 1 new documented) + `Workaround` = 3 (GT-074 = 0 new, zůstává) + `Pending` = 1 (GT-077 = new pending). Fixed 48+3=51, Implemented 4+0=4, Mitigated 5+1=6, Documented 10+1=11, Workaround 3+0=3, Pending 0+1=1 → 51+4+6+11+3+1 = **76**. GT-001 az GT-077 = **77 položek** (GT-068 berserk pagination = Documented, nikoliv chybějící). Zpřesněná čísla: Fixed=51, Implemented=4, Mitigated=6, Documented=12 (GT-068 je Documented, ne Fixed), Workaround=3, Pending=1 → 51+4+6+12+3+1 = **77**. **OK.**
 
@@ -2082,6 +2255,12 @@ Polozka GT-089 (mcp-jobs-016, Fixed) pridana v13 (2026-08-19) — MCP timeout -3
 
 Polozky GT-090 az GT-093 pridany v14 (2026-08-20) — dedup audit + provider iterace #5/#6 (profesia, volnamista): GT-090 (mcp-jobs-017, Fixed) URL tracking parametry searchId/rps rozbijeji UNIQUE(url) dedup — centralni normalize_url v Ad.__post_init__; GT-091 (mcp-jobs-018, Implemented) cross-portal fuzzy dedup (LMC network, ManpowerGroup) — sdileny fuzzy klice NFKD+dash→hyphen, DB-level enforcement, priorita bohatost dat, batched lookup; GT-092 (mcp-jobs-019, Fixed) Seznam.cz bot-detekce — UA Chrome/120 + Accept → deterministicky consent page (5/5), fix UA Chrome/126 bez Accept; GT-093 (mcp-jobs-020, Documented) test-ordering pollution — sdileny modulovy global _query_store, order-dependent flake. Pravidla P74-P76. Diagnosticky filtr rozsiren o U sekci (checkpointy 74-76). Checklist dedicnosti rozsiren o polozky 48-50. Fixed 57+2=59, Implemented 4+1=5, Documented 16+1=17 → 59+5+6+17+3+1 = **91**. OK.
 
+Polozky GT-GCP-001 az GT-GCP-005 pridany v16 (2026-08-22) — sementicka analiza pitevni_kniha_v8.md (GCP infra) vs GT postmortem master: 5vrstva GCP autentizace, cron context na GCP VM, immutable infra (save ≠ deploy), serverless statelessness (GCP-specific), Hard Reset protokol. Reevaluace: 6 navrzenych → 5 finalnich (GT-GCP-006 amputace jadra = inferovatelne). 30+ zbylych zaznamu = inferovatelne z obecných SE principů. Pravidla P-GCP-01 az P-GCP-05. Diagnosticky filtr rozsiren o V sekci (checkpointy 78-82). Checklist dedicnosti rozsiren o polozky 52-56. Mapa superseded rozsirena o pitevni_kniha_v8.md. Fixed 60+4=64, Documented 17+1=18 → 64+5+6+18+3+1 = **97**. OK.
+
 ---
 
 *MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries). — 2026-08-20 — v15 — Pridan GT-094 (mcp-jobs-021: false-positive ERROR "0 cards" na end-of-list strankach, P77). Diagnosticky filtr rozsiren o checkpoint 77. Checklist dedicnosti rozsiren o polozku 51. Aktualizovany statistiky (92 entries).*
+
+---
+
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries). — 2026-08-20 — v15 — Pridan GT-094 (mcp-jobs-021: false-positive ERROR "0 cards" na end-of-list strankach, P77). Diagnosticky filtr rozsiren o checkpoint 77. Checklist dedicnosti rozsiren o polozku 51. Aktualizovany statistiky (92 entries). — 2026-08-22 — v17 — Pridany GT-095 (mcp-jobs-022: Unicode en-dash v salary regex, ticha data korekce, P80) a GT-096 (mcp-jobs-023: cross-portal overlap metrik URL-based misleading, P81). 2 Fixed, 2 nove P-pravidla (P80-P81). Aktualizovany statistiky (99 entries).*
