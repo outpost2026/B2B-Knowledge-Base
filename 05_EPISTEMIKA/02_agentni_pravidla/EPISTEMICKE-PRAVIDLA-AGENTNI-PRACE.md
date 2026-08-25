@@ -231,6 +231,22 @@ git add
 git commit
 ```
 
+### 5.4 Gate protokol destruktivních operací (P84–P89)
+
+Vznikl incidentem #2 (2026-08-25, Meteo_scraper_SQL): pravidla §5.2 existovala, ale agent je v rozhodovacím momentu nevyvolal (retrieval failure). Tento protokol je povinný INLINE krok před nebezpečným slovesem.
+
+| P | Pravidlo |
+|---|----------|
+| **P84** | Echo-back gate: před destruktivní operací cituj plnou cestu + přesný příkaz + očekávaný počet souborů; potvrzení musí mířit na TENTO cíl. Souhlas s jiným indexem/bodem ≠ souhlas. |
+| **P85** | Kolize číslovaných seznamů (uživatelův × agentův plán): čísla se NEinterpretují. Přepiš polozky jmény ("mazat X, zachovat Y — potvrzuješ?") a čekej. |
+| **P86** | Soft-delete mandate: mazání pouze do Recycle Bin nebo staging `_ARCHIVE/`. Kombinace `-Force -Recurse` (permanent delete, obchází Recycle Bin) jen po P84 + P87, jako samostatný krok. |
+| **P87** | Integrity snapshot: před batch FS operací count+bytes (`Get-ChildItem -Recurse \| Measure-Object`), po operaci diff. Mismatch = STOP. existence cesty NENÍ verifikace obsahu. |
+| **P88** | Selhání nebo OS lock u destruktivní operace = STOP signál (poslední linie obrany). Retry bez nové explicitní autorizace zakázán. |
+| **P89** | Untracked soubory = datové riziko: flagovat + navrhnout zálohu. Hromadné navrhování mazání/ignorace untracked obsahu zakázáno bez per-file rozhodnutí vlastníka. |
+
+Plná kauzalní analýza: `02_ANALYZY/08_incident_analyzy/INCIDENT_ANALYZA_02_AGENTNI_DESTRUKCE_METEO_2026-08-25.md`
+
+
 ---
 
 ## 6. Práce s agentními nástroji
@@ -378,6 +394,10 @@ Před KAŽDÝM úkolem s agentem:
 - Smazal Documents, Downloads, Music, Pictures
 - **Poučení:** PowerShell na Windows sleduje junctions. Používej `cmd.exe /c rmdir /S /Q` pro bezpečné mazání.
 
+### 9.5 Agentní LLM — Meteo_scraper_SQL (srpen 2026, incident #2)
+- Agent vyřešil kolizi dvou číslovaných seznamů hádem místo dotazem; interpretoval "3 - standalone" opačně a smazal standalone repo včetně `.git` a **untracked** `docs/` (longitudinální data ~2 měsíce měření). `-Force` obchází Recycle Bin; OS lock obcházen retryem; po "FAILED" hlášena dezinformace ("smažeš ručně později").
+- **Poučení:** Pravidlo uložené v docs agent v rozhodovacím momentu nevyvolá. Kontrola začíná u mechanického gate (permission config §6.1), inline echo-backu (§5.4 P84) a integrity snapshotu (P87) — ne u prose pravidla nacteného na startu session.
+
 ---
 
 ## 10. Contact a eskalace
@@ -392,11 +412,26 @@ Pokud agent provedl nechtěnou operaci:
 
 ---
 
+## 11. Pravidla komprese dokumentace a skillů (C1–C5)
+
+Aplikují se na SKILL.md soubory a agentní pravidlové dokumenty. Vzorový stav: `mcp-server-dev` (nula inferable sekcí, P-rule referencí).
+
+| C | Pravidlo |
+|---|----------|
+| **C1** | Žádné inferable sekce — co lze odvodit z kódu/kontextu, se nepíše. |
+| **C2** | Imperativ + trigger + pointer. Prose jen pro důvod nezjevný z kódu. |
+| **C3** | Cross-file duplicita zakázána: jeden kanon, jinde pouze 1řádkový trigger + odkaz na kanon. |
+| **C4** | Pravidlo bez nezjevného důvodu = smazat. |
+| **C5** | Tabulka > odrážky > odstavec. |
+
+---
+
 ## Revize
 
 | Datum | Změna | Autor |
 |-------|-------|-------|
 | 17.06.2026 | Vytvoření dokumentu | PC |
+| 25.08.2026 | §5.4 Gate protokol (P84–P89), §9.5 incident #2, §11 kompresní pravidla (C1–C5) — incident Meteo_scraper_SQL | PC + agent |
 
 ---
 
