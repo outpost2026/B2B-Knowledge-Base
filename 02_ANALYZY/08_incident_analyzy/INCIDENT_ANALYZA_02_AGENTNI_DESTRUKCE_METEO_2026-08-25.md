@@ -13,7 +13,7 @@
 | **Agent** | ox-alpha via opencode IDE (bash/PowerShell tool) |
 | **Skoda** | Nevratne smazan obsah `Meteo_scraper_SQL/` vcetne `.git/` a **untracked** `docs/` |
 | **Ztracena data** | Longitudinalni zaznamy pestovane kultury: MD soubory >50 KB, ~2 mesice mereni, frekvence ~1x/tydne (~8+ mereni) |
-| **Obnova** | Tracked obsah obnoven (git re-init + objects); **untracked docs/ = nenavratne ztraceno** (P(recovery nizke)) |
+| **Obnova** | Tracked obsah obnoven (git re-init + objects); untracked docs/ = **PERMANENTNÍ ZTRÁTA potvrzena** (Recuva deep scan 2026-08-25: 0 files recovered) |
 | **Predchozi incident** | 16.06.2026 — destrukce systemovych souboru pri "trimming" ukolu → vznik AGENTS.md, guardrails, EPISTEMICKE-PRAVIDLA |
 
 **Jadro problemu:** Mitigace z incidentu #1 chránily **systemove cesty a git historii**. Incident #2 probehl **uvnitr povoleneho rootu** na **untracked datech** — presne v slepe zone existujicich pravidel. Pravidla byla nactena (skill load na startu session), ale v rozhodovacim momentu **nebyla konzultovana**.
@@ -156,7 +156,7 @@ Pri kazdem auditu repa agent FLAGE untracked soubory jako datove riziko a navrhn
 | Root MD (AUDIT, README, REPORT) | tracked + untracked kopie | prezily (lock) | ANO (jiż obnoveno) |
 | `meteo_scraper_local.py`, `data/*` | tracked | prezily/casticne | ANO (obnoveno, `80648b1`) |
 | `.git/` (cela historie) | existoval | ZNICEN | tracked obsah ano (re-init), historie hashu ne |
-| **`docs/` longitudinalni MD >50 KB** | **UNTRACKED** | **SMAZANY (-Force)** | **NE — jen NTFS carving (Recuva admin), P(uspech) nizke-po scanu** |
+| **`docs/` longitudinalni MD >50 KB** | **UNTRACKED** | **SMAZANY (-Force)** | **NE — Recuva deep scan dokončen 2026-08-25: 0 obnovitelných souborů (MFT přepsán). PERMANENTNÍ ZTRÁTA.** |
 
 ---
 
@@ -168,6 +168,8 @@ Dalsi kompresi lze formulovat takto:
 
 > **Agentni bezpecnost = odstraneni single decision point.** Kazdy workflow, kde jedna LLM volba (interpretace ambigue tokenu) rozhoduje o nevratnem osudu dat, je designove vadny — nezavisle na tom, jak dobre jsou pravidla napsana.
 
+**Dohra (2026-08-25, uzavření případu):** Recuva deep scan potvrdil permanentní ztrátu docs/ — 0 obnovitelných souborů. Riziko identifikované touto analýzou (P89: untracked = unprotected) se realizovalo dříve, než byla mitigace nasazena. Poučení pro budoucí audity: **identifikované datové riziko není položkou backlogu, ale čekající ztrátou s neznámým termínem.** Priorita nápravy datové expozice > priorita zápisu pravidel.
+
 ---
 
 ## 9. Provenance
@@ -177,3 +179,10 @@ Dalsi kompresi lze formulovat takto:
 - **Facts verified:** git_status_all output (a6778b9 clean pred incidentem), Remove-Item stderr, Test-Path results, git log/reflog/fsck po re-init, vssadmin/FileHistory/restore-point failures, recycle-bin SID scan
 - **Neovereno (hypotezy oznacene):** presny proces parcialniho smazani pri locku (P>0.7: retry smazal obsah, lock drzel jen top-level handle); opencode permissions syntaxe (k overeni)
 - **Navaznost:** P84-P89 cekaji na schvaleni zapisu do EPISTEMICKE-PRAVIDLA + AGENTS.md; harness guard (B) jako samostatny ukol s CO/PROC/JAK/EFEKT/RIZIKO analyzou
+
+## Revize
+
+| Datum | Změna |
+|-------|-------|
+| 25.08.2026 | Vytvoření analýzy (v1) |
+| 25.08.2026 (II) | Dohra: Recuva deep scan potvrdil permanentní ztrátu docs/ (0 files recovered). Mitigace P84-P89 + deny-gate nasazeny tentýž den. **Incident uzavřen.** |
