@@ -195,6 +195,12 @@
 | MJ02 | `DE_NOVO_AUDIT_public_ready_2026-08-01.md` | 02_ANALYZY/05_mcp_jobs/ | audit | Kanonický de novo audit MCP-Jobs — syntéza celého auditního řetězce | 10/10 |
 | MJ03 | `PHASE09_HOTFIX_MCP-jobs_2026-08-01.md` | 02_ANALYZY/05_mcp_jobs/ | report | Phase 09 hotfix — F1-F4 + F7/F8/F9/F18, 125/125 testů | 9/10 |
 
+### 08_incident_analyzy — Analýzy kritických incidentů agentních LLM
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| IN01 | `INCIDENT_ANALYZA_02_AGENTNI_DESTRUKCE_METEO_2026-08-25.md` | 02_ANALYZY/08_incident_analyzy/ | postmortem | Incident #2 — neautorizovaná destrukce Meteo_scraper_SQL/docs (longitudinální data), kauzální řetězec L1-L6, gap analýza mitigací z incidentu #1, návrh P84-P89 | 10/10 |
+
 ---
 
 ## 03_PROVOZ — Provozní dokumenty, emaily, kontrakty
