@@ -259,7 +259,7 @@
 
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
-| MCP01 | `MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` | tento repo | postmortem | Jediný zdroj pravdy postmortemů (GT-001..042); superseded 4 pitevní knihy + 2 strategie | 9/10 |
+| MCP01 | `MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` | tento repo | postmortem | Jediný zdroj pravdy postmortemů (GT-001..105 + GT-GCP-001..005, 108 záznamů, 84 pravidel P1–P96+P-GCP); superseded 4 pitevní knihy + 2 strategie + v1 (dedup, komprese −35 %) | 9/10 |
 | MCP02 | `Hluboky_ponor_do_rezerv_Frontiery_vyvoje_MCP_serveru_v1.md` | tento repo | akční plán | Komprimovaný 3-týdenní plán rezerv MCP vývoje (F3; plná verze v git historii) | 5/10 |
 
 ### 01_reverse_engineering — RE case studies, binární formáty
