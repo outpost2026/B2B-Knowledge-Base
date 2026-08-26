@@ -1,6 +1,6 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-08-22 | **Verze:** 18
+**Datum:** 2026-08-26 | **Verze:** 19
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
 **Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp, GCP infrastructure (pitevni_kniha_v8)
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
@@ -1577,6 +1577,111 @@ ignore = ["BLE001"]
 
 ---
 
+#### GT-099 (mcp-jobs-026): Streamlit React #185 — layout shift kolem st.dataframe(on_select) + reintrodukce odstraneneho fixu
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Frontend — UI render loop + process regression
+
+**Symptom:** Klik na radek tabulky → `Minified React error #185` (Maximum update depth exceeded), prohlížeč kolabuje. pytest 237/237 PASS — chyba viditelná jen v runtime.
+
+**Root cause:** Známá třída bugu streamlit#7949/#9490 (glide-data-grid resize loop): `st.dataframe(use_container_width=True, on_select="rerun")` uvnitř `st.tabs` + podmíněné bloky renderované POD tabulkou po výběru → layout shift → přepočet šířky gridu → smyčka. Aggravující faktor: pandas 3.0.5 ve venv mimo vlastní pin `<3.0` (deploy image měl 2.3.3 → lokálně padalo, v Dockeru ne). Procesová vrstva: commit `8ff1c6e` odstranil `on_select` (oprava fungovala), commit `1602982` ho vrátil zpět s jiným guardem (stale indices = jen Python IndexError) BEZ reprodukce originálního scénáře → bug reintrodukován.
+
+**Fix:** Detail panel přesunut NAD tabulku přes selection persistence (`session_state.ads_selected_ids` + jediný `st.rerun()` při změně výběru — obsah nad gridem mění výšku, ne šířku kontejneru); pandas downgrade do specifikace. Sidebar varianta zamítnuta UX (description nečitelná v úzkém sloupci).
+
+**Pravidlo:** P90 — (a) UI layout změny kolem interaktivního `st.dataframe(on_select)` ověřovat RUČNÍM smoke testem: unit testy nerenderují frontend. (b) Znovu-povolení dříve odstraněného triggeru bez reprodukce originálního selhání = reintrodukce bugu; fix bez post-fix verifikace na stejném scénáři není fix.
+
+**Provenance:** source-read — git show `8ff1c6e`, `1602982`; `dashboard/tabs/ads.py` (final layout); upstream streamlit#7949/#9490; venv pip list vs pyproject pin. Manuální smoke test autor 2026-08-26.
+
+---
+
+#### GT-100 (mcp-jobs-027): print-before-raise — st.secrets warning nelze chytit try/except
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** API side effect — output before exception
+
+**Symptom:** `No secrets found. Valid paths for a secrets.toml...` 2x při startu dashboardu, přestože kód má try/except kolem přístupu ke `st.secrets`.
+
+**Root cause:** Pouhý dotek `st.secrets` (i přes `getattr(st.secrets, "_file_path", "")`) spustí parse, který NEJDŘÍV vytiskne warning do konzole (`streamlit/runtime/secrets.py:111`) a AŽ POTOM vyhodí výjimku. `try/except` zachytí výjimku — již proběhlý tisk nezachytí nikdy. "Graceful detection" z předchozího fixu byla nefunkční právě proto.
+
+**Fix:** Existence-check souboru PŘED dotykem API (`Path.home()/".streamlit"/"secrets.toml"`, `Path.cwd()/".streamlit"/"secrets.toml"`); `st.secrets` čten jen když soubor fyzicky existuje (`src/mcp_jobs/db.py:get_database_url`).
+
+**Pravidlo:** P91 — API s print-before-raise side efektem se neprobouvá "dotykem a try/except". Ověř stav přímo (existence souboru / dokumentovaný flag) nebo potlač konkrétní logger. Side-effect výstup nelze chytit výjimkou — proběhl dřív.
+
+**Provenance:** source-read — `.venv/Lib/site-packages/streamlit/runtime/secrets.py:111`, `src/mcp_jobs/db.py:92-108` (pred/por fix), git show `8ff1c6e`.
+
+---
+
+#### GT-101 (mcp-jobs-028): Dependency truth drift — 4 zdroje pravdy + stale editable metadata
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Environment — dependency contract divergence
+
+**Symptom:** Bug lokálně reprodukovatelný, v Dockeru ne (a naopak). `pip show mcp-jobs` hlásil 0.2.0, kód i pyproject 0.4.0/0.5.0, README 0.5.0.
+
+**Root cause:** Čtyři soubory tvrdily o pandas čtyři různé věci: pyproject `<3.0`, requirements.txt (pandas chybí úplně), deploy/dashboard_requirements.txt `==2.3.3`, venv realita `3.0.5` (porušovala vlastní pin). Samostatný problém: editable instalace vznikla před verzovacími bumpami — `dist-info` štítek zůstal 0.2.0 navždy (metadata se nepřegenerovávají sama).
+
+**Fix:** Jeden zdroj pravdy (pyproject), deriváty synchronizovány; `pip install "pandas>=2,<3"` downgrade; `pip install -e .` reinstal (štítek 0.5.0); `pip check` jako součást verification gate.
+
+**Pravidlo:** P92 — Dependency kontrakt = JEDEN zdroj pravdy (pyproject); requirements/deploy soubory jsou ručně synchronizované deriváty. Po každém version bump `pip install -e .` (dist-info se nepřepisuje samo). Verification gate obsahuje `pip check`. Když "u mě padá, u tebe ne": porovnej nejen kód, ale `pip list`.
+
+**Provenance:** source-read — pyproject.toml, requirements.txt, deploy/dashboard_requirements.txt, venv `pip list`, `pip show` (0.2.0 pred reinstalem, 0.5.0 po).
+
+---
+
+#### GT-102 (mcp-jobs-029): Wheel bez package-data — tichá totální degradace scoringu
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Packaging — missing data files + silent except
+
+**Symptom:** ŽÁDNÝ symptom — po `pip install .` (wheel) by všechny tech_score v DB byly NULL, bez jediné chyby v logu.
+
+**Root cause:** `skills_config.json` ležel vedle kódu v `src/mcp_jobs/`, ale nebyl v `[tool.setuptools.package-data]` → wheel ho neobsahoval → `SkillsCatalog` FileNotFoundError → `_extract_skills` broad-except vrátil `{}` ticho. Editable install a Docker `COPY src/` fungovaly (soubor fyzicky přítomen) — rozpad by se projevil až na Azure wheel deployi.
+
+**Fix:** `[tool.setuptools.package-data] mcp_jobs = ["skills_config.json"]` + build verifikace: `pip wheel . --no-deps` + inspekce `ZipFile.namelist()` (json přítomen) — ověřeno buildem, ne jen konfigurací.
+
+**Pravidlo:** P93 — Data soubory vedle modulu musí být deklarovány v package-data A ověřeny build inspekcí (wheel namelist), konfigurace sama není důkaz. Broad-except kolem kritické funkce bez logování (komplement P55) maskuje totální rozpad funkce — tichý except je nejdražší druh chyby, protože ji nedeklaruje.
+
+**Provenance:** source-read — pyproject.toml (package-data sekce), `src/mcp_jobs/skills_catalog.py:_load_config`, `db.py:_extract_skills` except path; live wheel build + namelist check 2026-08-26.
+
+---
+
+#### GT-103 (mcp-jobs-030): Name-based introspekce selhává na heterogenních signaturách
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Frontend — dispatcher design
+
+**Symptom:** Analyza tab: `TypeError: portal_effectiveness() missing 1 required positional argument: 'high_signal_queries'` a `tech_score_distribution() takes 1 positional argument but 2 were given` — až v runtime (pytest nerenderuje UI).
+
+**Root cause:** Dispatcher hledal parametr podle JMÉNA `"queries" in signature.parameters`. metrics.py ale používá i `high_signal_queries` (portal_effectiveness) a některé funkce berou jen `(conn)` (tech_score_distribution, portal_quality). Dvě kolize téhož typu za session: jméno ≠ kontrakt.
+
+**Fix:** Explicitní větve pro speciální případy (velocity/top_skills/top_scored_ads) + generický tail váže POZICÍ podle arity (`len(params) >= 2` → `fn(conn, queries)`; metrics.py konvence: 2. poziční parametr = query filtr).
+
+**Pravidlo:** P94 — Když rodina funkcí nemá stabilní JMENNÝ kontrakt, vážěj strukturou (pozice/arity), ne jmény — jména jsou v Pythonu jen doporučení. Dispatcher pokrývající rodinu funkcí ověřuj runtime smoke testem CELÉ rodiny, ne vzorkem (chybovaly 2 z 11).
+
+**Provenance:** source-read — `dashboard/app.py:run_metric` (pred/por fix), `dashboard/metrics.py` signatury, `data/dashboard.log` tracebacky 2026-08-26.
+
+---
+
+#### GT-104 (mcp-jobs-031): Framework logger hierarchy — tracebacky míjejí root handler; setup per rerun
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Logging — logger hierarchy + idempotency
+
+**Symptom:** `data/dashboard.log` plný INFO z vlastního loggeru, ale streamlit "Uncaught app exception" tracebacks pouze na stderr/konzoli — v logu nikdy.
+
+**Root cause:** Streamlit logger má vlastní handler chain s `propagate=False` → jeho záznamy nikdy nedorazí k root handleru z `logging.basicConfig()`. Sekundárně: setup funkce volaná v `main()` běží pri KAŽDÉM rerunu → bez guardu by každý rerun přidal další FileHandler → duplicitní řádky v logu.
+
+**Fix:** FileHandler připojen PŘÍMO na `logging.getLogger("streamlit")` (+ `propagate=False` proti duplicitám přes root) + idempotence guard (`_LOGGING_CONFIGURED` flag).
+
+**Pravidlo:** P95 — Framework loggery s vlastním chainem (propagate=False) potřebují handler připojen přímo na jejich uzel — root config nestačí. Setup funkce volané z render cyklu musí být idempotentní (guard flag), jinak duplicity handlerů/registrací.
+
+**Provenance:** source-read — `dashboard/app.py:_setup_logging` (pred/por fix), pozorování: dashboard.log obsah vs console output 2026-08-26.
+
+---
+
+#### GT-105 (mcp-jobs-032): Flaky test race — background job thread + live network I/O v unit testech
+**Server:** MCP-Jobs | **Status:** Fixed | **Typ:** Testing — async race + live I/O (příbuzné GT-093)
+
+**Symptom:** `test_store_and_list_resources` občas FAIL (`assert len(listing) == 1` dostal 2); izolovaně vždy PASS; full suite občas PASS.
+
+**Root cause:** Jiný test submitnul REÁLNÝ pipeline job (`search_from_config` → ThreadPoolExecutor → live scrape jobs.cz). Jeho vlákno zavolalo `_store_results()` až PO `clear()` sdíleného `_query_store` v pozdějším testu → asynchronní mutace sdíleného stavu. GT-093 dokumentuje sekvenční variantu (ordering pollution); tato je časová (thread timing) — horší detekovatelnost.
+
+**Fix:** Monkeypatch stub `_run_pipeline` v submit testu (žádný live scrape, žádný background zápis); full suite 237/237 PASS 2x za sebou.
+
+**Pravidlo:** P96 — Async/background cesty v testech VŽDY stubovat (monkeypatch runneru před submittem). Unit testy NESMÍ provádět live network I/O. Flaky test = determinismus bug, ne "občas se stane" — dvě zelené pásma za sebou jsou minimum gate před označením za stabilní.
+
+**Provenance:** source-read — `tests/test_server.py:test_search_from_config_submits_job` (pred/por fix), `server.py:_submit_job/_run_pipeline`, reprodukce flake full-suite run 2026-08-26.
+
+---
+
 ### 3.7 GCP Infrastructure & Serverless (z pitevní knihy v8)
 
 Číslování: GT-GCP-001 až GT-GCP-005. Samostatná řada (nepřekrývá se s GT-001..GT-094). Přeneseno z `GCP/pitevni_kniha_v8.md` — sémantická analýza + reevaluace (2026-08-21) potvrdila 5 entry s neinferovatelným hSNR datem. Zbylých ~30 záznamů z pitevní knihy je inferovatelných z tréninkových dat LLM nebo příliš specifických pro Bazoš scraping.
@@ -2239,6 +2344,13 @@ Při zakládání nového MCP repozitáře:
 58. **Cross-portal dedup: title+company, ne URL** (P81) — cross-portal analytika: nikdy nepoužívat URL jako dedup klíč napříč portály (každý portál má unikátní URL schéma). Používat title+company (nebo fuzzy_title+fuzzy_company) jako dedup signál. URL-based dedup funguje jen uvnitř jednoho portálu. Source: GT-096.
 59. **Modular dependency injection** (P82) — při refactoru na balíčky: žádné vzájemné importy mezi moduly. Závislosti se předávají jako parametry. Vzor: `tabs/*.py` importuje `metrics`, `filters`, `components`, nikdy `app.py`. Source: GT-097.
 60. **Contract tests mandatory při splitu** (P83) — při refactoru na balíčky: contract testy součástí kroku 4 (package split), ne backlog. Povinné: purity (zakázané importy), interface (signatury), layers (směry importů). Source: GT-098.
+61. **Frontend smoke test gate** (P90) — UI layout změny kolem `st.dataframe(on_select)` ověřovat ručním během; pytest nerenderuje frontend. Znovu-povolení odstraněného triggeru bez reprodukce = reintrodukce. Source: GT-099.
+62. **Print-before-raise defense** (P91) — API s warning-before-exception side efektem neověřovat dotykem+try/except; ověřit stav přímo (existence souboru). Source: GT-100.
+63. **Single dependency source of truth** (P92) — pyproject = kontrakt, requirements/deploy = synchronizované deriváty; po version bump `pip install -e .`; `pip check` ve verification gate. Source: GT-101.
+64. **Package-data build verification** (P93) — data soubory deklarovány v package-data + ověřeny wheel namelist inspekcí; broad-except bez logování maskuje totální rozpad. Source: GT-102.
+65. **Structural dispatch over name matching** (P94) — dispatcher rodiny funkcí váže pozicí/arity, ne názvy parametrů; runtime smoke test celé rodiny. Source: GT-103.
+66. **Framework logger direct attach** (P95) — loggery s propagate=False potřebují handler přímo na uzlu; setup v render cyklu idempotentní (guard flag). Source: GT-104.
+67. **No live I/O in unit tests** (P96) — async/background cesty stubovat monkeypatchem; flaky = determinismus bug; 2 zelená pásma = minimum gate. Source: GT-105.
 
 ---
 
@@ -2246,14 +2358,14 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT (GT-001 az GT-098 + GT-GCP-001 az GT-GCP-005) | 101 |
-| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 67 |
+| Celkem GT (GT-001 az GT-105 + GT-GCP-001 az GT-GCP-005) | 108 |
+| Fixed (vcetne "Fixed / Mitigated", "Fixed (policy)") | 74 |
 | Implemented (novy feature / mechanismus — L2 cache, pipeline mode atd.) | 6 |
 | Mitigated | 6 |
 | Documented | 18 |
 | Workaround | 3 |
 | Pending | 1 |
-| **Kontrolni soucet** | **99** |
+| **Kontrolni soucet** | **108** |
 | Z toho environment/CI issues | 11 |
 | Z toho application logic issues | 63 |
 | Z toho cross-repo (plati pro vsechny) | 17 |
@@ -2289,6 +2401,8 @@ Polozky GT-090 az GT-093 pridany v14 (2026-08-20) — dedup audit + provider ite
 
 Polozky GT-GCP-001 az GT-GCP-005 pridany v16 (2026-08-22) — sementicka analiza pitevni_kniha_v8.md (GCP infra) vs GT postmortem master: 5vrstva GCP autentizace, cron context na GCP VM, immutable infra (save ≠ deploy), serverless statelessness (GCP-specific), Hard Reset protokol. Reevaluace: 6 navrzenych → 5 finalnich (GT-GCP-006 amputace jadra = inferovatelne). 30+ zbylych zaznamu = inferovatelne z obecných SE principů. Pravidla P-GCP-01 az P-GCP-05. Diagnosticky filtr rozsiren o V sekci (checkpointy 78-82). Checklist dedicnosti rozsiren o polozky 52-56. Mapa superseded rozsirena o pitevni_kniha_v8.md. Fixed 60+4=64, Documented 17+1=18 → 64+5+6+18+3+1 = **97**. OK.
 
+Polozky GT-099 az GT-105 pridany v19 (2026-08-26, vsechny Fixed) — MCP-Jobs code audit + post-refactor frontend stabilizace: GT-099 (mcp-jobs-026) Streamlit React #185 layout shift + reintrodukce odstraneneho fixu (P90); GT-100 (mcp-jobs-027) print-before-raise st.secrets (P91); GT-101 (mcp-jobs-028) dependency truth drift 4 zdroje + stale editable dist-info (P92); GT-102 (mcp-jobs-029) wheel bez package-data → tichy NULL scoring (P93, komplement P55); GT-103 (mcp-jobs-030) name-based introspekce vs heterogenni signatury → positional arity dispatch (P94); GT-104 (mcp-jobs-031) streamlit logger propagate=False miji root handler + idempotentni setup (P95); GT-105 (mcp-jobs-032) flaky test race background thread + live I/O, cross-ref GT-093 (P96). Pozn.: cisla P84-P89 zustavaji rezervovana epistemicke rade (gate protokol destruktivnich operaci). Checklist dedicnosti rozsiren o polozky 61-67. Fixed 67+7=74 → 74+6+6+18+3+1 = **108**. OK.
+
 ---
 
 *MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries). — 2026-08-20 — v15 — Pridan GT-094 (mcp-jobs-021: false-positive ERROR "0 cards" na end-of-list strankach, P77). Diagnosticky filtr rozsiren o checkpoint 77. Checklist dedicnosti rozsiren o polozku 51. Aktualizovany statistiky (92 entries).*
@@ -2296,3 +2410,5 @@ Polozky GT-GCP-001 az GT-GCP-005 pridany v16 (2026-08-22) — sementicka analiza
 ---
 
 *MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-07-27 — v6 — Pridano GT-071 az GT-077 (DBCL Phase 2 RUN_004 root cause analysis: engine_lines silent fail, K0 variance, engine.analysis bez depth limit, cache invalidation, PV SAN domain gap, engine lock propagation, truncated BFS logging). Pridana pravidla P55-P61. Rozsiren diagnosticky filtr o 7 checkpointu (Q sekce). Rozsiren checklist dedicnosti o 7 polozek (30-36). Aktualizovany statistiky (77 entries). — 2026-08-01 — v7 — Pridan GT-078 (ruff --fix destruktivni autofix: F401 side-effect imports, server.py lichess-analyzer) + pravidlo P62. Checklist dedicnosti rozsiren o polozku 37 (lint autofix guard). Aktualizovany statistiky (78 entries). — 2026-08-02 — v8 — Pridan GT-079 (data-correctness fix batch 1+2: getattr garbage, hardcoded perspektiva, KB cesta, cache kolize barev, timeout kill, ticha degradace ACPL, legacy fen guard) + pravidla P63-P68 + aktualizace P41. Diagnosticky filtr rozsiren o R sekci (62-67). Checklist dedicnosti rozsiren o polozky 38-43. Aktualizovany statistiky (79 entries). — 2026-08-02 — v9 — Pridan GT-080 (ASCII-NOM nomenklatura workspace-wide: mojibake git objekty cp1250 vs UTF-8, ne-ASCII nazvy napric 6 repy) + pravidlo P69. Diagnosticky filtr rozsiren o S sekci (68). Checklist dedicnosti rozsiren o polozku 44. Guard skript `.scripts/ascii_filenames_check.ps1`. Aktualizovany statistiky (80 entries). — 2026-08-02 — v9.1 — GT-080 rozsireni: kontraktni validator referenci `.scripts/context_refs_check.py`, opraveno 31 broken referenci napric 7 repy, diagnosticky filtr rozsiren o checkpoint 69 (referencni integrita po renames). — 2026-08-02 — v9.2 — Pridan GT-081 (architektonicky puvod ruffu v lichess-MCP: CI gate vs pre-commit hook, semanticka eskalace pravidel) + rozsireni P62 (separace kontroly --check a mutace --fix). Aktualizovany statistiky (81 entries). — 2026-08-06 — v10 — Pridany GT-082?/GT-083 (mcp-jobs-010: 3-fazova pipeline), GT-084?/GT-085 (mcp-jobs-012: cache failure sentinel). — 2026-08-18 — v11 — Pridany GT-086 (mcp-jobs-013: ruff default rule set drift, pravidlo P72, komplement GT-081) a GT-087 (mcp-jobs-014: MCP timeout sync pipeline + client timeout sementika, async submit+poll, P13 rozsireno). Diagnosticky filtr rozsiren o T sekci (70-71). Checklist dedicnosti rozsiren o polozky 45-46. Oprava reference GT-085: P73 → P71. Aktualizovany statistiky (85 entries). — 2026-08-18 — v12 — Pridan GT-088 (mcp-jobs-015: test fixture TRUNCATE proti sdilene dev DB, pravidlo P73 test izolace). Diagnosticky filtr rozsiren o checkpoint 72. Checklist dedicnosti rozsiren o polozku 47. Aktualizovany statistiky (86 entries). — 2026-08-19 — v13 — Pridan GT-089 (mcp-jobs-016: MCP timeout pres logging.lastResort stderr, P25 rozsireno). Diagnosticky filtr rozsiren o checkpoint 31 + 44. Aktualizovany statistiky (87 entries). — 2026-08-20 — v14 — Pridany GT-090 (mcp-jobs-017: URL tracking parametry rozbiji UNIQUE dedup, P74), GT-091 (mcp-jobs-018: cross-portal fuzzy dedup DB-level, P75), GT-092 (mcp-jobs-019: Seznam bot-detekce UA+Accept, P76), GT-093 (mcp-jobs-020: test-ordering pollution, P73 rozsireno). Diagnosticky filtr rozsiren o U sekci (74-76). Checklist dedicnosti rozsiren o polozky 48-50. Aktualizovany statistiky (91 entries). — 2026-08-20 — v15 — Pridan GT-094 (mcp-jobs-021: false-positive ERROR "0 cards" na end-of-list strankach, P77). Diagnosticky filtr rozsiren o checkpoint 77. Checklist dedicnosti rozsiren o polozku 51. Aktualizovany statistiky (92 entries). — 2026-08-22 — v17 — Pridany GT-095 (mcp-jobs-022: Unicode en-dash v salary regex, ticha data korekce, P80) a GT-096 (mcp-jobs-023: cross-portal overlap metrik URL-based misleading, P81). 2 Fixed, 2 nove P-pravidla (P80-P81). Aktualizovany statistiky (99 entries).*
+
+*MCP_GROUND_TRUTH_postmortem_agregovany_v1.md — 2026-08-26 — v19 — Pridany GT-099 az GT-105 (mcp-jobs-026..032, code audit + post-refactor frontend stabilizace: React #185 layout shift, print-before-raise, dependency truth drift, wheel package-data, positional dispatch, streamlit logger hierarchy, flaky test race). Pravidla P90-P96 (P84-P89 rezervovano epistemicke rade). Checklist dedicnosti rozsiren o polozky 61-67. Statistiky: 108 entries (Fixed 74). Header/footer verze 19 konzistentni.*
