@@ -150,6 +150,6 @@ Nepotřebuje Pact server, CI infra, nebo schema registry. Vhodné pro MCP server
 ## 8. Související artefakty
 
 - `tests/test_prompt_contract.py` — implementace pro Stockfish → LLM rozhraní
-- `MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` — GT-059, P44
+- `MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` — GT-059, P44
 - `src/models/game.py` — GameAnalysis.to_dict() (producer)
 - `src/services/game_llm_cache.py` — _build_game_prompt() (consumer)

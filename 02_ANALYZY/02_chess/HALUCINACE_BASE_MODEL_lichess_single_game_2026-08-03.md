@@ -51,4 +51,4 @@ print(analyze_position(fen, depth=14, multipv=3))  # Qh4 = TOP (+259..+423)
 ## 7. Navazující
 - Deep dive: `02_ANALYZY/02_chess/DEEP_DIVE_lichess_Q4_halucinace_2026-08-03.md`
 - Pipeline bg: `02_ANALYZY/02_chess/ANALYZA_OPONENTA_anonymni_101_her_2026-08-02.md`
-- GT: `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v1.md`
+- GT: `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v2.md`

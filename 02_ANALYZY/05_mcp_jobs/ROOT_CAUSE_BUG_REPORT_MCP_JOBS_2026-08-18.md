@@ -108,7 +108,7 @@ Report slouží jako postmortem zdroj. Pro adresnou adopci skills → tyto dokum
 
 | Znalostní prvek | Dokument (KB) | Propojení s B1/B2 |
 |-----------------|---------------|-------------------|
-| P-rule rámec (P2, P6, P13, P27, P62) | `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` (GT-013, GT-081) | B2 root cause + fix, P62 risk B6 |
+| P-rule rámec (P2, P6, P13, P27, P62) | `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` (GT-013, GT-081) | B2 root cause + fix, P62 risk B6 |
 | Předchozí audit MCP-Jobs (F1-F20, chybějící CI/lint) | `02_ANALYZY/05_mcp_jobs/DE_NOVO_AUDIT_public_ready_2026-08-01.md` | B1 = potvrzení sekce "chybí CI/CD, lint"; F12 (race) kontext |
 | Adopční metodika 60/20/10/10 | `01_METODIKY/04_skill_acquisition/ADOPCNI_METODOLOGIE_2026_v1.md` | Rámec, jak B1/B2 edukovat (PBL > glossary > SRS) |
 | Terminologie (CI, timeout, ThreadPool, dependency pinning, ruff) | `01_METODIKY/06_SWE_glossary/SWE_GLOSSARY_zive_v1.md` (sec. CI/CD & Verzování) | Feynman výstup z B1/B2 |

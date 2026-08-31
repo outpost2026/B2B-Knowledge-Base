@@ -79,7 +79,7 @@ Tato metodika definuje **jak** se má terminologie + dovednosti adopotovat v é�
 | `eroi_chronologicky_plan_s_metodikou.md` | Metodické kostry per gap (KROK 1-3: základy → nástroj → PoC) — implementační detail PBL |
 | `brain_geometric_processor_summary_v2.1.md` | Epistemická báze SRS (sémantická eroze, TOT, reaktivace drah) |
 | `chess_mcp_strategy_v1.md` | FSRS engine (py-fsrs, Phase 5) — infrastruktura SRS, sdílená mezi šachy a glossary |
-| `MCP_GROUND_TRUTH_postmortem` | Zdroje reálných případů (termíny z GT → glossary s kontextem) |
+| `MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` | Zdroje reálných případů (termíny z GT → glossary s kontextem) |
 
 **Guardrail (z Epistemického rámce):** Složitost je parazit. Adopční metodika nesmí sklouznout do "akumulace termínů" — glossary roste jen o termíny z REÁLNÉHO kontextu, ne o akademický balast. Kvalita > kvantita.
 

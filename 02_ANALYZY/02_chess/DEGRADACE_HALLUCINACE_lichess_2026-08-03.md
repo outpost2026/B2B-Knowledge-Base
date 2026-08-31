@@ -280,7 +280,7 @@ r4rk1/1p3pbp/p7/q2pP3/3B2b1/P7/1P3QPP/1B1R1RK1 w - - 2 23
 
 - `02_ANALYZY/02_chess/DEEP_DIVE_lichess_Qh4_halucinace_2026-08-03.md` — deterministicky deep dive
 - `02_ANALYZY/02_chess/HALUCINACE_BASE_MODEL_lichess_single_game_2026-08-03.md` — base model halucinace
-- `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` — MCP ground truth
+- `04_KNOWLEDGE_BASE/01_MCP/MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` — MCP ground truth
 
 ---
 

@@ -24,7 +24,7 @@
 | A1 | KNOWLEDGE_CORPUS_VCUTWORKS_LIGHTBURN.md | 17 | 9 | Unikátní GT binárního formátu (offset mapy, 74B segmenty, paleta) — jediný zdroj |
 | A2 | RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md | 17 | 9 | 29denní empirická kronika RE, nulový balast |
 | A3 | RE_Methodology.md | 33 | 8 | Přenositelná metodika + validace, používána v 01_METODIKY (INDEX R01) |
-| A4 | MCP_GROUND_TRUTH_postmortem_agregovany_v1.md | 90 | 9 | Jediný zdroj pravdy postmortemů (GT-001..042); sám deklaruje supersede 4 souborů |
+| A4 | MCP_GROUND_TRUTH_postmortem_agregovany_v2.md | 90 | 9 | Jediný zdroj pravdy postmortemů (GT-001..042); sám deklaruje supersede 4 souborů |
 | A5 | GROUND_TRUTH_VCF_PARSER_ORIGIN_V1.0.json | 24 | 8 | Ontologický GT vzniku parseru; replikace do 3 rep (MD5 shoda) — deliberate, zachovat, deklarovat v INDEXu |
 | A6 | High-SNR_knowhow_ML_methodology.json | 12 | 8 | Deterministická pravidla DET_* — jediná kodifikace fyzikálních constraintů |
 | A7 | player_pattern_library_v1.json | 13 | 8 | Kánon 17 patternů (chess_pattern_v5 import) — živý zdroj pro lichess-analyzer |
@@ -157,7 +157,7 @@
 │   ├── DEFECT_CATALOG_V1.md                         [KOMPRESE]
 │   └── High-SNR_knowhow_ML_methodology.json         [KANON]
 ├── 01_MCP/
-│   └── MCP_GROUND_TRUTH_postmortem_agregovany_v1.md [KANON]
+│   └── MCP_GROUND_TRUTH_postmortem_agregovany_v2.md [KANON]
 ├── 01_reverse_engineering/
 │   ├── RE_CASE_STUDY_VCUTWORKS_LIGHTBURN_v2.md      [KANON]
 │   ├── RE_Methodology.md                            [KANON]

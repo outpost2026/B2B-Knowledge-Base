@@ -2,7 +2,7 @@
 
 **Datum:** 2026-08-01 | **Autor:** outpost2026 | **Verze:** 2.0
 **Účel:** Akční plán z rezerv vývoje MCP serveru (3 týdny) — komprese v1.1 (2026-07-20); plná analýza v git historii, duplicity s MCP_GROUND_TRUTH (bod 4) odstraněny.
-**Kontext:** Navazuje na `MCP_GROUND_TRUTH_postmortem_agregovany_v1.md` — Bod 4.
+**Kontext:** Navazuje na `MCP_GROUND_TRUTH_postmortem_agregovany_v2.md` — Bod 4.
 
 ---
 
