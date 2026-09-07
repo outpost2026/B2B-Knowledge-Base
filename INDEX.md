@@ -142,8 +142,9 @@
 |---|--------|-------|-----|------|------|
 | KT06 | `market_research_stack_conversion.md` | 02_ANALYZY/06_konkurence_a_trh/ | analýza | Konvertovatelnost stacku na české výrobní SME (VCF parser, KB, Streamlit, GCP) | 8/10 |
 | KT07 | `KANNABIS_CULTIVATION_TOOLS_EVALUATION_2026-09-07.md` | 02_ANALYZE/06_konkurence_a_trh/ | report | Qualifikovaná evaluace 12 cannabis cultivation tools vs TEMP_KULTURA_DB — 6-os porovnání, EROI zhodnocení, doporučení | 9/10 |
+| KT08 | `OUTPOST_HARDWARE_CONVERGENCE_ANALYSIS_2026-09-07.md` | 02_ANALYZE/06_konkurence_a_trh/ | analyza | Fyzicky dostupný HW inventory + konvergence Outpost IoT Hub → TEMP_KULTURA_DB crop science engine ($0 new HW) | 10/10 |
 
-> Přesunuto z 00_STRATEGIE/02_karierni_targety (Bod 3, 2026-08-15). KT07 nově: 2026-09-07, výzkum veřejného open-source cannabis cultivation monitoring trhu.
+> Přesunuto z 00_STRATEGIE/02_karierni_targety (Bod 3, 2026-08-15). KT07: 2026-09-07 cannabis tools market research. KT08: 2026-09-07 hardware convergence analysis — ESP32/ESP8266 sensor network → crop science pipeline.
 
 ### 07_CV_automatizace — CV automatizace (YOLO11, small models)
 
