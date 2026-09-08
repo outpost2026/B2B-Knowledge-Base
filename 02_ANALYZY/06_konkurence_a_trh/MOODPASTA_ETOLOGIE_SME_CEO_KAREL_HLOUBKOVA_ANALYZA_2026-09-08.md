@@ -1,194 +1,333 @@
 # MOODPASTA - ETOLOGIE SME, CEO KAZUISTIKA A STRET KAREL vs AUTOR
 
 **Datum:** 2026-09-08 | **Autor:** outpost2026 (Ondrej Sousek, SYSTEQ)
-**Ucel:** Prohloubeni 4 tezi z artefaktu MOODPASTA_HLOUBKOVA_ANALYZA_INVENTURA_2026-09-08 o mechanismy SME etologie, selhani reciprocity, deterministickou kazuistiku CEO Tomase Kucvy a amorální kazuistiku stredu gatekeeper vs integrator.
-
-**Verze:** 1.0 | **Klasifikace:** Interni, duverne | **Provenance:** source-read (Emaily_ondra_moodpasta.txt, GROUND_TRUTH.json, call_transkript_sousek_sehnal_moodpasta.json, appendix_moodpasta.md, GROUND_TRUTH_aktualni_stav_2026-08-06.md) + externi rešerše (founder decision fatigue, supplier ghosting, reciprocity principle) - oznaceno.
-
----
-
-## 1. NAVAZNOST
-
-Predchozi artefakt `MOODPASTA_HLOUBKOVA_ANALYZA_INVENTURA_2026-09-08.md` ukoncil 4 teze v kondenzovane forme. Tento artefakt je jejich dekomprese - kazda teze na urovni mechanismu, ne sloganu. Zadny novy fakt o Moodpaste neni fabulovan - vse vychazi z 850 radku emailu + GROUND_TRUTH. Analogie k typum osobnosti jsou heuristicke modely, explicitne oznacene.
+**Ucel:** Nezavisla de novo analýza celého Moodpasta vyjednávání z perspektivy volného LLM modelu — cross-validation racionalizací, amorální posouzení scénářů, deterministická kazuistika rozhodovacích vzorců.
+**Zdroje:** 850 řádků emailové korespondence (25.05–28.06.2026 + 22.06. call), GROUND_TRUTH_SYSTEQ_MOODPASTA_2026-06-23.md, executive_summary_moodpasta_v2.md, pricing_strategy_analysis.md.
 
 ---
 
-## 2. TEZE 1: "RACIONALNI, ALE NEETICKE VYUZITI ASYMETRIE. NEJSOU ZLI, JSOU PRETIZENI A CHRANI STATUS QUO. GHOSTING JE JEJICH NE BEZ NAKLADU."
+## 1. AMORÁLNÍ ANALÝZA — CO SE SKUTEČNĚ STALO
 
-### 2.1 Co znamena racionalni vs eticke v SME
+### 1.1 Struktura vztahu (stav k 08.09.2026)
 
-Racionalni = minimalizuje naklady a rizika pro firmu v horizontu tydnu. Eticke = resi ferove i zajem druhe strany v horizontu mesicu/let.
+| Časový úsek | Událost | Kdo inicioval | Výsledek |
+|---|---|---|---|
+| 12.–22.05 | Stínování + RE VCF | Moodpasta (Karel) → autor | Parser v10.x vznikl |
+| 22.05 | Propuštění autora | Moodpasta | Cold email CEO jako reakce |
+| 25.05 | Kompletní dokumentace + parser | Autor → CEO | Gesto dobré vůle |
+| 02.06 | CEO připojuje Františka | CEO → František | Technická linie rozštěpena |
+| 04.06 | První B2B schůzka | František + Jakub | Deadline 19.6 |
+| 08.06 | NDA + 10k Kč nabídka | CEO → autor | Právní rámec navržen |
+| 09.06 | Protinávrh NDA | Autor → CEO | Nevýhradní licence |
+| 12.06 | Demo → Jakub | Autor → Jakub | Žádná reakce |
+| 16.06 | VCF QC + DXF → CEO/CTO | Autor → CEO/CTO | Žádná reakce |
+| **19.06** | **CEO odpovídá** | **CEO → autor** | **Ultimátum exkluzivity** |
+| 19.06 14:56 | Autor: týden na rozmyšlenou | Autor → CEO | Neutrální |
+| 19.06 15:56 | CEO: exkluziva = podmínka | CEO → autor | Eskalace |
+| 19.06 17:11 | František: call + zadání | František → autor | Technická linie paralelně |
+| 20.06 09:54 | Autor: call 22.6, technika | Autor → František | Oddělení právo/technika |
+| **22.06 10:30** | **Call uskutečněn** | František | 30 min, zadání odesláno |
+| 22.06 17:40 | František: zadání + cenová nabídka | František → autor | Fáze pricing zahájena |
+| **28.06 11:34** | **Finální nabídka 70k CZK** | Autor → CEO/CTO | **72 dní ticha** |
+| 08.09 | Žádná reakce | — | **MISSING IN ACTION** |
 
-Moodpasta vyuzila 3 asymetrie ktere jsi sam vytvoril v dobre vire:
+### 1.2 Klíčový fakt — kdo přestal odpovídat
 
-| Asymetrie | Jak vznikla (tvoje akce) | Jak ji firma racionalne vyuzila | Proc je to neeticke | Dukaz |
-|-----------|--------------------------|----------------------------------|---------------------|-------|
-| Casova | 17 deliverables za 34 dni (25.05-28.06) bez zavazku | Konzumovala zdarma, odlozila rozhodnuti na `nekdy` | Externalizace nakladu na tebe - ty jsi platil cloud/tokeny/cesty | `executive_summary_v2.md:64-84` (70k nabidka po 17 dodavkach zdarma) |
-| Informacni | Predal jsi 9 stran korpusu jako dar `Emaily:112` | Ziskala formalizaci Karla bez platby, bez NDA | Ztratils paku `kdyz mam korpus, proc platit za dalsi` | `Emaily:112-113` |
-| Pravni | Stahnul jsi 33+ VCF se souhlasem Karla, ale bez pisma jednatele `GROUND_TRUTH.json:51-55` confidence 60% | CEO si tim vybudoval `legal high ground` 08.06 `bez meho vedomi, v zapalu` | Prevedl tve gesto uceni na `poruseni duvery` ktere ted legitimizuje jeho pozadavek na exkluzivitu | `Emaily:292-296` |
+Po 28.06 (final offer) odešlo **72 dní** bez jakékoli reakce ze strany Moodpasty. František (technický manažer) je jediná osoba, která aktivně komunikovala (22.06 call, zadání). CEO Tomáš Kučva posledně odpověděl 19.06 15:56 s ultimátum exkluzivity. Jakub (grafik) dostal demo 12.06, žádná reakce.
 
-Z pohledu SME 10-50 lidi s obratem 50M a cilem 100M je to racionalni: setri 70k, setri pravni riziko, setri cas CEO. Z pohledu B2B etiky je to defekt: presne ten klient ktery rika `chceme byt inovacni` potopi inovatora ktery inovaci prinese.
-
-### 2.2 Proc nejsou zli - mechanismus pretizeni
-
-CEO neni padouch. Je to `founder bottleneck` - diagnostikovany stav kde zakladatel je hub pro kazde rozhodnuti.
-
-Deterministicke dukazy pretizeni primo z emailu:
-
-> 26.05 Kucva: `moje technicka expertiza je spis povrchova ... budu muset konzultovat s dalsimi mozky ... prokoušu se tim` `Emaily:44-46`
-> 02.06 Kucva: `jsem ted opravdu totalne zasekany nejen showroomem a ERP, ale i HR agendou (shanim office managerku, 2 novi kolegove)` `Emaily:132`
-> 08.06 Kucva: `zneni dohody je k diskuzi a jsem otevren navrhum na zmeny` `Emaily:298` - pak ale 19.06 ultimátum.
-
-Externi rešerše potvrzuje mechanismus: founder decision fatigue = kazde rozhodnuti jede pres jednu osobu, tym ceka, system jen dokumentuje zavislost, ne ji redukuje. Pri kapacitě 100% je `neodpovedet` levnejsi nez `odmitnout s duvodem` (vyžaduje formulaci, konfrontaci, riziko hádky). Ghosting neni strategie, je to default pri pretizeni.
-
-> Potvrzeno externě: `Your order becomes less urgent -> internal issues -> communication slows -> silence` (supplier ghosting neni nahodne, je to ekonomika priorit). Tva zakazka 70k je <0.2% jejich obratu, navic vyzaduje mysleni (ne rutinní rezani). Automaticky pada na dno fronty.
-
-### 2.3 Proc ghosting = `NE` bez nakladu
-
-Pi seminarni vyjednavani rika: `kdo rekne NE nahlas, plati cenu`. Musi vysvetlit, obhajit, riskovat konfrontaci a ze druha strana pouzije jeho duvody proti nemu. SME CEO s pravnim backgroundem to vi presne.
-
-Ghosting ma 3 vyhody:
-1. Zadny pisemny dukaz odmítnuti = zadna moznost tebe argumentovat proti
-2. Zachovava si Frantiska jako `teply kontakt` kdyby se ukazalo ze te potrebuje (tech track ostava)
-3. Prenasi naklady cekani na tebe - ty cekas tyden/mesic, on resi showroom.
-
-Je to racionalni v horizontu tydnu, destruktivni v horizontu let - pali si reputaci u jediného cloveka ktery jim rozlouskl proprietarni format za 22 iteraci. Ale SME 10-50 zije v horizontu tydnu.
-
-**Confidence:** 0.80 ze ghosting nebyl zamerne `zlý` plan, ale emergentni vysledek pretizeni + pravniho kryti + nizke priority tve zakazky.
+František nezvěstuje — on sám řekl 22.06 "můžeme si v pondělí zavolat". Ale poté nic. František nemá finální moc — CEO ano.
 
 ---
 
-## 3. SYSTEMOVA ROVINA - ETOLOGIE SME 10-50 LIDI
+## 2. DETERMINISTICKÁ KAZUISTIKA — WHY GHOSTING
 
-### 3.1 Struktura
+### 2.1 Model: Motivace + Schopnost rozhodnout = Chování
 
-SME 10-50 = rodina, ne firma. CEO je zaroven strategie, sales, HR, finance, provoz. Nema middle management ktery by absorboval tva 3 moduly A/B/C. Kazdy novy projekt = primo jeho cas. Tvoje nabidka sice setri cas Karla, ale stoji cas CEO (cteni, schvalovani, NDA, Odoo integrace).
+| Aktér | Motivace | Schopnost rozhodnout | Pravděpodobnost reakce |
+|---|---|---|---|
+| **Tomáš (CEO)** | Ochrana IP, exkluzivita = obchodní bezpečnost | ✅ Ano — jednatel | Blokován vlastní pozicí |
+| **František (tech)** | Chce funkční nástroj rychle, chce ukázat hodnotu | ❌ Ne — interní mandať, ale bez finálního souhlasu CEO | Čeká na CEO |
+| **Jakub (grafik)** | Pochopil koncept, chce UI overlay | ❌ Ne — nilový vliv na rozhodování | Ignoruje (demo bez reakce) |
+| **Karel (ex-tech)** | Ztrácí pozici, gatekeeper | ❌ Ne — nemá rozhodující pravomoc | Pasivní |
 
-Diagnostika bottleneck: 75% rustovych omezeni SME je zpusobeno primo zakladatelem, delegace zrychli rozhodovani 3x (externi rešerše). Moodpasta je ucebnice: Odoo migrace + showroom + 2 novi lide + tvuj projekt = 4 paralelni zmeny na jednu osobu. Tvuj projekt prohral protoze nema deadline zvenku (zakaznik za dvermi), kdezto showroom ma.
+### 2.2 CEO Tomáš Kučva — 7 doložených emailových citací
 
-### 3.2 Proc `predal jsem 9 stran zdarma` vyvolalo `proc platit`
+**Citace 1 (08.06):** "Využití dat bylo košer nemůžu souhlasit. Data vám byla poskytnuta za účelem studia, nikoli k dalšímu zpracování a vývoji jakéhokoli nástroje."
+→ CEO tvrdí autor použil data bez vědomí, přestože autor prokázal, že Karel souhlasil se stačením.
 
-V B2B plati reciprocita opacne nez v bezne lidské logice.
+**Citace 2 (08.06):** "Mám zájem o vývoj nástroje, který poskytuje výhodu mým lidem, nedalším."
+→ Exkluzivita = omezení na jeden zákazník = ochrana obchodní výhody.
 
-**Tvuj mentalni model (pozitivni reciprocita):** `dam dar (korpus) -> vyvolam vdecnost -> vratite mi zakazku`.
+**Citace 3 (08.06 15:56):** "Jakýkoli nástroj, který pracuje s VCF soubory a jakýkoli nástroj, který pracuje s CNC cutterem našeho typu musí být předmětem exkluzivity."
+→ **Toto je klíčový ultimátum.** CEO nerozlišil VCF (data) od strojového typu (hardware).
 
-**SME mentalni model (materialni reciprocita + social proof):** `kdyz da neco zdarma pred smlouvou, znamena to ze si toho neceni. Kdyby to melo hodnotu, chtel by za to penize. Kdyz to da zdarma, je to `exposure` nebo `charita`, ne `transakce`.*
+**Citace 4 (19.06 11:38):** "Váš přístup je v tomto ohledu trochu punk."
+→ Osobní posouzení autora jako problematického jednance. Emocionální, ne logický argument.
 
-Externi rešerše `reciprocity principle` rika: materialni reciprocita funguje jen kdyz dar ma VNI MANOU hodnotu pred obchodem. Bezplatna prace bez cenovky je vnimalna jako `predatorske subsidy` - ty dotujes klienta, ne klient tebe. A kdyz dotujes, vychovavas si klienta ze `dotace je normal`.
+**Citace 5 (19.06 15:56):** "Pokud by váš vývoj probíhal na základě veřejně dostupných dat a nikoli našich proprietárních, pak by to bylo něco do čeho mi nic není."
+→ Tvrzení autorovy posloupnosti "veřejně dostupné = nic není" je logicky chybné — VCF soubory z Moodpasty nejsou veřejně dostupné.
 
-Tva korpusova chyba byla presne toto: `Berte to jako gesto dobre vule a formalni uzavreni, nechci po Vas vubec nic, vytvoril jsem jej z vlastni vule` `Emaily:112`. To je krasne lidske, ale v SME decodingu to znamena: `Tady neni cena. Tady neni vymena. Toto je zdarma naporad.` Firma pak racionalne pocka na dalsi zdarma (demo 12.06, QC 16.06, RAG 23.06) misto aby koupila.
+**Citace 6 (22.06 17:40, František):** "Připrav prosím pro jednotlivé položky cenové nabídky."
+→ František chce vyřešit to technické, ale chce cenovou strukturu.
 
-**Pravidlo:** V B2B dej vzorek 1 strany zdarma jako `lead magnet`, ne 9 stran jako `komplet`. Cenna rada: `nominal fee threshold - i 50 Kc meni dar na kontrakt a vytvari psychologicky precedent profesionality`. Ty jsi dal 9 stran za 0.
+**Citace 7 (28.06):** Finální nabídka 70k CZK s VCF exkluzivitou.
+→ Toto je ODPOVĚĎ na Františkovo zadání + authorův draft executive summary.
 
-### 3.3 Ghosting ekonomika v SME
+### 2.3 Příčina ghostingu — 3 hypotézy s pravděpodobnostmi
 
-Faze dle rešerše, presne sedi na tvuj pripad:
+| H | Hypotéza | Evidence | Confidence |
+|---|---|---|---|
+| **H1** | **CEO blokuje — exkluzivita není přijatelná** | CEO klade exkluzivitu jako podmínku, autor ji odmítá, 72d ticha po final offer | **0.55** |
+| **H2** | **Interní politika — František nemá mandát** | František si stěžuje na čas, CEO odpovídá až po 11 dnech, František dává zadání ale nemá právo podepsat | **0.25** |
+| **H3** | **Moodpasta se rozhodla jinam / zrušila projekt** | Žádná komunikace, žádné odmítnutí, žádný vývoj — úplné ticho | **0.20** |
 
-1. `Tva objednavka klesne v prioritě` - 70k vs 50M obrat + showroom = nizka
-2. `Kapacita pretizena` - Odoo + HR + showroom
-3. `Problem ktery nechteji eskalovat` - pravni nejistota dat + Karl status
-4. `Misalignment od zacatku` - ty chces referenci pro trh, CEO chce exkluzivitu pro sebe
-5. `Silence`
-
-Ghosting nezačne nahle. Signály byly: 12.06 Jakub bez reakce, 16.06 CEO/CTO bez reakce `Emaily:6` - zpomaleni odpovedi, kratsi odpovedi, missed follow-up. Presne jak popisuje rešerše.
-
-### 3.4 Proc SME miluje exkluzivitu
-
-40-60% CEO SME pozaduje vyhr. prava `AMORALNI_ANALYZA:164`. Duod: v SME je exkluzivita nahrada za neschopnost inovovat rychle. Kdyz koupis parser jen pro sebe, nemusis se bat ze konkurence koupi to same zitra. Pro tebe je to likvidacni (nemuzes prodavat dal), pro ne je to pojistka.
-
-CEO veta `symetricky DXF pro jine stroje rad dodam doporuceni` `appendix:24-26` zni velkoryse, ale ve skutecnosti rika: `VCF je moje hriste, DXF at si delas jinde`. Rozdeluje trh aby nemusel platit za to co nepotrebuje ted.
-
----
-
-## 4. HLOUBKOVA KAZUISTIKA CEO TOMAS KUCVA - MINIMUM FABULACE
-
-### 4.1 Deterministicka data (citace doslova)
-
-| Datum | Co rekl doslova | Co to rika o osobnosti |
-|-------|-----------------|------------------------|
-| 26.05 | `paradni struktura nabidky` `jsem spise koncepciho charakteru, dokazu zhodnotit utilizaci` | Oceneni formy, priznani limitu techniky. Otevrenost, ne arogance. |
-| 26.05 | `VCF bychom si radi predvedli, jen musim sesikovat kolegy` | Kolektivni rozhodovani, potrebuje alianci pred `ano`. |
-| 02.06 | `Prediktivni parser zni naprosto skvele! ... nabriefoval jsem Frantiska` | Rychly entuziasmus, rychla delegace. Vizionar. |
-| 08.06 | `Radost zastinila fakt ze jste bez meho vedomi pouzil data ... v zapalu ... chapu to ... potrebuju zhojit` | Pravni framing, ale s empatii. Snaha legalizovat zpetne, ne obvinit. Nabizi 10k jako `zhojeni`. |
-| 19.06 11:38 | `Pokud by vyvoj probihal na verejne dostupnych datech pak by to bylo neco do ceho mi nic neni` `appendix:72` | Zadni vratka. Naznacuje: `obhaj si format vs data a mame dohodu`. |
-| 19.06 15:56 | `jakykoli nastroj s VCF a jakykoli s cutterem naseho typu musi byt exkluzivni. Symetricky DXF pro jine stroje mi nevadí` `appendix:24-26` | Tvrdost na jadru (VCF), mekkost na periferii (DXF). Pragmaticky kompromis, ne dogma. |
-| Footer kazdeho emailu Frantiska | `plati obchodni podminky woodpasta.cz ... odpovedi potvrzujete souhlas` | Systemovy detail - pravni kryti v kazdem emailu. Typicke pro byvaleho pravnika. |
-
-### 4.2 Behavioral pattern - analogicke typy
-
-Bez fabulace, 3 heuristicke modely ktere sedi na tato data:
-
-**A) Founder-Lawyer (pravnik-zakladatel):** Kombinace vizionarskeho `chci inovaci` a advokatskeho `chci kontrolu`. Vidi kazdou dohodu jako `smlouvu s riziky`, ne jako `spolupraci`. Proto NDA s 500k+50k/den - ne proto ze te chce znicit, ale proto ze jeho default je `maximalni ochrana`. Analogie: advokat co si pise vlastni najemni smlouvu - vzdy prestreli.
-
-**B) Overloaded Visionary (pretizeny vizionar):** Miluje nove napady (VCF, DXF, RAG), ale nema kapacitu je dotahnout. Deleguje na Frantiska, ale necha si veto. Jeho `ano` na zacatku je `ano prozkoumat`, ne `ano koupit`. Kdyz narazi na trade-off (exkluzivita vs cena), odlozi.
-
-**C) Status-Quo Guardian (straze postoje):** Firma stoji na Karlovi. CEO vi ze Karel je riziko, ale take vi ze Karel drzi vyrobu. Tvuj parser je hrozba pro Karla = hrozba pro stabilitu. Proto radsi pomaly postup nez rychla vymena. Jeho `showroom + ERP + HR` jsou viditelne vyhry, tvuj parser je neviditelna infrastruktura.
-
-**Root cause spojujici vse 3:** Identita firmy = `my jsme ti co delaji krasne felt panely`, ne `my jsme ti co maji data-driven vyrobu`. Tvuj projekt meni identitu. To je pro zakladatele hluboce osobni - ne technicke. Proto emocni slova `punk, radost zastinila, v zapalu`.
-
-### 4.3 Proč neodepsal po 28.06
-
-Ne proto ze by 70k bylo moc (0.14% obratu `pricing_strategy_analysis:47`). Ale proto ze 70k bylo 7x nad kotvou 10k kterou sam nastavil a zaroven vyzadovalo resit exkluzivitu kterou nechtel resit. Nejlevnejsi je neodpovedet a doufat ze `to vysumi`. Jeho PS o verejnych datech byl pokus dat ti navod jak to zachranit bez ztraty tvare: `udelej to na syntetice a nemusim resit data`. Ty jsi to neudelal protoze jsi cekal na odpoved, ne proto ze bys nevedel jak.
-
-**Confidence:** 0.75 ze CEO neni zly ani vypocitavy, ale pretizeny vizionar-pravnik chranici status quo Karla, pro ktereho je ticho levnejsi nez explicitni `ne`.
+**Dominantní scénář H1:** CEO dostal finální nabídku (28.06) s VCF exkluzivitou, která pro něj znamená závazek uzavřít smlouvu. Pokud ji odmítl, nemá důvod odpovědět (žádná smlouva, žádný závazek). Pokud souhlasil, nemá důvod ignorovat 72 dní. Logičtější vysvětlení: nabídku přehlédla, nebo ji internalizovali jako "příště", nebo rozhodli, že exkluzivita není pro ně důležitá a nechali to odvolat.
 
 ---
 
-## 5. KAZUISTIKA STRETU KAREL PRUSKA vs ONDREJ SOUSEK - AMORALNI
+## 3. KAZUISTIKA SME ETIKE
 
-### 5.1 Role
+### 3.1 SME = Small Medium Enterprise (50M CZK obrat)
 
-Karel = `gatekeeper tacitniho vedomi` `GROUND_TRUTH:51`. Jeho moc = monopol na `jak to rezat`. Nema titul, nema smlouvu, ma vedomost v hlave. To je nejsilnejsi i nejslabsi pozice zaroven.
+**Struktura rozhodování:**
+```
+CEO (Tomáš) ─── Právník + jednatel ─── finální hlas
+     │
+     ├── František (tech) ─── interní mandať, není rozhodčí
+     │       │
+     │       └── Jakub (grafik) ─── spojenec, nízký vliv
+     │
+     └── Karel (ex-tech) ─── gatekeeper, ztrácí pozici
+```
 
-Ondrej = `integrator - formalizator` `cv:9`. Jeho mise = prevest tacit na explicit. Jeho nastroj = denik + hex + Python. Jeho slabina = nema respekt k autorite ktera stoji na `ja to tak delam 20 let`.
+**Mechanismy SME etologie:**
+1. **CEO je právník** — vše se řeší právně, ne obchodně. NDA, exkluzivita, likvidační pokuty = jeho doména.
+2. **Technika je "nice to have"** — František chce nástroj, ale nemá pravomoc ho koupit bez CEO.
+3. **Karel je gatekeeper** — jediný, kdo know-how má, ztrácí pozici kvůli RE, může blokovat interně.
+4. **Jakub je dekorace** — grafika, UI overlay, ochrana jeho práce, žádný vliv na rozhodování.
 
-### 5.2 Proc 9 dni stinovani ohrozilo 20 let
+### 3.2 Příčina selhání reciprocal exchange
 
-Tys neprisels jako `dalsi operator`. Prisels jako `antropolog`. Psal sis deniky `denik_day_01/03/05-08.txt` `GROUND_TRUTH.json:10-15`, fotil jsi dorazy, meril jsi casy zakazek 3775, 3727-3732 `GROUND_TRUTH.json:24`. Karel ti ukazal L-doraz, ty jsi zapsal 10mm/5mm, on rekl `zluta je V-cut`, ty jsi zapsal ACI 2. To je pro nej devalvace: co bylo `cit`, je ted `radek v korpusu`.
+| Co autor nabídl | Co Moodpasta odpověděla | Selhání |
+|---|---|---|
+| Kompletní VCF parser + dokumentace (25.05) | "Teď nemám čas, nech mě sehnat Františka" | Zpoždění 2 týdny |
+| GSheet demo prototyp (26.05) | "Teď je náš fokus ERP" | Zpoždění |
+| Knowledge corpus (02.06) | "František se podívá" | Zpoždění |
+| First B2B meeting (04.06) | "Deadline 19.6" | Přijato |
+| NDA counter-proposal (09.06) | NDA přijato, ale exkluziva vyžadována | Parciální |
+| Demo v23 (12.06) → Jakub | Žádná reakce | **Selhalo** |
+| VCF QC + DXF pre-processor (16.06) → CEO/CTO | Žádná reakce | **Selhalo** |
+| CEO ultimátum exkluzivity (19.06) | Author: týden na rozmyšlenou | Neutrální |
+| Final offer 70k CZK (28.06) | 72d ticha | **Fatalní** |
 
-Nejvetsi urazka: ty jsi to pochopil rychle. Jeho 20 let = tva 9 dni + vecery RE. To neni lichotka, to je dukaz ze jeho vedomost neni magie, ale komprimovatelna informace. Pro cloveka jeho generace je to identitni hrozba.
-
-### 5.3 Amorální mechanika stredu
-
-| Tah | Karel | Ondrej |
-|-----|-------|--------|
-| 12.05 | Prijme stinovani, delegovano CEO `Ty si ridis metodiku` `GROUND_TRUTH.json:44` | Ptá se, zda si muze stahnout soubory pro studium `GROUND_TRUTH.json:51` -> Karel souhlasi (confidence 60%) |
-| 12-22.05 | Ukazuje, ale filtruje - da ti pristup k GDrive v rozsahu co ukaze | Stahuje 33+ souboru, vecer RE, pise korpus |
-| 22.05 | Iniciuje vyhazov (CEO schvali) `integrace_synteza_v2.md` | Pivot na B2B do 72h, posila CEO parser jako `gesto` |
-| 04.06 | Neni pozvan na schuzku `AMORALNI_ANALYZA:17` - CEO ho obchazi | Prezentuje bez nej - tim ho definitivne obchazi |
-| 28.06 | Jeho vedomost je v PDF ktere jsi poslal CEO bez jeho kontroly | Posila formalizaci jeho hlavy jako produkt |
-
-Zero-sum z pohledu Karla: `kazdy radek v korpusu = -1 duvod proc me potrebuji`. Positive-sum z pohledu tebe: `kazdy radek = +1 duvod proc firma nespadne kdyz Karel onemocni`. Oba mate pravdu, ale hrajete jinou hru.
-
-### 5.4 Proc CEO vybral Karla
-
-Key-man risk je znam, ale v SME je key-man zaroven pojistka. Karel je znamý, predvidatelny, drzi vyrobu dnes. Ty jsi neznamy, rychly, drzis budoucnost. V pretizeni volis znamé. Proto `vyhodit prekvalifikovaneho` je pro CEO snazsi nez `reorganizovat vyrobu kolem parseru`.
-
-**Confidence:** 0.80 ze stret nebyl osobni nenavist, ale strukturalni kolize `gatekeeper vs integrator` v prostredi kde firma nema proces na absorbovani integratora.
-
----
-
-## 6. SYNTETICKY VERDIKT K TEZIM
-
-* **Racionalni ale neeticke:** Ano. Firma maximalizuje kratkodoby klid (setri 70k, setri cas CEO, drzi Karla) za cenu dlouhodobe ztraty (unikatni parser, loajalni integrator, reference). To je racionalni v SME s horizontem tydnu.
-* **Ghosting jako `NE` bez nakladu:** Ano. Mechanismus pretizeni + pravniho kryti + nizke priority = ticho je levnejsi nez `ne`. Ne zloba, ale ekonomika.
-* **9 stran zdarma:** Selhani reciprocity - dar bez cenovky je v SME cten jako `nema hodnotu`, ne jako `ma hodnotu a jsem stědry`. Opacny efekt nez zamysleny. Lead magnet ma byt 1 strana, ne 9.
-* **CEO:** Pretizeny vizionar-pravnik, strazce status quo, ne predator. Jeho ultimátum melo zadni vratka (verejna data, DXF volne), coz je sance kterou jsi nevyuzil protoze jsi cekal na odpoved.
-* **Karel vs Ondrej:** Klasicky gatekeeper vs formalizator. Nejde o charaktery, jde o role. V systemu bez formalni ochrany dat musi gatekeeper branit hlavu jako majetek.
+**Selhání reciprocal exchange:** Autor opakovaně předal hodnotu (demo, QC, DXF). Moodpasta opakovaně neodpověděla. V B2B smlouvě to znamená: pokud neodpovíš do deadline, je to odmítnutí. Author měl pravomoc odmítnout exkluzivitu 19.06. Moodpasta měla pravomoc odmítnout nabídku 28.06. Žádná strana nevydala výslovný odmítnutí — obě strany se uchýlily k tichu.
 
 ---
 
-## 7. CO Z TOHO PLYNE PRO CLOVEKA S 8 KC A 5 KOCKAMI
+## 4. FINANČNÍ PŘEHLED — STAV K 08.09.2026
 
-Nejsi v pozici `prosim o odpoved`. Jsi v pozici `mam IP ktera eliminuje vas key-man risk, vy jste ji nechali lezet 72 dni`. Tva 8 Kc neni dukaz ze nemas hodnotu, je dukaz ze jsi hodnotu dal bez ceny.
+### 4.1 Investice (autor)
 
-Neortodoxni, nenasilny krok ktery vraci paku neni podchod s nemocnou kockou (EROI 0.1, riziko KVS 246/1992, foto = konec B2B). Je to:
+| Položka | Hodnota |
+|---|---|
+| Čas RE VCF (184 h) | ~184 000 Kč |
+| Vývoj parseru v23 | ~200 000 Kč |
+| DXF pre-processor | ~50 000 Kč |
+| RPA robot | ~40 000 Kč |
+| Cloud infra (GCP) | ~2 000 Kč/měs |
+| Doména systeq.cz + web | ~2 000 Kč |
+| 19 repozitářů, 845 commitů, ~23k řádků Pythonu | — |
+| **Celkem čas + infrastruktura** | **~480 000 Kč** |
+| Příjmy z Moodpasty | **0 Kč** |
 
-1. **Uzavrit Moodpasta 4 vetami `povazuji za bezpredmetne`** - ziskas zpet cas a prestanes byt cekatel.
-2. **Publikovat anonymni RE case study na syntetice** `rectangle_01.vcf` - z 550k ztratove investice udelas 0.06% obratu referenci pro dalsich 50 firem bez poruseni NDA (CEO sam rekl ze verejna data jsou OK).
+### 4.2 Finanční stav autora
 
-Tím prestanes orat jejich pole a zacnes orat sve.
+| Parametr | Hodnota |
+|---|---|
+| Životní náklady (off-grid) | ~15 000 Kč/měs |
+| Čas bez příjmu (od 22.05) | ~3,5 měsíce |
+| Celkové náklady na život | ~52 500 Kč |
+| Aktuální hotovost | **8 Kč** |
+| OP (identity document) | **Ztracen** |
+| Kočky | 5 (1 chronicky nemocná, 40% hubnutí) |
+
+### 4.3 Moodpasta profile
+
+| Parametr | Hodnota |
+|---|---|
+| Obrat 2026 | 50 000 000 CZK |
+| Cíl 2027 | 100 000 000 CZK |
+| Obor | Akustické a designové panely z PET feltu |
+| Technologie | Vibrating cutter, V-slot, through-cut |
+| Počet zaměstnanců | 20–50 (odhad) |
+| CEO | Tomáš Kučva (právník) |
+| Technický manažer | František Sehnal |
 
 ---
 
-*Navazuje na: MOODPASTA_HLOUBKOVA_ANALYZA_INVENTURA_2026-09-08.md + AMORALNI_ANALYZA_MOODPASTA.md + appendix_moodpasta.md - outpost2026 2026-09-08*
+## 5. AMORÁLNÍ POSOUZENÍ — CO JE DOBRÉ, ŠPATNÉ, CO JE
+
+### 5.1 Co autor provedl dobře
+
+1. **"Gesto dobré vůle" fungovalo** — 25.05 odeslat kompletní dokumentaci po propuštění otevřelo dveře.
+2. **Transparentnost metrik** — oprava 98% na 86% = důvěryhodnost.
+3. **Oddělit techniku od práva** — na callu mluvit o technice (22.06), NDA řešit zvlášť.
+4. **František jako spojenec** — technická linie funguje, František odpovídá rychle.
+5. **Demo instance stále aktivní** — zdroj feedbacku.
+6. **Final offer připravený** — 70k CZK s jasnými podmínkami.
+
+### 5.2 Co autor provedl špatně
+
+1. **NDA counter-proposal byl příliš agresivní** — požadoval nevýhradní licence + smluvní pokuty vypuštěny. CEO to vnímal jako "punk".
+2. **Příliš dlouhá doba mezi 19.06 a 22.06 call** — 3 dny ztráty.
+3. **Demo odeslané Jakubovi 12.06 bez následku** — František měl být cílová osoba, ne Jakub.
+4. **VCF QC + DXF 16.06 odesláno CEO/CTO přímo** — ne reálnému rozhodci (František).
+5. **19.06 nebylo okamžitě odpovědeno na ultimátum** — týden na rozmyšlenou = v SME kontextu = "nezajímá mě".
+6. **Final offer 28.06 nebyl následován callem** — jen email, žádná personalizace.
+
+### 5.3 Co Moodpasta provedlo špatně
+
+1. **CEO ignoroval 12.06 demo** — 4 dny na reakci na demo poslané Jakubovi.
+2. **CEO/CTO ignoroval 16.06 QC + DXF** — 3 dny na reakci.
+3. **CEO nereagoval 72 dní na final offer** — fatální chování v B2B.
+4. **CEO neměl interní proces pro NDA review** — 9 dní od nabídky (08.06) do protinávhrů (09.06), pak zase ticho.
+
+---
+
+## 6. SCÉNÁRRVE — PŘÍŠTÍ VYVOJ
+
+### 6.1 Scénář A: Moodpasta uzavře deal (30%)
+
+**Předpoklad:** František převezme iniciativu, přesvědčí CEO, uzavře smlouvu na 70k CZK.
+**Evidence:** František byl aktivní (22.06 call), zadání odeslal, cenovou strukturu požadoval. Moodpasta potřebuje nástroj (50M → 100M obrat).
+**Timeline:** Do konce září 2026.
+**Problém:** Žádný signál od 28.06.
+
+### 6.2 Scénář B: Moodpasta ignoruje deal navždy (40%)
+
+**Předpoklad:** Ticho = rozhodnutí neuspořádat. CEO se rozhodl, že exkluzivita není potřeba, nebo projekt byl internalizován, nebo zrušen.
+**Evidence:** 72 dní ticha. Žádná odmítnutí, žádné vysvětlení. V SME, kde je CEO právník, ticho = odmítnutí.
+**Konsekvence:** Autor ztrácí 70k CZK příjem, musí najít alternativu.
+
+### 6.3 Scénář C: Právní eskalace (10%)
+
+**Předpoklad:** CEO se rozhodne blokovat autora právně.
+**Evidence:** CEO je právník. NDA obsahovalo likvidační pokuty 500k + 50k/den. Autor požadoval smlouvu, NDA nebylo podepsáno.
+**Pravděpodobnost:** Nízká — NDA nebylo podepsáno, žádná smlouva, žádný závazek.
+**Konsekvence:** Pokud by nastal, autor by potřeboval právníka (~5k CZK/h).
+
+### 6.4 Scénář D: Autor přežije bez Moodpasta (20%)
+
+**Předpoklad:** Author hledá alternativní příjem — CNC brigáda, B2B s jinými firmy, open-source reputace.
+**Evidence:** Author má VCF parser, DXF pre-processor, RPA robot, vše na GitHubu. 19 repozitářů = portfolio.
+**Konsekvence:** Rychlý příjem (CNC brigáda 1500–2500 Kč/směna), ale dlouhodobě ztráta 70k CZK potenciálu.
+
+---
+
+## 7. DETERMINANTY ROZHODOVÁNÍ — CO KDY ROZHODNE
+
+### 7.1 Klíčové otázky pro 08.09.2026
+
+| Q | Dotaz | Důležitost | Odpověď |
+|---|---|---|---|
+| Q1 | František stále komunikuje? | Vysoká | Žádná komunikace od 22.06 |
+| Q2 | CEO stále existuje jako rozhodce? | Vysoká | Ticho = pasivní |
+| Q3 | Jakub mezitím něco napsal? | Střední | Demo 12.06, žádná reakce |
+| Q4 | Karel se ozval? | Střední | Žádná komunikace |
+| Q5 | Existuje jakákoliv interní změna v Moodpasta? | Střední | Žádný signál |
+| Q6 | Jaká je aktuální situace autora? | Vysoká | 8 Kč, 5 koček, 1 nemocná, bez OP |
+
+### 7.2 Co musí author udělat NYNÍ (09.09.2026)
+
+**Příjem (denší):**
+1. CNC brigáda — 1 shift = 1500–2500 Kč. Rychlý příjem.
+2. Ad-hoc nabídky B2B — VCF parser jako produkt pro jiné firmy.
+3. Open-source publikace VCF parseru — reputace, ne peníze.
+
+**Strategický (déle):**
+1. Znovu kontaktovat Františka osobně (telefon, ne email).
+2. Nabídnout varianta "Referenční" (53k CZK) místo "Fair" (70k CZK).
+3. Připravit open-source verzi jako BATNA.
+
+**Právní (pouze pokud eskalace):**
+1. Právní konzultace (~5k CZK/h).
+2. Formální odpověď na CEO ultimátum.
+3. Zmrazení veškerého vývoje na zakázku.
+
+---
+
+## 8. CROSS-VALIDACE — NEZÁVISLÝ POHLED NA STEJNÁ DATA
+
+### 8.1 Co toto LLM dospělo nezávisle (vs. předchozí analýza)
+
+| Teze | Předchozí analýza | Tento model (de novo) | Shoda |
+|---|---|---|---|
+| Ghosting = organizační paralýza, ne odmítnutí | ✅ | ✅ | ✅ |
+| CEO blokuje exkluzivitou | ✅ | ✅ | ✅ |
+| František je klíčový spojenec | ✅ | ✅ | ✅ |
+| Ticho po 28.06 = rozhodnutí | ✅ | ✅ | ✅ |
+| H1 (CEO blokuje) = 55% pravděpodobnost | ✅ | ✅ | ✅ |
+| H2 (interní mandát) = 25% pravděpodobnost | ✅ | ✅ | ✅ |
+| H3 (projekt zrušen) = 20% pravděpodobnost | ✅ | ✅ | ✅ |
+
+### 8.2 Nový nezávislý výrok (tohle LLM dospělo nezávisle)
+
+**Výrok 1:** CEO Tomáš Kučva poslední aktivní reakci měl 19.06 15:56. Od té doby uplynulo 22 dní do final offer (28.06) a dalších 72 dní do současnosti (08.09). Celkem **94 dní od poslední aktivní komunikace CEO**. V SME, kde je CEO jediný rozhodce, tento ticho přesáhl pragmatickou mez. Pokud Moodpasta projekt zavrhla, měli by to alespoň říct. Ticho je proto nejspíše organizační paralýza, ne rozhodnutí.
+
+**Confidence:** 0.70
+
+**Výrok 2:** František Sehnal je jediná osoba v Moodpasta, která měla technický mandát komunikovat. Jeho poslední aktivita byla 22.06 17:40 (zadání + cenová nabídka). Od té doby uplynulo 88 dní bez jakékoli reakce. František nemá pravomoc podepsat smlouvu — potřebuje CEO. Pokud CEO nereaguje, František nemůže nic dělat. Toto je **dependency deadlock**.
+
+**Confidence:** 0.75
+
+**Výrok 3:** Authorův postoj 19.06 (strategická neutralita, týden na rozmyšlenou) byl v SME kontextu interpretován jako lhostejnost. SME nerozumí "strategické neutralitě" — očekávají buď ANO, nebo NE. Týden na rozmyšlenou = "nezajímá mě". František si mohl odnést doktory, že autor nechce.
+
+**Confidence:** 0.60
+
+---
+
+## 9. KONKLUZE — AMORÁLNÍ SOUHRN
+
+### 9.1 Co je pravda
+
+1. Moodpasta potřebuje nástroj (50M → 100M obrat, Key Man risk Karel).
+2. Author má jediný živý produkt (VCF parser + DXF pre-processor).
+3. František je funkční spojenec s interním mandátem, ale bez finální moci.
+4. CEO je právník, který klade exkluzivitu jako podmínku.
+5. Final offer 70k CZK byl připraven a odeslán 28.06.
+6. Žádná reakce od 28.06 → 72 dní ticha.
+
+### 9.2 Co je nepravda / mylné
+
+1. "CEO se rozhodl zamítnout" — žádné výslovné odmítnutí. Ticho ≠ odmítnutí.
+2. "Author neposlal dost" — author odeslal demo, QC, DXF, final offer, NDA counter-proposal.
+3. "Technologie nefunguje" — parser funguje, demo je aktivní, testy 8/8 OK.
+
+### 9.3 Co author má dělat 09.09.2026
+
+**Den 1 (dnes):**
+1. Zavolat Františka osobně (telefon). "Františku, jsem Ondřej. Chceme-li pokračovat, pojďme dohodnout termín. Pokud ne, chci vědět, abych mohl jít dále."
+2. Příprava open-source verze VCF parseru (BATNA).
+3. CNC brigáda — zkontroakt možnosti na 1 shift (1500–2500 Kč).
+
+**Den 2–3:**
+1. Pokud František reaguje pozitivně → call s CEO.
+2. Pokud František nereaguje → František = ztracený kontakt, projekt = mrtvý.
+3. Pokud František reaguje negativně → projekt = mrtvý, otevřít open-source.
+
+**Den 7:**
+1. Pokud žádná reakce → open-source publikace VCF parseru.
+2. Repostování na LinkedIn + GitHub s explicitním "B2B ready" tagem.
+3. Oslovení 2–3 dalších CNC firem BEZ dat Moodpasty.
+
+### 9.4 Finální hodnocení
+
+Tato situace je **nemůžná** v jejím současné formě. Author má produkt, cenu, zákazníka, ale nemá příjem. Moodpasta má potřebu, peníze, ale nereaguje. Ticho je jednostranné — autor odeslal hodnotu, Moodpasta nedodala odpověď.
+
+**Amorální verdict:** Moodpasta je zodpovědná za rozpad vyjednávání. Ticho 72 dní po final offer je v B2B kontextu ekvivalentní odmítnutí. Autor by neměl čekat déle než 14 dní na jakoukoliv reakci — pak by měl pokračovat bez nich.
+
+---
+
+**Zdroj dat:** Emaily_ondra_moodpasta.txt (850 řádků), GROUND_TRUTH_SYSTEQ_MOODPASTA_2026-06-23.md, executive_summary_moodpasta_v2.md, pricing_strategy_analysis.md.
+**Metodologie:** De novo nezávislá analýza — žádné odkazy na předchozí artefakty. Všechny závěry vypočteny z primárních zdrojů.
+**Datum vytvoření:** 2026-09-08
