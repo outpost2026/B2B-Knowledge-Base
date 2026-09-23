@@ -2,7 +2,7 @@
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
 **Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.2 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
+**Verze:** 1.3 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
 **Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth
 
 ---
@@ -61,8 +61,8 @@
 | **Hybridni menic** | **Provoz** | POW-HVM3.2H-24V-N, 3200 W AC, idle ~52,6 W; bulk 28,8 V / float 27,2 V (upr. 18.3.2026) / UVP 22,0 V / max charge 80 A |
 | **Hlavni LFP** | **Provoz, nabijena** | LiFePO4 8S2P (2P8S), 630 Ah, 15,12 kWh, nom. 25,6–26,4 V; **U = 26,78 V (odecet 2026-09-23)** |
 | **BMS** | **Zapojena** | JK-PB2A16S20P V19, 200 A common port, 2 A aktivni balancer, BLE/GPS/TTL |
-| **AC rozvody 230 V** | **ODSTRANENY / NEZAPOJENE** | **Zadost autora: prozatim JEDNA zasuvka/vidlice (stand. evropska) na provizorni prodluzovacku z AC vystupu menice** — viz §5.9 |
-| **AC jisticeni** | **FYZICKY K DISPOZICI, NEZAPOJENO** | Viz §3 |
+| **AC rozvody 230 V** | **PROVIZORNI — 1× zasuvka, BEZ RCBO** | Měnič AC OUT → CYKYLO 3×2,5 → **EATON PL7C16/1** → svorkovnice (L/N + PE věneček) → CYKY 3×1,5 (<2 m) → **1× zásuvka (kolík), vše 3 vodiče** — viz §2.1e; stále **bez RCD/RCBO (G13)** |
+| **AC jisticeni** | **Castecne VE PROVOZU** | PL7C16/1 zapojen (provizorni AC); zbytek inventare dale nezapojen — viz §3 |
 | **GoKWh zalozni LFP** | **ODPOJENA, NEDOBITA** | 24 V, 100 Ah, 2,4 kWh; **U = 23,9 V (2026-09-23)** — nizke, pred pripojenim overit stav celku |
 | **DC rozvody vetevni (USB, step-down)** | Mimo tento GT stav — historicalne z Epever; nyni dle autorova popisu neupresneno (foto) |
 
@@ -146,13 +146,13 @@ Poreadi shora dolu na drevene desce:
 | Polozka | Pocet / specifikace | Predpokladana role v nove instalaci |
 |---|---|---|
 | **SPB1-63Z C32** | 1 ks — **ZAPOJEN**; YQSHIPU, 2p, DC 500 V, 6000 A, IEC 60898-2, v boxu | Hlavni DC jistic FVE string 1 (detail viz §2.1d) |
-| **EATON PL7C16/1** | 1 ks, C 16 A, 1p (foto §2.1c) | AC okruh male zateze / pomocny |
+| **EATON PL7C16/1** | 1 ks, C 16 A, 1p (foto §2.1c) | **ZAPOJEN** v provizorni AC vetvi (§2.1e) |
 | **EATON PL7B32/1** | 1 ks, B 32 A, 1p (v bilem boxu se sběrnicí) | AC okruh vyssi zateze — B32 vyzaduje 2,5 mm²+ (G11) |
 | **B25/1** | 1 ks, B 25 A, 1p (potvrzeno z foto) | AC okruh stredni zateze |
 | **Noark Ex9FP 101767** | 1 pouzdro 2p 10×38 + 2× 20 A valcove pojistky (dle autora) | Dvoupolova pojistkova ochrana (umisteni neurceno) |
 | **MEGAFUSE** | 1 držák (2× M6, CE) + 1 článek Cu — **bez krytu, článek mimo pouzdro** | DC bat/trunk — high-current dle AIC; doplnit 250 A článek |
 
-**Stav:** Jistice **nejsou zapojeny** — fyzicky lezi v zasobe. Vyjimka = SPB1 na FVE větvi (viz §2.1).
+**Stav:** Jistice **nejsou zapojeny** — fyzicky lezi v zasobe. Vyjimky: **SPB1 na FVE** (§2.1) a **EATON PL7C16/1 v provizorni AC** (§2.1e).
 
 ---
 
@@ -168,11 +168,48 @@ Poreadi shora dolu na drevene desce:
 | G6 | Bez meritelneho napeti/proudu na DC trase panely→jistic→menic (krome BMS) | Stredni | INA226 / RS232 bridge (DEBT_IOT_002, DEBT_001) — viz Diagnostic §7 |
 | G7 | Hydroizolace severu, tepelne mosty — soudrznost s elektro (vlhkost u rozvaděče) | Stredni | Rozvadec/vse v mistnosti 2, mimo severni stenu; kondenzat/odvodneni |
 | G8 | Zalozni GoKWh nedobita a odpojena | Nizka | Pred zimou: overit U celku, balanc, pripojit pres vlastni jistic/udrzovaci nabijeni nebo vyraďit z bilance |
+
+### 2.1e Provizorni AC — ZAPOJENO (author 2026-09-23)
+
+**Topologie (realizovano):**
+
+```
+[Hybridni menic AC OUT]
+   L, N ──► CYKYLO 3×2,5 mm² (Cu, z 30 m venkovni prodluzovacky, neposkozeny)
+   PE  ──► symbol ZEME na menici
+              │
+              ▼
+        [EATON PL7C16/1]  (1p, C 16 A)  ◄── modry vodic rozpojen a veden pres jistic
+              │
+              ▼
+   ┌── Svorkovnice L/N ──┐
+   │  Svorkovnice PE     │  (= "venecek", krabice s DIN listou)
+   └──────────┬──────────┘
+              │  CYKY 3×1,5 mm² (L/N/PE), dalka < 2 m
+              ▼
+        [1× zasuvka / kolík]  — zapojena VSECHNY 3 vodice (L, N, PE)
+```
+
+| Prvek | Hodnota | Poznamka |
+|---|---|---|
+| Hlavni usek | **CYKYLO 3×2,5 mm² Cu** | Stary neposkozeny vodic z 30 m prodluzovacky |
+| Jistic | **EATON PL7C16/1** (1p, C 16 A) | V serii na **modrem (N)** vodicu — dle popisu autora |
+| Svorkovnice | L/N + PE věneček, DIN krabice | Rozvadecove krabicky |
+| Posledni usek | **CYKY 3×1,5 mm²**, <2 m | Na hraně pro 16 A; pro kratkej usek prijatelne |
+| Zasuvka | 1× kolik, **vse 3 vodice** | PE=colik propojen |
+| RCD/RCBO | **CHYBI** | **G13 stale otevreny — vysoka zavaznost** |
+
+**Provozni limit (dokud neni RCBO):** max **~1500–1600 W** (nabijeni, svetlo, notebook). **NE** konvice, indukce, pila, hoblivka.
+
+**Poznamky k bezpeci:**
+- **G13 (RCD chybi):** stále priorita — dokoupit RCBO 16 A/30 mA typ A; do te doby pouze mala zatez + PE musi byt spojite (je).
+- **Spínání N vs L:** Popis uvadi, ze **modry (N) je rozpojen pres jistic** — kdyz je vypnuto, **L zustava pripojena na menic** (pokud neni spinana i hneda). Bezpecnejsi je spinat **L (hnedy)**. Ověrit multimetrem na zasuvce v OFF stavu (novy O-item).
 | G9 | **Otevreny kryt terminálu menice + montáž na holé dřevo bez skříně** (foto 2026-09-23) | Vysoka | Osadit kryt, průchodky, základní rozvaděč/box IP na stěnu; oddělit od hořlavé konstrukce dle požadavků |
 | G10 | **Trunk 8 mm² DC battery vs. BMS 200 A / menič 80 A** — možné poddimenzování při plném odběru | Vysoka | Přepočítat I_valid pro 8 mm²; případně 16–25 mm² na BAT trunk + MEGAFUSE dle AIC |
 | G11 | **AC výlev CYLY 3×1,5 mm²** — na hraně pro 3200 W; nelze krýt B32 | Stredni | Pro HIC 16 A OK; pro vetev 32 A 2,5 mm²; popsat barvy L/N/PE |
 | G12 | **FV kabel panely→SPB1: 4 m 2×2,5 mm² CYLY** — CYLY neni solar/UV kabel; průřez na hraně pro Imp 2P2S | Vysoka | Nahradit UV solarnim kablem min. 4–6 mm² dle Imp + 1,25; CYLY jen pro AC |
-| G13 | **Provizorni AC: jedna zasuvka/prodluzovacka bez RCD/RCBO a bez spinaceho prvku u menice** | Vysoka (dokud trva) | Minimalne: RCBO 16 A/30 mA typ A na vetvi; trvale: rozvadec M2 viz §5.4/§5.9 |
+| G13 | **Provizorni AC zapojena BEZ RCD/RCBO** (PL7C16 + 1 zasuvka, §2.1e) | **Vysoka — trva** | Dokoupit **RCBO 16 A/30 mA typ A** (1 modul) mezi menic a svorkovnici; do te doby jen mala zatez; trvale rozvadec M2 §5.4/§5.9 |
+| G14 | **Jistic na N (modry) misto L (hnedy)** — pri OFF muze zustat L ziva na zasuvce | Stredni (provizorni) | Prepojit spinani na **L**; overit multimetrem na zasuvce pri OFF (O10) |
 
 ---
 
@@ -186,7 +223,7 @@ Poreadi shora dolu na drevene desce:
 6. **Zimni provoz:** Termostat/nabijeci interlock pri < 0 °C; teplotni cidla na baterii (DS18B20 plan); Priti Mini D jako predohrev pred nabojim po mrazove noci.
 7. **Monitoring:** RS232/Modbus z menice + BLE BMS → jednotna telemetrie (uzavrit DEBT_001/002/IOT_002).
 8. **Bezpecnostni pravidla provozu:** Blokace souběhu >3200 W; 1 velky spotrebic soucasne; dokumentovany start/stop postup pred zimou.
-9. **Provizorni AC (zadost 2026-09-23 — JEDNA zasuvka):** Autor potrebuje prozatim pouze **jednu stand. evropskou zasuvku/vidlici** pro prodluzovacku. Minimum bezpeci pred zapojením: (a) overit L/N/PE na AC vystupu menice (volne CYKY 3×1,5 — O9), (b) **RCBO 16 A / 30 mA typ A** mezi menic a zasuvku, (c) spinani/vypinac v dosahu, (d) provozni limit — jen mala zatěž (nabijeni, svetlo, NOTEBOOK), **NE** konvice/indukce/pila. Trvale reseni = §5.4 rozvadec M2.
+9. **Provizorni AC (REALIZOVANO 2026-09-23 — viz §2.1e):** Zapojeno: měnič → CYKYLO 3×2,5 → **PL7C16** → svorkovnice → CYKY 3×1,5 → 1 zasuvka. **Chybi RCBO (G13)** — primo mezi menic a svorkovnici doplnit **RCBO 16 A/30 mA typ A**; zároveň **prepnout spinani na L (G14)**. Provozni limit ~1500–1600 W, jen mala zatěž. Trvale = §5.4 rozvadec M2.
 
 ---
 
@@ -201,8 +238,9 @@ Poreadi shora dolu na drevene desce:
 | O5 | Ověření typu B25/1 a PL7* (MCB vs. pojistková) | **HOTOVO — viz §3** |
 | O6 | Aktuální tilt/orientace stringu 1 po premistění na strechu | **HOTOVO — pultova strecha, minimalni tilt (author 2026-09-23)** |
 | O7 | SOC/napětí hlavní LFP a GoKWh v den revize | **HOTOVO — LFP 26,78 V; GoKWh 23,9 V nezapojena (2026-09-23)** |
-| O8 | Dispozice zásuvek a spotřebičů, ktere se mají vratit do provozu | **CASTECNE — jen jedna provizorni zasuvka/prodluzovacka (§5.9); final seznam dale** |
-| O9 | Detail AC výlevu u menice (kam jdou volne konce CYLY), PE continuity | Zbyva: foto + multimetr (podminka pro §5.9) |
+| O8 | Dispozice zásuvek a spotřebičů, ktere se mají vratit do provozu | **CASTECNE — 1 provizorni zasuvka hotova (§2.1e); final seznam dale** |
+| O9 | Detail AC výlevu u menice (kam jdou volne konce CYLY), PE continuity | **CASTECNE — PE na menici symbol ZEME, topologie §2.1e; zbyva overit L/N/PE na zasuvce multimetrem + foto** |
+| O10 | Stav spinani pri OFF: je na zasuvce ziva L? (jistic na N) | Multimetr na zasuvce pri vypnutem PL7C16 — pokud ANO, prepnout na L (G14) |
 
 ---
 
@@ -213,6 +251,7 @@ Poreadi shora dolu na drevene desce:
 | 2026-09-23 | V1.0 — vznik GT: author-live update (string1 strecha, GoKWh odpojena, inventura jisticu, SPB1), gap analyza, navrhove principy | outpost2026 + agent |
 | 2026-09-23 | V1.1 — fotoproanalyza menic+BMS (§2.1b) a jisticu (§2.1c/§3), O5 hotov, G9–G11, trunk 8 mm² a AC 3×1,5 dimenze | outpost2026 + agent (photo-read) |
 | 2026-09-23 | V1.2 — SPB1 foto §2.1d (YQSHIPU), trasa 4+4 m, tilt pultova/min, SOC 26,78/23,9, G12–G13, §5.9 provizorni 1 zasuvka; O2/O3/O6/O7 hotovo | outpost2026 + agent (photo-read) |
+| 2026-09-23 | V1.3 — provizorni AC ZAPOJENO (§2.1e): CYKYLO 3×2,5 + PL7C16 + svorkovnice + CYKY 3×1,5 → 1 zasuvka; PL7C16 ve inventari = ON; G13 zustava, G14 spinani N misto L, O10 | outpost2026 + agent |
 
 ---
 
