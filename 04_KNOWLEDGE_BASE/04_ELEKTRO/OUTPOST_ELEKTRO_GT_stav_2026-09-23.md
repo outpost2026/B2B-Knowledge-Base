@@ -2,7 +2,7 @@
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
 **Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.1 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto od autora)
+**Verze:** 1.2 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
 **Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth
 
 ---
@@ -39,14 +39,13 @@
 ### 2.1 Co JE zapojeno a provozovano
 
 ```
-[String 1 FV — STRECHA mistnosti 2]
+[String 1 FV — STRECHA mistnosti 2 — pultova, MINIMALNI TILT (author 2026-09-23)]
         |
+        |  kabel FV → jističe: ~4 m, 2×2,5 mm² CYLY  (G12: typ kable, ne solar)
         v
-   DC jistic SPB1 63Z C32   <-- JEDINY zapojeny jistic v objektu
+   DC jistic SPB1-63Z C32 (YQSHIPU, 2p, DC500V, 6000A)  <-- JEDINY zapojeny jistic
         |
-        v
-   silove DC kabele (do mistnosti 2)
-        |
+        |  jistic → menic: ~4 m, 2×4 mm² plné Cu
         v
    [Hybridni menic POW-HVM3.2H 3200 W] <-- vyrabi E, nabiji
         |
@@ -56,15 +55,15 @@
 
 | Prvek | Stav | Detail |
 |---|---|---|
-| **String 1** | **ZAPOJEN, na strese mistnosti 2** | 4×475 Wp, 2P2S, az. ~173°, tilt dle posledni zmeny (45° k 18.3.2026 — overit aktualni foto) |
+| **String 1** | **ZAPOJEN, na strese mistnosti 2** | 4×475 Wp, 2P2S, az. ~173°; **tilt = pultova strecha, minimalni (author 2026-09-23)** — misto drivejsich 45° |
 | **String 2** | **MIMO PROVOZ** (neuvedeno v zapojeni 2026-09-23) | 2×200 Wp 2S; historicky chybel DC jistic; Panel A 100% mikropraskliny; CYKY 1,5 mm² / ~6 m; Epever XTRA4210N poskozena svorkovnice, bez krytu, 27,6 V strop |
-| **DC jistic FVE** | **SPB1 63Z C32 — zapojen** | Jediný zapojeny jistic; cesta: panely → SPB1 → silove kabele → hybridni menic |
+| **DC jistic FVE** | **SPB1-63Z C32 — zapojen** | YQSHIPU, **2p, DC 500 V, 6000 A, IEC 60898-2**, v boxu s krytem; cesta: panely → 4 m 2×2,5 CYLY → SPB1 → 4 m 2×4 Cu → menic |
 | **Hybridni menic** | **Provoz** | POW-HVM3.2H-24V-N, 3200 W AC, idle ~52,6 W; bulk 28,8 V / float 27,2 V (upr. 18.3.2026) / UVP 22,0 V / max charge 80 A |
-| **Hlavni LFP** | **Provoz, nabijena** | LiFePO4 8S2P (2P8S), 630 Ah, 15,12 kWh, nom. 25,6–26,4 V |
+| **Hlavni LFP** | **Provoz, nabijena** | LiFePO4 8S2P (2P8S), 630 Ah, 15,12 kWh, nom. 25,6–26,4 V; **U = 26,78 V (odecet 2026-09-23)** |
 | **BMS** | **Zapojena** | JK-PB2A16S20P V19, 200 A common port, 2 A aktivni balancer, BLE/GPS/TTL |
-| **AC rozvody 230 V** | **ODSTRANENY / NEZAPOJENE** | Zadne zasuvky, zadne jisticne skupiny AC v provozu |
+| **AC rozvody 230 V** | **ODSTRANENY / NEZAPOJENE** | **Zadost autora: prozatim JEDNA zasuvka/vidlice (stand. evropska) na provizorni prodluzovacku z AC vystupu menice** — viz §5.9 |
 | **AC jisticeni** | **FYZICKY K DISPOZICI, NEZAPOJENO** | Viz §3 |
-| **GoKWh zalozni LFP** | **ODPOJENA, NEDOBITA** | 24 V, 100 Ah, 2,4 kWh; U okolo 24 V (hluboke vybiti — pred pripojenim overit stav celku, nelze nabijet pod 0 °C) |
+| **GoKWh zalozni LFP** | **ODPOJENA, NEDOBITA** | 24 V, 100 Ah, 2,4 kWh; **U = 23,9 V (2026-09-23)** — nizke, pred pripojenim overit stav celku |
 | **DC rozvody vetevni (USB, step-down)** | Mimo tento GT stav — historicalne z Epever; nyni dle autorova popisu neupresneno (foto) |
 
 ### 2.1b Fotoproanalyza — hybridni menic + BMS (author foto 2026-09-23)
@@ -96,8 +95,19 @@
 
 **Dimenzovani (kontrola):**
 - **DC battery 8 mm²** při Imax měniče 80 A (nab.) / BMS 200 A: 8 mm² Cu je na ~50–60 A při běžných teplotách v uzavřeném prostoru — **pro 80 A nabíjení hraniční/spíše nedostatečná bez deratingu**; pro nárazové vybíjení těžkých spotřebičů (jmenovitě težká díla ~100 A+) **poddimenzována vůči BMS 200 A**. Trunk musí být dimenzován na min(Imax měniče, AIC/AIC pojistky, I_predpokydany zatěž) — viz G2/G9.
-- **DC PV 4 mm²** při Imp stringu 1 ~9,2 A (reálně, MPPT side) / max ~13 A větev: 4 mm² **vyhovuje** pro String 1; daleko pod limit měniče.
+- **DC PV 4 mm² (jistic→menic, ~4 m)**: Imp stringu 1 (2P2S, ~1900 Wp) je v radu ~20–23 A — 4 mm² plné Cu **na hraně** dle zatížení/teploty; 2×2,5 CYLY (panely→jistic, ~4 m) je **stejne hraniční až poddimenzované** pro plný Imp + navíc CYLY neni solarni kabel (UV) — **G12**.
 - **AC 3×1,5 mm²** na 3200 W (~14 A): 1,5 mm² je na 16–19 A → **na hraně pro plný výkon měniče**; pro 16 A okruh dostačuje, pro 32 A ne (B32 by vyžadoval 2,5 mm²+).
+
+### 2.1d Fotoproanalyza — SPB1 detail (author foto 2026-09-23)
+
+| Prvek | Pozorovani | Jistota |
+|---|---|---|
+| Typ | **YQSHIPU SPB1-63Z C32**, 2p (spojena paka), CE | P>0.98 (cena z foto) |
+| Spec | **DC 500 V=, IEC 60898-2, 6000 A**, křivka C, 32 A | P>0.98 |
+| Schéma na štítku | 1+/2−, 3+/4− (obě poloviny), plus minus význam | P>0.95 |
+| Stav | V boxu s **průhledným krytem** (nasazený), montáž na dřevo | P>0.95 |
+| Konektory (dole) | Červený/černý kabel ze spodního průchodu (DC ven k měniči) | P>0.9 |
+| Zapojení | **ON** (zelená okénka, páka dolů = OFF u těchto; dle foto červená paka ve spodní poloze — overit stav ON/OFF pri dalsim meritku) | P>0.8 |
 
 ### 2.1c Fotoproanalyza — inventura jisticu (jistice.jpg, author 2026-09-23)
 
@@ -135,7 +145,7 @@ Poreadi shora dolu na drevene desce:
 
 | Polozka | Pocet / specifikace | Predpokladana role v nove instalaci |
 |---|---|---|
-| **SPB1 63Z C32** | 1 ks — **ZAPOJEN** | Hlavni DC jistic FVE string 1 (detail typu = O2) |
+| **SPB1-63Z C32** | 1 ks — **ZAPOJEN**; YQSHIPU, 2p, DC 500 V, 6000 A, IEC 60898-2, v boxu | Hlavni DC jistic FVE string 1 (detail viz §2.1d) |
 | **EATON PL7C16/1** | 1 ks, C 16 A, 1p (foto §2.1c) | AC okruh male zateze / pomocny |
 | **EATON PL7B32/1** | 1 ks, B 32 A, 1p (v bilem boxu se sběrnicí) | AC okruh vyssi zateze — B32 vyzaduje 2,5 mm²+ (G11) |
 | **B25/1** | 1 ks, B 25 A, 1p (potvrzeno z foto) | AC okruh stredni zateze |
@@ -161,6 +171,8 @@ Poreadi shora dolu na drevene desce:
 | G9 | **Otevreny kryt terminálu menice + montáž na holé dřevo bez skříně** (foto 2026-09-23) | Vysoka | Osadit kryt, průchodky, základní rozvaděč/box IP na stěnu; oddělit od hořlavé konstrukce dle požadavků |
 | G10 | **Trunk 8 mm² DC battery vs. BMS 200 A / menič 80 A** — možné poddimenzování při plném odběru | Vysoka | Přepočítat I_valid pro 8 mm²; případně 16–25 mm² na BAT trunk + MEGAFUSE dle AIC |
 | G11 | **AC výlev CYLY 3×1,5 mm²** — na hraně pro 3200 W; nelze krýt B32 | Stredni | Pro HIC 16 A OK; pro vetev 32 A 2,5 mm²; popsat barvy L/N/PE |
+| G12 | **FV kabel panely→SPB1: 4 m 2×2,5 mm² CYLY** — CYLY neni solar/UV kabel; průřez na hraně pro Imp 2P2S | Vysoka | Nahradit UV solarnim kablem min. 4–6 mm² dle Imp + 1,25; CYLY jen pro AC |
+| G13 | **Provizorni AC: jedna zasuvka/prodluzovacka bez RCD/RCBO a bez spinaceho prvku u menice** | Vysoka (dokud trva) | Minimalne: RCBO 16 A/30 mA typ A na vetvi; trvale: rozvadec M2 viz §5.4/§5.9 |
 
 ---
 
@@ -174,6 +186,7 @@ Poreadi shora dolu na drevene desce:
 6. **Zimni provoz:** Termostat/nabijeci interlock pri < 0 °C; teplotni cidla na baterii (DS18B20 plan); Priti Mini D jako predohrev pred nabojim po mrazove noci.
 7. **Monitoring:** RS232/Modbus z menice + BLE BMS → jednotna telemetrie (uzavrit DEBT_001/002/IOT_002).
 8. **Bezpecnostni pravidla provozu:** Blokace souběhu >3200 W; 1 velky spotrebic soucasne; dokumentovany start/stop postup pred zimou.
+9. **Provizorni AC (zadost 2026-09-23 — JEDNA zasuvka):** Autor potrebuje prozatim pouze **jednu stand. evropskou zasuvku/vidlici** pro prodluzovacku. Minimum bezpeci pred zapojením: (a) overit L/N/PE na AC vystupu menice (volne CYKY 3×1,5 — O9), (b) **RCBO 16 A / 30 mA typ A** mezi menic a zasuvku, (c) spinani/vypinac v dosahu, (d) provozni limit — jen mala zatěž (nabijeni, svetlo, NOTEBOOK), **NE** konvice/indukce/pila. Trvale reseni = §5.4 rozvadec M2.
 
 ---
 
@@ -182,14 +195,14 @@ Poreadi shora dolu na drevene desce:
 | ID | Co doplnit | Forma |
 |---|---|---|
 | O1 | Aktuální půdorys mistnosti 2 s polohou menice, LFP, BMS, rozvaděče | Foto + rozměr (pás měřítka nebo známá vzdálenost) |
-| O2 | Detail zapojeni SPB1 63Z C32 — průřez vodičů, směr (±), skutečné označení | **CÁSTEČNĚ — čeká foto SPB1 samostatně** |
-| O3 | Trasa silových kabelů strecha→mistnost 2 (průřez, typ, délka) | **ČÁSTEČNĚ — DC IN u menice 4 mm² potvrzen; chybí trasa/p délka** |
-| O4 | Stav AC kabeláže po demontáži — co zůstalo ve stěnách, krabice, vesty | Foto místnost 1 i 2 |
-| O5 | Ověření typu B25/1 a PL7* (MCB vs. pojistková) | **HOTOVO — viz §3 (MCB EATON PL7 C16/B32, B25, Noark Ex9FP, MEGAFUSE)** |
-| O6 | Aktuální tilt/orientace stringu 1 po premistění na strechu | Foto + kompas |
-| O7 | SOC/napětí hlavní LFP a GoKWh v den revize | Odečet BMS / multimetr |
-| O8 | Dispozice zásuvek a spotřebičů, které se mají vratit do provozu | Seznam + místo |
-| O9 | Detail AC výlevu u menice (kam jdou volné konce CYLY), PE continuity | Foto + multimetr |
+| O2 | Detail zapojeni SPB1 63Z C32 — průřez vodičů, směr (±), skutečné označení | **HOTOVO — §2.1d (YQSHIPU SPB1-63Z C32, 2p, DC500V, 6000A); směr ±/stav ON-OFF doplnit pri dalsim odecitani** |
+| O3 | Trasa silovych kabelu strecha→mistnost 2 (průřez, typ, délka) | **HOTOVO — ~4 m 2×2,5 CYLY panely→SPB1; ~4 m 2×4 Cu SPB1→menic (G12)** |
+| O4 | Stav AC kabeláže po demontáži — co zůstalo ve stěnách, krabice, vesty | Foto mistnost 1 i 2 |
+| O5 | Ověření typu B25/1 a PL7* (MCB vs. pojistková) | **HOTOVO — viz §3** |
+| O6 | Aktuální tilt/orientace stringu 1 po premistění na strechu | **HOTOVO — pultova strecha, minimalni tilt (author 2026-09-23)** |
+| O7 | SOC/napětí hlavní LFP a GoKWh v den revize | **HOTOVO — LFP 26,78 V; GoKWh 23,9 V nezapojena (2026-09-23)** |
+| O8 | Dispozice zásuvek a spotřebičů, ktere se mají vratit do provozu | **CASTECNE — jen jedna provizorni zasuvka/prodluzovacka (§5.9); final seznam dale** |
+| O9 | Detail AC výlevu u menice (kam jdou volne konce CYLY), PE continuity | Zbyva: foto + multimetr (podminka pro §5.9) |
 
 ---
 
@@ -199,6 +212,7 @@ Poreadi shora dolu na drevene desce:
 |---|---|---|
 | 2026-09-23 | V1.0 — vznik GT: author-live update (string1 strecha, GoKWh odpojena, inventura jisticu, SPB1), gap analyza, navrhove principy | outpost2026 + agent |
 | 2026-09-23 | V1.1 — fotoproanalyza menic+BMS (§2.1b) a jisticu (§2.1c/§3), O5 hotov, G9–G11, trunk 8 mm² a AC 3×1,5 dimenze | outpost2026 + agent (photo-read) |
+| 2026-09-23 | V1.2 — SPB1 foto §2.1d (YQSHIPU), trasa 4+4 m, tilt pultova/min, SOC 26,78/23,9, G12–G13, §5.9 provizorni 1 zasuvka; O2/O3/O6/O7 hotovo | outpost2026 + agent (photo-read) |
 
 ---
 
