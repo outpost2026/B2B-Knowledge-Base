@@ -278,6 +278,19 @@
 |---|--------|-------|-----|------|------|
 | CH01 | `player_pattern_library_v1.json` | 04_KNOWLEDGE_BASE/02_chess/ | kánon | 17 patternů pro lichess-analyzer (chess_pattern_v5 import) | 8/10 |
 
+### 03_CV_AUTOMATION — YOLO11, garden monitor
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| CA01 | `YOLO11_GARDEN_MONITOR_GLOSSARY_KONCEPT_v1.md` | 04_KNOWLEDGE_BASE/03_CV_AUTOMATION/ | glossary | Koncept garden monitor glossary (YOLO11) | 7/10 |
+
+### 04_ELEKTRO — Off-grid elektro, kvalifikace, GT instalace
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| EL01 | `KVALIFIKACE_ELEKTRO_AGREGACE_2026-09-04.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | kvalifikace | Agregace elektro kvalifikace — co lze inferovat vs. co chybi (vyhl. 50 gap) | 9/10 |
+| EL02 | `OUTPOST_ELEKTRO_GT_stav_2026-09-23.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground truth | GT soucasneho stavu elektroinstalace Outpost pred revizi + inventura jisticu + navrhove principy nove instalace | 10/10 |
+
 ### Replikace (cross-repo, deliberate — žádná akce)
 
 | Soubor | Výskyty | Status |
@@ -440,6 +453,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | `cv_automation`, `yolo11`, `small_models` | `02_ANALYZY/07_CV_automatizace/` |
 | `workspace`, `meta`, `struktura`, `korelace` | `02_ANALYZY/04_workspace_audit/` |
 | `sql`, `databaze`, `gramotnost`, `ontologie` | `05_EPISTEMIKA/03_kognitivni_ontologie_nastroju/` |
+| `elektro`, `offgrid`, `FVE`, `LFP`, `jistenie`, `outpost_revize` | `04_KNOWLEDGE_BASE/04_ELEKTRO/` |
 | `sql`, `imerze`, `adopce`, `kandidati` | `02_ANALYZY/04_workspace_audit/` |
 
 ---
@@ -448,7 +462,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026) | 90 |
+| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026 + 04_ELEKTRO 09/2026) | 93 |
 | Duplicitní páry | 0 |
 | Souborů v _ARCHIVE (tracked) | 7 |
 | Celkem zmapovaných artefaktů (celý workspace) | ~110 |
