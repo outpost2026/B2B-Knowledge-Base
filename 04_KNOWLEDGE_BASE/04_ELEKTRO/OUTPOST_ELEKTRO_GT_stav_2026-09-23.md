@@ -2,8 +2,8 @@
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
 **Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.6 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto, AC output foto od autora)
-**Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth
+**Verze:** 1.7 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto, AC output foto od autora) + sketchup-spatial-read 2026-09-23 (`cad2llm/examples/sketchup_model_v3.json`)
+**Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth, spatial, sketchup
 
 ---
 
@@ -14,6 +14,7 @@
 **Zdroje:**
 - Author-live-update 2026-09-23 (zapojeni stringu, mistnostni cislovani, inventura jisticu, topologie FVE jisticeni) — **priorita pred archivnimi daty**
 - `Source_raw/Outpost_kontext_master/` (ingest_energeticky_uzel, FV_ingest_*, FV Diagnostic 2026-03-18, soupis, fyziko-env. profil, datasheet, JK_logs, Cornex health)
+- **Spatial derivat (SketchUp → LLM-ready JSON):** `../cad2llm/examples/sketchup_model_v3.json` — půdorys M2, polohy prvků, metadata zone/energy/thermal/safety; pro deterministické plánování nové elektroinstalace a dispozičních úprav (viz §1.1)
 - KB: `04_KNOWLEDGE_BASE/04_ELEKTRO/KVALIFIKACE_ELEKTRO_AGREGACE_2026-09-04.md`
 - Reference navrhu: `Zakazky/Dodavka_Kuba_Sladek/elektro_schema_boxer.html` (normy, prurezy, RCBO)
 
@@ -31,6 +32,46 @@
 *Poznamka k revizi v1 (2026-09-23):* Puvodni zadani tasku uvadelo „mistnost 1 = obytna 10 m2“ — **nepravda**; kanon je **mistnost 2 = 10 m2 energeticky uzel**. Stary text v archivnich dokumentech (datasheet „Zona 1/2“) oznacuje pergolu jako Zonu 1 a utility uzel jako Zonu 2 — cislovani mistnosti vs zony se lisi, v tomto dokumentu plati tabulka vyse.
 
 **Objekt:** dre stavba 7×5 m (35 m2 celkem), zaklady skvarobetonove patky, severni hrana 0,4 m pod terenem (hydroizolace nereshena). Lokalita: Drahanske udoli, Praha 8 — Dolni Chabry, 50.15087 N / 14.42343 E.
+
+### 1.1 Spatial derivat Mistnosti 2 — SketchUp JSON (LLM-ready, 2026-09-23)
+
+**Zdroj:** `../cad2llm/examples/sketchup_model_v3.json` (cad2llm, formát v3, jednotky m, export 2026-04-16, `mistnost_2_sk24_v2`).
+**Učel:** Deterministický prostorový kontext pro plánování nové elektroinstalace (rozvaděč, trasy, vzdálenosti) a dispozičních úprav — bez nutnosti znovu číst foto. **Transform matrix: posledních 7 hodnot = placeholder, nepoužívat; orientace jen z origin/center/size.**
+
+**Obálka M2 (půdorys ≈ 4,55 × 2,05 m ≈ 9,3 m², výška stropu ~2,09 m):**
+
+| Vrstva | Rozměr (m) | Poznámka |
+|---|---|---|
+| Podlaha dřevo | 4,55 × 2,05 × 0,02 | nad izolací |
+| Izolace podlaha | 4,55 × 2,05 × 0,10 | Isover Domo, λ 0,038 |
+| Izolace strop | 4,50 × 2,21 × 0,10 | + textilní podhled Guttafol 135 |
+| Stěny izolace | 4 strany × 0,07 | minerální 7 cm |
+| Stropní trám | 5,0 × 0,08 × 0,08 | překlad pozednice, výška ~2,0 |
+| Vchod | 1,65 × 2,0 | východní stěna (y=2,0), bez dveřního křídla v modelu |
+| Okna | 2× jih (dvoj), 2× západ (dvoj) | bez rámu v modelu |
+
+**Orientace stěn (dle jmen v JSON):** sever = x=0 (vstup do místnosti), jih = x=4,5 (kamna + okno), západ = y=0 (okna), východ = y=2,0 (průchod/vchod).
+
+**Shluk energetického uzlu — linie y ≈ 1,76–1,95 (u východní stěny):**
+
+| Prvek | id | origin (x,y,z) | size (x,y,z) | metadata |
+|---|---|---|---|---|
+| Měnič HVM3.2H | 3354 | 1,79 / 1,90 / 1,075 | 0,27 × 0,10 × 0,35 | na stěně, z≈1,08–1,43 — AC OUT směrem dolů ke CB |
+| Pracovní deska | 3347 | 1,52 / 1,76 / 0,745 | 2,26 × 0,20 × 0,05 | dřevo, tag Shelves |
+| Police pod LFP | 3350 | 1,69 / 1,76 / 0,49 | 2,09 × 0,24 × 0,035 | pod deskou |
+| Hlavní LFP 630 Ah | 3369 | 1,785 / 1,828 / 0,525 | 1,146 × 0,172 × 0,205 | **fire_risk=true**, min_distance 0,5 m, 5–35 °C; 16 článků (id 304–319) |
+| GoKWh 100 Ah | 3353 | 2,055 / 1,76 / 0 | 0,525 × 0,24 × 0,22 | na podlaze pod deskou; 24 V / 100 Ah |
+| Kamna Priti Mini D | 3349 | 3,99 / 1,61 / 0 | 0,43 × 0,31 × 0,68 | x≈4,2 (u jihu), zóna bed/stove, wood fuel |
+| Postel | 3348 | 2,495 / 0 / 0 | 2,0 × 0,97 × 0,18 | zone sleep; socket_load 50 W; temp 21 °C |
+| Stůl | 3351 | ~0 / 0,08 / 0 | 0,68 × 0,75 × 0,67 | u severu (x≈0) |
+
+**Prostorové souvislosti s elektro GT:**
+1. **Trasa provizorní AC (§2.1e):** měnič (z≈1,25) → CB → svorkovnice → zásuvka jde **pod pracovní deskou (z=0,745)** směrem k východu (y=2,0) — odpovídá foto (oranžový 3×2,5 nahoru ke CB, pak dolů).
+2. **Umístění trvalého rozvaděče (§5.4/§5.9):** logicky **mezi měničem a vchodem** na východní stěně (y≈2,0), v linii energetického uzlu — minimální délky tras, mimo sever (G7 hydroizolace).
+3. **Kamna (x≈4,2) vs. LFP (x≈1,8–2,9):** vzdálenost ~1,3–2,4 m > min 0,5 m; směr tepla/kouřovodu ověřit; postel ve stejné zóně jako kamna (bezpečnostní kontext G7/G9).
+4. **Pergola (room#1, id 3377):** y=2,07–4,57 — **mimo M2**, venkovní prostor; neplést s elektro uzlem.
+5. **Chybí v modelu:** zásuvky, CB, svorkovnice, kabeláž (typické bez elektrovrstvy) — GT §2.1e doplňuje derivát, ne naopak.
+6. **GPS v JSON** (50,1509 / 14,4234) odpovídá lokalitě §1; **definition_name ";"** u jižní stěny = chyba exportu, použít instance_name.
 
 ---
 
@@ -261,7 +302,7 @@ Poreadi shora dolu na drevene desce:
 
 | ID | Co doplnit | Forma |
 |---|---|---|
-| O1 | Aktuální půdorys mistnosti 2 s polohou menice, LFP, BMS, rozvaděče | Foto + rozměr (pás měřítka nebo známá vzdálenost) |
+| O1 | Aktuální půdorys mistnosti 2 s polohou menice, LFP, BMS, rozvaděče | **CASTECNE — spatial derivat §1.1 (sketchup_model_v3.json): půdorys, polohy menice/LFP/GoKWh/kamen/stolu; chybí BMS+rozvaděč v modelu; doplnit foto s měřítkem** |
 | O2 | Detail zapojeni SPB1 63Z C32 — průřez vodičů, směr (±), skutečné označení | **HOTOVO — §2.1d (YQSHIPU SPB1-63Z C32, 2p, DC500V, 6000A); směr ±/stav ON-OFF doplnit pri dalsim odecitani** |
 | O3 | Trasa silovych kabelu strecha→mistnost 2 (průřez, typ, délka) | **HOTOVO — ~4 m 2×2,5 CYLY panely→SPB1; ~4 m 2×4 Cu SPB1→menic (G12)** |
 | O4 | Stav AC kabeláže po demontáži — co zůstalo ve stěnách, krabice, vesty | Foto mistnost 1 i 2 |
@@ -285,6 +326,7 @@ Poreadi shora dolu na drevene desce:
 | 2026-09-23 | V1.4 — O10 meritka (OFF L-PE/N-PE ~150 V, N-L 0; ON L-N 230 V); G14 potvrzeno + zvysena na Vysoka; §2.1e presunuta zpet do §2 (struktura); interpretace 150 V nebezpecna | outpost2026 + agent |
 | 2026-09-23 | V1.5 — G14 OPRAVENO prohozenim AC OUT u menice (L=modra na jistici); nove meritka OFF ~35 V (z 150), ON 230 V; svorkovnice DIN s popsanymi mustky; O9/O10 HOTOVO | outpost2026 + agent |
 | 2026-09-23 | V1.6 — photo-read AC output: potvrzena topologie (EATON C16, 2 DIN boxy, PE věneček, mustky N/L, CYLY 3×2,5+3×1,5); **novy G15** (otevrene boxy bez krytu, věneček na holém dřevě); navazuje G9 | outpost2026 + agent (photo-read) |
+| 2026-09-23 | V1.7 — **§1.1 spatial derivat** ze sketchup JSON (cad2llm): půdorys M2 4,55×2,05, linie energetického uzlu y≈1,76–1,95, metadata LFP/kamna/postel, odkaz na zdroj; O1 částečně hotovo | outpost2026 + agent (sketchup-spatial-read) |
 
 ---
 
