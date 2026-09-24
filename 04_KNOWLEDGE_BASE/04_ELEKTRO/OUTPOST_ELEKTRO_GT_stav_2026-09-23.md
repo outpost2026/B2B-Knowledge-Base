@@ -2,7 +2,7 @@
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
 **Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.5 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
+**Verze:** 1.6 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto, AC output foto od autora)
 **Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth
 
 ---
@@ -165,8 +165,20 @@ Poreadi shora dolu na drevene desce:
 | Jistic | **EATON PL7C16/1** (1p, C 16 A) | **Nyni na L (modry vodic)** — G14 OPRAVENO |
 | Svorkovnice | DIN box, 2 sockety, **2 můstky** | Můstky **popsány fixou** symbolem N/L pro orientaci |
 | Posledni usek | **CYKY 3×1,5 mm²**, <2 m | hnědá=L, modrá=N, ŽZ=PE — korektni barvy k zasuvce |
-| Zasuvka | 1× kolik, **vse 3 vodice** | PE=colik propojen |
+| Kryty boxu | **CHYBI** — 2× DIN box otevřený, PE věneček na holém dřevě | **G15 novy — vysoka zavaznost** |
 | RCD/RCBO | **CHYBI** | **G13 stale otevreny — vysoka zavaznost** |
+
+**Photo-read AC output (author foto 2026-09-23):**
+
+| Prvek na foto | Popis | Jistota |
+|---|---|---|
+| Měnič | POW-HVM (SOLAR INVERTER CHARGER), display, INV/CHG LED; **spodní kryt terminálů ODEBRANÝ** (G9) | P>0.95 |
+| Oranžový kabel | **3×2,5 mm² CYLY** (oranžový plášť) — z terminálů měniče nahoru ke CB | P>0.9 |
+| Levý DIN box | **EATON PL7C16/1** (C16), 1p; oranžový vstup, černý/modrý výstup; **bez krytu** | P>0.95 |
+| Prostřední prvek | **PE věneček** (kroužková svorkovnice, ~8 šroubů) — ŽZ + hnědý vodic; **montáž přímo na holé dřevo, bez boxu** | P>0.9 |
+| Pravý DIN box | **Svorkovnice s můstky** (zelený + modrý blok), **N L** popsáno fixou na krabici; hnědý + modrý vodiče od CB; **bez krytu** | P>0.95 |
+| Výstup dolů | **CYKY 3×1,5 hnědý** → zásuvka (celá trasa mimo záběr) | P>0.9 |
+| Montáž | Vše na **holé dřevěné stěně** (prkna), žádný IP rozvaděč, žádné průchodky | P>0.95 |
 
 **Provozni limit (dokud neni RCBO):** max **~1500–1600 W** (nabijeni, svetlo, notebook). **NE** konvice, indukce, pila, hoblivka.
 
@@ -227,6 +239,7 @@ Poreadi shora dolu na drevene desce:
 | G12 | **FV kabel panely→SPB1: 4 m 2×2,5 mm² CYLY** — CYLY neni solar/UV kabel; průřez na hraně pro Imp 2P2S | Vysoka | Nahradit UV solarnim kablem min. 4–6 mm² dle Imp + 1,25; CYLY jen pro AC |
 | G13 | **Provizorni AC zapojena BEZ RCD/RCBO** (PL7C16 + 1 zasuvka, §2.1e) | **Vysoka — trva** | Dokoupit **RCBO 16 A/30 mA typ A** (1 modul) mezi menic a svorkovnici; do te doby jen mala zatez; trvale rozvadec M2 §5.4/§5.9 |
 | G14 | ~~Jistic na N misto L~~ — **OPRAVENO 2026-09-23** prohozenim AC OUT u menice | **UZAVRETO** | Spinany vodic = L (modra <1 m); overeno: OFF L-PE ~35 V (pred ~150 V); ON L-N 230 V |
+| G15 | **Otevřené DIN boxy bez krytů + PE věneček na holém dřevě** (foto AC output 2026-09-23) — 2× svorkovnicový box přístupný, věneček bez krytu | **Vysoka — nova** | Osadit kryty DIN boxů; věneček do IP boxu; celé do rozvaděče IP na stěnu (navazuje G9) |
 
 ---
 
@@ -271,6 +284,7 @@ Poreadi shora dolu na drevene desce:
 | 2026-09-23 | V1.3 — provizorni AC ZAPOJENO (§2.1e): CYKYLO 3×2,5 + PL7C16 + svorkovnice + CYKY 3×1,5 → 1 zasuvka; PL7C16 ve inventari = ON; G13 zustava, G14 spinani N misto L, O10 | outpost2026 + agent |
 | 2026-09-23 | V1.4 — O10 meritka (OFF L-PE/N-PE ~150 V, N-L 0; ON L-N 230 V); G14 potvrzeno + zvysena na Vysoka; §2.1e presunuta zpet do §2 (struktura); interpretace 150 V nebezpecna | outpost2026 + agent |
 | 2026-09-23 | V1.5 — G14 OPRAVENO prohozenim AC OUT u menice (L=modra na jistici); nove meritka OFF ~35 V (z 150), ON 230 V; svorkovnice DIN s popsanymi mustky; O9/O10 HOTOVO | outpost2026 + agent |
+| 2026-09-23 | V1.6 — photo-read AC output: potvrzena topologie (EATON C16, 2 DIN boxy, PE věneček, mustky N/L, CYLY 3×2,5+3×1,5); **novy G15** (otevrene boxy bez krytu, věneček na holém dřevě); navazuje G9 | outpost2026 + agent (photo-read) |
 
 ---
 

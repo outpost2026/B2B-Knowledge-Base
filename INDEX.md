@@ -289,7 +289,7 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | EL01 | `KVALIFIKACE_ELEKTRO_AGREGACE_2026-09-04.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | kvalifikace | Agregace elektro kvalifikace — co lze inferovat vs. co chybi (vyhl. 50 gap) | 9/10 |
-| EL02 | `OUTPOST_ELEKTRO_GT_stav_2026-09-23.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground truth | GT Outpost elektro pred revizi + inventura + fotoproanalyza + provizorni AC + G14 opraveno OFF 35V (v1.5) | 10/10 |
+| EL02 | `OUTPOST_ELEKTRO_GT_stav_2026-09-23.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground truth | GT Outpost elektro pred revizi + inventura + fotoproanalyza + provizorni AC + G14 opraveno + photo-read AC output, G15 (v1.6) | 10/10 |
 
 ### Replikace (cross-repo, deliberate — žádná akce)
 
