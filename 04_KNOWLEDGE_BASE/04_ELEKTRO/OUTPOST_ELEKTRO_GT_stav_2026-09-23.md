@@ -1,9 +1,9 @@
 # OUTPOST ELEKTRO — GROUND TRUTH STAVU A ZADANI NOVE INSTALACE
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
-**Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.8 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT, uzavreni U1–U9) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto, AC output foto od autora) + sketchup-spatial-read 2026-09-23 (`cad2llm/examples/sketchup_model_v3.json`)
-**Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth, spatial, sketchup
+**Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a sluzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
+**Verze:** 1.9 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnost, provizorni AC, meritka O10, prohozeni AC OUT, uzavreni U1-U9) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto, AC output foto od autora) + sketchup-spatial-read 2026-09-23 (`cad2llm/examples/sketchup_model_v3.json`) + source-read IOT incident 2026-09-24 (§2.3 FAULT 02, reseni v OUTPOST_ELEKTRO_INFRASTRUKTURA.md)
+**Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth, spatial, sketchup, menic, fault02
 
 ---
 
@@ -261,6 +261,21 @@ Poreadi shora dolu na drevene desce:
 - **G13 (RCD chybi):** stále priorita — dokoupit RCBO 16 A/30 mA typ A; do te doby pouze mala zatez + PE musi byt spojite (je).
 - **Barvy:** u měniče <1 m prohozeny (modrá=L); od svorkovnice korektní (hnědá=L). Můstky na SV popsány fixou.
 
+### 2.3 Provozni zdravi menice — incident FAULT 02 (kontext 2026-07-25, overeno 2026-09-24)
+
+**Kanon pro zive detaily EL infrastruktury (zdravi zaizeni, incidenty, monitoring):** `OUTPOST_ELEKTRO_INFRASTRUKTURA.md` (EL03). Tato sekce je pouze krizovy tahak uvnitr GT stavu.
+
+| Polozka | Hodnota |
+|---|---|
+| Zarizeni | POW-HVM3.2H-24V-N, 3200 W — **srdce EL layeru** (jediny zdroj AC 230 V + nabijeci cesta z FV) |
+| Incident | 2026-07-25: opakovane FAULT 02 po 7 dnech s vadnou konvici 2 kW (term. sok); po ocisteni **FAULT 02 trva za 10–13 min i pri 50–250 W** |
+| FAULT 02 (OEM HVM11KP) | "Over temperature or NTC is not connected well" |
+| Revidovana diagnóza v2.1 | **Rds(on) degradace H-bridge MOSFETu** (kalcel: +25 % ≈ +10 °C case) + **pasivni chlazeni pri nizke zatezi** (ventilator load-based, start >600 W); NTC pravdepodobne degradovany tepelny kontakt |
+| Potvrzeno | prach/vyteceno (vycisteno); ventilator OK pri 1 kW (46→39 °C); konstantni cas do faultu |
+| NEpotvrzeno (blokuje verdikt) | T01 NTC odpor (multimetr); T02 skutecna teplota heatsinku (DS18B20: >90 °C = Rds(on), <60 °C = vadny NTC) |
+| Plny zdroj | `Repozitar_Dev/IOT/report_incident_POW-HVM3.2H-24V_2026-07-25.md` (mimo KB — shrnuto v EL03) |
+| Dopad na zimu | Thermal monitoring (DS18B20 T02) = CRITICAL pred provozem pod zatizi; viz §5.6/§5.7 |
+
 ---
 
 ## 3. Inventura jistici techniky (fyzicky k dispozici, NEZAPOJENO krome SPB1)
@@ -344,7 +359,8 @@ Poreadi shora dolu na drevene desce:
 | 2026-09-23 | V1.6 — photo-read AC output: potvrzena topologie (EATON C16, 2 DIN boxy, PE věneček, mustky N/L, CYLY 3×2,5+3×1,5); **novy G15** (otevrene boxy bez krytu, věneček na holém dřevě); navazuje G9 | outpost2026 + agent (photo-read) |
 | 2026-09-23 | V1.7 — **§1.1 spatial derivat** ze sketchup JSON (cad2llm): půdorys M2 4,55×2,05, linie energetického uzlu y≈1,76–1,95, metadata LFP/kamna/postel, odkaz na zdroj; O1 částečně hotovo | outpost2026 + agent (sketchup-spatial-read) |
 | 2026-09-23 | V1.8 — uzavreni U1–U9 (author): plocha **9,31 m² kanon**, orientace stěn dle jmen (delší osa SJ), dvere = rekonstrukce, ~25 °C/RH 26 %; gaps U2 (BMS/rozvaděč nemodelován), U3 (bez elektrovrstvy), U9 (délka AC trasy) | outpost2026 + agent |
+| 2026-09-24 | V1.9 — **§2.3 provozni zdravi menice (FAULT 02)**: krizovy tahak incidentu 2026-07-25, odkaz na novy zivy kanon EL03 `OUTPOST_ELEKTRO_INFRASTRUKTURA.md` (srdce EL layeru, monitoring, katalog zařízení) | outpost2026 + agent |
 
 ---
 
-*Poznamka RAG: Kanon pro „stav elektroinstalace Outpost pred revizi 2026“. Duplicity netvorit (P1). Pri nove generaci presunout tuto verzi do _ARCHIVE/ (P4). Navrh nove instalace se bude rozsirovat v ramci §5 po doplneni §6.*
+*Poznamka RAG: Kanon pro „stav elektroinstalace Outpost pred revizi 2026“. Duplicity netvorit (P1). Pri nove generaci presunout tuto verzi do _ARCHIVE/ (P4). Navrh nove instalace se bude rozsirovat v ramci §5 po doplneni §6. Zive EL zařízení/zdraví/incidenty = EL03 OUTPOST_ELEKTRO_INFRASTRUKTURA.md (nedatovaný, trvalý).*

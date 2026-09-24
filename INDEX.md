@@ -289,7 +289,8 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | EL01 | `KVALIFIKACE_ELEKTRO_AGREGACE_2026-09-04.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | kvalifikace | Agregace elektro kvalifikace — co lze inferovat vs. co chybi (vyhl. 50 gap) | 9/10 |
-| EL02 | `OUTPOST_ELEKTRO_GT_stav_2026-09-23.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground truth | GT Outpost elektro pred revizi + inventura + fotoproanalyza + provizorni AC + G14/G15 + spatial §1.1 uzavreni U1-U9, 9,31 m² (v1.8) | 10/10 |
+| EL02 | `OUTPOST_ELEKTRO_GT_stav_2026-09-23.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground truth | GT Outpost elektro pred revizi + inventura + fotoproanalyza + provizorni AC + G14/G15 + spatial §1.1 uzavreni U1-U9, 9,31 m² + §2.3 FAULT 02 tahak (v1.9) | 10/10 |
+| EL03 | `OUTPOST_ELEKTRO_INFRASTRUKTURA.md` | 04_KNOWLEDGE_BASE/04_ELEKTRO/ | ground-truth (zivy kanon) | Zivy kanon EL layeru objektu — topologie, registr EL-DEV-01..07, zdravi menice POW-HVM FAULT 02, monitoring T01-T07, rizika do zimy; neni datovaný snapshot (P4 neplati) | 10/10 |
 
 ### Replikace (cross-repo, deliberate — žádná akce)
 
@@ -462,7 +463,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026 + 04_ELEKTRO 09/2026) | 93 |
+| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026 + 04_ELEKTRO 09/2026 + EL03 09/2026) | 94 |
 | Duplicitní páry | 0 |
 | Souborů v _ARCHIVE (tracked) | 7 |
 | Celkem zmapovaných artefaktů (celý workspace) | ~110 |
