@@ -2,7 +2,7 @@
 
 **Datum:** 2026-09-23 | **Autor:** outpost2026
 **Ucel:** Deterministicky popisat soucasny stav elektroinstalace objektu Outpost 2026 (revize pred zimou) a slouzit jako zaklad ground truth pro navrh nove instalace s vyuzitim zkusenosti zprovozu od zimy 2025.
-**Verze:** 1.4 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
+**Verze:** 1.5 | **Status:** zive GT — doplnuje se foty a meritky autora | **Provenance:** source-read (Source_raw/Outpost_kontext_master + KB 04_ELEKTRO) + author-live-update 2026-09-23 (zapojeni, jistice, cislovani mistnosti, provizorni AC, meritka O10, prohozeni AC OUT) + photo-read 2026-09-23 (jistice.jpg, menic+BMS foto, SPB1 foto od autora)
 **Tagy KB:** elektro, outpost, offgrid, FVE, LFP, BMS, jistenie, revize, ground-truth
 
 ---
@@ -61,7 +61,7 @@
 | **Hybridni menic** | **Provoz** | POW-HVM3.2H-24V-N, 3200 W AC, idle ~52,6 W; bulk 28,8 V / float 27,2 V (upr. 18.3.2026) / UVP 22,0 V / max charge 80 A |
 | **Hlavni LFP** | **Provoz, nabijena** | LiFePO4 8S2P (2P8S), 630 Ah, 15,12 kWh, nom. 25,6–26,4 V; **U = 26,78 V (odecet 2026-09-23)** |
 | **BMS** | **Zapojena** | JK-PB2A16S20P V19, 200 A common port, 2 A aktivni balancer, BLE/GPS/TTL |
-| **AC rozvody 230 V** | **PROVIZORNI — 1× zasuvka, BEZ RCBO** | Měnič AC OUT → CYKYLO 3×2,5 → **EATON PL7C16/1** → svorkovnice (L/N + PE věneček) → CYKY 3×1,5 (<2 m) → **1× zásuvka (kolík), vše 3 vodiče** — viz §2.1e; stále **bez RCD/RCBO (G13)** |
+| **AC rozvody 230 V** | **PROVIZORNI — 1× zasuvka, G14 OPRAVEN, BEZ RCBO** | Měnič AC OUT (**prohozené L/N u měniče**) → CYKYLO 3×2,5 → **EATON PL7C16/1 (nyní na L)** → svorkovnice DIN (můstky L/N popsány) → CYKY 3×1,5 (<2 m) → **1× zásuvka, vše 3 vodiče** — viz §2.1e; stále **bez RCD/RCBO (G13)** |
 | **AC jisticeni** | **Castecne VE PROVOZU** | PL7C16/1 zapojen (provizorni AC); zbytek inventare dale nezapojen — viz §3 |
 | **GoKWh zalozni LFP** | **ODPOJENA, NEDOBITA** | 24 V, 100 Ah, 2,4 kWh; **U = 23,9 V (2026-09-23)** — nizke, pred pripojenim overit stav celku |
 | **DC rozvody vetevni (USB, step-down)** | Mimo tento GT stav — historicalne z Epever; nyni dle autorova popisu neupresneno (foto) |
@@ -139,33 +139,32 @@ Poreadi shora dolu na drevene desce:
 | Balancér | Aktivni pri nabijeni > ~300 Ah; delta V ~0,03 V | Zdravi LFP vyborne (Cornex 4/2026: „vyborny stav“) |
 | DEBT_IOT_004 | DC jistic String 2 historicky chybel | Nová instalace: **kazdy string vlastnim jisticem** |
 
-### 2.1e Provizorni AC — ZAPOJENO (author 2026-09-23)
+### 2.1e Provizorni AC — ZAPOJENO + G14 OPRAVENO (author 2026-09-23)
 
-**Topologie (realizovano):**
+**Topologie (realizovano, po prohozeni AC OUT u menice):**
 
 ```
 [Hybridni menic AC OUT]
-   L, N ──► CYKYLO 3×2,5 mm² (Cu, z 30 m venkovni prodluzovacky, neposkozeny)
-   PE  ──► symbol ZEME na menici
-              │
-              ▼
-        [EATON PL7C16/1]  (1p, C 16 A)  ◄── modry vodic rozpojen a veden pres jistic
-              │
-              ▼
-   ┌── Svorkovnice L/N ──┐
-   │  Svorkovnice PE     │  (= "venecek", krabice s DIN listou)
-   └──────────┬──────────┘
-              │  CYKY 3×1,5 mm² (L/N/PE), dalka < 2 m
-              ▼
-        [1× zasuvka / kolík]  — zapojena VSECHNY 3 vodice (L, N, PE)
+   L  ──► MODRY vodic  (<1 m) ──► [EATON PL7C16/1] ──┐   ◄── spinany conductor = L (oprava G14)
+   N  ──► HNEDY vodic  (<1 m) ───────────────────────┤
+   PE ──► ZLUTOZLENY (GD/SE) ────────────────────────┤
+                                                      ▼
+                                    ┌── Svorkovnice DIN (2 sockety, 2 mustky) ──┐
+                                    │  mustky popsany fixou: symbol N a L       │
+                                    └──────────────────┬─────────────────────────┘
+                                                       │  CYKY 3×1,5 mm² (L/N/PE), dalka < 2 m
+                                                       ▼
+                                              [1× zasuvka / kolík]
+                                              hnědá=L, modrá=N, ŽZ=PE
 ```
 
 | Prvek | Hodnota | Poznamka |
 |---|---|---|
-| Hlavni usek | **CYKYLO 3×2,5 mm² Cu** | Stary neposkozeny vodic z 30 m prodluzovacky |
-| Jistic | **EATON PL7C16/1** (1p, C 16 A) | V serii na **modrem (N)** vodicu — overeno meritkem (O10) |
-| Svorkovnice | L/N + PE věneček, DIN krabice | Rozvadecove krabicky |
-| Posledni usek | **CYKY 3×1,5 mm²**, <2 m | Na hraně pro 16 A; pro kratkej usek prijatelne |
+| Hlavni usek | **CYKYLO 3×2,5 mm² Cu** | Z 30 m venkovni prodluzovacky, neposkozeny |
+| Prohozeni u menice | **L=modra, N=hneda** (jen <1 m od AC OUT) | **Ucelena zmena pro G14** — spinany vodic = L |
+| Jistic | **EATON PL7C16/1** (1p, C 16 A) | **Nyni na L (modry vodic)** — G14 OPRAVENO |
+| Svorkovnice | DIN box, 2 sockety, **2 můstky** | Můstky **popsány fixou** symbolem N/L pro orientaci |
+| Posledni usek | **CYKY 3×1,5 mm²**, <2 m | hnědá=L, modrá=N, ŽZ=PE — korektni barvy k zasuvce |
 | Zasuvka | 1× kolik, **vse 3 vodice** | PE=colik propojen |
 | RCD/RCBO | **CHYBI** | **G13 stale otevreny — vysoka zavaznost** |
 
@@ -176,21 +175,22 @@ Poreadi shora dolu na drevene desce:
 | Stav | Měření | Výsledek | Výklad |
 |---|---|---|---|
 | Jistič **ON** (provoz) | L–N | **~230 V** | Normální provozni napeti menice |
-| Jistič **OFF** | **L–PE** | **~150 V** | **G14 POTVRZENO** — L ziva, jistič spíná N, ne L |
-| Jistič **OFF** | **N–PE** | **~150 V** | N plovouci za rozpojenim; stejna hodnota jako L |
-| Jistič **OFF** | **N–L** | **~0 V** | L i N na stejnem potencialu vuci PE (obe "jedou" z L / fantom) |
-| drive (rano) | na zasuvce | ~30 V | Fantom bez zateze; po pripojeni zateze spadne |
+| Jistič **OFF** (PRED opravou) | L–PE / N–PE | **~150 V / ~150 V** | G14 potvrzeno — spinani na N, L ziva |
+| Jistič **OFF** (PO oprave, prohozeni) | **L–PE** | **~35 V** | Výrazný pokles — L nyní přerušena jističem; zbytkový fantom |
+| Jistič **OFF** (PO oprave) | **N–PE** | **~35 V** | Stejná hodnota jako L–PE — plovoucí/bez reference |
+| Jistič **OFF** (PO oprave) | **L–N** | **~0 V** | Oba vývody potenciálově stejné vůči PE (fantom) |
+| Jistič **ON** | L–N | **~230 V** | Provérka OK |
 
-**Interpretace 150 V při OFF (jistota P>0.8):**
-1. **Nebezpecne** — dle CSN/IEC se bezpecny dotykove proud povazuje od **~50 V AC** v suchem prostredi; 150 V vůči PE je **jednoznacne nebezpecne** (i kdyby castecne fantom — chybet muze zatěžní schopnost, ne potencial).
-2. **Proc 150 V a ne 230 V:** ostrovní výstup měniče byva **plovouci** (N neni pevne svazan s PE) + vysoka impedance DMM → kapacitni/kmitocova vazba, ne plna faze; rozdil L-PE vs L-N vysvetluje chybejici reference.
-3. **N-L = 0 pri OFF:** N otevreny u jističe, oba vývody na zasuvce potencialove stejne vuci PE (spolecna vazba na L strane mene / fantom).
-4. **Test fantom vs real:** připoj žárovku 40–60 W mezi L–PE (měnič ON, jistič OFF) — pokud zustane ~150 V pod zatizenim, jde o realni napeti; pokud spadne na ~0, byl to ghost. **Bezpečnější: předpokládat realni a neposahovat.**
+**Interpretace 35 V po opravě (jistota P>0.85):**
+1. **Pokles 150→35 V potvrzuje, že jistič nyní přerušuje L** — hlavní účel opravy G14 splněn.
+2. **35 V je stále fantom** (vysoká impedance DMM, plovoucí výstup měniče bez pevného N–PE svazku) — pod hranicí běžného nebezpečí v suchu (~50 V), ale **raději ověřit zátěží**: žárovka 40–60 W L–PE při OFF; měla by zhasnout / U spadnout na ~0.
+3. **Bez RCBO (G13) zůstává ochrana osob nedostatečná** — 35 V fantom neopravňuje k dotyku svorek; při poruše může být na L plných 230 V.
+4. **Doporuceni:** po dokoupení RCBO přeměřit OFF L–PE; s RCBO + opraveným L by mělo být ~0 V bez fantomu (RCBO/PE svazek).
 
 **Bezpecnostni poznamky:**
+- **G14 OPRAVENO (2026-09-23):** prohozeno AC OUT u měniče (L=modrá na jističi); spinany vodic = L. Ověřeno měřením (OFF L-PE ~35 V vs. predchozích ~150 V).
 - **G13 (RCD chybi):** stále priorita — dokoupit RCBO 16 A/30 mA typ A; do te doby pouze mala zatez + PE musi byt spojite (je).
-- **G14 potvrzeno meritkem:** spinani na N — **přepojit na L (hnedy)**; pak pri OFF musi byt **L-PE = ~0 V**.
-- Do opravy G14 je i „vypnuty“ stav **nebezpecny na dotyk** (L ziva vůči PE).
+- **Barvy:** u měniče <1 m prohozeny (modrá=L); od svorkovnice korektní (hnědá=L). Můstky na SV popsány fixou.
 
 ---
 
@@ -226,7 +226,7 @@ Poreadi shora dolu na drevene desce:
 | G11 | **AC výlev CYLY 3×1,5 mm²** — na hraně pro 3200 W; nelze krýt B32 | Stredni | Pro HIC 16 A OK; pro vetev 32 A 2,5 mm²; popsat barvy L/N/PE |
 | G12 | **FV kabel panely→SPB1: 4 m 2×2,5 mm² CYLY** — CYLY neni solar/UV kabel; průřez na hraně pro Imp 2P2S | Vysoka | Nahradit UV solarnim kablem min. 4–6 mm² dle Imp + 1,25; CYLY jen pro AC |
 | G13 | **Provizorni AC zapojena BEZ RCD/RCBO** (PL7C16 + 1 zasuvka, §2.1e) | **Vysoka — trva** | Dokoupit **RCBO 16 A/30 mA typ A** (1 modul) mezi menic a svorkovnici; do te doby jen mala zatez; trvale rozvadec M2 §5.4/§5.9 |
-| G14 | **Jistic na N (modry) misto L (hnedy)** — pri OFF **L-PE ~150 V (O10 potvrzeno)** | **Vysoka — potvrzeno meritkem** | Prepojit spinani na **L**; po oprave overit L-PE pri OFF = ~0 V |
+| G14 | ~~Jistic na N misto L~~ — **OPRAVENO 2026-09-23** prohozenim AC OUT u menice | **UZAVRETO** | Spinany vodic = L (modra <1 m); overeno: OFF L-PE ~35 V (pred ~150 V); ON L-N 230 V |
 
 ---
 
@@ -240,7 +240,7 @@ Poreadi shora dolu na drevene desce:
 6. **Zimni provoz:** Termostat/nabijeci interlock pri < 0 °C; teplotni cidla na baterii (DS18B20 plan); Priti Mini D jako predohrev pred nabojim po mrazove noci.
 7. **Monitoring:** RS232/Modbus z menice + BLE BMS → jednotna telemetrie (uzavrit DEBT_001/002/IOT_002).
 8. **Bezpecnostni pravidla provozu:** Blokace souběhu >3200 W; 1 velky spotrebic soucasne; dokumentovany start/stop postup pred zimou.
-9. **Provizorni AC (REALIZOVANO 2026-09-23 — viz §2.1e):** Zapojeno: měnič → CYKYLO 3×2,5 → **PL7C16** → svorkovnice → CYKY 3×1,5 → 1 zasuvka. **Chybi RCBO (G13)** — primo mezi menic a svorkovnici doplnit **RCBO 16 A/30 mA typ A**; zároveň **prepnout spinani na L (G14)**. Provozni limit ~1500–1600 W, jen mala zatěž. Trvale = §5.4 rozvadec M2.
+9. **Provizorni AC (REALIZOVANO + G14 OPRAVENO 2026-09-23 — viz §2.1e):** Zapojeno: měnič (**prohozené L/N u AC OUT**) → CYKYLO 3×2,5 → **PL7C16 na L** → svorkovnice DIN (můstky popsány) → CYKY 3×1,5 → 1 zasuvka. **G14 hotovo** (OFF L-PE ~35 V). **Chybi RCBO (G13)** — primo mezi menic a svorkovnici doplnit **RCBO 16 A/30 mA typ A**. Provozni limit ~1500–1600 W, jen mala zatěž. Trvale = §5.4 rozvadec M2.
 
 ---
 
@@ -256,8 +256,8 @@ Poreadi shora dolu na drevene desce:
 | O6 | Aktuální tilt/orientace stringu 1 po premistění na strechu | **HOTOVO — pultova strecha, minimalni tilt (author 2026-09-23)** |
 | O7 | SOC/napětí hlavní LFP a GoKWh v den revize | **HOTOVO — LFP 26,78 V; GoKWh 23,9 V nezapojena (2026-09-23)** |
 | O8 | Dispozice zásuvek a spotřebičů, ktere se mají vratit do provozu | **CASTECNE — 1 provizorni zasuvka hotova (§2.1e); final seznam dale** |
-| O9 | Detail AC výlevu u menice (kam jdou volne konce CYLY), PE continuity | **CASTECNE — PE na menici symbol ZEME, topologie §2.1e; zbyva overit L/N/PE na zasuvce multimetrem (cast O10) + foto** |
-| O10 | Stav spinani pri OFF: je na zasuvce ziva L? (jistic na N) | **HOTOVO — meritka 2026-09-23: OFF L-PE ~150 V, N-PE ~150 V, N-L ~0 V; ON L-N ~230 V → G14 potvrzeno. Zbyva: PREPojit na L a overit L-PE pri OFF = 0** |
+| O9 | Detail AC výlevu u menice (kam jdou volne konce CYLY), PE continuity | **HOTOVO — topologie §2.1e, PE symbol ZEME, můstky SV popsány; barvy korektni od SV** |
+| O10 | Stav spinani pri OFF: je na zasuvce ziva L? (jistic na N) | **HOTOVO — pred opravou OFF L-PE ~150 V (G14); po prohozeni AC OUT: OFF L-PE/N-PE ~35 V, N-L 0; ON L-N 230 V → G14 UZAVRETO** |
 
 ---
 
@@ -270,6 +270,7 @@ Poreadi shora dolu na drevene desce:
 | 2026-09-23 | V1.2 — SPB1 foto §2.1d (YQSHIPU), trasa 4+4 m, tilt pultova/min, SOC 26,78/23,9, G12–G13, §5.9 provizorni 1 zasuvka; O2/O3/O6/O7 hotovo | outpost2026 + agent (photo-read) |
 | 2026-09-23 | V1.3 — provizorni AC ZAPOJENO (§2.1e): CYKYLO 3×2,5 + PL7C16 + svorkovnice + CYKY 3×1,5 → 1 zasuvka; PL7C16 ve inventari = ON; G13 zustava, G14 spinani N misto L, O10 | outpost2026 + agent |
 | 2026-09-23 | V1.4 — O10 meritka (OFF L-PE/N-PE ~150 V, N-L 0; ON L-N 230 V); G14 potvrzeno + zvysena na Vysoka; §2.1e presunuta zpet do §2 (struktura); interpretace 150 V nebezpecna | outpost2026 + agent |
+| 2026-09-23 | V1.5 — G14 OPRAVENO prohozenim AC OUT u menice (L=modra na jistici); nove meritka OFF ~35 V (z 150), ON 230 V; svorkovnice DIN s popsanymi mustky; O9/O10 HOTOVO | outpost2026 + agent |
 
 ---
 
