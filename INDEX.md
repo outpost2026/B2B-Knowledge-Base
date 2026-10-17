@@ -338,6 +338,7 @@
 | KM06 | `LLM_free_models.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | seznam | Seznam free LLM modelů (repo kopie) | 6/10 |
 | KM07 | `LLM_routing.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | routing | LLM routing podle domény (repo kopie) | 8/10 |
 | KM08 | `Free_LLM_openrouter.txt` | 05_EPISTEMIKA/01_kalibracni_matice/ | katalog | Free LLM modely na OpenRouter (přesunuto z 00_agentni_prace, Q3) | 6/10 |
+| KM09 | `BENCHMARK_FREE_TIER_LLM_2026-10-17.md` | 05_EPISTEMIKA/01_kalibracni_matice/ | analýza | Benchmark 4 free-tier modelů (deepseek/glm/mimo/longcat) na T1–T4; routing doporučení | 9/10 |
 
 ### 02_agentni_pravidla — Bezpečnostní protokoly, guardrails
 
