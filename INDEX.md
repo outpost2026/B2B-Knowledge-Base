@@ -1,6 +1,6 @@
 # INDEX — Registr všech artefaktů B2B-Knowledge-Base
 
-**Verze:** 2.4 | **Datum:** 2026-10-17 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
+**Verze:** 2.5 | **Datum:** 2026-10-19 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
 
 ---
 
@@ -74,6 +74,12 @@
 | # | Soubor | Zdroj | Typ | Účel | EROI |
 |---|--------|-------|-----|------|------|
 | SG01 | `SWE_GLOSSARY_zive_v1.md` | 01_METODIKY/06_SWE_glossary/ | edu | Živá učebnice SWE terminologie (concurrency, caching, tooling, testing, web scraping, matching, text, koncepty) | 9/10 |
+
+### 07_klient_screening_psychologie — Raná detekce rizikového klienta
+
+| # | Soubor | Zdroj | Typ | Účel | EROI |
+|---|--------|-------|-----|------|------|
+| KS01 | `KLIENT_SCREENING_A_PLATEBNI_PROTOKOL_v1.md` | 01_METODIKY/07_klient_screening_psychologie/ | metodika | Detekce prevention-focus klienta, frame ambiguity (komunální vs. směnný), nízké referenční ceny, deficitu reciprocity; platební protokol + screening checklist R1–R6 | 9/10 |
 
 ### 01_reverse_engineering — RE metodologie
 
@@ -465,7 +471,7 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026 + 04_ELEKTRO 09/2026 + EL03 09/2026) | 94 |
+| Trackovaných souborů (repo, po trimu F1-F5 + rozšíření 08/2026 + 04_ELEKTRO 09/2026 + EL03 09/2026 + KS01 10/2026) | 95 |
 | Duplicitní páry | 0 |
 | Souborů v _ARCHIVE (tracked) | 7 |
 | Celkem zmapovaných artefaktů (celý workspace) | ~110 |
@@ -474,4 +480,4 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 
 ---
 
-*Poslední aktualizace: 2026-08-15 (v2.3b — homogenita INDEX vs fyzická struktura: S01/S02 přípona .md→.json, L01 drift názvu synteticky_report→2026-07-17, X24 oprava, sekce 03_aplikacni_proces smazána, N21 ARCHITEKTURA_KB archivována; P5 OK)*
+*Poslední aktualizace: 2026-10-19 (v2.5 — registrace KS01 KLIENT_SCREENING_A_PLATEBNI_PROTOKOL_v1 v 01_METODIKY/07_klient_screening_psychologie; P5 OK)*
