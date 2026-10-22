@@ -1,6 +1,6 @@
 # INDEX — Registr všech artefaktů B2B-Knowledge-Base
 
-**Verze:** 2.5 | **Datum:** 2026-10-19 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
+**Verze:** 2.6 | **Datum:** 2026-10-22 | **Účel:** Fulltextový registr s metadaty pro rychlou orientaci LLM agenta i autora
 
 ---
 
@@ -195,6 +195,7 @@
 | WA02 | `KORELACE_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Korelace struktury KB s obsahem — duplicity registrace, kolize čísel, rozptýlenost témat | 9/10 |
 | WA03 | `DE_NOVO_SEMANTICKY_AUDIT_STRUKTURY_KB_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | De novo audit struktury — mis-files ×14, kolize ×4, skill acquisition řetězec, návrh přesunů | 9/10 |
 | WA04 | `SQL_KANDIDATI_IMERZE_2026-08-15.md` | 02_ANALYZY/04_workspace_audit/ | analýza | Cross-repo audit SQL kandidátů pro imerzní adopci — 4 silní + 4 střední, posloupnost scrapers→linkedin→lichess | 8/10 |
+| WA05 | `NASTROJOVY_AUDIT_dev_notebook_2026-10-22.md` | 02_ANALYZY/04_workspace_audit/ | audit | Nástrojový audit notebooku — delta vs P06 (T1 PIN hotovo), headless osa GUI aplikací, mezery P1/P2 | 8/10 |
 
 ### 05_mcp_jobs — MCP-Jobs analýzy a audity
 
@@ -432,10 +433,11 @@ Artefakty, které **nevznikly migrací z B2B/KB zdrojů**, ale byly vytvořeny i
 | **N26** | Chess analýzy ×11 (lichess-analyzer pipeline) | `02_ANALYZY/02_chess/` | analýza | 2.–3. 8. 2026 | 7-9/10 |
 | **N27** | CV automatizace ×2 (YOLO11, small models) | `02_ANALYZY/07_CV_automatizace/` | analýza | 8/2026 | 7-8/10 |
 | **N28** | **`SQL_KANDIDATI_IMERZE_2026-08-15.md`** | **`02_ANALYZY/04_workspace_audit/`** | **analýza** | **15. 8. 2026** | **8/10** |
+| **N29** | **`NASTROJOVY_AUDIT_dev_notebook_2026-10-22.md`** | **`02_ANALYZY/04_workspace_audit/`** | **audit** | **22. 10. 2026** | **8/10** |
 
 > N01 superseded S08 (GROUND_TRUTH_aktualni_stav_2026-08-06.md — kanon). N10/N14 → v2 generace (v1 v _ARCHIVE).
 
-**Celkem v tabulce:** 23 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | vytvořeno 24. 6.–15. 8. 2026
+**Celkem v tabulce:** 24 aktivních artefaktů (+ 7 archivovaných: N03, N06, N15-N19) | vytvořeno 24. 6.–22. 10. 2026
 
 ---
 
