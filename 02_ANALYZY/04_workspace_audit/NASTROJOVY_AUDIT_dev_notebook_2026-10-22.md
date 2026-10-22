@@ -72,6 +72,18 @@ P06 tuto vrstvu neřeší. Agent neovládá GUI klikáním, ale headless API/CLI
 
 **P2 — rozšíření:** `ollama` (lokální embeddingy pro rag_indexer), `mypy` + `pytest-xdist`, `cloudflared` (vzdálený přístup k MCP), `yq`, `ffmpeg`, `magick`.
 
+### 5.1 Stav po implementaci (2026-10-22, stejný den)
+
+| # | Výsledek |
+|---|---|
+| 1 | **DONE** — Blender 5.1.0 v user PATH; `bpy` headless OK (Python 3.13.9) |
+| 2 | **DONE** — Ruby 3.2.11 (`C:\Ruby32-x64`), gem 3.4.19; `ruby -c` 9/9 `.rb` v cad2llm bez chyby |
+| 3 | OPEN — LSP servery |
+| 4 | **DONE** — Azure CLI 2.91.0 |
+| 5 | **SKIP** — `PostgreSQL.psql` neexistuje; plný server 396 MB zamítnut, psycopg dostačuje |
+
+Reálná spotřeba sítě: **82 MB** (Ruby 15,2 + az 66,8), z toho Blender 0 MB.
+
 ---
 
 ## 6. Falsifikovatelné metriky
