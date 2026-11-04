@@ -1,13 +1,14 @@
 # MCP GROUND TRUTH — Agregovaná pitevní kniha
 
-**Datum:** 2026-10-09 | **Verze:** 23 (souborová generace v2; interní řada pokračuje z v1/v19)
+**Datum:** 2026-11-04 | **Verze:** 24 (souborová generace v2; interní řada pokračuje z v1/v19)
 **Účel:** Jediný zdroj pravdivých ponaučení z vývoje všech MCP serverů v portfoliu. Nahrazuje: linkedin_mcp_pitevni_kniha_v1.md, mcp_jobs_pitevni_kniha_v1.md, sdilena_pitevni_kniha_mcp.md, MCP_komplexni_analyza_a_strategie_v1.md (pouze postmortem části), pitevni_kniha_mcp_v1.md (cnc-tools).
-**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp, GCP infrastructure (pitevni_kniha_v8), TEMP_KULTURA_DB (refresh_dashboards pipeline), Zakazky2026/hostice-vodochody (driveway HTML v4)
+**Rozsah:** linkedin-mcp-custom, MCP-Jobs, mcp-local-server (cnc-tools), lichess-analyzer-mcp, GCP infrastructure (pitevni_kniha_v8), TEMP_KULTURA_DB (refresh_dashboards pipeline), Zakazky2026/hostice-vodochody (driveway HTML v4), cad2llm (SketchUp exporter + gate pipeline)
 **Určení:** Výukový materiál pro deva, instrukce pro LLM, ground truth pro rozhodování
 **Provenance trimu:** v2 = trim iterace A nad v1/v19 (sémantická analýza 2026-08-26): dedup `Pravidlo:` textů entrií → ukazatele (kanonický text v §4), kanonizace P80–P83 a P90–P96 do §4, odstranění duplicitního changelogu a statistického narrativu, komprese sekundárních pasáží. Zachováno: všech 108 GT záznamů, 48 Provenance polí, file:line reference. Historie verzí = git log repa.
 **Update v21:** Přidán GT-106 (lichess-033) + P97 adaptivní Hash — batch 20 měření hashfull/time (2026-08-31).
 **Update v22:** Přidány GT-107, GT-108 (server `kultura-db`: runner exit-code kontrakt + ASCII-only `.ps1` invariant) + pravidla P98, P99; nová §3.8, §5 rozšířena na 84 checkpointů (sekce W), §7 na 69 položek (2026-09-25). Téhož dne nasazen fix (commit `2a84a69`) → obě entries převedeny z Documented na **Fixed**; současně statistická tabulka §8 srovnána s obsahem katalogu (dříve `Documented 18`/`Workaround 3` vs skutečných 17/2 a nezapočtené varianty „Fixed / Mitigated" a „Fixed (policy)" → nyní 79/6/6/17/2/1 = 111) a drift GT-062 v JSONL (implemented → documented) opraven ve prospěch docu.
 **Update v23:** Přidány GT-109..GT-111 (nový server `hostice-vodochody`, alias řada `zakazky-00N`: JScript/cscript test kontrakt, cross-language parity fixture, stale předpověď ve statickém HTML) + pravidla P100–P102; nová §3.9, §4 titulek P1–P102, §5 rozšířena na 87 checkpointů (sekce X), §7 na 72 položek, statistiky 114 (82/6/6/17/2/1); sync zrcadel `mcp-retrieval` + `ML_Ops_edukace` (gt_full.jsonl, gt_rules.json, gt_meta.json, gt_schema.json, gt_catalog_full_render.md), `gt_schema.json` enum serverů opraven (doplň `kultura-db` — drift od v22 + nový `hostice-vodochody`); header/footer verze 23 konzistentní (2026-10-09).
+**Update v24:** Přidány GT-112..GT-118 (nový server `cad2llm`, alias řada `cad2llm-00N`: idempotentní patch, exportní kontrakt, identita vs. cesta, persist boundary, kontejner vs. mesh, učení slovníku, role → system) + pravidla P103–P109; nová §3.10, §4 titulek P1–P109, §5 rozšířena na 94 checkpointů (sekce Y), §7 na 79 položek, statistiky 121 (86/6/9/17/2/1); sync zrcadel `mcp-retrieval` + `ML_Ops_edukace` (gt_full.jsonl, gt_rules.json, gt_meta.json, gt_schema.json — enum serverů doplněn o `cad2llm` — gt_catalog_full_render.md); header/footer verze 24 konzistentní (2026-11-04).
 **Skill:** Před editací loadni `skill({name: "kb-workflow"})` → sekce Postmortem Workflow obsahuje pravidla pro konzistentní zápis GT/P a prevenci konfabulace.
 
 ---
@@ -34,7 +35,7 @@ Vyřešené rozpory statusů při agregaci: Entry 016 (Fixed), Entry 020 (Fixed)
 
 ## 3. Katalog chyb
 
-114 záznamů: GT-001..GT-111 + GT-GCP-001..005. V závorce původní ID ze zdrojového artefaktu.
+121 záznamů: GT-001..GT-118 + GT-GCP-001..005. V závorce původní ID ze zdrojového artefaktu.
 
 **Číslování a rezervace:** GT-082 a GT-084 nebyly přiděleny (mezera vznikla ve v10); P78/P79 neexistují; P84–P89 jsou rezervovány epistemické řadě (Gate protokol destruktivních operací). Sekce katalogu čísluje 3.1–3.3 a 3.5–3.9 (mezera 3.4 historická, zachována kvůli externím referencím).
 
@@ -1008,9 +1009,76 @@ echo "$USER ALL=(root) NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/shutdown
 **Pravidlo:** P102
 **Provenance:** source-read `docs/meteo-mesic-2026-10.json` (pull 2026-10-09, okno 23.–24.10. — 11.–12.10. NEPLATÍ), `html/driveway-pravy-svah-kompletni-v4.html` (0 výskytů `7.–13.`, md5 v3 `9c34a17c` zmražen), `tests/test_html_contract.py`, `tests/test_build_v4.py`, `scripts/build_html_v4.py` · pull experiment: forecast daily day 17 → HTTP 400 · cross-ref GT-033 (P20), GT-074 (P58)
 
+### 3.10 cad2llm — SketchUp exporter + gate pipeline
+
+Řada GT-112..GT-118 (nepřekrývá se s GT-001..GT-111 ani s GT-GCP-001..005). Přidána 2026-11-04 z vývoje `cad2llm` (Ruby `cad2llm_exporter` + Python `tools/pipeline`, výstup RBZ 4.3.6, 23 959 B). Screening kandidátů: 10 dotazů `gt_search` proti existujícím 114 entrím (`cad2llm`, `SketchUp`, `tag`, `gate`, `vocabulary`, `geometry`, `patch`, `idempotence`, `identity`, `persistence`) + `gt_stats`/`gt_list_rules`/`gt_get_entry` → žádná přímá shoda; sekundární kandidáti odloženy na GT-119+. Aliases: `cad2llm-001..007`.
+
+#### GT-112 (cad2llm-001): Metadata patch není idempotentní — 211 příkazů pro nezměněný model
+**Server:** cad2llm | **Status:** Fixed | **Typ:** Idempotence — producent zápisové dávky
+
+**Symptom:** Metadata patch emitoval 211 zápisových příkazů i pro model, na kterém se nic nezměnilo; každý běh znovu přepisoval všechna jména a atributy. Patch nebyl idempotentní a z výstupu nešlo poznat, co se skutečně změnilo.
+**Root cause:** Producent (`propose_names`) stavěl cílový stav pro všechny entity a `build_patch` ho zapisoval celý; chyběl diff proti aktuálnímu stavu entity (`_current_field`). Bez invariantu „nezměněný vstup ⇒ 0 příkazů" se regrese neprojeví — 211 příkazů vypadá jako úspěch, ne jako chyba. Komplement P58 (stale data bez version klíče): zde nejde o cizí data, ale o producenta, který neumí „nic neudělat".
+**Fix (nasazeno, tests green):** `build_patch` počítá pouze rozdíl mezi návrhem a `_current_field`; invariant „beze změny modelu = 0 příkazů" je spustitelný test, ne komentář. Měřeno: **211 → 0 příkazů**. `propose_names` už nenavrhuje jména existujícím entitám (near-miss: k destruktivnímu renamu nedošlo, ale cesta k němu byla otevřená).
+**Pravidlo:** P103
+**Provenance:** source-read `cad2llm/tools/pipeline/gate.py` (`build_patch`, `_current_field`, `propose_names`, ~řádky 600–821) · self-learning vocab gate · měření 211 → 0 commands · komplement P58 (stale data bez version klíče)
+
+#### GT-113 (cad2llm-002): Dvě exportní cesty, dva tvary odpovědi
+**Server:** cad2llm | **Status:** Mitigated | **Typ:** Contract drift — export/RPC
+
+**Symptom:** Dvě exportní cesty pro tutéž informaci (`definitions_detail` vs `tag_consistency`) vracely odlišný tvar a jinou množinu klíčů; konzument musel znát, kterou metodu volat, a výsledky nešlo porovnat.
+**Root cause:** Exportní kontrakt nebyl deklarovaný na jednom místě: každá metoda v `exporter.rb` si stavěla vlastní hash a `bridge.rb` dispatch mapoval příkazy bez validace tvaru odpovědi. Dvě implementace téhož výstupu = dvě pravdy. Komplement P44 (contract testing) — zde chybí i samotná deklarace kontraktu, ne jen jeho test.
+**Fix (nasazeno, tests green):** Sjednocený tvar odpovědi a dispatch přes jednu mapu; rozdíl mezi `definitions_detail` a `tag_consistency` dokumentován jako záměrný (detail vs. agregát). Zbytkové riziko: kontrakt není strojově validovaný — proto **mitigated**, ne fixed.
+**Pravidlo:** P104
+**Provenance:** source-read `cad2llm/src/cad2llm_exporter/lib/exporter.rb` (`definitions_detail` 554–565, `tag_consistency` 584–591), `lib/bridge.rb` (dispatch 215–226) · komplement P44 (contract testing)
+
+#### GT-114 (cad2llm-003): `tag_audit` 0/53 a 0/34 — identita vázaná na jméno/cestu
+**Server:** cad2llm | **Status:** Mitigated | **Typ:** Identita — audit párování
+
+**Symptom:** `tag_audit` hlásil 0/53 a 0/34 shod — tedy „všechno špatně" — přestože tagy na entitách existovaly. Audit porovnával jména z cesty entity, ne její trvalou identitu.
+**Root cause:** Identita entity vázaná na jméno/cestu (`bridge.rb` `tag_audit` 296–298, `info.modified` 287): po renamu nebo při duplicitních jménech v různých kontejnerech přestane cesta odpovídat. Jméno je popisek, ne klíč.
+**Fix (nasazeno, tests green):** Audit párován přes persistentní identitu; jméno slouží jen k reportingu. Měřeno: **0/53 + 0/34 → plné pokrytí**. Plně neuzavřeno: `info.modified` zůstává heuristika, protože SketchUp neposkytuje spolehlivý dirty flag per entita — proto **mitigated**.
+**Pravidlo:** P106
+**Provenance:** source-read `cad2llm/src/cad2llm_exporter/lib/bridge.rb` (`info.modified` 287, `tag_audit` 296–298) · měření tag_audit 0/53 + 0/34
+
+#### GT-115 (cad2llm-004): Reindexace po každé operaci — 9 renamů = 9 reindexů
+**Server:** cad2llm | **Status:** Fixed | **Typ:** Performance — persist boundary
+
+**Symptom:** Metadata zápis 63 operací (9 rename + 54 atributů) trval neúměrně dlouho; každá jednotlivá operace spouštěla reindexaci celého modelu.
+**Root cause:** `annotate.rb` reindexuje po každém `rename`/`set_tag` (`mutates_index?`, 475–477) — persist boundary byla uvnitř smyčky místo na konci dávky. 9 renamů = 9 reindexů; cena roste s počtem operací, ne s velikostí změny.
+**Fix (nasazeno, tests green):** Zápis do indexu jednou na hranici dávky; `persistent_id`/`hierarchy_path` (189–208) drží identitu mezi reindexy. Měřeno: **63 operací (9 rename + 54 attr), 0 errors**. Wall-clock neměřen — uvádíme jen počty operací.
+**Pravidlo:** P105
+**Provenance:** source-read `cad2llm/src/cad2llm_exporter/lib/annotate.rb` (`persistent_id`/`hierarchy_path` 189–208, `mutates_index?` 475–477) · měření 63 opů (9 rename + 54 attr), 0 errors
+
+#### GT-116 (cad2llm-005): 28 BLOCK na validním modelu — kontejner měřený jako geometrie
+**Server:** cad2llm | **Status:** Fixed | **Typ:** Geometrie — klasifikace entit
+
+**Symptom:** Baseline B2: 28 BLOCK (24 rotation + 3 bbox + 1 mesh) na modelu, jehož geometrie byla v pořádku; gate blokoval validní kontejnery.
+**Root cause:** Gate nerozlišoval kontejner (group/component instance) od přímé mesh geometrie. Rotace a bbox kontejneru se vyhodnocovaly jako rotace/bbox geometrie uvnitř → falešné BLOCK. Kontejner a jeho obsah jsou dvě různé měřicí úrovně.
+**Fix (nasazeno, tests green):** Klasifikace container vs. direct mesh před geometrickými kontrolami; kontejner se hodnotí transformací, ne geometrií uvnitř. Měřeno: **28 BLOCK → 0**. Zůstávají warningy: spatial 31 (28× FRAME_UNDECIDABLE, 2× FRAME_UNDECLARED_SCALE, 1× GEOM_ZERO_THICKNESS) + 1 info; geometry 4 warning + 28 info (27× FRAME_ROTATION_VS_GEOMETRY, 1× SEM_REFERENCE_PLANE). Ověřeno: Python 172 testů, Ruby 313, RBZ 4.3.6 23 959 B, sha256 `813430a2a13962072f560ab39170ddd57288eefa19152f9e975b9ed153cf3021`.
+**Pravidlo:** P107
+**Provenance:** source-read `cad2llm/tools/pipeline/gate.py` (klasifikace kontejner vs. direct mesh) · B2 baseline 28 BLOCK (24 rotation + 3 bbox + 1 mesh) → 0 · RBZ 4.3.6 23 959 B / sha256 `813430a2…` · Python 172, Ruby 313
+
+#### GT-117 (cad2llm-006): Self-learning slovník bez zpětné vazby — 7/9 unresolved
+**Server:** cad2llm | **Status:** Fixed | **Typ:** Resolution — učení slovníku
+
+**Symptom:** Self-learning slovník nechal 7 z 9 nerozpoznaných tagů nerozřešených; nová jména z modelu se nepropsala do slovníku a příští běh je nerozpoznal znovu.
+**Root cause:** Učení slovníku bylo jednosměrné: resolver slovník pouze četl, ale výsledek resoluce se nevracel jako kandidát k zápisu. Bez zpětné vazby se slovník nemůže naučit nic, co v něm na začátku nebylo.
+**Fix (nasazeno, tests green):** Naučená jména se zapisují do slovníku s původem a jistotou; **derive 7/9 unresolved → 0**. Učení je měřené jako test úspěšnosti resoluce, ne jako dojem z výstupu. Ověřeno: Python 172 testů, Ruby 313.
+**Pravidlo:** P108
+**Provenance:** source-read `cad2llm/tools/pipeline/gate.py` (self-learning vocab, zápis naučených jmen), `cad2llm/.ai_state.json` (metadata write 63 opů) · derive 7/9 unresolved → 0 · Python 172, Ruby 313
+
+#### GT-118 (cad2llm-007): Role → system — dvě definice a implicitní přepis v gate
+**Server:** cad2llm | **Status:** Mitigated | **Typ:** Single source of truth — mapování
+
+**Symptom:** Role `space_boundary` měla ve slovníku `system="space"`, ale v `registry.tag_map` `system="reference"`. Gate podle `kind=="reference"` implicitně přepsal `system` na `reference`, takže slovník a gate si odporovaly.
+**Root cause:** Dvě místa definují mapování role → system (`vocab.roles` a `registry.tag_map`) a třetí místo (`gate.py:634–635`, `kind=="reference"`) ho implicitně dopočítává. Role → system nemá jednoho vlastníka; konflikt se řeší na místě spotřeby, ne u zdroje. Komplement P81 (dedup klíč): zde konfigurační klíč, ne URL.
+**Fix (nasazeno, tests green):** Gate už `system` nepřepisuje implicitně; po zápisu 1 operace je patch 0. Konflikt ve slovníku zůstává (dvě definice), proto **mitigated** — jedna pravda vyžaduje migraci slovníku, ne záplatu v gate.
+**Pravidlo:** P109
+**Provenance:** source-read `cad2llm/tools/pipeline/gate.py:634–635` (`kind=="reference"` → `system="reference"`), `vocab.roles.space_boundary.system="space"`, `registry.tag_map.space_boundary.system="reference"` · měření: po zápisu 1 op je patch 0
+
 ---
 
-## 4. Průřezová pravidla P1–P102 + P-GCP-01..05 (kanon; P84–P89 rezervovány epistemické řadě)
+## 4. Průřezová pravidla P1–P109 + P-GCP-01..05 (kanon; P84–P89 rezervovány epistemické řadě)
 
 ### P1 — Paralelizace
 Jakmile tool iteruje N>1 nezávislých zdrojů (repozitáře, soubory, API), použij `ThreadPoolExecutor`. Počet workerů: min(4, N). I/O-bound operace skálují lineárne do ~8 vláken.
@@ -1354,6 +1422,27 @@ Dvě implementace stejného kanonu (Python ↔ JS) držet přes **generovanou fi
 ### P102 — Mutabilní externí data ve statickém dokumentu: pull-stamp + regenerace, ne neměnný prose
 Předpověď a jiná externí data nesmí ležet ve statickém dokumentu bez data pullu. Každé tvrzení nese **pull-stamp**; dokument buď pravidelně generujte (build) nebo doplňte živým fetchem + fallback embedem; před editací povinná regenerace; contract test nesmí pustit stale řetězec. Forecast má tvrdý horizont (Open-Meteo 16 dní, 17. den → HTTP 400). Rodina P20 (externí data se mění) / P58 (stale data bez version klíče) — zde doména: předpověď v dokumentu. Reference: GT-111.
 
+### P103 — Idempotentní producent: nezměněný vstup ⇒ 0 zápisů
+Každý producent, který generuje zápisovou dávku (patch, migraci, sync), musí být idempotentní: pro vstup shodný s cílovým stavem vygeneruje **0 příkazů**. Nestavěj cílový stav a neposílej ho celý — počítej diff proti aktuálnímu stavu (`_current_field`). Invariant „beze změny vstupu = 0 operací" je spustitelný test; bez něj vypadá 211 příkazů jako úspěch. Reference: GT-112.
+
+### P104 — Exportní/RPC kontrakt: jeden tvar odpovědi, jedna dispatch mapa
+Každá exportní nebo RPC cesta musí mít deklarovaný tvar odpovědi na jednom místě. Dvě metody vracející tutéž informaci v jiném tvaru = dvě pravdy a konzument musí znát implementaci. Dispatch mapuj jednou mapou a tvar odpovědi validuj; záměrné rozdíly (detail vs. agregát) dokumentuj, ne implicitně předpokládej. Reference: GT-113.
+
+### P105 — Persist boundary: reindexuj na hranici dávky
+Zápis do indexu/DB nepatří do smyčky po jednotlivých operacích. Stanov hranici dávky (commit boundary) a reindexuj jednou; identitu entit drž persistentním ID, ne pořadím ani jménem, aby přežila reindex. Jinak 9 renamů = 9 reindexů a cena roste s počtem operací, ne s velikostí změny. Reference: GT-115.
+
+### P106 — Identita entity je persistentní ID, ne jméno ani cesta
+Jméno a hierarchická cesta jsou popisky, ne klíče. Párování, audit a dedup vždy přes persistentní identitu; jméno používej jen pro reporting. Duplicitní jména v různých kontejnerech a rename jinak rozbijí párování (audit 0/53 a 0/34 = „všechno špatně", přestože data existují). Reference: GT-114.
+
+### P107 — Kontejner ≠ přímá geometrie: klasifikuj dřív, než měříš
+Před geometrickými kontrolami klasifikuj entitu jako kontejner (group/component instance) nebo přímou mesh. Transformace kontejneru (rotace, bbox) není rotace/bbox geometrie uvnitř — měřit obojí na stejné úrovni vyrábí falešné BLOCK (28 BLOCK na validním modelu). Reference: GT-116.
+
+### P108 — Učení slovníku musí mít zpětnou vazbu do zápisu
+Resolver, který čte slovník, musí výsledek resoluce vracet jako kandidáta k zápisu (jméno + původ + jistota). Jednosměrné čtení znamená, že se slovník nikdy nenaučí a stejné nerozpoznané jméno se řeší znovu. Měř úspěšnost resoluce (7/9 unresolved → 0) jako test, ne dojmem z výstupu. Reference: GT-117.
+
+### P109 — Mapování role → system má jednoho vlastníka
+Je-li hodnota (např. `system`) odvozena z role, smí ji definovat právě jedno místo. Dvě definice (`vocab.roles`, `registry.tag_map`) plus třetí implicitní dopočet v konzumentovi (`kind=="reference"` přepíše `system`) vytvoří konflikt, který záplata v konzumentovi jen skryje. Oprava = migrace slovníku na jednoho vlastníka, ne podmínka v gate. Reference: GT-118.
+
 ### P-GCP-01 — Při 403 v GCP ověřit všech 5 autentizačních vrstev
 IAM role → Access Scopes (nejčastější příčina) → Metadata Server identity → Workspace vs Cloud scope mismatch → Service Account quota. Nejčastější selhání: vrstva 2 nebo 4. Reference: GT-GCP-001.
 
@@ -1371,7 +1460,7 @@ Při zacyklení v chybách >30 minut: smazat poškozený soubor → vložit ově
 
 ---
 
-## 5. Diagnostický filtr — 87 checkpointů
+## 5. Diagnostický filtr — 94 checkpointů
 
 ### A — Časové konstanty
 1. Je subprocess timeout kratsí nez MCP client timeout? (P2)
@@ -1513,6 +1602,16 @@ Při zacyklení v chybách >30 minut: smazat poškozený soubor → vložit ově
 86. Má každý kanon implementovaný ve dvou jazycích (Python ↔ JS) fixture **generovanou z jednoho zdroje pravdy** při buildu, parity test spuštěný v reálném cílovém runtime a povinnou mutační negativní kontrolu (harness musí umět failnout)? (P101)
 87. Nesou všechna tvrzení o externích datech (předpověď apod.) **pull-stamp**, je před editací dokumentu povinná regenerace buildem a contract test drží stale řetězce mimo výstup? (P102)
 
+### Y — Producent, kontrakt, identita (P103–P109)
+
+88. Je producent zápisové dávky idempotentní — pro nezměněný vstup vygeneruje **0 příkazů** a je to spustitelný test? (P103)
+89. Má každá exportní/RPC cesta deklarovaný tvar odpovědi na jednom místě a dispatch přes jednu mapu? Jsou záměrné rozdíly (detail vs. agregát) dokumentované, ne implicitní? (P104)
+90. Reindexuje se na hranici dávky, ne po každé operaci? Přežije identita entit reindex (persistentní ID, ne pořadí/jméno)? (P105)
+91. Páruje audit/dedup přes persistentní identitu, ne přes jméno nebo hierarchickou cestu? (P106)
+92. Je entita před geometrickými kontrolami klasifikovaná jako kontejner vs. přímá mesh — a měří se transformace kontejneru odděleně od geometrie uvnitř? (P107)
+93. Vrací resolver výsledek do slovníku jako kandidáta k zápisu (jméno + původ + jistota)? Je úspěšnost resoluce měřená testem? (P108)
+94. Má mapování role → system právě jednoho vlastníka — bez druhého zdroje a bez implicitního přepisu v konzumentovi? (P109)
+
 ---
 
 ## 6. EROI rozhodovací framework
@@ -1637,6 +1736,13 @@ Při zakládání nového MCP repozitáře:
 70. **WSH test kontrakt** (P100) — testy v `cscript`: `.js` bez UTF-8 BOM, výstup přes `StdOut.WriteLine` + explicitní `Quit(0|1)`, assert sentinel na stdout **i** rc; `//B` potlačí `Echo` i chyby, runtime error = `rc=0`. Source: GT-109.
 71. **Cross-language parity generovanou fixture** (P101) — kanon ve dvou jazycích = fixture generovaná z jednoho zdroje + exec v reálném cílovém runtime + mutační negativní kontrola; bez spustitelného runtime parity test neexistuje. Source: GT-110.
 72. **Pull-stamp pro externí data** (P102) — předpověď/apod. ve statickém dokumentu: datum pullu u tvrzení, před editací povinná regenerace, contract test proti stale řetězcům, živý fetch + fallback. Source: GT-111.
+73. **Idempotentní producent** (P103) — dávkový producent počítá diff proti aktuálnímu stavu; nezměněný vstup = 0 příkazů, invariant je test. Source: GT-112.
+74. **Exportní kontrakt jednoho tvaru** (P104) — jedna dispatch mapa, deklarovaný tvar odpovědi, záměrné rozdíly dokumentované. Source: GT-113.
+75. **Persist boundary** (P105) — reindex jednou na hranici dávky; identita entit přežije reindex. Source: GT-115.
+76. **Persistentní identita** (P106) — audit, dedup a párování přes persistentní ID; jméno jen pro reporting. Source: GT-114.
+77. **Kontejner vs. přímá mesh** (P107) — klasifikace entity před geometrickými kontrolami; transformace kontejneru ≠ geometrie uvnitř. Source: GT-116.
+78. **Zpětná vazba slovníku** (P108) — resolver vrací naučené jméno jako kandidáta k zápisu s původem a jistotou. Source: GT-117.
+79. **Jeden vlastník mapování** (P109) — role → system definuje právě jedno místo, žádný implicitní přepis v konzumentovi. Source: GT-118.
 
 ---
 
@@ -1644,17 +1750,17 @@ Při zakládání nového MCP repozitáře:
 
 | Metrika | Hodnota |
 |---------|---------|
-| Celkem GT | **114** (GT-001..GT-111, mezery GT-082/GT-084 + GT-GCP-001..GT-GCP-005) |
-| Fixed (vč. „Fixed / Mitigated", „Fixed (policy)") | 82 |
+| Celkem GT | **121** (GT-001..GT-118, mezery GT-082/GT-084 + GT-GCP-001..GT-GCP-005) |
+| Fixed (vč. „Fixed / Mitigated", „Fixed (policy)") | 86 |
 | Implemented | 6 |
-| Mitigated | 6 |
+| Mitigated | 9 |
 | Documented | 17 |
 | Workaround | 2 |
 | Pending | 1 |
-| **Kontrolní součet** | **114** |
+| **Kontrolní součet** | **121** |
 
-Rozpad: environment/CI 11 · application logic 64 · cross-repo 17 · cross-LLM audit 5 (GT-061..065) · DBCL Phase 2 7 (GT-071..077) · data-correctness batch 1 (GT-079) · ASCII-NOM 1 (GT-080) · engine adaptive cache 1 (GT-106) · GCP infra 5 (GT-GCP-001..005) · kultura-db 2 (GT-107..108) · hostice-vodochody 3 (GT-109..111).
+Rozpad: environment/CI 11 · application logic 64 · cross-repo 17 · cross-LLM audit 5 (GT-061..065) · DBCL Phase 2 7 (GT-071..077) · data-correctness batch 1 (GT-079) · ASCII-NOM 1 (GT-080) · engine adaptive cache 1 (GT-106) · GCP infra 5 (GT-GCP-001..005) · kultura-db 2 (GT-107..108) · hostice-vodochody 3 (GT-109..111) · cad2llm 7 (GT-112..118).
 
 ---
 
-*MCP_GROUND_TRUTH_postmortem_agregovany_v2.md — 2026-08-31 — v21 (souborová generace v2) — trim iterace A nad v1/v19 dle sémantické analýzy 2026-08-26 + update 2026-08-31: (1) dedup `Pravidlo:` textů entrií → ukazatele, kanonický text výhradně §4; (2) kanonizace P80–P83 a P90–P97 do §4 (ve v1 definovány pouze inline); (3) odstranění duplicitního footer changelogu, per-version poznámek ve statistikách a sebekorekčního narrativu (plná historie verzí = git log repa; komprese −30 % při zachování 109 GT záznamů, 49 Provenance polí a všech file:line referencí); (4) integritní opravy: titulek §4 (P1–P97), titulek §5 (82 checkpointů), reference GT-083 P71→P70, dokumentace mezer GT-082/GT-084 a P78/P79, stale rozsah v úvodu §3.7 + GT-106/P97 (engine adaptive cache, batch 20 měření). Originál v1 zachován do validace v2 (rozhodnutí autora 2026-08-26); po validaci přesunout do `_ARCHIVE/`. Header/footer verze 21 konzistentní. — update 2026-09-25 (v22): (5) přidány GT-107..GT-108 (nový server `kultura-db`: runner exit-code kontrakt + ASCII-only `.ps1` invariant) a pravidla P98/P99, nová §3.8, §4 titulek P1–P99, §5 rozšířena na 84 checkpointů (sekce W), §7 na 69 položek, statistiky 111/Documented 20/51 Provenance polí, sync zrcadel `mcp-retrieval` + `ML_Ops_edukace`; header/footer verze 22 konzistentní. — update 2026-10-09 (v23): (6) přidány GT-109..GT-111 (nový server `hostice-vodochody`, aliases `zakazky-00N`: JScript/cscript test kontrakt, cross-language parity fixture, stale předpověď ve statickém HTML) a pravidla P100–P102, nová §3.9 (screening: 12 dotazů gt_search proti 111 entrím, ~8 zamítnuto jako inferovatelných), §4 titulek P1–P102, §5 rozšířena na 87 checkpointů (sekce X), §7 na 72 položek, statistiky 114 (82/6/6/17/2/1)/54 Provenance polí, sync zrcadel `mcp-retrieval` + `ML_Ops_edukace` (gt_full.jsonl, gt_rules.json, gt_meta.json, gt_schema.json — enum serverů doplněn o `kultura-db` drift + `hostice-vodochody` — gt_catalog_full_render.md); header/footer verze 23 konzistentní.*
+*MCP_GROUND_TRUTH_postmortem_agregovany_v2.md — 2026-08-31 — v21 (souborová generace v2) — trim iterace A nad v1/v19 dle sémantické analýzy 2026-08-26 + update 2026-08-31: (1) dedup `Pravidlo:` textů entrií → ukazatele, kanonický text výhradně §4; (2) kanonizace P80–P83 a P90–P97 do §4 (ve v1 definovány pouze inline); (3) odstranění duplicitního footer changelogu, per-version poznámek ve statistikách a sebekorekčního narrativu (plná historie verzí = git log repa; komprese −30 % při zachování 109 GT záznamů, 49 Provenance polí a všech file:line referencí); (4) integritní opravy: titulek §4 (P1–P97), titulek §5 (82 checkpointů), reference GT-083 P71→P70, dokumentace mezer GT-082/GT-084 a P78/P79, stale rozsah v úvodu §3.7 + GT-106/P97 (engine adaptive cache, batch 20 měření). Originál v1 zachován do validace v2 (rozhodnutí autora 2026-08-26); po validaci přesunout do `_ARCHIVE/`. Header/footer verze 21 konzistentní. — update 2026-09-25 (v22): (5) přidány GT-107..GT-108 (nový server `kultura-db`: runner exit-code kontrakt + ASCII-only `.ps1` invariant) a pravidla P98/P99, nová §3.8, §4 titulek P1–P99, §5 rozšířena na 84 checkpointů (sekce W), §7 na 69 položek, statistiky 111/Documented 20/51 Provenance polí, sync zrcadel `mcp-retrieval` + `ML_Ops_edukace`; header/footer verze 22 konzistentní. — update 2026-10-09 (v23): (6) přidány GT-109..GT-111 (nový server `hostice-vodochody`, aliases `zakazky-00N`: JScript/cscript test kontrakt, cross-language parity fixture, stale předpověď ve statickém HTML) a pravidla P100–P102, nová §3.9 (screening: 12 dotazů gt_search proti 111 entrím, ~8 zamítnuto jako inferovatelných), §4 titulek P1–P102, §5 rozšířena na 87 checkpointů (sekce X), §7 na 72 položek, statistiky 114 (82/6/6/17/2/1)/54 Provenance polí, sync zrcadel `mcp-retrieval` + `ML_Ops_edukace` (gt_full.jsonl, gt_rules.json, gt_meta.json, gt_schema.json — enum serverů doplněn o `kultura-db` drift + `hostice-vodochody` — gt_catalog_full_render.md); header/footer verze 23 konzistentní. — update 2026-11-04 (v24): (7) přidány GT-112..GT-118 (nový server `cad2llm`, aliases `cad2llm-00N`: idempotentní patch, exportní kontrakt, identita vs. cesta, persist boundary, kontejner vs. mesh, učení slovníku, role → system) a pravidla P103–P109, nová §3.10 (screening: 10 dotazů gt_search proti 114 entrím, sekundární kandidáti odloženy na GT-119+), §4 titulek P1–P109, §5 rozšířena na 94 checkpointů (sekce Y), §7 na 79 položek, statistiky 121 (86/6/9/17/2/1), sync zrcadel `mcp-retrieval` + `ML_Ops_edukace` (gt_full.jsonl, gt_rules.json, gt_meta.json, gt_schema.json — enum serverů doplněn o `cad2llm` — gt_catalog_full_render.md); header/footer verze 24 konzistentní.*
